@@ -88,6 +88,12 @@ Route::post('/nhatuyendung/dangtintuyendung','NhatuyendungController@postDangtin
 
 
 
+
+Route::get('/admin/login','AdminController@getDangnhap');
+Route::get('/admin/index','AdminController@getIndex');
+Route::get('/admin/thongtinnhatuyendung','AdminController@getThongtinnhatuyendung');
+Route::get('/admin/tintuyendung','AdminController@getTintuyendung');
+Route::get('/admin/thongtinungvien','AdminController@getThongtinungvien');
 /*Route::fallback(function(){
 	return redirect('index');
 });*/
