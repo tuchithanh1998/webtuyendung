@@ -1,0 +1,32 @@
+#container-fluid1{
+	padding-top: 76px !important;
+}
+#logo{
+	width: 200px;
+	height: 50px!important;
+}
+.nav-link{
+	color:#6C757D !important;
+}
+#navbar-toggler {
+	background-color: #6C757D !important;
+} 
+#container-nganhnghe{
+	margin-top: 50px !important;
+	
+}
+#container-vieclam{
+	margin-top: 50px !important;
+	padding: 10px;
+
+}
+#container1{
+	background-color: #CCFFFF !important;
+}
+#container2{
+	background-color: #CCFFFF !important;
+}
+.bg-main{
+	background-color: #DDE8E8 ;
+}
+

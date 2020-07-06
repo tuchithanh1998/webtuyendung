@@ -1,0 +1,19 @@
+#logo{
+	width: 200px;
+	height: 50px !important;
+}
+#container2{
+	/*background-color: #CCFFFF !important;*/
+}
+#container-fluid1{
+	padding-top: 76px !important;
+}
+.scroll {
+    max-height: 575px;
+    overflow-y: auto;
+}
+
+.bg-main{
+	background-color: #DDE8E8;
+}
+
