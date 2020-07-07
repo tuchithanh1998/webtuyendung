@@ -1,14 +1,7 @@
 @extends('ungvien.layout')
 @section('content')
 
-@if (session('alert'))
-<div class="alert alert-warning alert-dismissible fade show fixed-top w-25" style="margin-top: 10%; margin-left:75%;" role="alert">
-	<strong>{{session('alert')}}</strong>
-	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-		<span aria-hidden="true">&times;</span>
-	</button>
-</div>
-@endif
+
 <div class="row bg-main">
 	<div class="col-sm-12 " style="margin-top: 25px; margin-bottom: 25px;">
 		<div class="card  ">

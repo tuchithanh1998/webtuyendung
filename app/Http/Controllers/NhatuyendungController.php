@@ -8,9 +8,24 @@ use App\nhatuyendung;
 use App\tintuyendung;
 use App\tintuyendung_kynang;
 use App\tintuyendung_thanhpho;
+use App\ungvien_nop_tin;
 
 class NhatuyendungController extends Controller
 {
+	public function postTrangthaiungviennoptin(Request $request,$id_tintuyendung,$id_ungvien)
+	{
+		ungvien_nop_tin::where('id_tintuyendung',$id_tintuyendung)->where('id_ungvien',$id_ungvien)->update(['id_trangthainoptin'=>$request->trangthaiRadios]);
+		return redirect()->back();
+	}
+
+	public function getDanhsachungvien($id)
+	{
+
+
+//	$tintuyendung=tintuyendung::where('id',$id)->where('nhatuyendung',Auth::guard('nhatuyendung')->user()->id)->first();
+	$data=ungvien_nop_tin::where('id_tintuyendung',$id)->get();
+		return view('nhatuyendung.ungviennoptin',['data'=>$data]);
+	}
 	public function getDangtintuyendung(){
 		return view('nhatuyendung.dangtintuyendung');
 	}
@@ -158,12 +173,7 @@ foreach ($request->thanhpho as $key => $value) {
             //đăng nhập thành công thì hiển thị thông báo đăng nhập thành công
 		} else {
 
-			return redirect()->back();
-			var_dump($arr);
-			var_dump(Auth::guard('nhatuyendung')->attempt($arr));
-			dd('tài khoản và mật khẩu chưa chính xác');
-            //...code tùy chọn
-            //đăng nhập thất bại hiển thị đăng nhập thất bại
+		 return redirect()->back()->with('alert','Đăng nhập không thành công.');
 		}
 	}
 }

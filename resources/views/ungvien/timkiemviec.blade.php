@@ -1,8 +1,9 @@
 @extends('ungvien.layout')
 @section('content')
-<div class="row">
+<div  style="min-height: 600px;">
+<div class="row bg-main">
 	<div class="col-sm-10 offset-sm-1 text-center">
-		<h1 class="display-3">Tìm Việc Nâng Cao</h1>
+		<h1 class="display-3">TÌM KIẾM VIỆC LÀM</h1>
 		<div class="info-form ">
 
 			<form action="timkiemviec" class=" justify-content-center" style="margin-bottom: 10px;">
@@ -166,6 +167,8 @@
 
 
 </div>
+</div>
+
 </div>
 @endsection
 @section('script')

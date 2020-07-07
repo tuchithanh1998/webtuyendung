@@ -1,10 +1,12 @@
 @extends('ungvien.layout')
 @section('content')
+<div style="min-height: 600px;">
+<div class="row bg-main">
+		<div class="col-sm-12 offset-sm-0 text-center" style="margin-top: 25px; margin-bottom: 25px;">
+			<div class="card">
 
-
-
-<div class="row">
-	<div class="col-md-12">
+<div class="row ">
+	<div class="col-12 text-center">
 	  <table class="table table-inverse">
 	  	<thead>
 	  		<tr>
@@ -31,6 +33,10 @@
 	  </table>
 	</div>
 </div>
+
+			</div></div></div>
+</div>
+
 @endsection
 @section('script')
 @endsection

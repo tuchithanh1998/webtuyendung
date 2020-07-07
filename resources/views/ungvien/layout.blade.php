@@ -17,40 +17,36 @@
 	<link href="navbar-top-fixed.css" rel="stylesheet">
 </head>
 
-<body class="bg-info">
+<body class="bg-main">
 
 	<nav class="rounded-bottom navbar navbar-expand-md navbar-dark fixed-top" style="background-color:hsl(180, 100%, 93%);">
-		<a class="navbar-brand" href=""><img id="logo" src="logo.png"></a>
+		<a class="navbar-brand" href="index"><img id="logo" src="logo.png"></a>
 	</nav>
 
 	<div class="container-fluid" id="container-fluid1">
 		<div class="row">
-			<div class="col-sm-3 scroll bg-white fixed-top list-group" style="margin-top: 76px;">
+			<div class="col-3 scroll bg-white fixed-top list-group" style="margin-top: 76px; min-height: 600px;">
 				<?php  if(!Auth::guard('ungvien')->check()) { ?>
 					<div class="card border-0 list-group-item">			
-						<form class="form-signin " action="ungviendangnhap" method="POST">
+						<form class="form-signin text-center" action="ungviendangnhap" method="POST">
 							<input type="hidden" name="_token" value="{{csrf_token()}}"/>
 							<h3 class="form-signin-heading ">Đăng nhập</h3>
 							<label for="inputEmail" class="sr-only">Email </label>
 							<input type="email" id="inputEmail" name="email"  style="margin-bottom: 3px;" class="form-control border-0" placeholder="Email" required autofocus>
 							<label for="inputPassword" class="sr-only">Mật khẩu</label>
 							<input type="password" name="password" id="inputPassword" class="form-control border-0" placeholder="Mật khẩu" required>
-							<div class="list-inline">
-								<div class="checkbox list-inline-item">
-									<label>
-										<input type="checkbox" value="remember-me">Ghi nhớ|
-									</label>
-								</div>
+							
+
+							<button type="submit" class="btn btn-info ">Đăng nhập</button>
+						</form>		
+						<div class=" list-inline">							
 								<a class="list-inline-item">
-									Quên mật khẩu|
+									Quên mật khẩu |
 								</a>
 								<a class="list-inline-item" data-toggle="modal" data-target="#formdangky">
 									Đăng ký 
 								</a>
-							</div>
-
-							<button type=" submit" class="btn btn-info">Đăng nhập</button>
-						</form>			
+							</div>	
 					</div>
 				<?php } else{?>
 					<div class="card list-group-item border-0">
@@ -69,6 +65,7 @@
 						</div>
 					</div>
 				<?php } ?>
+			
 				<a href="ungvien/quanlytaikhoan" class="list-group-item border-0"><div >
 					<img src="upload\img\layout\search.svg">Thông tin cá nhân		
 				</div></a>
@@ -84,12 +81,7 @@
 				<a href="ung-vien/tin-tuyen-dung-luu" class="list-group-item border-0"><div >
 					<img src="upload\img\layout\search.svg">Tin tin tuyển dụng đã lưu	
 				</div></a>
-				<a href="" class="list-group-item border-0"><div >
-					<img src="upload\img\layout\search.svg">Thông tin hồ sơ		
-				</div></a>
-				<a href="" class="list-group-item border-0"><div >
-					<img src="upload\img\layout\search.svg">Thông tin hồ sơ		
-				</div></a>
+			
 				
 
 
@@ -106,97 +98,6 @@
 
 				 ?>
 				 @yield('content')
-
-				 <div class="row">
-				 	<div class="col-sm-10 offset-sm-1 text-center">
-				 		<div class="card">
-				 			<div class="card-header bg-white">
-
-				 				<div class="row">
-				 					<div class="col-6 text-left text-info">
-				 						CHỈNH SỬA THÔNG TIN CÁ NHÂN
-				 					</div>
-				 					<div class="col-6 text-right">
-				 						(*)Thông tin bắt buộc nhập
-				 					</div>
-				 				</div>
-
-
-
-
-				 			</div>
-				 			<div class="card-body"><form>
-				 				<div class="form-group row">
-				 					<label for="inputEmail3" class="col-sm-4 col-form-label">Họ tên: *</label>
-				 					<div class="col-sm-8">
-				 						<input type="email" class="form-control" id="inputEmail3">
-				 					</div>
-				 				</div>
-
-				 				<div class="form-group row">
-				 					<label for="example-date-input" class="col-4 col-form-label">Ngày sinh: *</label>
-				 					<div class="col-8">
-				 						<input class="form-control" type="date" value="2011-08-19" id="example-date-input">
-				 					</div>
-				 				</div>
-
-				 				<fieldset class="form-group ">
-				 					<div class="row">
-				 						<legend class="col-form-label col-sm-4 pt-0">Giới tính: *</legend>
-				 						<div class="col-sm-8 text-left"><div class="form-check form-check-inline">
-				 							<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
-				 							<label class="form-check-label" for="inlineRadio1">Nam</label>
-				 						</div>
-				 						<div class="form-check form-check-inline">
-				 							<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-				 							<label class="form-check-label" for="inlineRadio2">Nữ </label>
-				 						</div>
-				 					</div>
-				 				</div>
-				 			</fieldset>
-				 			<fieldset class="form-group ">
-				 				<div class="row">
-				 					<legend class="col-form-label col-sm-4 pt-0">Tình trạng hôn nhân: *</legend>
-				 					<div class="col-sm-8 text-left"><div class="form-check form-check-inline">
-				 						<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="option1" checked>
-				 						<label class="form-check-label" for="inlineRadio1">Độc thân</label>
-				 					</div>
-				 					<div class="form-check form-check-inline">
-				 						<input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="option2">
-				 						<label class="form-check-label" for="inlineRadio2">Đã có gia đình</label>
-				 					</div>
-				 				</div>
-				 			</div>
-				 		</fieldset>
-				 		<div class="form-group row">
-				 			<label for="inputEmail3" class="col-sm-4 col-form-label">Địa chỉ hiện tại: *</label>
-				 			<div class="col-sm-8">
-				 				<input type="email" class="form-control" id="inputEmail3">
-				 			</div>
-				 		</div>
-
-
-				 		<div class="form-group row">
-				 			<label for="exampleSelect1" class="col-sm-4 col-form-label">Tỉnh/thành phố: *</label>
-				 			<div class="col-sm-8">
-				 				<select class="form-control" id="exampleSelect1" >
-				 					<option>1</option>
-				 					<option>2</option>
-				 					<option>3</option>
-				 					<option>4</option>
-				 					<option>5</option>
-				 				</select></div>
-				 			</div>
-				 			<div class="form-group row">
-				 				<div class="col-sm-10">
-				 					<button type="submit" class="btn btn-primary w-25">Lưu</button>
-				 				</div>
-				 			</div>
-				 		</form>
-				 	</div>
-				 </div>
-				</div>
-			</div>
 
 
 
@@ -340,7 +241,14 @@
 		</div>
 	</div>
 </div>
-
+@if (session('alert'))
+<div class="alert alert-warning alert-dismissible fade show fixed-top w-25" style="margin-top: 10%; margin-left:75%;" role="alert">
+	<strong>{{session('alert')}}</strong>
+	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		<span aria-hidden="true">&times;</span>
+	</button>
+</div>
+@endif
 
 		<!-- Bootstrap core JavaScript
 			================================================== -->
