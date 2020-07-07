@@ -39,17 +39,23 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Xin chào Admin!</h1>
                   </div>
-                  <form class="user">
+                  <form class="user" action="admin/login" method="POST">
+                     <input type="hidden" name="_token" value="{{csrf_token()}}"/>
                     <div class="form-group">
-                      <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Tài khoản ...">
+                      <input type="email" class="form-control form-control-user" name="email" placeholder="Tài khoản ...">
                     </div>
                     <div class="form-group">
-                      <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Mật khẩu ...">
+                      <input type="password" class="form-control form-control-user" name="password"  placeholder="Mật khẩu ...">
                     </div>
-                    <a href="index.html" class="btn btn-primary btn-user btn-block">
+                    <button type="submit" class="btn btn-primary btn-user btn-block">
                       Đăng nhập
-                    </a>
+                    </button>
                   </form>
+                     @if (session('alert'))
+
+  <strong>{{session('alert')}}</strong>
+  
+@endif
                 </div>
               </div>
             </div>

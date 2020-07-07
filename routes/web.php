@@ -92,10 +92,16 @@ Route::post('/nha-tuyen-dung/tin-da-dang/{id_tintuyendung}/{id_ungvien}','Nhatuy
 
 
 Route::get('/admin/login','AdminController@getDangnhap');
-Route::get('/admin/index','AdminController@getIndex');
-Route::get('/admin/thongtinnhatuyendung','AdminController@getThongtinnhatuyendung');
-Route::get('/admin/tintuyendung','AdminController@getTintuyendung');
-Route::get('/admin/thongtinungvien','AdminController@getThongtinungvien');
+Route::post('/admin/login','AdminController@postDangnhap');
+Route::get('/admin/logout','AdminController@getLogout')->middleware('login_admin');
+
+
+Route::get('/admin/index','AdminController@getIndex')->middleware('login_admin');
+Route::get('/admin/thongtinnhatuyendung','AdminController@getThongtinnhatuyendung')->middleware('login_admin');
+Route::get('/admin/tintuyendung','AdminController@getTintuyendung')->middleware('login_admin');
+Route::get('/admin/thongtinungvien','AdminController@getThongtinungvien')->middleware('login_admin');
+Route::post('/admin/nha-tuyen-dung/{id_nhatuyendung}','AdminController@postThongtinnhatuyendung')->middleware('login_admin');
+
 /*Route::fallback(function(){
 	return redirect('index');
 });*/

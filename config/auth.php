@@ -65,6 +65,15 @@ return [
             'provider' => 'nhatuyendung',
           //   'hash' => false,
         ],
+        'admin' => [
+            'driver' => 'session',
+            'provider' => 'admin',
+        ],
+        'admin-api' => [
+            'driver' => 'token',
+            'provider' => 'admin',
+          //   'hash' => false,
+        ],
     ],
 
     /*

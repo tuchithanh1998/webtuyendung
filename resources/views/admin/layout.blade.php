@@ -89,17 +89,23 @@
           <ul class="navbar-nav ml-auto">
 
             <!-- Nav Item - Messages -->
-            <li class="nav-item dropdown no-arrow mx-1"></li>
+            <li class="nav-item dropdown no-arrow mx-1">  <span class="mr-2 d-none d-lg-inline text-gray-600 small">{{Auth::guard('admin')->user()->ten}}</span></li>
 
             <div class="topbar-divider d-none d-sm-block"></div>
 
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">
+
+
+
               <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                  <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                   Đăng xuất
               </a>
             </li>
+
+
+
           </ul>
         </nav>
    
@@ -143,11 +149,13 @@
         <div class="modal-body">Chọn "Đăng xuất" nếu như bạn muốn kết thúc phiên làm việc này.</div>
         <div class="modal-footer">
           <button class="btn btn-secondary" type="button" data-dismiss="modal">Hủy</button>
-          <a class="btn btn-primary" href="login.blade.php">Đăng xuất</a>
+          <a class="btn btn-primary" href="admin/logout">Đăng xuất</a>
+       
         </div>
       </div>
     </div>
   </div>
+
 
   <!-- Bootstrap core JavaScript-->
   <script src="admin/vendor/jquery/jquery.min.js"></script>
