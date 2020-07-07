@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\admin;
 use App\nhatuyendung;
-
+use App\tintuyendung;
 
 class AdminController extends Controller
 {
@@ -24,6 +24,11 @@ class AdminController extends Controller
 
         return redirect()->back()->with('alert','Cập nhật thành công.');
     }
+    public function postTintuyendung(Request $request ,$id_tintuyendung)
+    {
+        tintuyendung::where('id',$id_tintuyendung)->update(['trangthai'=>$request->Radios]);
+        return redirect()->back()->with('alert','Cập nhật thành công.');
+    }
     public function getIndex()
     {
     	return view('admin.index');
@@ -36,7 +41,8 @@ class AdminController extends Controller
     }
     public function getTintuyendung()
     {
-    	return view('admin.tintuyendung');
+        $tintuyendung=tintuyendung::all();
+    	return view('admin.tintuyendung',['date'=>$tintuyendung]);
     }
     public function getThongtinungvien()
     {
