@@ -7,7 +7,7 @@ use Auth;
 use App\admin;
 use App\nhatuyendung;
 use App\tintuyendung;
-
+use App\ungvien;
 class AdminController extends Controller
 {
     public function getDangnhap()
@@ -42,11 +42,17 @@ class AdminController extends Controller
     public function getTintuyendung()
     {
         $tintuyendung=tintuyendung::all();
-    	return view('admin.tintuyendung',['date'=>$tintuyendung]);
+    	return view('admin.tintuyendung',['data'=>$tintuyendung]);
+    }
+    public function postThongtinungvien(Request $request ,$id_ungvien)
+    {
+        ungvien::where('id',$id_ungvien)->update(['trangthai'=>$request->Radios]);
+        return redirect()->back()->with('alert','Cập nhật thành công.');
     }
     public function getThongtinungvien()
     {
-    	return view('admin.thongtinungvien');
+        $ungvien=ungvien::all();
+    	return view('admin.thongtinungvien',['data'=>$ungvien]);
     }
     public function postDangnhap(Request $request)
     {
