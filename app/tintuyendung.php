@@ -28,6 +28,13 @@ class tintuyendung extends Model
 		return $this->belongsToMany('App\kynang','tintuyendung_kynang','id_tintuyendung','id_kynang');
 		
 	}
+
+/*	public function danhsachkynang()
+	{
+		
+		return $this->hasMany('App\tintuyendung_kynang','id_tintuyendung');
+		
+	}*/
 	public function nhatuyendung()
 	{
 		return $this->belongsTo('App\nhatuyendung','id_nhatuyendung');

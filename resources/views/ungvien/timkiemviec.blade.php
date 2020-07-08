@@ -1,5 +1,13 @@
 @extends('ungvien.layout')
 @section('content')
+
+
+<?php
+
+
+
+
+ ?>
 <div  style="min-height: 600px;">
 <div class="row bg-main">
 	<div class="col-sm-10 offset-sm-1 text-center">

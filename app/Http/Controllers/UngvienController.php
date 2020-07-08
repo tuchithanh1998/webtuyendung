@@ -425,6 +425,7 @@ public function index()
 {
  $timkiem="";  
  $kq=[];
+ $kq2=[];
  $tintuyendung=tintuyendung::query();
  if(isset($_GET['nganhnghe']))
  {
@@ -481,6 +482,19 @@ if (isset($_GET['kinhnghiem']))
  }	$tintuyendung->whereIn('id_kinhnghiem',$dskn);
 }
 
+
+if (isset($_GET['kynang'])) 
+{
+  $dskynang=[];
+
+  foreach ($_GET['kynang'] as $key => $value) 
+  {
+
+   array_push($dskynang,$value);
+ }  $tintuyendung->join('tintuyendung_kynang', 'tintuyendung.id', '=', 'tintuyendung_kynang.id_tintuyendung')
+ ->whereIn('tintuyendung_kynang.id_kynang',$dskynang);
+}
+
 if (!isset($_GET['nganhnghe'])&&!isset($_GET['tencongviec'])&&!isset($_GET['trinhdo'])&&!isset($_GET['thanhpho'])&&!isset($_GET['kynang'])&&!isset($_GET['kinhnghiem'])&&!isset($_GET['hinhthuclamviec'])) 
 {
   return view('ungvien.timkiemviec');
@@ -510,13 +524,20 @@ if (isset($_GET['thanhpho']))
     }
   }
 }
-return view('ungvien.timkiemviec',['data'=>$kq]);
+
+foreach ($kq as $key => $value) {
+ $kq2[$value->id]=$value;
+}
+
+return view('ungvien.timkiemviec',['data'=>$kq2]);
 }
 }
 
 $kq=$tintuyendung;
-
-return view('ungvien.timkiemviec',['data'=>$kq]);
+foreach ($kq as $key => $value) {
+ $kq2[$value->id]=$value;
+}
+return view('ungvien.timkiemviec',['data'=>$kq2]);
 
 
 }
