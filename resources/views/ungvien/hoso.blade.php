@@ -5,7 +5,7 @@
 <div class="row bg-main">
 	<div class="col-sm-12 " style="margin-top: 25px; margin-bottom: 25px;">
 		<div class="card  ">
-			<div class="card-header">A <span><small class="text-info" data-toggle="modal" data-target="#thaydoihoso">...Thay đổi</small></span></div>
+			<div class="card-header">THÔNG TIN HỒ SƠ<span><small class="text-info" data-toggle="modal" data-target="#thaydoihoso">...Cập nhật</small></span></div>
 			<div class="card-body">
 				<p class="card-text"><span class="font-weight-bold">Vị trí mong muốn: </span>{{$data->vitrimongmuon}}</p>
 				<p class="card-text"><span class="font-weight-bold">Ngành nghề: </span><?php 
@@ -61,7 +61,7 @@
 <div class="row bg-main">
 	<div class="col-sm-12 " style="margin-top: 25px; margin-bottom: 25px;">
 		<div class="card  ">
-			<div class="card-header">TRÌNH ĐỘ TIN HỌC<span><small class="text-info" data-toggle="modal" data-target="#trinhdotinhoc">...Thay đổi</small></span></div>
+			<div class="card-header">TRÌNH ĐỘ TIN HỌC<span><small class="text-info" data-toggle="modal" data-target="#trinhdotinhoc">...Cập nhật</small></span></div>
 			<div class="card-body">
 				<div class="row">
 					<div class="col-6">
@@ -307,7 +307,7 @@
 			<div class="row bg-main">
 				<div class="col-sm-12 " style="margin-top: 25px; margin-bottom: 25px;">
 					<div class="card  ">
-						<div class="card-header">A <span><small class="text-info" data-toggle="modal" data-target="#thaydoihososothich">...Thay đổi</small></span></div>
+						<div class="card-header">KỸ NĂNG SỞ TRƯỜNG<span><small class="text-info" data-toggle="modal" data-target="#thaydoihososothich">... Cập nhật</small></span></div>
 						<div class="card-body">
 
 							<p class="card-text"><span class="font-weight-bold">Mục tiêu: </span>{{Auth::guard('ungvien')->user()->muctieu}}</p>
@@ -386,7 +386,7 @@
 								
 
 								<div class="col-6">
-									Trình độ bằng cấp<span><small class="text-info" data-toggle="modal" data-target="#trinhdobangcap{{$key}}">...Thay đổi</small></span>
+									Trình độ bằng cấp<span><small class="text-info" data-toggle="modal" data-target="#trinhdobangcap{{$key}}">... Cập nhật</small></span>
 								</div><div class="col-6 text-right"><form action="ung-vien/ho-so/trinh-do-bang-cap-xoa/{{$value->id}}"> <button type="submit" class="close">X</form></div>
 								</div></div>
 								<div class="card-body row">
@@ -453,7 +453,7 @@
 													</div>
 												</div>
 												<div class="form-group row">
-													<label for="anh" class="col-sm-4 col-form-label">Ảnh: *</label>
+													<label for="anh" class="col-sm-4 col-form-label">Ảnh: </label>
 													<div class="col-sm-8">
 														<input type="file" class="form-control" value="" id="anh" name="anh">
 													</div>
@@ -488,7 +488,7 @@
 
 										<div class="row">
 											<div class="col-6 text-left text-info">
-												THAY ĐỔI
+												Trình độ bằng cấp
 											</div>
 											<div class="col-6 text-right">
 												<sub>	(*)Thông tin bắt buộc nhập</sub>
@@ -499,7 +499,7 @@
 										<form action="ung-vien/ho-so/trinh-do-bang-cap-moi" method="POST">
 											<input type="hidden" name="_token" value="{{csrf_token()}}"/>
 											<div class="form-group row">
-												<label for="tenbangcap" class="col-sm-4 col-form-label">Tên bằng cáp: *</label>
+												<label for="tenbangcap" class="col-sm-4 col-form-label">Tên bằng cấp: *</label>
 												<div class="col-sm-8">
 													<input type="text " class="form-control" value="" id="tenbangcap" name="tenbangcap">
 												</div>
@@ -562,7 +562,7 @@
 
 
 								<div class="col-6">
-									KINH NGHIỆM LÀM VIỆC<span><small class="text-info" data-toggle="modal" data-target="#kinhnghiemlamviec{{$key}}">...Thay đổi</small></span>
+									KINH NGHIỆM LÀM VIỆC<span><small class="text-info" data-toggle="modal" data-target="#kinhnghiemlamviec{{$key}}">... Cập nhật</small></span>
 								</div><div class="col-6 text-right"><form action="ung-vien/ho-so/kinh-nghiem-lam-viec-xoa/{{$value->id}}"> <button type="submit" class="close">X</form></div>
 								</div></div>
 								<div class="card-body">
@@ -675,7 +675,7 @@
 
 												<div class="row">
 													<div class="col-6 text-left text-info">
-														THAY ĐỔI
+														Kinh nghiệm làm việc
 													</div>
 													<div class="col-6 text-right">
 														<sub>	(*)Thông tin bắt buộc nhập</sub>
@@ -765,7 +765,7 @@
 
 
 											<div class="col-6">
-												TRÌNH ĐỘ NGOẠI NGỮ<span><small class="text-info" data-toggle="modal" data-target="#trinhdongoaingu{{$key}}">...Thay đổi</small></span>
+												TRÌNH ĐỘ NGOẠI NGỮ<span><small class="text-info" data-toggle="modal" data-target="#trinhdongoaingu{{$key}}">... Cập nhật</small></span>
 											</div><div class="col-6 text-right"><form action="ung-vien/ho-so/trinh-do-ngoai-ngu-xoa/{{$value->id_ngoaingu}}" method="GET"> <button type="submit" class="close">X</form></div>
 											</div></div>
 											<div class="card-body">
@@ -1001,7 +1001,7 @@
 
 														<div class="row">
 															<div class="col-6 text-left text-info">
-																THAY ĐỔI
+																Ngoại ngữ
 															</div>
 															<div class="col-6 text-right">
 																<sub>	(*)Thông tin bắt buộc nhập</sub>
@@ -1324,7 +1324,7 @@
 
 
 												<div class="col-6">
-													NGƯỜI THAM KHẢO<span><small class="text-info" data-toggle="modal" data-target="#nguoithamkhao{{$key}}">...Thay đổi</small></span>
+													NGƯỜI THAM KHẢO<span><small class="text-info" data-toggle="modal" data-target="#nguoithamkhao{{$key}}">... Cập nhật</small></span>
 												</div>
 												<div class="col-6 text-right"><form action="ung-vien/ho-so/nguoi-tham-khao-xoa/{{$value->id}}"> <button type="submit" class="close">X</form>
 												</div>
@@ -1417,7 +1417,7 @@
 
 													<div class="row">
 														<div class="col-6 text-left text-info">
-															THAY ĐỔI
+															Người tham khảo
 														</div>
 														<div class="col-6 text-right">
 															<sub>	(*)Thông tin bắt buộc nhập</sub>
