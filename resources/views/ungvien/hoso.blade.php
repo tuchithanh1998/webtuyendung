@@ -523,7 +523,7 @@
 												</div>
 											</div>
 											<div class="form-group row">
-												<label for="anh" class="col-sm-4 col-form-label">Ảnh: *</label>
+												<label for="anh" class="col-sm-4 col-form-label">Ảnh: </label>
 												<div class="col-sm-8">
 													<input type="file" class="form-control" value="" id="anh" name="anh">
 												</div>
@@ -641,7 +641,7 @@
 															</div>
 														</div>
 														<div class="form-group row">
-															<label for="thanhtich" class="col-sm-4 col-form-label">Thành tích: *</label>
+															<label for="thanhtich" class="col-sm-4 col-form-label">Thành tích: </label>
 															<div class="col-sm-8">
 																<textarea type="text" rows="2" class="form-control"  name="thanhtich">{{$value->thanhtich}}"</textarea>
 															</div>
