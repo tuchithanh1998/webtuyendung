@@ -39,8 +39,8 @@
 
 							</div>
 							<div class="card-body ">
-								<span class="font-weight-bold text-success">Giới tính: </span><span><?php if( Auth::guard('ungvien')->user()->gioitinh==1)
-								{echo "Nam";}else{echo "Nữ";	}
+								<span class="font-weight-bold text-success">Giới tính: </span><span><?php if(Auth::guard('ungvien')->user()->gioitinh!=""){ if( Auth::guard('ungvien')->user()->gioitinh==1)
+								{echo "Nam";}else{echo "Nữ";	}}
 								?></span>
 
 
@@ -48,13 +48,13 @@
 						</div>
 						<div class="col-6">
 							<div class="card-body ">
-								<span class="font-weight-bold text-success">Tình trạng hôn nhân: </span><span><?php if( Auth::guard('ungvien')->user()->tinhtranghonnhan==1)
-								{echo "Chưa kết hôn";}else{echo "Đã kết hôn";	}
+								<span class="font-weight-bold text-success">Tình trạng hôn nhân: </span><span><?php if(Auth::guard('ungvien')->user()->tinhtranghonnhan!=""){if( Auth::guard('ungvien')->user()->tinhtranghonnhan==1)
+								{echo "Chưa kết hôn";}else{echo "Đã kết hôn";	}}
 								?></span>
 
 							</div>
 							<div class="card-body ">
-								<span class="font-weight-bold text-success">Ngày sinh: </span><span><?php echo date_format(date_create(Auth::guard('ungvien')->user()->ngaysinh),'d-m-Y'); ?></span>
+								<span class="font-weight-bold text-success">Ngày sinh: </span><span><?php if(Auth::guard('ungvien')->user()->ngaysinh!="") echo date_format(date_create(Auth::guard('ungvien')->user()->ngaysinh),'d-m-Y'); ?></span>
 
 							</div>
 							<div class="card-body ">
