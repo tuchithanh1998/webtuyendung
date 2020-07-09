@@ -58,7 +58,9 @@
 
 							</div>
 							<div class="card-body ">
-								<span class="font-weight-bold text-success">Thành phố: </span><span title="<?php echo Auth::guard('ungvien')->user()->id_thanhpho; ?>" id="idthanhpho" ><?php echo Auth::guard('ungvien')->user()->thanhpho->tenthanhpho; ?></span>
+								<span class="font-weight-bold text-success">Thành phố: </span><span title="<?php echo Auth::guard('ungvien')->user()->id_thanhpho; ?>" id="idthanhpho" >
+
+									<?php if(Auth::guard('ungvien')->user()->id_thanhpho) echo Auth::guard('ungvien')->user()->thanhpho->tenthanhpho; ?></span>
 
 							</div>
 						</div>

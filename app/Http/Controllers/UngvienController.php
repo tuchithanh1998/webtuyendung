@@ -282,6 +282,10 @@ public function getNophoso($id){
 
   }
   else {
+
+      if(Auth::guard('ungvien')->user()->id_nganhnghe=="")
+          return redirect()->back()->with('success','Chưa cập nhật hồ sơ.');
+
    $ungvien_nop_tin=new ungvien_nop_tin;
    $ungvien_nop_tin->id_ungvien=Auth::guard('ungvien')->user()->id;
    $ungvien_nop_tin->id_tintuyendung=$id;
