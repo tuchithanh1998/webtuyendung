@@ -12,11 +12,11 @@
 
 					<div class="card-body ">
 						<span class="font-weight-bold text-success">Email: </span><span><?php echo Auth::guard('ungvien')->user()->email; ?></span>
-						<span><a href="">Đổi Email</a></span>
+						
 					</div>
 					<div class="card-body ">
 						<span class="font-weight-bold text-success">Số điện thoại: </span><span><?php echo Auth::guard('ungvien')->user()->sodienthoai; ?></span>
-						<span><a href="">Đổi số điện thoại</a></span>
+						<span><a href="">Đổi Số điện thoại</a></span>
 					</div>
 					<div class="card-body ">
 						<span class="font-weight-bold text-success">Mật khẩu: </span><span>*******</span>
@@ -69,9 +69,9 @@
 					
 
 					<div class="card-body ">
-						<div class="list-inline">	<button type="button" id="thongtincanhan" class="btn btn-primary list-inline-item" data-toggle="modal" data-target=".bd-example-modal-lg">THAY ĐỔI THÔNG TIN CÁ NHÂN</button>
+						<div class="list-inline">	<button type="button" id="thongtincanhan" class="btn btn-primary list-inline-item" data-toggle="modal" data-target=".bd-example-modal-lg">CẬP NHẬT THÔNG TIN CÁ NHÂN</button>
 							@if(count($errors)>0)
-							<div class="alert alert-warning list-inline-item" role="alert"> 
+							<div class="alert alert-warning list-inline-item fixed-top" style="margin-left: 100px; margin-top: 200px;" role="alert"> 
 								@foreach($errors->all() as $err)
 								{{$err}}<br>
 								@endforeach
@@ -102,9 +102,9 @@
 												<div class="card-body"><form action="ungvien/quanlytaikhoan/postThongtincanhan" method="POST">
 													<input type="hidden" name="_token" value="{{csrf_token()}}"/>
 													<div class="form-group row">
-														<label for="inputEmail3" class="col-sm-4 col-form-label">Họ tên: *</label>
+														<label for="hoten" class="col-sm-4 col-form-label">Họ tên: *</label>
 														<div class="col-sm-8">
-															<input type="" name="hoten" value="<?php echo Auth::guard('ungvien')->user()->hoten; ?>" class="form-control" id="inputEmail3" >
+															<input type="" name="hoten" value="<?php echo Auth::guard('ungvien')->user()->hoten; ?>" class="form-control" id="hoten" >
 														</div>
 													</div>
 

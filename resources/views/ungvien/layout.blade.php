@@ -40,13 +40,13 @@
 							<button type="submit" class="btn btn-info ">Đăng nhập</button>
 						</form>		
 						<div class=" list-inline">							
-								<a class="list-inline-item">
-									Quên mật khẩu |
-								</a>
-								<a class="list-inline-item" data-toggle="modal" data-target="#formdangky">
-									Đăng ký 
-								</a>
-							</div>	
+							<a class="list-inline-item">
+								Quên mật khẩu |
+							</a>
+							<a class="list-inline-item" data-toggle="modal" data-target="#formdangky">
+								Đăng ký 
+							</a>
+						</div>	
 					</div>
 				<?php } else{?>
 					<div class="card list-group-item border-0">
@@ -65,23 +65,25 @@
 						</div>
 					</div>
 				<?php } ?>
-			
-				<a href="ungvien/quanlytaikhoan" class="list-group-item border-0"><div >
-					<img src="upload\img\layout\search.svg">Thông tin cá nhân		
-				</div></a>
+
+				
 				<a href="timkiemviec" class="list-group-item border-0"><div >
 					<img src="upload\img\layout\search.svg">Tìm kiếm việc làm	
 				</div></a>
-				<a href="ungvien/tintuyendungdanop" class="list-group-item border-0"><div >
-					<img src="upload\img\layout\search.svg">Tin tin tuyển dụng đã nộp	
+
+				<a href="ungvien/quanlytaikhoan" class="list-group-item border-0"><div >
+					<img src="upload\img\layout\search.svg">Quản lý thông tin cá nhân	
 				</div></a>
 				<a href="ung-vien/ho-so" class="list-group-item border-0"><div >
-					<img src="upload\img\layout\search.svg">Hồ sơ
+					<img src="upload\img\layout\search.svg">Quản lý hồ sơ
+				</div></a>
+				<a href="ungvien/tintuyendungdanop" class="list-group-item border-0"><div >
+					<img src="upload\img\layout\search.svg">Quản lý tin tuyển dụng đã nộp	
 				</div></a>
 				<a href="ung-vien/tin-tuyen-dung-luu" class="list-group-item border-0"><div >
-					<img src="upload\img\layout\search.svg">Tin tin tuyển dụng đã lưu	
+					<img src="upload\img\layout\search.svg">Quản lý tin tuyển dụng đã lưu	
 				</div></a>
-			
+
 				
 
 
@@ -102,153 +104,153 @@
 
 
 
-			@if(count($errors)>0)
-			<div class="alert alert-warning list-inline-item" role="alert"> 
-				@foreach($errors->all() as $err)
-				{{$err}}<br>
-				@endforeach
-			</div>
-			@endif
-			<div class="bg-white" id="container2">
-				<div class="row ">
-					<div class="col-sm-3">
-						<img src="logo.png" class="d-block w-100" alt="...">
-					</div>
-					<div class="col-sm-3 ">
-						<ul class="list-unstyled">
-							<li>Từ Chí Thành</li>
-							<li>Phạm Ngọc Thạch</li>
-						</ul>  	  	  	  	 
-					</div>
-					<div class="col-sm-3">
+				 @if(count($errors)>0)
+				 <div class="alert alert-warning list-inline-item" role="alert"> 
+				 	@foreach($errors->all() as $err)
+				 	{{$err}}<br>
+				 	@endforeach
+				 </div>
+				 @endif
+				 <div class="bg-white" id="container2">
+				 	<div class="row ">
+				 		<div class="col-sm-3">
+				 			<img src="logo.png" class="d-block w-100" alt="...">
+				 		</div>
+				 		<div class="col-sm-3 ">
+				 			<ul class="list-unstyled">
+				 				<li>Từ Chí Thành</li>
+				 				<li>Phạm Ngọc Thạch</li>
+				 			</ul>  	  	  	  	 
+				 		</div>
+				 		<div class="col-sm-3">
 
-					</div>
-					<div class="col-sm-3">
+				 		</div>
+				 		<div class="col-sm-3">
 
-					</div>
+				 		</div>
+				 	</div>
+				 </div>
 				</div>
 			</div>
 		</div>
-	</div>
-</div>
 
 
 
-<!-- Button trigger modal -->
-<div class="modal fade bd-example-modal-lg" id="formdangky" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-lg">
-		<div class="modal-content">
-			<div class="row">
-				<div class="col-sm-12 text-center">
-					<div class="card">
-						<div class="card-header bg-white">
+		<!-- Button trigger modal -->
+		<div class="modal fade bd-example-modal-lg" id="formdangky" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="row">
+						<div class="col-sm-12 text-center">
+							<div class="card">
+								<div class="card-header bg-white">
 
-							<div class="row">
-								<div class="col-6 text-left text-info">
-									ĐĂNG KÝ TÀI KHOẢN
+									<div class="row">
+										<div class="col-6 text-left text-info">
+											ĐĂNG KÝ TÀI KHOẢN
+										</div>
+										<div class="col-6 text-right">
+
+											<sub>	(*)Thông tin bắt buộc nhập</sub>
+										</div>
+									</div>
+
+
+
+
 								</div>
-								<div class="col-6 text-right">
+								<div class="card-body">
+									<form action="ungviendangky" method="POST">
+										<input type="hidden" name="_token" value="{{csrf_token()}}"/>
+										<div class="form-group row">
+											<label for="inputEmail3" class="col-sm-4 col-form-label">Họ tên: *</label>
+											<div class="col-sm-8">
+												<input type="text " class="form-control" id="inputEmail3" name="hoten">
+											</div>
+										</div>
 
-									<sub>	(*)Thông tin bắt buộc nhập</sub>
+										<div class="form-group row">
+											<label for="example-date-input" class="col-4 col-form-label">Email: *</label>
+											<div class="col-8">
+												<input class="form-control" type="email"  id="example-date-input" name="email">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="inputEmail3" class="col-sm-4 col-form-label">Số điện thoại: *</label>
+											<div class="col-sm-8">
+												<input type="number" class="form-control" id="inputEmail3" name="sodienthoai">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="inputEmail3" class="col-sm-4 col-form-label">Mật khẩu: *</label>
+											<div class="col-sm-8">
+												<input type="password" class="form-control" id="inputEmail3" name="matkhau1">
+											</div>
+										</div>
+										<div class="form-group row">
+											<label for="inputEmail3" class="col-sm-4 col-form-label">Nhập lại mật khẩu: *</label>
+											<div class="col-sm-8">
+												<input type="password" class="form-control" id="inputEmail3" name="matkhau2">
+											</div>
+										</div>
+
+
+
+										<div class="form-group row">
+											<div class="col-sm-10">
+												<button type="submit" class="btn btn-primary w-25">Lưu</button>
+											</div>
+										</div>
+									</form>
 								</div>
 							</div>
-
-
-
-
-						</div>
-						<div class="card-body">
-							<form action="ungviendangky" method="POST">
-								<input type="hidden" name="_token" value="{{csrf_token()}}"/>
-								<div class="form-group row">
-									<label for="inputEmail3" class="col-sm-4 col-form-label">Họ tên: *</label>
-									<div class="col-sm-8">
-										<input type="text " class="form-control" id="inputEmail3" name="hoten">
-									</div>
-								</div>
-
-								<div class="form-group row">
-									<label for="example-date-input" class="col-4 col-form-label">Email: *</label>
-									<div class="col-8">
-										<input class="form-control" type="email"  id="example-date-input" name="email">
-									</div>
-								</div>
-								<div class="form-group row">
-									<label for="inputEmail3" class="col-sm-4 col-form-label">Số điện thoại: *</label>
-									<div class="col-sm-8">
-										<input type="number" class="form-control" id="inputEmail3" name="sodienthoai">
-									</div>
-								</div>
-								<div class="form-group row">
-									<label for="inputEmail3" class="col-sm-4 col-form-label">Mật khẩu: *</label>
-									<div class="col-sm-8">
-										<input type="password" class="form-control" id="inputEmail3" name="matkhau1">
-									</div>
-								</div>
-								<div class="form-group row">
-									<label for="inputEmail3" class="col-sm-4 col-form-label">Nhập lại mật khẩu: *</label>
-									<div class="col-sm-8">
-										<input type="password" class="form-control" id="inputEmail3" name="matkhau2">
-									</div>
-								</div>
-
-
-
-								<div class="form-group row">
-									<div class="col-sm-10">
-										<button type="submit" class="btn btn-primary w-25">Lưu</button>
-									</div>
-								</div>
-							</form>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-</div>
 
-<!-- Modal -->
-<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLongTitle">Đăng ký</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
+		<!-- Modal -->
+		<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLongTitle">Đăng ký</h5>
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">						
+						<form class="form-signin">
+
+
+							<label for="inputHoten" class="sr-only">Hoten</label>
+							<input type="hoten" id="inputHoten" class="form-control" placeholder="Họ tên" required autofocus>
+							<label for="inputEmail" class="sr-only">Email</label>
+							<input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
+							<label for="inputSodienthoai" class="sr-only">Sodienthoai</label>
+							<input type="sodienthoai" id="inputSodienthoai" class="form-control" placeholder="Số điện thoại" required autofocus>
+							<label for="inputPassword" class="sr-only"></label>
+							<input type="password" id="inputPassword1" class="form-control" placeholder="Mật khẩu" required>
+							<input type="password" id="inputPassword2" class="form-control" placeholder="Nhập lại mật khẩu" required>
+
+							<button class="btn btn-lg btn-primary btn-block" type="submit">Xác nhân</button>
+						</form>
+
+
+					</div>
+
+				</div>
 			</div>
-			<div class="modal-body">						
-				<form class="form-signin">
-
-
-					<label for="inputHoten" class="sr-only">Hoten</label>
-					<input type="hoten" id="inputHoten" class="form-control" placeholder="Họ tên" required autofocus>
-					<label for="inputEmail" class="sr-only">Email</label>
-					<input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-					<label for="inputSodienthoai" class="sr-only">Sodienthoai</label>
-					<input type="sodienthoai" id="inputSodienthoai" class="form-control" placeholder="Số điện thoại" required autofocus>
-					<label for="inputPassword" class="sr-only"></label>
-					<input type="password" id="inputPassword1" class="form-control" placeholder="Mật khẩu" required>
-					<input type="password" id="inputPassword2" class="form-control" placeholder="Nhập lại mật khẩu" required>
-
-					<button class="btn btn-lg btn-primary btn-block" type="submit">Xác nhân</button>
-				</form>
-
-
-			</div>
-			
 		</div>
-	</div>
-</div>
-@if (session('alert'))
-<div class="alert alert-warning alert-dismissible fade show fixed-top w-25" style="margin-top: 10%; margin-left:75%;" role="alert">
-	<strong>{{session('alert')}}</strong>
-	<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-		<span aria-hidden="true">&times;</span>
-	</button>
-</div>
-@endif
+		@if (session('alert'))
+		<div class="alert alert-warning alert-dismissible fade show fixed-top w-25" style="margin-top: 10%; margin-left:75%;" role="alert">
+			<strong>{{session('alert')}}</strong>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+		@endif
 
 		<!-- Bootstrap core JavaScript
 			================================================== -->
