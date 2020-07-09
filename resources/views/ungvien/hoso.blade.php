@@ -7,20 +7,25 @@
 		<div class="card  ">
 			<div class="card-header">A <span><small class="text-info" data-toggle="modal" data-target="#thaydoihoso">...Thay đổi</small></span></div>
 			<div class="card-body">
-				<p class="card-text"><span class="font-weight-bold">Vị trí mong muốn: </span>{{Auth::guard('ungvien')->user()->vitrimongmuon}}</p>
-				<p class="card-text"><span class="font-weight-bold">Ngành nghề: </span>{{Auth::guard('ungvien')->user()->nganhnghe->tennganhnghe}}</p>
-				<p class="card-text"><span class="font-weight-bold">Cấp bậc: </span>{{Auth::guard('ungvien')->user()->capbac->tencapbac}}</p>
-				<p class="card-text"><span class="font-weight-bold">Hình thức làm việc: </span>{{Auth::guard('ungvien')->user()->hinhthuclamviec->tenhinhthuclamviec}}</p>
-				<p class="card-text"><span class="font-weight-bold">Kinh nghiệm: </span>{{Auth::guard('ungvien')->user()->kinhnghiem->tenkinhnghiem}}</p>
-				<p class="card-text"><span class="font-weight-bold">Trình độ: </span>{{Auth::guard('ungvien')->user()->trinhdo->tentrinhdo}}</p>			
-				<p class="card-text"><span class="font-weight-bold">Ảnh đại diện: </span>{{Auth::guard('ungvien')->user()->mucluong}}</p>
+				<p class="card-text"><span class="font-weight-bold">Vị trí mong muốn: </span>{{$data->vitrimongmuon}}</p>
+				<p class="card-text"><span class="font-weight-bold">Ngành nghề: </span>{{$data->nganhnghe->tennganhnghe}}
+
+
+				</p>
+				<p class="card-text"><span class="font-weight-bold">Cấp bậc: </span>
+					{{$data->capbac->tencapbac}}</p>
+				<p class="card-text"><span class="font-weight-bold">Hình thức làm việc: </span>{{$data->hinhthuclamviec->tenhinhthuclamviec}}</p>
+				<p class="card-text"><span class="font-weight-bold">Kinh nghiệm: </span>{{$data->kinhnghiem->tenkinhnghiem}}</p>
+				<p class="card-text"><span class="font-weight-bold">Trình độ: </span>
+					{{$data->trinhdo->tentrinhdo}}</p>			
+				<p class="card-text"><span class="font-weight-bold">Ảnh đại diện: </span>{{$data->mucluong}}</p>
 				<p class="card-text"><span class="font-weight-bold">Thành phố: </span>
-					<?php foreach (Auth::guard('ungvien')->user()->ungvien_thanhpho as $key => $value): ?>
+					<?php foreach ($data->ungvien_thanhpho as $key => $value): ?>
 					{{$value->tenthanhpho}}
 				<?php endforeach ?>
 			</p>
 			<p class="card-text"><span class="font-weight-bold">Kỹ năng: </span>
-				<?php foreach (Auth::guard('ungvien')->user()->ungvien_kynang as $key => $value): ?>
+				<?php foreach ($data->ungvien_kynang as $key => $value): ?>
 				{{$value->tenkynang}}
 			<?php endforeach ?>
 		</p>

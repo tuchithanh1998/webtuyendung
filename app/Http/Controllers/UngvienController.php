@@ -255,7 +255,10 @@ public function postHoso(Request $request){
 }
 public function getHoso(){
 
-  return view('ungvien.hoso');
+
+  $data=ungvien::findOrFail(Auth::guard('ungvien')->user()->id);
+
+  return view('ungvien.hoso',['data'=>$data]);
 }
 public function getThoat(){
   Auth::guard('ungvien')->logout();
