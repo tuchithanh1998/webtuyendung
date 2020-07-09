@@ -8,7 +8,11 @@
 			<div class="card-header">A <span><small class="text-info" data-toggle="modal" data-target="#thaydoihoso">...Thay đổi</small></span></div>
 			<div class="card-body">
 				<p class="card-text"><span class="font-weight-bold">Vị trí mong muốn: </span>{{$data->vitrimongmuon}}</p>
-				<p class="card-text"><span class="font-weight-bold">Ngành nghề: </span>{{$data->nganhnghe->tennganhnghe}}
+				<p class="card-text"><span class="font-weight-bold">Ngành nghề: </span><?php 
+
+if($data->id_nganhnghe!="")
+	echo $data->nganhnghe->tennganhnghe;
+				?>
 
 
 				</p>
