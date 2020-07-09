@@ -71,11 +71,18 @@
 					<div class="card-body ">
 						<div class="list-inline">	<button type="button" id="thongtincanhan" class="btn btn-primary list-inline-item" data-toggle="modal" data-target=".bd-example-modal-lg">CẬP NHẬT THÔNG TIN CÁ NHÂN</button>
 							@if(count($errors)>0)
-							<div class="alert alert-warning list-inline-item" style="margin-left: 100px; margin-top: 200px;" role="alert"> 
-								@foreach($errors->all() as $err)
+								<div class="alert alert-warning alert-dismissible fade show fixed-top w-25" style="margin-top: 10%; margin-left:75%;" role="alert">
+			<strong>@foreach($errors->all() as $err)
 								{{$err}}<br>
-								@endforeach
-							</div>
+								@endforeach</strong>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+
+
+
+				
 							@endif
 						</div>
 						<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
