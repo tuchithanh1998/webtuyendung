@@ -71,7 +71,7 @@
 					<div class="card-body ">
 						<div class="list-inline">	<button type="button" id="thongtincanhan" class="btn btn-primary list-inline-item" data-toggle="modal" data-target=".bd-example-modal-lg">CẬP NHẬT THÔNG TIN CÁ NHÂN</button>
 							@if(count($errors)>0)
-							<div class="alert alert-warning list-inline-item fixed-top" style="margin-left: 100px; margin-top: 200px;" role="alert"> 
+							<div class="alert alert-warning list-inline-item" style="margin-left: 100px; margin-top: 200px;" role="alert"> 
 								@foreach($errors->all() as $err)
 								{{$err}}<br>
 								@endforeach
