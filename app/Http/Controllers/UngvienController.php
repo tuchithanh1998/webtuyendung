@@ -421,7 +421,7 @@ public function getQuanlytaikhoan(){
 
  return view('ungvien.quanlytaikhoan');
 }
-public function index()
+public function getTimkiemviec()
 {
  $timkiem="";  
  $kq=[];

@@ -22,7 +22,7 @@ Route::get('/index', function () {
 Route::get('/test', 'UngvienController@test');
 //Route::get('/timkiemviec','Api\TimkiemviecController@index');
 
-Route::get('/timkiemviec','UngvienController@index');
+Route::get('/timkiemviec','UngvienController@getTimkiemviec');
 Route::get('/tintuyendung/{id}','UngvienController@getTintuyendung');
 Route::get('/danh-sach-tin-nha-tuyen-dung/{id}.html','UngvienController@getNhatuyendung');
 
