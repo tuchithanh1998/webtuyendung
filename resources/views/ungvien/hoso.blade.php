@@ -929,6 +929,7 @@
 						</div>
 					</div>
 				<?php endforeach ?>
+
 				<div class="row bg-main">
 					<div class="col-sm-12 text-center" style="margin-top: 25px; margin-bottom: 25px;">
 						<button type="button" data-toggle="modal" data-target="#trinh-do-ngoai-ngu-moi" class="btn btn-info">THÊM NGOẠI NGỮ</button>
@@ -969,25 +970,25 @@
 													<div class="col-sm-8 list-inline">
 														<div class="radio list-inline-item">
 															<label>
-																<input type="radio" name="trinhdonghe"  value="1" <?php if($value->trinhdonghe==1) echo "checked"; ?>  >
+																<input type="radio" name="trinhdonghe"  value="1"   >
 																Tốt
 															</label>
 														</div>
 														<div class="radio  list-inline-item">
 															<label>
-																<input type="radio" name="trinhdonghe" value="2" <?php if($value->trinhdonghe==2) echo "checked";?>>
+																<input type="radio" name="trinhdonghe" value="2" >
 																Khá
 															</label>
 														</div>
 														<div class="radio  list-inline-item">
 															<label>
-																<input type="radio" name="trinhdonghe"  value="3" <?php if($value->trinhdonghe==3) echo "checked"; ?>>
+																<input type="radio" name="trinhdonghe"  value="3" >
 																Trung bình
 															</label>
 														</div>
 														<div class="radio  list-inline-item">
 															<label>
-																<input type="radio" name="trinhdonghe"value="4" <?php  if($value->trinhdonghe==4) echo "checked"; ?>>
+																<input type="radio" name="trinhdonghe"value="4" >
 																Kém
 															</label>
 														</div>
@@ -1000,25 +1001,25 @@
 													<div class="col-sm-8 list-inline">
 														<div class="radio list-inline-item">
 															<label>
-																<input type="radio" name="trinhdonoi"  value="1" <?php if($value->trinhdonoi==1) echo "checked"; ?>  >
+																<input type="radio" name="trinhdonoi"  value="1">
 																Tốt
 															</label>
 														</div>
 														<div class="radio  list-inline-item">
 															<label>
-																<input type="radio" name="trinhdonoi" value="2" <?php if($value->trinhdonoi==2) echo "checked";?>>
+																<input type="radio" name="trinhdonoi" value="2">
 																Khá
 															</label>
 														</div>
 														<div class="radio  list-inline-item">
 															<label>
-																<input type="radio" name="trinhdonoi"  value="3" <?php if($value->trinhdonoi==3) echo "checked"; ?>>
+																<input type="radio" name="trinhdonoi"  value="3">
 																Trung bình
 															</label>
 														</div>
 														<div class="radio  list-inline-item">
 															<label>
-																<input type="radio" name="trinhdonoi"value="4" <?php  if($value->trinhdonoie==4) echo "checked"; ?>>
+																<input type="radio" name="trinhdonoi" value="4">
 																Kém
 															</label>
 														</div>
@@ -1031,25 +1032,25 @@
 													<div class="col-sm-8 list-inline">
 														<div class="radio list-inline-item">
 															<label>
-																<input type="radio" name="trinhdodoc"  value="1" <?php if($value->trinhdodoc==1) echo "checked"; ?>  >
+																<input type="radio" name="trinhdodoc"  value="1"   >
 																Tốt
 															</label>
 														</div>
 														<div class="radio  list-inline-item">
 															<label>
-																<input type="radio" name="trinhdodoc" value="2" <?php if($value->trinhdodoc==2) echo "checked";?>>
+																<input type="radio" name="trinhdodoc" value="2">
 																Khá
 															</label>
 														</div>
 														<div class="radio  list-inline-item">
 															<label>
-																<input type="radio" name="trinhdodoc"  value="3" <?php if($value->trinhdodoc==3) echo "checked"; ?>>
+																<input type="radio" name="trinhdodoc"  value="3">
 																Trung bình
 															</label>
 														</div>
 														<div class="radio  list-inline-item">
 															<label>
-																<input type="radio" name="trinhdodoc"value="4" <?php  if($value->trinhdodoc==4) echo "checked"; ?>>
+																<input type="radio" name="trinhdodoc"value="4" >
 																Kém
 															</label>
 														</div>
@@ -1062,25 +1063,25 @@
 													<div class="col-sm-8 list-inline">
 														<div class="radio list-inline-item">
 															<label>
-																<input type="radio" name="trinhdoviet"  value="1" <?php if($value->trinhdoviet==1) echo "checked"; ?>  >
+																<input type="radio" name="trinhdoviet"  value="1"   >
 																Tốt
 															</label>
 														</div>
 														<div class="radio  list-inline-item">
 															<label>
-																<input type="radio" name="trinhdoviet" value="2" <?php if($value->trinhdoviet==2) echo "checked";?>>
+																<input type="radio" name="trinhdoviet" value="2" >
 																Khá
 															</label>
 														</div>
 														<div class="radio  list-inline-item">
 															<label>
-																<input type="radio" name="trinhdoviet"  value="3" <?php if($value->trinhdoviet==3) echo "checked"; ?>>
+																<input type="radio" name="trinhdoviet"  value="3" >
 																Trung bình
 															</label>
 														</div>
 														<div class="radio  list-inline-item">
 															<label>
-																<input type="radio" name="trinhdoviet"value="4" <?php  if($value->trinhdoviet==4) echo "checked"; ?>>
+																<input type="radio" name="trinhdoviet"value="4" >
 																Kém
 															</label>
 														</div>
