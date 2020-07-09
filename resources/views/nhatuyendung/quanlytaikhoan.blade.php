@@ -2,8 +2,25 @@
 @section('content')
 <div class="row">
 	<div class="list-group list-group-flush w-100 bg-danger">
+<div class="list-group-item w-100 border-0">THÔNG TIN TÀI KHOẢN </span>
+	<div class="card text-left " >
+				<div class="row">
+					<div class="col-12">
+						<div class="card-body ">
+							<span class="font-weight-bold text-success">Email: </span><span><?php echo Auth::guard('nhatuyendung')->user()->email; ?></span>
+						</div>
+						<div class="card-body ">
+							<span class="font-weight-bold text-success">Mật khẩu: </span><span>********</span> <a class="text-info" style="font-size: 11px;" href="">Đổi mật khẩu</a></span>
+						</div>
+					</div>
+					
+				</div>
+			</div>
+</div>
+
+
 		<div class="list-group-item w-100 border-0">
-			<span class="font-weight-bold text-info">THÔNG TIN NHÀ TUYỂN DỤNG <a class="text-info" style="font-size: 11px;" href="">...Thay đổi</a></span>
+			<span class="font-weight-bold text-info">THÔNG TIN CÔNG TY <a class="text-info" style="font-size: 11px;" href="">...Cập nhật</a></span>
 			<div class="card text-left " >
 				<div class="row">
 					<div class="col-6">
@@ -51,7 +68,7 @@
 			</div>
 		</div>
 		<div class="list-group-item w-100 border-0">
-			<span class="font-weight-bold text-info">THÔNG TIN NGƯỜI LIÊN HỆ <a class="text-info" style="font-size: 11px;" href="">...Thay đổi</a></span>
+			<span class="font-weight-bold text-info">THÔNG TIN NGƯỜI LIÊN HỆ <a class="text-info" style="font-size: 11px;" href="">...Cập nhật</a></span>
 			<div class="card text-left " >
 				<div class="row">
 					<div class="col-6">	<div class="card-body ">
