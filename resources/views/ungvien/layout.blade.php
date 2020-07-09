@@ -81,7 +81,7 @@
 					<img src="upload\img\layout\search.svg">Quản lý tin tuyển dụng đã nộp	
 				</div></a>
 				<a href="ung-vien/tin-tuyen-dung-luu" class="list-group-item border-0"><div >
-					<img src="upload\img\layout\search.svg">Quản tin tuyển dụng đã lưu	
+					<img src="upload\img\layout\search.svg">Quản lý tin tuyển dụng đã lưu	
 				</div></a>
 
 				
