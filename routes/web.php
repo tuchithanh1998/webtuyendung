@@ -85,8 +85,9 @@ Route::get('/nhatuyendung/dangtintuyendung','NhatuyendungController@getDangtintu
 Route::post('/nhatuyendung/dangtintuyendung','NhatuyendungController@postDangtintuyendung')->middleware('login_nhatuyendung');
 Route::get('/nha-tuyen-dung/tin-da-dang/{id_tintuyendung}','NhatuyendungController@getDanhsachungvien')->middleware('login_nhatuyendung');
 Route::post('/nha-tuyen-dung/tin-da-dang/{id_tintuyendung}/{id_ungvien}','NhatuyendungController@postTrangthaiungviennoptin')->middleware('login_nhatuyendung');
+Route::get('/nha-tuyen-dung/tim-ung-vien','NhatuyendungController@getTimungvien')->middleware('login_nhatuyendung');
 
-
+Route::get('nha-tuyen-dung/ung-vien/{id_ungvien}','NhatuyendungController@getUngvien')->middleware('login_nhatuyendung');
 
 
 

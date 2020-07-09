@@ -22,7 +22,7 @@
 								<?php foreach ($data as $key => $value): ?>
 									<tr>
 										<td>{{$key+1}}</td>
-										<td><a href="">{{$value->ungvien->hoten}}</a></td>
+										<td><a href="nha-tuyen-dung/ung-vien/{{$value->ungvien->id}}">{{$value->ungvien->hoten}}</a></td>
 										<td>{{$value->ungvien->nganhnghe->tennganhnghe}}</td>
 										<td class="text-center">
 

@@ -78,7 +78,7 @@
         <a href="nhatuyendung\thongtinungvien" class="list-group-item border-0"><div >
           <img src="upload\img\layout\search.svg">Thông tin ứng viên
         </div></a>
-        <a href="nhatuyendung\timkiem" class="list-group-item border-0"><div >
+        <a href="nha-tuyen-dung\tim-ung-vien" class="list-group-item border-0"><div >
           <img src="upload\img\layout\search.svg">Tìm Ứng Viên   
         </div></a>
         <a href="nhatuyendung\ungviendaluu" class="list-group-item border-0"><div >

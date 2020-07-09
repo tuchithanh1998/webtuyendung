@@ -491,11 +491,26 @@ if (isset($_GET['kynang']))
   {
 
    array_push($dskynang,$value);
- }  $tintuyendung->join('tintuyendung_kynang', 'tintuyendung.id', '=', 'tintuyendung_kynang.id_tintuyendung')
+ } 
+  $tintuyendung->join('tintuyendung_kynang', 'tintuyendung.id', '=', 'tintuyendung_kynang.id_tintuyendung')
  ->whereIn('tintuyendung_kynang.id_kynang',$dskynang);
 }
 
-if (!isset($_GET['nganhnghe'])&&!isset($_GET['tencongviec'])&&!isset($_GET['trinhdo'])&&!isset($_GET['thanhpho'])&&!isset($_GET['kynang'])&&!isset($_GET['kinhnghiem'])&&!isset($_GET['hinhthuclamviec'])) 
+/* if (isset($_GET['thanhpho'])&&$_GET['thanhpho']!="") 
+{
+
+$tintuyendung->join('tintuyendung_thanhpho', 'tintuyendung.id', '=', 'tintuyendung_thanhpho.id_tintuyendung')
+ ->where('id_thanhpho','=',$_GET['thanhpho']);
+ $tintuyendung->when($_GET['thanhpho']!="",function($q)
+  {
+   return $q->join('tintuyendung_thanhpho', 'tintuyendung.id', '=', 'tintuyendung_thanhpho.id_tintuyendung')
+ ->where('tintuyendung_thanhpho.id_thanhpho',$_GET['thanhpho']);
+ });
+  
+}*/
+
+
+if (!isset($_GET['nganhnghe'])&&!isset($_GET['tencongviec'])&&!isset($_GET['trinhdo'])&&!isset($_GET['thanhpho'])&&!isset($_GET['kynang'])&&!isset($_GET['kinhnghiem'])&&!isset($_GET['hinhthuclamviec'])&&!isset($_GET['mucluong'])) 
 {
   return view('ungvien.timkiemviec');
 }
@@ -537,7 +552,7 @@ $kq=$tintuyendung;
 foreach ($kq as $key => $value) {
  $kq2[$value->id]=$value;
 }
-return view('ungvien.timkiemviec',['data'=>$kq2]);
+return view('ungvien.timkiemviec',['data'=>$kq]);
 
 
 }

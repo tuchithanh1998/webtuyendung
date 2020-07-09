@@ -9,9 +9,20 @@ use App\tintuyendung;
 use App\tintuyendung_kynang;
 use App\tintuyendung_thanhpho;
 use App\ungvien_nop_tin;
+use App\ungvien;
 
 class NhatuyendungController extends Controller
 {
+
+	public function getUngvien($id_ungvien)
+	{
+	$data=ungvien::findOrFail($id_ungvien);
+	return view('nhatuyendung.ungvien',['data'=>$data]);
+	}
+	public function getTimungvien()
+	{
+		return view('nhatuyendung.timungvien');
+	}
 	public function postTrangthaiungviennoptin(Request $request,$id_tintuyendung,$id_ungvien)
 	{
 		ungvien_nop_tin::where('id_tintuyendung',$id_tintuyendung)->where('id_ungvien',$id_ungvien)->update(['id_trangthainoptin'=>$request->trangthaiRadios]);
@@ -23,7 +34,7 @@ class NhatuyendungController extends Controller
 
 
 //	$tintuyendung=tintuyendung::where('id',$id)->where('nhatuyendung',Auth::guard('nhatuyendung')->user()->id)->first();
-	$data=ungvien_nop_tin::where('id_tintuyendung',$id)->get();
+		$data=ungvien_nop_tin::where('id_tintuyendung',$id)->get();
 		return view('nhatuyendung.ungviennoptin',['data'=>$data]);
 	}
 	public function getDangtintuyendung(){
@@ -173,7 +184,7 @@ foreach ($request->thanhpho as $key => $value) {
             //đăng nhập thành công thì hiển thị thông báo đăng nhập thành công
 		} else {
 
-		 return redirect()->back()->with('alert','Đăng nhập không thành công.');
+			return redirect()->back()->with('alert','Đăng nhập không thành công.');
 		}
 	}
 }
