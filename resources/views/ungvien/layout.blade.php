@@ -104,13 +104,13 @@
 
 
 
-				 @if(count($errors)>0)
+			<!--	 @if(count($errors)>0)
 				 <div class="alert alert-warning list-inline-item" role="alert"> 
 				 	@foreach($errors->all() as $err)
 				 	{{$err}}<br>
 				 	@endforeach
 				 </div>
-				 @endif
+				 @endif-->
 				 <div class="bg-white" id="container2">
 				 	<div class="row ">
 				 		<div class="col-sm-3">
