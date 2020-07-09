@@ -17,12 +17,32 @@ if($data->id_nganhnghe!="")
 
 				</p>
 				<p class="card-text"><span class="font-weight-bold">Cấp bậc: </span>
-					{{$data->capbac->tencapbac}}</p>
-				<p class="card-text"><span class="font-weight-bold">Hình thức làm việc: </span>{{$data->hinhthuclamviec->tenhinhthuclamviec}}</p>
-				<p class="card-text"><span class="font-weight-bold">Kinh nghiệm: </span>{{$data->kinhnghiem->tenkinhnghiem}}</p>
+				<?php 
+
+if($data->id_capbac!="")
+	echo $data->capbac->tencapbac;
+				?>
+</p>
+				<p class="card-text"><span class="font-weight-bold">Hình thức làm việc: </span><?php 
+
+if($data->id_hinhthuclamviec!="")
+	echo $data->hinhthuclamviec->tenhinhthuclamviec;
+				?>
+</p>
+				<p class="card-text"><span class="font-weight-bold">Kinh nghiệm: </span><?php 
+
+if($data->id_kinhnghiem!="")
+	echo $data->kinhnghiem->tenkinhnghiem;
+				?>
+</p>
 				<p class="card-text"><span class="font-weight-bold">Trình độ: </span>
-					{{$data->trinhdo->tentrinhdo}}</p>			
-				<p class="card-text"><span class="font-weight-bold">Ảnh đại diện: </span>{{$data->mucluong}}</p>
+					<?php 
+
+if($data->id_trinhdo!="")
+	echo $data->trinhdo->tentrinhdo;
+				?>
+</p>			
+				<p class="card-text"><span class="font-weight-bold">Ảnh đại diện: </span></p>{{$data->mucluong}}
 				<p class="card-text"><span class="font-weight-bold">Thành phố: </span>
 					<?php foreach ($data->ungvien_thanhpho as $key => $value): ?>
 					{{$value->tenthanhpho}}
