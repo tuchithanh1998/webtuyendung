@@ -13,11 +13,16 @@ use App\ungvien;
 
 class NhatuyendungController extends Controller
 {
+	public function postDoimatkhau(Request $request)
+	{
+		nhatuyendung::where('id',Auth::guard('nhatuyendung')->user()->id)->update(['matkhau'=>bcrypt($request->newpassword2)]);
+		return redirect()->back();
 
+	}
 	public function getUngvien($id_ungvien)
 	{
-	$data=ungvien::findOrFail($id_ungvien);
-	return view('nhatuyendung.ungvien',['data'=>$data]);
+		$data=ungvien::findOrFail($id_ungvien);
+		return view('nhatuyendung.ungvien',['data'=>$data]);
 	}
 	public function getTimungvien()
 	{

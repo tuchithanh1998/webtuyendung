@@ -32,7 +32,7 @@ Route::post('/ungviendangky', 'UngvienController@postDangky');
 
 Route::get('/ungvien/quanlytaikhoan', 'UngvienController@getQuanlytaikhoan')->middleware('login_ungvien');
 Route::post('ungvien/quanlytaikhoan/postThongtincanhan', 'UngvienController@postThongtincanhan')->middleware('login_ungvien');
-Route::get('/ungvien/thoat', 'UngvienController@getThoat')->middleware('login_ungvien');
+Route::get('/ungvien/thoat', 'UngvienController@getThoat');
 
 Route::get('/ung-vien/luu-viec-lam/{id}', 'UngvienController@getLuuvieclam')->middleware('login_ungvien');
 Route::get('/ung-vien/nop-ho-so/{id}', 'UngvienController@getNophoso')->middleware('login_ungvien');
@@ -78,7 +78,7 @@ Route::get('/nhatuyendung','NhatuyendungController@getDangky');
 Route::post('/nhatuyendung','NhatuyendungController@postDangky');
 Route::post('/nhatuyendungdangnhap','NhatuyendungController@postDangnhap');
 
-Route::get('/nhatuyendung/thoat','NhatuyendungController@getThoat')->middleware('login_nhatuyendung');
+Route::get('/nhatuyendung/thoat','NhatuyendungController@getThoat');
 Route::get('/nhatuyendung/quanlytaikhoan','NhatuyendungController@getQuanlytaikhoan')->middleware('login_nhatuyendung');
 Route::get('/nhatuyendung/tindadang','NhatuyendungController@getTindadang')->middleware('login_nhatuyendung');
 Route::get('/nhatuyendung/dangtintuyendung','NhatuyendungController@getDangtintuyendung')->middleware('login_nhatuyendung');
@@ -90,11 +90,12 @@ Route::get('/nha-tuyen-dung/tim-ung-vien','NhatuyendungController@getTimungvien'
 Route::get('nha-tuyen-dung/ung-vien/{id_ungvien}','NhatuyendungController@getUngvien')->middleware('login_nhatuyendung');
 
 
+Route::post('nha-tuyen-dung/quan-ly-tai-khoan/doi-mat-khau','NhatuyendungController@postDoimatkhau')->middleware('login_nhatuyendung');
 
 
 Route::get('/admin/login','AdminController@getDangnhap');
 Route::post('/admin/login','AdminController@postDangnhap');
-Route::get('/admin/logout','AdminController@getLogout')->middleware('login_admin');
+Route::get('/admin/logout','AdminController@getLogout');
 
 
 Route::get('/admin/index','AdminController@getIndex')->middleware('login_admin');

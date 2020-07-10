@@ -13,12 +13,12 @@
 									<th></th>
 									<th>Họ tên</th>
 									<th>Ngành nghề</th>
-									<th class="text-center" >Kỹ năng</th>
+									<th >Kỹ năng</th>
 									<th></th>
 								
 								</tr>
 							</thead>
-							<tbody>
+							<tbody class="">
 								<?php foreach ($data as $key => $value): ?>
 									<tr>
 										<td>{{$key+1}}</td>
@@ -33,8 +33,9 @@
 											<?php endforeach ?>
 
 										</td>
-										<td data-toggle="modal" data-target="#trangthai{{$key}}" >{{$value->trangthainoptin->tentrangthainoptin}}</td>
-										
+										<td  data-toggle="modal" data-target="#trangthai{{$key}}" style="margin: 0px;padding: 10px;" >
+										<button type="button" style="padding: 0px; margin: 0px;" class=" w-100">{{$value->trangthainoptin->tentrangthainoptin}}</button>			</td>
+								
 									</tr>
 
 
