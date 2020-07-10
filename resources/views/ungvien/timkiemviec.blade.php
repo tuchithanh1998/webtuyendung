@@ -157,7 +157,11 @@
 								</p>
 							</div>
 							<div class="col-2 text-center" title="Hạn nộp" style="margin-left: 2px;">
-								<img src="upload\img\layout\clock.svg"><p>30/8/2020</p>
+								<img src="upload\img\layout\clock.svg"><p><?php 
+
+						$date=date_create($value->hannophoso);
+										echo date_format($date,"d/m/Y");
+								?></p>
 							</div>
 							<div class="col-1 text-center" title="Lưu việc làm" style="margin-left: 2px;">
 								<span class="glyphicon glyphicon-cog blue"></span>

@@ -557,6 +557,9 @@ return view('ungvien.timkiemviec',['data'=>$kq2]);
 
 $kq=$tintuyendung;
 foreach ($kq as $key => $value) {
+
+
+  
  $kq2[$value->id]=$value;
 }
 return view('ungvien.timkiemviec',['data'=>$kq]);
