@@ -13,6 +13,20 @@ use App\ungvien;
 
 class NhatuyendungController extends Controller
 {
+
+	public function getHuyTintuyendung($id_tintuyendung)
+	{
+			$tintuyendung=tintuyendung::where('id',$id_tintuyendung)->where('id_nhatuyendung',Auth::guard('nhatuyendung')->user()->id)->update(['trangthai'=>2]);
+			return redirect()->back();
+	}
+
+	public function getTintuyendung($id_tintuyendung)
+	{
+		$tintuyendung=tintuyendung::where('id',$id_tintuyendung)->where('id_nhatuyendung',Auth::guard('nhatuyendung')->user()->id)->get();
+
+		return view('nhatuyendung.tintuyendung',['data'=>$tintuyendung[0]]);
+	}
+	
 	public function postDoimatkhau(Request $request)
 	{
 		nhatuyendung::where('id',Auth::guard('nhatuyendung')->user()->id)->update(['matkhau'=>bcrypt($request->newpassword2)]);

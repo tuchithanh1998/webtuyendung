@@ -123,7 +123,19 @@
 
 					<li><h6>Không tìm thấy</h6></li>
 				<?php }
-				foreach ($data as $key => $value): ?>	
+				foreach ($data as $key => $value): 
+						if($value->trangthai!=1)
+							continue;
+						
+$today = date("Y-m-d");
+$expire = $value->hannophoso;
+ $today_dt = new DateTime($today);
+ $expire_dt = new DateTime($expire);
+ 
+		if ($expire_dt < $today_dt)
+			continue;
+
+					?>	
 					<li class="list-group-item" style="   padding: 0px; <?php  if($key!=0) echo "margin-top: 4px;"; ?>  margin-bottom: 0px;">
 						<div class="card border-0" >
 							<div class="row no-gutters ">
