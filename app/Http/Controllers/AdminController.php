@@ -8,6 +8,20 @@ use App\admin;
 use App\nhatuyendung;
 use App\tintuyendung;
 use App\ungvien;
+use App\thanhpho;
+use App\capbac;
+use App\hinhthuclamviec;
+use App\kinhnghiem;
+use App\trinhdo;
+use App\nganhnghe;
+use App\kynang;
+use App\quymonhansu;
+use App\mucluong;
+use App\ngoaingu;
+
+
+
+
 class AdminController extends Controller
 {
     public function getDangnhap()
@@ -78,4 +92,57 @@ class AdminController extends Controller
         Auth::guard('admin')->logout();
         return redirect('admin/login');
     }
+
+    public function getThanhpho()
+    {
+        $thanhpho=thanhpho::all();
+          return view('admin/thanhpho',['data'=>$thanhpho]);
+    }
+    public function getCapbac()
+    {
+        $capbac=capbac::all();
+        return view('admin/capbac',['data'=>$capbac]);
+    }
+    public function getHinhthuclamviec()
+    {
+        $hinhthuclamviec=hinhthuclamviec::all();
+        return view('admin/hinhthuclamviec',['data'=>$hinhthuclamviec]);
+    }
+    public function getKinhnghiem()
+    {
+        $kinhnghiem=kinhnghiem::all();
+        return view('admin/kinhnghiem',['data'=>$kinhnghiem]);
+    }
+    public function getTrinhdo()
+    {
+        $trinhdo=trinhdo::all();
+        return view('admin/trinhdo',['data'=>$trinhdo]);
+    }
+    public function getNganhnghe()
+    {
+        $nganhnghe=nganhnghe::all();
+        return view('admin/nganhnghe',['data'=>$nganhnghe]);
+    }
+    public function getKynang()
+    {
+        $kynang=kynang::all();
+        return view('admin/kynang',['data'=>$kynang]);
+    }
+    public function getQuymonhansu()
+    {
+        $quymonhansu=quymonhansu::all();
+        return view('admin/quymonhansu',['data'=>$quymonhansu]);
+    }
+    public function getMucluong()
+    {
+        $mucluong=mucluong::all();
+        return view('admin/mucluong',['data'=>$mucluong]);
+    }
+    public function getNgoaingu()
+    {
+        $ngoaingu=ngoaingu::all();
+        return view('admin/ngoaingu',['data'=>$ngoaingu]);
+    }
+
+
 }

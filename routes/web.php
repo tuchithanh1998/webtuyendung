@@ -105,6 +105,17 @@ Route::get('/admin/thongtinungvien','AdminController@getThongtinungvien')->middl
 Route::post('/admin/nha-tuyen-dung/{id_nhatuyendung}','AdminController@postThongtinnhatuyendung')->middleware('login_admin');
 Route::post('/admin/tin-tuyen-dung/{id_tintuyendung}','AdminController@postTintuyendung')->middleware('login_admin');
 Route::post('/admin/ung-vien/{id_ungvien}','AdminController@postThongtinungvien')->middleware('login_admin');
+
+Route::get('admin/thong-so/thanh-pho','AdminController@getThanhpho')->middleware('login_admin');
+Route::get('admin/thong-so/cap-bac','AdminController@getCapbac')->middleware('login_admin');
+Route::get('admin/thong-so/hinh-thuc-lam-viec','AdminController@getHinhthuclamviec')->middleware('login_admin');
+Route::get('admin/thong-so/kinh-nghiem','AdminController@getKinhnghiem')->middleware('login_admin');
+Route::get('admin/thong-so/trinh-do','AdminController@getTrinhdo')->middleware('login_admin');
+Route::get('admin/thong-so/nganh-nghe','AdminController@getNganhnghe')->middleware('login_admin');
+Route::get('admin/thong-so/ky-nang','AdminController@getKynang')->middleware('login_admin');
+Route::get('admin/thong-so/quy-mo-nhan-su','AdminController@getQuymonhansu')->middleware('login_admin');
+Route::get('admin/thong-so/muc-luong','AdminController@getMucluong')->middleware('login_admin');
+Route::get('admin/thong-so/ngoai-ngu','AdminController@getNgoaingu')->middleware('login_admin');
 /*Route::fallback(function(){
 	return redirect('index');
 });*/
