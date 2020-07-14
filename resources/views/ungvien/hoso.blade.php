@@ -307,11 +307,11 @@
 			<div class="row bg-main">
 				<div class="col-sm-12 " style="margin-top: 25px; margin-bottom: 25px;">
 					<div class="card  ">
-						<div class="card-header">KỸ NĂNG SỞ TRƯỜNG<span><small class="text-info" data-toggle="modal" data-target="#thaydoihososothich">... Cập nhật</small></span></div>
+						<div class="card-header">KỸ NĂNG KHÁC<span><small class="text-info" data-toggle="modal" data-target="#thaydoihososothich">... Cập nhật</small></span></div>
 						<div class="card-body">
 
 							<p class="card-text"><span class="font-weight-bold">Mục tiêu: </span>{{Auth::guard('ungvien')->user()->muctieu}}</p>
-							<p class="card-text"><span class="font-weight-bold">Kỹ năng sở trường: </span>{{Auth::guard('ungvien')->user()->kynangsotruong}}</p>
+							<p class="card-text"><span class="font-weight-bold">Sở trường: </span>{{Auth::guard('ungvien')->user()->kynangsotruong}}</p>
 							<p class="card-text"><span class="font-weight-bold">Sở thích: </span>{{Auth::guard('ungvien')->user()->sothich}}</p>
 							
 						</div>

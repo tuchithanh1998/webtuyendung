@@ -15,6 +15,7 @@ use App\ungvien_nop_tin;
 use App\ungvien_ngoaingu;
 use App\trinhdobangcap;
 use App\nguoithamkhao;
+use DateTime;
 use Auth;
 class UngvienController extends Controller
 {
@@ -275,6 +276,15 @@ public function getNhatuyendung($id)
 
 public function getNophoso($id){
 
+$today = date("Y-m-d");
+$expire =tintuyendung::findOrFail($id)->hannophoso;
+$today_dt =  new DateTime(date("Y-m-d",mktime(0, 0, 0, date("m")-1, date("d"), date("Y"))));
+$expire_dt = new DateTime($expire);
+ 
+if ($expire_dt < $today_dt||tintuyendung::findOrFail($id)->trangthai!=1)
+          return redirect()->back()->with('success','Nộp hồ sơ thất bại.');
+
+
   $timkiem=ungvien_nop_tin::where('id_ungvien',Auth::guard('ungvien')->user()->id)->where('id_tintuyendung',$id)->get();
 
   if(count($timkiem)>0)
@@ -285,6 +295,10 @@ public function getNophoso($id){
 
       if(Auth::guard('ungvien')->user()->id_nganhnghe=="")
           return redirect()->back()->with('success','Chưa cập nhật hồ sơ.');
+
+
+
+
 
    $ungvien_nop_tin=new ungvien_nop_tin;
    $ungvien_nop_tin->id_ungvien=Auth::guard('ungvien')->user()->id;
