@@ -7,7 +7,45 @@
 <div class="row">
   <div class="col-12">
       <div class="card" style="margin-top: 10px; margin-bottom: 10px;" >
-        <div class="col-2"><button type="button" class="btn btn-light" style="background:red;">Thêm kinh nghiệm</button></div>
+        <div class="col-4"><button type="button" class="btn btn-primary list-inline-item" data-toggle="modal" data-target="#kinhnghiem">Thêm kinh nghiệm</button>
+
+  <div class="modal fade" id="kinhnghiem" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <div class="row">
+                    <div class="col-sm-12  text-center">
+                      <div class="card">
+                        <div class="card-header bg-white">
+                          <div class="row">
+                            <div class="col-6 text-left text-info">
+                              THÔNG TIN KINH NGHIỆM
+                            </div>
+                            <div class="col-6 text-right">
+                              (*)Thông tin bắt buộc nhập
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card-body"><form action="admin/thong-so/kinh-nghiem/postkinhnghiem" method="POST">
+                          <input type="hidden" name="_token" value="{{csrf_token()}}"/>
+                          <div class="form-group row">
+                            <label for="tenkinhnghiem" class="col-sm-4 col-form-label">Tên kinh nghiệm: *</label>
+                            <div class="col-sm-8">
+                              <input type="" name="tenkinhnghiem" value="" class="form-control" id="tenkinhnghiem" >
+                            </div>
+                          </div>
+                      <div class="form-group row"> 
+                        <div class="col-sm-10">
+                          <button type="submit" class="btn btn-primary w-25">Lưu</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+  </div>
+</div></div>
   <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
@@ -15,7 +53,6 @@
                     <tr>
                       <th>Mã</th>
                       <th>Tên kinh nghiệm</th>
-                         <th>Thao tác</th>
                       <th>Thao tác             </th>
                     </tr>
                   </thead>
@@ -23,7 +60,6 @@
                     <tr>
                      <th>Mã</th>
                       <th>Tên kinh nghiệm</th>
-                         <th>Thao tác</th>
                       <th>Thao tác             </th>
                     </tr>
                   </tfoot>
@@ -32,9 +68,43 @@
                    <tr>
                       <td>{{$value->id}}</td>
                       <td>{{$value->tenkinhnghiem}}</td>
-                      <td><button type="button" data-toggle="modal" data-target="#exampleModal{{$key}}"  class="btn btn-light">Ẩn</button>
-                      </td>
-                      <td><button type="button" data-toggle="modal" data-target="#exampleModal{{$key}}"  class="btn btn-light">Sửa</button>
+                      <td><button type="button" id="kinhnghiem" class="btn btn-primary list-inline-item" data-toggle="modal" data-target="#kinhnghiem{{$value->id}}">Sửa</button>
+                        <div class="modal fade" id="kinhnghiem{{$value->id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+              <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                  <div class="row">
+                    <div class="col-sm-12  text-center">
+                      <div class="card">
+                        <div class="card-header bg-white">
+                          <div class="row">
+                            <div class="col-6 text-left text-info">
+                              CHỈNH SỬA THÔNG TIN KINH NGHIỆM
+                            </div>
+                            <div class="col-6 text-right">
+                              (*)Thông tin bắt buộc nhập
+                            </div>
+                          </div>
+                        </div>
+                        <div class="card-body"><form action="admin/thong-so/kinh-nghiem/postkinhnghiem/{{$value->id}}" method="POST">
+                          <input type="hidden" name="_token" value="{{csrf_token()}}"/>
+                          <div class="form-group row">
+                            <label for="tenkinhnghiem" class="col-sm-4 col-form-label">Tên kinh nghiệm: *</label>
+                            <div class="col-sm-8">
+                              <input type="" name="tenkinhnghiem" value="{{$value->tenkinhnghiem}}" class="form-control" id="tenkinhnghiem" >
+                            </div>
+                          </div>
+                      <div class="form-group row"> 
+                        <div class="col-sm-10">
+                          <button type="submit" class="btn btn-primary w-25">Lưu</button>
+                        </div>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+  </div></div>
                       </td>                
                     </tr>
 <?php endforeach ?>                   
