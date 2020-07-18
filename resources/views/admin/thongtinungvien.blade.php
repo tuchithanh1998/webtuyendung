@@ -38,7 +38,8 @@
   <tr>
                       <td>{{$value->email}}</td>
                       <td>{{$value->hoten}}</td>
-                      <td>{{$value->diachi}} {{$value->thanhpho->tenthanhpho}}</td>
+                      <td>{{$value->diachi}} @if($value->id_thanhpho!=null) {{$value->thanhpho->tenthanhpho}}
+                      @endif</td>
                       <td>{{$value->sodienthoai}}</td>
                       <td>{{$value->ngaysinh}}</td>
                       <td><?php

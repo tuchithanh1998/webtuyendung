@@ -109,6 +109,47 @@ Route::get('/admin/thongtinungvien','AdminController@getThongtinungvien')->middl
 Route::post('/admin/nha-tuyen-dung/{id_nhatuyendung}','AdminController@postThongtinnhatuyendung')->middleware('login_admin');
 Route::post('/admin/tin-tuyen-dung/{id_tintuyendung}','AdminController@postTintuyendung')->middleware('login_admin');
 Route::post('/admin/ung-vien/{id_ungvien}','AdminController@postThongtinungvien')->middleware('login_admin');
+/*Thành phố*/
+Route::get('admin/thong-so/thanh-pho','AdminController@getThanhpho')->middleware('login_admin');
+Route::post('admin/thong-so/thanh-pho/postthanhpho/{id_thanhpho}', 'AdminController@postSuathanhpho')->middleware('login_admin');
+Route::post('admin/thong-so/thanh-pho/postthanhpho', 'AdminController@postThemthanhpho')->middleware('login_admin');
+/*Cấp bậc*/
+Route::get('admin/thong-so/cap-bac','AdminController@getCapbac')->middleware('login_admin');
+Route::post('admin/thong-so/cap-bac/postcapbac/{id_capbac}', 'AdminController@postSuacapbac')->middleware('login_admin');
+Route::post('admin/thong-so/cap-bac/postcapbac', 'AdminController@postThemcapbac')->middleware('login_admin');
+/*Hình thức làm việc*/
+Route::get('admin/thong-so/hinh-thuc-lam-viec','AdminController@getHinhthuclamviec')->middleware('login_admin');
+Route::post('admin/thong-so/hinh-thuc-lam-viec/posthinhthuclamviec/{id_hinhthuclamviec}', 'AdminController@postSuahinhthuclamviec')->middleware('login_admin');
+Route::post('admin/thong-so/hinh-thuc-lam-viec/posthinhthuclamviec', 'AdminController@postThemhinhthuclamviec')->middleware('login_admin');
+/*Kinh nghiệm */
+Route::get('admin/thong-so/kinh-nghiem','AdminController@getKinhnghiem')->middleware('login_admin');
+Route::post('admin/thong-so/kinh-nghiem/postkinhnghiem/{id_kinhnghiem}', 'AdminController@postSuakinhnghiem')->middleware('login_admin');
+Route::post('admin/thong-so/kinh-nghiem/postkinhnghiem', 'AdminController@postThemkinhnghiem')->middleware('login_admin');
+/*Trình độ*/
+Route::get('admin/thong-so/trinh-do','AdminController@getTrinhdo')->middleware('login_admin');
+Route::post('admin/thong-so/trinh-do/posttrinhdo/{id_trinhdo}', 'AdminController@postSuatrinhdo')->middleware('login_admin');
+Route::post('admin/thong-so/trinh-do/posttrinhdo', 'AdminController@postThemtrinhdo')->middleware('login_admin');
+/*Ngành nghề*/
+Route::get('admin/thong-so/nganh-nghe','AdminController@getNganhnghe')->middleware('login_admin');
+Route::post('admin/thong-so/nganh-nghe/postnganhnghe/{id_nganhnghe}', 'AdminController@postSuanganhnghe')->middleware('login_admin');
+Route::post('admin/thong-so/nganh-nghe/postnganhnghe', 'AdminController@postThemnganhnghe')->middleware('login_admin');
+/*Kỹ năng*/
+Route::get('admin/thong-so/ky-nang','AdminController@getKynang')->middleware('login_admin');
+Route::post('admin/thong-so/ky-nang/postkynang/{id_kynang}', 'AdminController@postSuakynang')->middleware('login_admin');
+Route::post('admin/thong-so/ky-nang/postkynang', 'AdminController@postThemkynang')->middleware('login_admin');
+/*Quy mô nhân sự*/
+Route::get('admin/thong-so/quy-mo-nhan-su','AdminController@getQuymonhansu')->middleware('login_admin');
+Route::post('admin/thong-so/quy-mo-nhan-su/postquymonhansu/{id_quymonhansu}', 'AdminController@postSuaquymonhansu')->middleware('login_admin');
+Route::post('admin/thong-so/quy-mo-nhan-su/postquymonhansu', 'AdminController@postThemquymonhansu')->middleware('login_admin');
+/*Mức lương*/
+Route::get('admin/thong-so/muc-luong','AdminController@getMucluong')->middleware('login_admin');
+Route::post('admin/thong-so/muc-luong/postmucluong/{id_mucluong}', 'AdminController@postSuamucluong')->middleware('login_admin');
+Route::post('admin/thong-so/muc-luong/postmucluong', 'AdminController@postThemmucluong')->middleware('login_admin');
+/*Ngoại ngữ*/
+Route::get('admin/thong-so/ngoai-ngu','AdminController@getNgoaingu')->middleware('login_admin');
+Route::post('admin/thong-so/ngoai-ngu/postngoaingu/{id_ngoaingu}', 'AdminController@postSuangoaingu')->middleware('login_admin');
+Route::post('admin/thong-so/ngoai-ngu/postngoaingu', 'AdminController@postThemngoaingu')->middleware('login_admin');
+
 /*Route::fallback(function(){
 	return redirect('index');
 });*/

@@ -44,6 +44,7 @@
       <!-- Nav Item - Utilities Collapse Menu -->
       <hr class="sidebar-divider my-0">
       <hr class="sidebar-divider">
+      <!--------------------------->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities" aria-expanded="true" aria-controls="collapseUtilities">
           <span>Quản lý Ứng viên</span>
@@ -51,6 +52,27 @@
         <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
             <a class="collapse-item" href="admin/thongtinungvien">Thông tin cá nhân</a>
+          </div>
+        </div>
+      </li>
+      <hr class="sidebar-divider my-0">
+      <hr class="sidebar-divider">
+      <li class="nav-item">
+          <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities1" aria-expanded="true" aria-controls="collapseUtilities">
+          <span>Quản lý Thông số</span>
+        </a>
+        <div id="collapseUtilities1" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="admin/thong-so/thanh-pho">Thành phố</a>
+            <a class="collapse-item" href="admin/thong-so/cap-bac">Cấp bậc</a>
+            <a class="collapse-item" href="admin/thong-so/hinh-thuc-lam-viec">Hình thức làm việc</a>
+            <a class="collapse-item" href="admin/thong-so/kinh-nghiem">Kinh nghiệm</a>
+            <a class="collapse-item" href="admin/thong-so/trinh-do">Trình độ</a>
+            <a class="collapse-item" href="admin/thong-so/nganh-nghe">Ngành nghề</a>
+            <a class="collapse-item" href="admin/thong-so/ky-nang">Kỹ năng</a>
+            <a class="collapse-item" href="admin/thong-so/quy-mo-nhan-su">Quy mô nhân sự</a>
+            <a class="collapse-item" href="admin/thong-so/muc-luong">Mức lương</a>
+            <a class="collapse-item" href="admin/thong-so/ngoai-ngu">Ngoại ngữ</a>
           </div>
         </div>
       </li>
