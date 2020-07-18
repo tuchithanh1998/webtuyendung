@@ -13,7 +13,7 @@
 	  			<th></th>
 	  			<th>Tiêu đề</th>
 	  			<th>Công ty</th>
-	  			<th>Hết hạn</th>
+	  			<th>Ngày nộp hồ sơ</th>
 	  			<th></th>
 	  		</tr>
 	  	</thead>
@@ -30,7 +30,7 @@ if ($expire_dt > $today_dt){
 	  				<td>{{$key+1}}</td>
 	  				<td><a href="tintuyendung/{{$value->id}}">{{$value->tintuyendung->tieudetuyendung}}</a></td>
 	  				<td><a href="">{{$value->tintuyendung->nhatuyendung->tencongty}}</a></td>
-	  				<td><?php $date=date_create($value->tintuyendung->hannophoso);
+	  				<td><?php $date=date_create($value->ngaynoptin);
 										echo date_format($date,"d/m/Y");
 										?></td>
 										<td><?php echo $value->trangthainoptin->tentrangthainoptin; ?></td>

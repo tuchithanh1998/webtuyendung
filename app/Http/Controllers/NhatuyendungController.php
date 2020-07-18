@@ -16,8 +16,8 @@ class NhatuyendungController extends Controller
 
 	public function getHuyTintuyendung($id_tintuyendung)
 	{
-			$tintuyendung=tintuyendung::where('id',$id_tintuyendung)->where('id_nhatuyendung',Auth::guard('nhatuyendung')->user()->id)->update(['trangthai'=>2]);
-			return redirect()->back();
+		$tintuyendung=tintuyendung::where('id',$id_tintuyendung)->where('id_nhatuyendung',Auth::guard('nhatuyendung')->user()->id)->update(['trangthai'=>2]);
+		return redirect()->back();
 	}
 
 	public function getTintuyendung($id_tintuyendung)
@@ -40,7 +40,40 @@ class NhatuyendungController extends Controller
 	}
 	public function getTimungvien()
 	{
-		return view('nhatuyendung.timungvien');
+
+		$ungvien=ungvien::query();
+
+		if(isset($_GET['nganhnghe']))
+		{
+			$ungvien->when($_GET['nganhnghe']!="",function($q)
+			{
+				return $q->where('id_nganhnghe','=',$_GET['nganhnghe']);
+			});
+		}
+
+		if (isset($_GET['kynang'])) 
+		{
+			$dskynang=[];
+
+			foreach ($_GET['kynang'] as $key => $value) 
+			{
+
+				array_push($dskynang,$value);
+			} 
+			$ungvien->join('ungvien_kynang', 'ungvien.id', '=', 'ungvien_kynang.id_ungvien')
+			->whereIn('ungvien_kynang.id_kynang',$dskynang);
+		}
+		if($ungvien==ungvien::query())
+		{
+
+			$ungvien=ungvien::where('timkiem',1)->where('trangthai',1)->get();
+
+		}
+		else
+		{
+			$ungvien=$ungvien->where('timkiem',1)->where('trangthai',1)->get();
+		}
+		return view('nhatuyendung.timungvien',['data'=>$ungvien]);
 	}
 	public function postTrangthaiungviennoptin(Request $request,$id_tintuyendung,$id_ungvien)
 	{
@@ -95,7 +128,7 @@ class NhatuyendungController extends Controller
 			$tintuyendung_thanhpho->save();
 		}
 
-		dd('Thanh cong');
+		return redirect()->back();
 
 /*foreach ($request->kynang as $key => $value) {
 	

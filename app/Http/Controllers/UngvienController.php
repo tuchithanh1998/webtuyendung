@@ -17,14 +17,53 @@ use App\trinhdobangcap;
 use App\nguoithamkhao;
 use DateTime;
 use Auth;
+use Illuminate\Support\Str;
 class UngvienController extends Controller
 {
 
+  public function postDoimatkhau(Request $request)
+  {
+   ungvien::where('id',Auth::guard('ungvien')->user()->id)->update(['matkhau'=>bcrypt($request->newpassword2)]);
+   return redirect()->back()->with('alert','Đổi mật khẩu thành công');
+ }
+
+ public function postSodienthoai(Request $request)
+ {
+
+  ungvien::where('id',Auth::guard('ungvien')->user()->id)->update(['sodienthoai'=>$request->sodienthoai]);
+  return redirect()->back()->with('alert','Cập nhật thành công');
+}
+public function postAnh(Request $request)
+{
+
+
+  if($request->hasFile('filesTest'))
+  {
+
+
+
+    if (Auth::guard('ungvien')->user()->anhdaidien!=null)
+    {
+      unlink("upload/img/ungvien/anhdaidien/".Auth::guard('ungvien')->user()->anhdaidien);
+    }
+
+
+    $file=$request->filesTest;
+    $name=$file->getClientOriginalName();
+    $hinh=Str::random(4)."_".$name;
+    while ( file_exists("upload/img/ungvien/anhdaidien/".$hinh)) {
+      $hinh=Str::random(4)."_".$name;
+    }
+    $file->move("upload/img/ungvien/anhdaidien/",$hinh);   ungvien::where('id',Auth::guard('ungvien')->user()->id)->update(['anhdaidien'=>$hinh]);
+  }
+
+  return redirect()->back()->with('alert','Cập nhật ảnh thành công');
+}
 public function getNguoithamkhaoxoa($id)
 {
   $nguoithamkhao=nguoithamkhao::where('id',$id)->where('id_ungvien',Auth::guard('ungvien')->user()->id)->get();
   $nguoithamkhao[0]->delete();
-   return redirect()->back()->with('alert','Xóa thành công.');
+  return redirect()->back()->with('alert','Xóa thành công.');
 }
 
 public function postNguoithamkhaomoi(Request $request)
@@ -42,49 +81,49 @@ public function postNguoithamkhaosua(Request $request,$id)
 {
   $nguoithamkhao=nguoithamkhao::where('id',$id)->where('id_ungvien',Auth::guard('ungvien')->user()->id)->get();
   $nguoithamkhao[0]->hoten=$request->hoten;
- $nguoithamkhao[0]->congty=$request->congty;
- $nguoithamkhao[0]->sodienthoai=$request->sodienthoai;
- $nguoithamkhao[0]->chucvu=$request->chucvu;
- $nguoithamkhao[0]->id_ungvien=Auth::guard('ungvien')->user()->id;
- $nguoithamkhao[0]->save();
- return redirect()->back()->with('alert','Sửa thành công.');
+  $nguoithamkhao[0]->congty=$request->congty;
+  $nguoithamkhao[0]->sodienthoai=$request->sodienthoai;
+  $nguoithamkhao[0]->chucvu=$request->chucvu;
+  $nguoithamkhao[0]->id_ungvien=Auth::guard('ungvien')->user()->id;
+  $nguoithamkhao[0]->save();
+  return redirect()->back()->with('alert','Sửa thành công.');
 }
-  public function getTrinhdobangcapxoa($id)
-  {
-    $trinhdobangcap=trinhdobangcap::where('id_ungvien',Auth::guard('ungvien')->user()->id)->where('id',$id)->get();
-    $trinhdobangcap[0]->delete();
-    return redirect()->back()->with('alert','Xóa thành công.');
-  }
-
-  public function postTrinhdobangcapmoi(Request $request)
-  {
-   $trinhdobangcap=new trinhdobangcap;
-   $trinhdobangcap->tenbangcap=$request->tenbangcap;
-   $trinhdobangcap->truongdaotao=$request->truongdaotao;
-   $trinhdobangcap->chuyennganh=$request->chuyennganh;
-   $trinhdobangcap->id_ungvien=Auth::guard('ungvien')->user()->id;
-   $trinhdobangcap->thoigiantotnghiep=date($request->thoigiantotnghiep.'-01');
-
-   $trinhdobangcap->save();
-      return redirect()->back()->with('alert','Thêm thành công.');
-  // $trinhdobangcap->anh=$request->anh;
- }
-
- public function postTrinhdobangcapsua(Request $request,$id)
- {
+public function getTrinhdobangcapxoa($id)
+{
   $trinhdobangcap=trinhdobangcap::where('id_ungvien',Auth::guard('ungvien')->user()->id)->where('id',$id)->get();
-   $trinhdobangcap[0]->tenbangcap=$request->tenbangcap;
-   $trinhdobangcap[0]->truongdaotao=$request->truongdaotao;
-   $trinhdobangcap[0]->chuyennganh=$request->chuyennganh;
-   $trinhdobangcap[0]->id_ungvien=Auth::guard('ungvien')->user()->id;
-   $trinhdobangcap[0]->thoigiantotnghiep=date($request->thoigiantotnghiep.'-01');
+  $trinhdobangcap[0]->delete();
+  return redirect()->back()->with('alert','Xóa thành công.');
+}
 
-   $trinhdobangcap[0]->save();
-      return redirect()->back()->with('alert','Thêm thành công.');
- }
+public function postTrinhdobangcapmoi(Request $request)
+{
+ $trinhdobangcap=new trinhdobangcap;
+ $trinhdobangcap->tenbangcap=$request->tenbangcap;
+ $trinhdobangcap->truongdaotao=$request->truongdaotao;
+ $trinhdobangcap->chuyennganh=$request->chuyennganh;
+ $trinhdobangcap->id_ungvien=Auth::guard('ungvien')->user()->id;
+ $trinhdobangcap->thoigiantotnghiep=date($request->thoigiantotnghiep.'-01');
 
- public function getTrinhdongoainguxoa($id_ngoaingu)
- {
+ $trinhdobangcap->save();
+ return redirect()->back()->with('alert','Thêm thành công.');
+  // $trinhdobangcap->anh=$request->anh;
+}
+
+public function postTrinhdobangcapsua(Request $request,$id)
+{
+  $trinhdobangcap=trinhdobangcap::where('id_ungvien',Auth::guard('ungvien')->user()->id)->where('id',$id)->get();
+  $trinhdobangcap[0]->tenbangcap=$request->tenbangcap;
+  $trinhdobangcap[0]->truongdaotao=$request->truongdaotao;
+  $trinhdobangcap[0]->chuyennganh=$request->chuyennganh;
+  $trinhdobangcap[0]->id_ungvien=Auth::guard('ungvien')->user()->id;
+  $trinhdobangcap[0]->thoigiantotnghiep=date($request->thoigiantotnghiep.'-01');
+
+  $trinhdobangcap[0]->save();
+  return redirect()->back()->with('alert','Thêm thành công.');
+}
+
+public function getTrinhdongoainguxoa($id_ngoaingu)
+{
   $ungvien_ngoaingu=ungvien_ngoaingu::where('id_ungvien',Auth::guard('ungvien')->user()->id)->where('id_ngoaingu',$id_ngoaingu)->delete();
 
   return redirect()->back()->with('alert','Xóa thành công.');
@@ -113,66 +152,66 @@ public function postTrinhdongoaingumoi(Request $request)
  }
  public function postTrinhdongoaingusua(Request $request,$id_ngoaingu)
  {
- 
-
-if($request->ngoaingu==$id_ngoaingu)
- {
-  $ungvien_ngoaingu=ungvien_ngoaingu::where('id_ungvien',Auth::guard('ungvien')->user()->id)->where('id_ngoaingu',$id_ngoaingu)->update(['trinhdonghe'=>$request->trinhdonghe,'trinhdonoi'=>$request->trinhdonoi,'trinhdodoc'=>$request->trinhdodoc,'trinhdoviet'=>$request->trinhdoviet]);
-
-   return redirect()->back()->with('alert','Sửa thành công.');}  
-   
 
 
-  if(count($ungvien_ngoaingu=ungvien_ngoaingu::where('id_ungvien',Auth::guard('ungvien')->user()->id)->where('id_ngoaingu',$request->ngoaingu)->get())==1)
-
-   
-    return redirect()->back()->with('alert','Đã tồn tại.');
-
- $ungvien_ngoaingu=ungvien_ngoaingu::where('id_ungvien',Auth::guard('ungvien')->user()->id)->where('id_ngoaingu',$id_ngoaingu)->update(['trinhdonghe'=>$request->trinhdonghe,'trinhdonoi'=>$request->trinhdonoi,'trinhdodoc'=>$request->trinhdodoc,'trinhdoviet'=>$request->trinhdoviet,'id_ngoaingu'=>$request->ngoaingu]);
-
-   return redirect()->back()->with('alert','Sửa thành công.');
-}
-public function postTrinhdotinhoc(Request $request)
-{
-  $trinhdotinhoc=trinhdotinhoc::find(Auth::guard('ungvien')->user()->trinhdotinhoc[0]->id);
-
-  $trinhdotinhoc->msword=$request->msword;
-  $trinhdotinhoc->mspp=$request->mspp;
-  $trinhdotinhoc->msoutlook=$request->msoutlook;
-  $trinhdotinhoc->msexcel=$request->msexcel;
-  $trinhdotinhoc->phanmemkhac=$request->phanmemkhac;
-
-  $trinhdotinhoc->save();
-
-  return redirect()->back();
-}
-
-
-public function getLuuvieclam($id)
-{
-  $timkiem=ungvien_luu_tin::where('id_ungvien',Auth::guard('ungvien')->user()->id)->where('id_tintuyendung',$id)->get();
-
-  if(count($timkiem)>0)
+  if($request->ngoaingu==$id_ngoaingu)
   {
+    $ungvien_ngoaingu=ungvien_ngoaingu::where('id_ungvien',Auth::guard('ungvien')->user()->id)->where('id_ngoaingu',$id_ngoaingu)->update(['trinhdonghe'=>$request->trinhdonghe,'trinhdonoi'=>$request->trinhdonoi,'trinhdodoc'=>$request->trinhdodoc,'trinhdoviet'=>$request->trinhdoviet]);
 
+    return redirect()->back()->with('alert','Sửa thành công.');}  
+
+
+
+    if(count($ungvien_ngoaingu=ungvien_ngoaingu::where('id_ungvien',Auth::guard('ungvien')->user()->id)->where('id_ngoaingu',$request->ngoaingu)->get())==1)
+
+
+      return redirect()->back()->with('alert','Đã tồn tại.');
+
+    $ungvien_ngoaingu=ungvien_ngoaingu::where('id_ungvien',Auth::guard('ungvien')->user()->id)->where('id_ngoaingu',$id_ngoaingu)->update(['trinhdonghe'=>$request->trinhdonghe,'trinhdonoi'=>$request->trinhdonoi,'trinhdodoc'=>$request->trinhdodoc,'trinhdoviet'=>$request->trinhdoviet,'id_ngoaingu'=>$request->ngoaingu]);
+
+    return redirect()->back()->with('alert','Sửa thành công.');
   }
-  else {
-   $ungvien_luu_tin=new ungvien_luu_tin;
-   $ungvien_luu_tin->id_ungvien=Auth::guard('ungvien')->user()->id;
-   $ungvien_luu_tin->id_tintuyendung=$id;
-   $ungvien_luu_tin->save();
+  public function postTrinhdotinhoc(Request $request)
+  {
+    $trinhdotinhoc=trinhdotinhoc::find(Auth::guard('ungvien')->user()->trinhdotinhoc[0]->id);
+
+    $trinhdotinhoc->msword=$request->msword;
+    $trinhdotinhoc->mspp=$request->mspp;
+    $trinhdotinhoc->msoutlook=$request->msoutlook;
+    $trinhdotinhoc->msexcel=$request->msexcel;
+    $trinhdotinhoc->phanmemkhac=$request->phanmemkhac;
+
+    $trinhdotinhoc->save();
+
+    return redirect()->back();
+  }
+
+
+  public function getLuuvieclam($id)
+  {
+    $timkiem=ungvien_luu_tin::where('id_ungvien',Auth::guard('ungvien')->user()->id)->where('id_tintuyendung',$id)->get();
+
+    if(count($timkiem)>0)
+    {
+
+    }
+    else {
+     $ungvien_luu_tin=new ungvien_luu_tin;
+     $ungvien_luu_tin->id_ungvien=Auth::guard('ungvien')->user()->id;
+     $ungvien_luu_tin->id_tintuyendung=$id;
+     $ungvien_luu_tin->save();
+   }
+
+
+   return redirect()->back()->with('success','Đã lưu tin tuyển dụng');
  }
 
 
- return redirect()->back()->with('success','Đã lưu tin tuyển dụng');
-}
 
 
 
 
-
-
-public function getKinhnghiemlamviecxoa($id){
+ public function getKinhnghiemlamviecxoa($id){
   $kinhnghiemlamviec=kinhnghiemlamviec::find($id)->delete();
   return redirect()->back();
 }
@@ -276,13 +315,13 @@ public function getNhatuyendung($id)
 
 public function getNophoso($id){
 
-$today = date("Y-m-d");
-$expire =tintuyendung::findOrFail($id)->hannophoso;
-$today_dt =  new DateTime(date("Y-m-d",mktime(0, 0, 0, date("m")-1, date("d"), date("Y"))));
-$expire_dt = new DateTime($expire);
- 
-if ($expire_dt < $today_dt||tintuyendung::findOrFail($id)->trangthai!=1)
-          return redirect()->back()->with('success','Nộp hồ sơ thất bại.');
+  $today = date("Y-m-d");
+  $expire =tintuyendung::findOrFail($id)->hannophoso;
+  $today_dt =  new DateTime(date("Y-m-d",mktime(0, 0, 0, date("m")-1, date("d"), date("Y"))));
+  $expire_dt = new DateTime($expire);
+
+  if ($expire_dt < $today_dt||tintuyendung::findOrFail($id)->trangthai!=1)
+    return redirect()->back()->with('success','Nộp hồ sơ thất bại.');
 
 
   $timkiem=ungvien_nop_tin::where('id_ungvien',Auth::guard('ungvien')->user()->id)->where('id_tintuyendung',$id)->get();
@@ -293,21 +332,21 @@ if ($expire_dt < $today_dt||tintuyendung::findOrFail($id)->trangthai!=1)
   }
   else {
 
-      if(Auth::guard('ungvien')->user()->id_nganhnghe=="")
-          return redirect()->back()->with('success','Chưa cập nhật hồ sơ.');
+    if(Auth::guard('ungvien')->user()->id_nganhnghe=="")
+      return redirect()->back()->with('success','Chưa cập nhật hồ sơ.');
 
 
 
 
 
-   $ungvien_nop_tin=new ungvien_nop_tin;
-   $ungvien_nop_tin->id_ungvien=Auth::guard('ungvien')->user()->id;
-   $ungvien_nop_tin->id_tintuyendung=$id;
-   $ungvien_nop_tin->save();
- }
+    $ungvien_nop_tin=new ungvien_nop_tin;
+    $ungvien_nop_tin->id_ungvien=Auth::guard('ungvien')->user()->id;
+    $ungvien_nop_tin->id_tintuyendung=$id;
+    $ungvien_nop_tin->save();
+  }
 
 
- return redirect()->back()->with('success','Đã nộp tin tuyển dụng');
+  return redirect()->back()->with('success','Đã nộp tin tuyển dụng');
 
 }
 public function postThongtincanhan(Request $request)
@@ -379,7 +418,7 @@ if (Auth::guard('ungvien')->attempt($arr)) {
             //đăng nhập thành công thì hiển thị thông báo đăng nhập thành công
 } else {
  return redirect()->back()->with('alert','Đăng nhập không thành công.');
-  
+
 }
 }
 
@@ -417,6 +456,7 @@ public function postDangky(Request $request)
   $ungvien->matkhau=bcrypt($request->matkhau2);
   $ungvien->sodienthoai=$request->sodienthoai;
   $ungvien->email=$request->email;
+  $ungvien->ngaytaohoso=new DateTime;
   $ungvien->save();
 
   $trinhdotinhoc=new trinhdotinhoc;
@@ -442,12 +482,149 @@ public function getQuanlytaikhoan(){
 
  return view('ungvien.quanlytaikhoan');
 }
+
 public function getTimkiemviec()
+{
+
+ $kq=[];
+ $kq2=[];
+ if(!isset($_GET['nganhnghe'])&&!isset($_GET['tencongviec'])&&!isset($_GET['trinhdo'])&&!isset($_GET['thanhpho'])&&!isset($_GET['kinhnghiem'])&&!isset($_GET['hinhthuclamviec'])&&!isset($_GET['mucluong'])) 
+ {
+
+
+  if(Auth::guard('ungvien')->check()&&Auth::guard('ungvien')->user()->id_nganhnghe!=null)
+    $data=tintuyendung::where('id_nganhnghe',Auth::guard('ungvien')->user()->id_nganhnghe)->where('trangthai',1)->where('hannophoso','>',new DateTime())->get();
+  else
+    $data=tintuyendung::where('trangthai',1)->where('hannophoso','>',new DateTime())->get();
+
+
+  return view('ungvien.timkiemviec',['data'=>$data,'alert'=>'Công Việc Phù Hợp']);
+}
+
+
+$tintuyendung=tintuyendung::query();
+
+if(isset($_GET['nganhnghe']))
+{
+  $tintuyendung->when($_GET['nganhnghe']!="",function($q)
+  {
+   return $q->where('id_nganhnghe','=',$_GET['nganhnghe']);
+ });
+}
+if(isset($_GET['hinhthuclamviec']))
+{
+  $tintuyendung->when($_GET['hinhthuclamviec']!="",function($q)
+  {
+   return $q->where('id_hinhthuclamviec','=',$_GET['hinhthuclamviec']);
+ });
+}
+
+if(isset($_GET['tencongviec']))
+{
+  $tintuyendung->when($_GET['tencongviec']!="",function($q)
+  {
+   return $q->where('tieudetuyendung','like','%'.$_GET['tencongviec'].'%');
+ });
+}
+
+if(isset($_GET['trinhdo']))
+{
+  $tintuyendung->when($_GET['trinhdo']!="",function($q)
+  {
+   return $q->where('id_trinhdo',$_GET['trinhdo']);
+ });
+}
+
+
+if (isset($_GET['mucluong'])) 
+{
+  $dsml=[];
+
+  foreach ($_GET['mucluong'] as $key => $value) 
+  {
+
+   array_push($dsml,$value);
+ }  $tintuyendung->whereIn('id_mucluong',$dsml);    
+}
+
+if (isset($_GET['kinhnghiem'])) 
+{
+  $dskn=[];
+
+  foreach ($_GET['kinhnghiem'] as $key => $value) 
+  {
+
+   array_push($dskn,$value);
+ }  $tintuyendung->whereIn('id_kinhnghiem',$dskn);
+}
+
+
+if (isset($_GET['kynang'])) 
+{
+  $dskynang=[];
+
+  foreach ($_GET['kynang'] as $key => $value) 
+  {
+
+   array_push($dskynang,$value);
+ } 
+ $tintuyendung->join('tintuyendung_kynang', 'tintuyendung.id', '=', 'tintuyendung_kynang.id_tintuyendung')
+ ->whereIn('tintuyendung_kynang.id_kynang',$dskynang);
+}
+
+if($tintuyendung==tintuyendung::query())
+{
+
+  $tintuyendung=tintuyendung::where('trangthai',1)->where('hannophoso','>',new DateTime())->get();
+
+}
+else
+{
+  $tintuyendung=$tintuyendung->where('trangthai',1)->where('hannophoso','>',new DateTime())->get();
+}
+
+
+
+if (isset($_GET['thanhpho'])&&$_GET['thanhpho']!="")
+{
+
+ foreach ($tintuyendung as $key => $value)
+ { 
+  $x=$value->dsthanhpho;
+  foreach ($x as $key1 => $value1) 
+  {
+   if($value1['id_thanhpho']==$_GET['thanhpho'])
+   { 
+    array_push($kq,$value);
+    break;
+    
+  }
+}
+}
+}
+else{
+  $kq=$tintuyendung;
+}
+
+/*foreach ($kq as $key => $value) {
+ $kq2[$value->id]=$value;
+}*/
+
+return view('ungvien.timkiemviec',['data'=>$kq]);
+
+
+}
+
+
+
+/*public function getTimkiemviec()
 {
  $timkiem="";  
  $kq=[];
  $kq2=[];
  $tintuyendung=tintuyendung::query();
+
+
  if(isset($_GET['nganhnghe']))
  {
   $tintuyendung->when($_GET['nganhnghe']!="",function($q)
@@ -517,27 +694,17 @@ if (isset($_GET['kynang']))
  ->whereIn('tintuyendung_kynang.id_kynang',$dskynang);
 }
 
-/* if (isset($_GET['thanhpho'])&&$_GET['thanhpho']!="") 
-{
-
-$tintuyendung->join('tintuyendung_thanhpho', 'tintuyendung.id', '=', 'tintuyendung_thanhpho.id_tintuyendung')
- ->where('id_thanhpho','=',$_GET['thanhpho']);
- $tintuyendung->when($_GET['thanhpho']!="",function($q)
-  {
-   return $q->join('tintuyendung_thanhpho', 'tintuyendung.id', '=', 'tintuyendung_thanhpho.id_tintuyendung')
- ->where('tintuyendung_thanhpho.id_thanhpho',$_GET['thanhpho']);
- });
-  
-}*/
-
-
 if (!isset($_GET['nganhnghe'])&&!isset($_GET['tencongviec'])&&!isset($_GET['trinhdo'])&&!isset($_GET['thanhpho'])&&!isset($_GET['kynang'])&&!isset($_GET['kinhnghiem'])&&!isset($_GET['hinhthuclamviec'])&&!isset($_GET['mucluong'])) 
 {
-  return view('ungvien.timkiemviec');
+if(Auth::guard('ungvien')->check()&&Auth::guard('ungvien')->user()->id_nganhnghe!=null)
+  $data=tintuyendung::where('id_nganhnghe',Auth::guard('ungvien')->user()->id_nganhnghe)->where('trangthai',1)->get();
+else
+  $data=tintuyendung::where('trangthai',1)->get();
+  return view('ungvien.timkiemviec',['data'=>$data]);
 }
 elseif($tintuyendung==tintuyendung::query())
 {		
-  $tintuyendung=tintuyendung::all();
+  $tintuyendung=tintuyendung::where('trangthai',1)->get();
 }		
 else
 {
@@ -579,7 +746,7 @@ foreach ($kq as $key => $value) {
 return view('ungvien.timkiemviec',['data'=>$kq]);
 
 
-}
+}*/
 
 public function getTintuyendung($id)
 {	

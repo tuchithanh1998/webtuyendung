@@ -7,71 +7,75 @@
 
 
 
- ?>
+?>
+
+
+
+
 <div  style="min-height: 600px;">
-<div class="row bg-main">
-	<div class="col-sm-10 offset-sm-1 text-center">
-		<h1 class="display-3">TÌM KIẾM VIỆC LÀM</h1>
-		<div class="info-form ">
+	<div class="row bg-main">
+		<div class="col-sm-10 offset-sm-1 text-center">
+			<h1 class="display-3">TÌM KIẾM VIỆC LÀM</h1>
+			<div class="info-form ">
 
-			<form action="timkiemviec" class=" justify-content-center" style="margin-bottom: 10px;">
-				
-				<div class="form-inline">
-					<div class="form-group w-50">
-						<label class="sr-only">Name</label>
-						<input type="text" class="form-control w-100" placeholder="Tên công việc" id="tencongviec" name="tencongviec">
-					</div>
-					<div class="form-group w-50">								
-						<label class="sr-only">Ngành nghề</label>
-						<select class="form-control w-100" id="nganhnghe" name="nganhnghe">
-							<option  value="">Ngành nghề</option>							
-						</select>
-					</div>
-				</div>
-				<div class="form-inline">
-					<div class="form-group  w-50">
-						<label class="sr-only">Địa điểm</label>
-						<select class="form-control w-100" id="thanhpho" name="thanhpho">
-							<option class=""  style="" value="">Thành phố</option>
-						</select>
-					</div>
-					<div class="form-group  w-50 text-left">
-						<div class="dropdown w-100 ">
-							
-							<div class="dropdown-toggle w-100 form-control" href="#" role="button" id="dropdownMucluong" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								Mức lương
-							</div>
+				<form action="timkiemviec" class=" justify-content-center" style="margin-bottom: 10px;">
 
-							<div class="dropdown-menu w-100 text-left" aria-labelledby="dropdownMucluong" id="dropdownMucluonglist">
-								
-							</div>
+					<div class="form-inline">
+						<div class="form-group w-50">
+							<label class="sr-only">Name</label>
+							<input type="text" class="form-control w-100" placeholder="Tên công việc" id="tencongviec" name="tencongviec">
 						</div>
-
-					</div>
-				</div>
-
-
-				<div class="form-inline ">
-					<div class="form-group w-50 text-left">
-						<div class="dropdown w-100 ">
-
-							<div class="dropdown-toggle w-100 form-control" href="#" role="button" id="dropdownKynang" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								Kỹ năng
-							</div>
-
-							<div class="dropdown-menu w-100" aria-labelledby="dropdownKynang" id="dropdownKynanglist">
-							</div>
+						<div class="form-group w-50">								
+							<label class="sr-only">Ngành nghề</label>
+							<select class="form-control w-100" id="nganhnghe" name="nganhnghe">
+								<option  value="">Ngành nghề</option>							
+							</select>
 						</div>
-
 					</div>
-					<div class="form-group w-50 text-left">
-						<div class="dropdown w-100 ">
+					<div class="form-inline">
+						<div class="form-group  w-50">
+							<label class="sr-only">Địa điểm</label>
+							<select class="form-control w-100" id="thanhpho" name="thanhpho">
+								<option class=""  style="" value="">Thành phố</option>
+							</select>
+						</div>
+						<div class="form-group  w-50 text-left">
+							<div class="dropdown w-100 ">
 
-							<div class="dropdown-toggle w-100 form-control" href="#" role="button" id="dropdownKinhnghiem" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-								Kinh nghiệm
+								<div class="dropdown-toggle w-100 form-control" href="#" role="button" id="dropdownMucluong" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									Mức lương
+								</div>
+
+								<div class="dropdown-menu w-100 text-left" aria-labelledby="dropdownMucluong" id="dropdownMucluonglist">
+
+								</div>
 							</div>
 
-							<div class="dropdown-menu w-100" aria-labelledby="dropdownKinhnghiem" id="dropdownKinhnghiemlist">
+						</div>
+					</div>
+
+
+					<div class="form-inline ">
+						<div class="form-group w-50 text-left">
+							<div class="dropdown w-100 ">
+
+								<div class="dropdown-toggle w-100 form-control" href="#" role="button" id="dropdownKynang" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									Kỹ năng
+								</div>
+
+								<div class="dropdown-menu w-100" aria-labelledby="dropdownKynang" id="dropdownKynanglist">
+								</div>
+							</div>
+
+						</div>
+						<div class="form-group w-50 text-left">
+							<div class="dropdown w-100 ">
+
+								<div class="dropdown-toggle w-100 form-control" href="#" role="button" id="dropdownKinhnghiem" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									Kinh nghiệm
+								</div>
+
+								<div class="dropdown-menu w-100" aria-labelledby="dropdownKinhnghiem" id="dropdownKinhnghiemlist">
   <!--<div class="form-check">
     <input type="checkbox" class="form-check-input" id="exampleCheck1">
     <label class="form-check-label" for="exampleCheck1">Check me out</label>
@@ -89,18 +93,18 @@
 </div>
 </div>
 <div class="form-inline ">
-<div class="form-group w-50">								
-	<label class="sr-only">Trình độ</label>
-	<select class="form-control w-100" id="trinhdo" name="trinhdo">
-		<option  value="">Trình độ</option>							
-	</select>
-</div>
-<div class="form-group w-50 ">								
-	<label class="sr-only">Hinh thức làm việc</label>
-	<select class="form-control w-100" id="hinhthuclamviec" name="hinhthuclamviec">
-		<option  value="">Hinh thức làm việc</option>							
-	</select>
-</div>
+	<div class="form-group w-50">								
+		<label class="sr-only">Trình độ</label>
+		<select class="form-control w-100" id="trinhdo" name="trinhdo">
+			<option  value="">Trình độ</option>							
+		</select>
+	</div>
+	<div class="form-group w-50 ">								
+		<label class="sr-only">Hinh thức làm việc</label>
+		<select class="form-control w-100" id="hinhthuclamviec" name="hinhthuclamviec">
+			<option  value="">Hinh thức làm việc</option>							
+		</select>
+	</div>
 </div>
 <button style="margin-top: 5px;" type="button submit" class="btn btn-info"><img src="upload\img\layout\search.svg">Tìm kiếm</button>
 </form>
@@ -112,7 +116,7 @@
 
 <div class="row bg-light" style="padding-top:50px; padding-bottom: 50px; margin-top: 25px; margin-bottom: 25px;">
 	<div class="col-sm-10 offset-sm-1 ">
-		<ul class="list-group list-group-flush w-100">
+		<ul class="list-group list-group-flush w-100"  <?php  if(isset($data)==true&&count($data)>2) { ?> id="demo" <?php } ?> >
 
 			<?php 
 			if(isset($data)==true)
@@ -122,21 +126,30 @@
 					?>
 
 					<li><h6>Không tìm thấy</h6></li>
-				<?php }
+				<?php 
+			}
+
+if(isset($alert)){
+	?>
+
+<h6>{{$alert}} {{count($data)}}</h6>
+
+<?php } else { ?>  <h6>Tìm thấy {{count($data)}}</h6>  <?php }
+
 				foreach ($data as $key => $value): 
-						if($value->trangthai!=1)
-							continue;
-						
-$today = date("Y-m-d");
-$expire = $value->hannophoso;
- $today_dt = new DateTime($today);
- $expire_dt = new DateTime($expire);
- 
-		if ($expire_dt < $today_dt)
-			continue;
+			/*		if($value->trangthai!=1)
+						continue;
+
+					$today = date("Y-m-d");
+					$expire = $value->hannophoso;
+					$today_dt = new DateTime($today);
+					$expire_dt = new DateTime($expire);
+
+					if ($expire_dt < $today_dt)
+						continue;*/
 
 					?>	
-					<li class="list-group-item" style="   padding: 0px; <?php  if($key!=0) echo "margin-top: 4px;"; ?>  margin-bottom: 0px;">
+					<li class="list-group-item" style="padding: 0px; <?php  if($key!=0) echo "margin-top: 4px;"; ?>  margin-bottom: 0px;">
 						<div class="card border-0" >
 							<div class="row no-gutters ">
 								<div class="col-auto" title="Công ty">
@@ -144,15 +157,15 @@ $expire = $value->hannophoso;
 								</div>
 								<div class="col">
 									<div class="card-block px-2 ">
-										<h6 class="card-title text-nowrap text-truncate" title="{{$value->tieudetuyendung}}" style="margin-top: 4px;"><a href="tintuyendung/{{$value->id}}">{{$value->tieudetuyendung}}</a></h6>
-										<p class="card-text" title="{{$value->nhatuyendung->tencongty}}"><a href="danh-sach-tin-nha-tuyen-dung/{{$value->id_nhatuyendung}}.html" style="color:#6C757D;">{{$value->nhatuyendung->tencongty}}</a></p>											
+										<h6 class="card-title  text-nowrap text-truncate " title="{{$value->tieudetuyendung}}" style="margin-top: 4px;"><a href="tintuyendung/{{$value->id}}">{{$value->tieudetuyendung}}</a></h6>
+										<p class="card-text  text-nowrap text-truncate" title="{{$value->nhatuyendung->tencongty}}"><a href="danh-sach-tin-nha-tuyen-dung/{{$value->id_nhatuyendung}}.html" style="color:#6C757D;">{{$value->nhatuyendung->tencongty}}</a></p>											
 									</div>
 								</div>
 								<div class="col-2 text-center" title="Mức lương">
 									<img src="upload\img\layout\dollar-sign.svg">
 									<p>{{$value->mucluong->tenmucluong}}</p>
 								</div>						
-								<div class="col-2 text-center " style="margin-left: 2px;" title='
+								<div class="col-2 text-center text-nowrap text-truncate" style="margin-left: 2px;" title='
 								<?php foreach ($value->thanhpho as $key1 => $value1) {
 									if ($key1!=0) {
 										echo ",";
@@ -171,8 +184,8 @@ $expire = $value->hannophoso;
 							<div class="col-2 text-center" title="Hạn nộp" style="margin-left: 2px;">
 								<img src="upload\img\layout\clock.svg"><p><?php 
 
-						$date=date_create($value->hannophoso);
-										echo date_format($date,"d/m/Y");
+								$date=date_create($value->hannophoso);
+								echo date_format($date,"d/m/Y");
 								?></p>
 							</div>
 							<div class="col-1 text-center" title="Lưu việc làm" style="margin-left: 2px;">
@@ -196,6 +209,35 @@ $expire = $value->hannophoso;
 </div>
 @endsection
 @section('script')
+
+<style>
+	#paging {
+		padding:0 20px 20px 20px;
+		font-size:13px;
+		margin-top:10px;	
+		text-align: center;
+	}
+	#paging a {
+		color:#000;
+		background:#e0e0e0;
+		padding:8px 12px;
+		margin-right:5px;
+		text-decoration:none;
+	}
+	#paging a.aktif {
+		background:#000 !important;
+		color:#fff;
+	}
+	#paging a:hover {
+		border:1px solid #000;
+	}
+	.hidden {
+		display:none;
+	}
+
+</style>
+<script src="paging.js"></script>
+
 <script type="text/javascript">
 
 	function getParameterByName(name, url) {
@@ -266,7 +308,7 @@ $(document).ready(function(){
 
 		}
 	});
-$.ajax({
+	$.ajax({
 		type:'GET',
 		url:'api/trinhdo',
 		success:function(data){
@@ -281,7 +323,7 @@ $.ajax({
 
 		}
 	});
-$.ajax({
+	$.ajax({
 		type:'GET',
 		url:'api/hinhthuclamviec',
 		success:function(data){
@@ -302,7 +344,7 @@ $.ajax({
 		url:'api/mucluong',
 
 		success:function(data){
-		
+
 			var kq='';
 			$.each(data,function(k,v){
 
@@ -342,7 +384,29 @@ $.ajax({
 		}
 	});
 	$('#tencongviec').val(getParameterByName('tencongviec'));
+
+
+	
+
+	$(function() {
+		
+		$("#demo").JPaging({
+
+		 visiblePageSize:1,
+			pageSize: 2,
+			
+
+		});
+		
+	});
+
+
+
 });
 
+
 </script>
+
+
+
 @endsection

@@ -26,8 +26,7 @@ else{
 							<h6 class="card-title"><a href="danh-sach-tin-nha-tuyen-dung/{{$data->id_nhatuyendung}}.html">{{$data->nhatuyendung->tencongty}}</a></h6>
 							<div class="row">
 								<div class="col-md-8 list-inline">
-									<form action="ung-vien/luu-viec-lam/{{$data->id}}"><button type="submit" class="btn btn-light list-inline-item"><img src="upload\img\layout\clock.svg">Lưu việc làm</button></form>
-									<button type="button" class="btn btn-light list-inline-item"><img src="upload\img\layout\clock.svg">Chia sẻ</button>
+							
 
 									<p class="list-inline-item"><img src="upload\img\layout\clock.svg">Hạn nộp hồ sơ :
 										<?php $date=date_create($data->hannophoso);

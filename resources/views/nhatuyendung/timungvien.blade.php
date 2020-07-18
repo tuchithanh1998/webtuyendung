@@ -40,6 +40,61 @@
 	</div>
 </div>
 
+<div style="min-height: 600px;">
+	<div class="row bg-main">
+		<div class="col-sm-12 offset-sm-0 text-center" style="margin-top: 25px; margin-bottom: 25px;">
+			<div class="card">
+
+				<div class="row">
+					<div class="col-12">
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th></th>
+									<th>Họ tên</th>
+									<th>Ngành nghề</th>
+									<th >Kỹ năng</th>
+									<th></th>
+								
+								</tr>
+							</thead>
+							<tbody class="">
+								<?php foreach ($data as $key => $value): ?>
+									<tr>
+										<td>{{$key+1}}</td>
+										<td><a href="nha-tuyen-dung/ung-vien/{{$value->id}}">{{$value->hoten}}</a></td>
+										<td>{{$value->nganhnghe->tennganhnghe}}</td>
+										<td class="text-center">
+
+											<?php foreach ($value->ungvien_kynang as $key1 => $value1):
+												if($key1!=0) echo ",";
+												?>
+												{{$value1->tenkynang}} 
+											<?php endforeach ?>
+
+										</td>
+										<td  data-toggle="modal" data-target="#trangthai{{$key}}" style="margin: 0px;padding: 10px;" >
+										
+								
+									</tr>
+
+
+							
+
+
+								<?php endforeach ?>
+							</tbody>
+						</table>
+
+					</div>
+				</div>
+
+
+			</div>
+		</div>
+	</div>
+</div>
+
 
 @endsection
 @section('script')
@@ -98,6 +153,23 @@
 
 			}
 		});
+
+
+			$.ajax({
+
+		type:'GET',
+		url:'api/kynang/'+getParameterByName('nganhnghe'),
+		success:function(data){
+			$('#dropdownKynanglist').html('');
+			var kq='';
+			$.each(data,function(k,v){
+				kq='<div class="text-left"><div class="form-check">    <input type="checkbox" class="form-check-input " id="kynang'+v.id+'"  name="kynang[]" value="'+v.id+'">    <label class="form-check-label " for="kynang'+v.id+'">'+v.tenkynang+'</label>  </div></div';
+
+				$('#dropdownKynanglist').append(kq);
+			});
+
+		}
+	});
 	});
 </script>
 @endsection

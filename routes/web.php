@@ -67,10 +67,10 @@ Route::post('/ung-vien/ho-so/trinh-do-bang-cap-sua/{id}', 'UngvienController@pos
 Route::get('/ung-vien/ho-so/nguoi-tham-khao-xoa/{id}', 'UngvienController@getNguoithamkhaoxoa')->middleware('login_ungvien');
 Route::post('/ung-vien/ho-so/nguoi-tham-khao-moi', 'UngvienController@postNguoithamkhaomoi')->middleware('login_ungvien');
 Route::post('/ung-vien/ho-so/nguoi-tham-khao-sua/{id}', 'UngvienController@postNguoithamkhaosua')->middleware('login_ungvien');
+Route::post('/ungvien/quanlytaikhoan/postthongtincanhan/anh', 'UngvienController@postAnh')->middleware('login_ungvien');
 
-
-
-
+Route::post('/ungvien/quanlytaikhoan/postthongtincanhan/sodienthoai', 'UngvienController@postSodienthoai')->middleware('login_ungvien');
+Route::post('/ung-vien/quan-ly-tai-khoan/doi-mat-khau', 'UngvienController@postDoimatkhau')->middleware('login_ungvien');
 
 
 
