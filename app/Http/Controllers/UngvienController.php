@@ -29,13 +29,16 @@ class UngvienController extends Controller
     return redirect()->back()->with('alert','Mật khẩu hiện tại không khớp.');
 
      $this->validate($request,[
-  'oldpassword'=>'required|',
-  'newpassword1'=>'required',
-  'newpassword2'=>'required|same:newpassword1|different:oldpassword',
+  'oldpassword'=>'required|min:8',
+  'newpassword1'=>'required|min:8',
+  'newpassword2'=>'required|same:newpassword1|different:oldpassword|min:8',
 ],[
   'oldpassword.required'=>'Mật khẩu không được để trống.',
   'newpassword1.required'=>'Mật khẩu không được để trống.',
   'newpassword2.required'=>'Mật khẩu không được để trống.',
+  'oldpassword.min'=>'Mật khẩu tối tiểu 8 kí tự.',
+  'newpassword1.min'=>'Mật khẩu tối tiểu 8 kí tự.',
+  'newpassword2.min'=>'Mật khẩu tối tiểu 8 kí tự.',
   'newpassword2.same'=>'Mật khẩu mới không khớp.',
   'newpassword2.different'=>'Mật khẩu mới phải khác mật khẩu cũ.',
 ]);
