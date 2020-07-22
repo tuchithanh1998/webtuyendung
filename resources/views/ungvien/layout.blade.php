@@ -16,19 +16,32 @@
 	<!-- Custom styles for this template -->
 	<link href="navbar-top-fixed.css" rel="stylesheet">
 </head>
+<style type="text/css">
+	
+/*	body::-webkit-scrollbar {
+  width: 1em;
+  	float: left;
+}*/
+   #test{
+          
+         
+            overflow-y :scroll;
+        }
 
-<body class="bg-main">
+        body { padding-right: 0 !important }
+</style>
+<body class="bg-main" id="test">
 
 	<nav class="rounded-bottom navbar navbar-expand-md navbar-dark fixed-top" style="background-color:hsl(180, 100%, 93%);">
 		<a class="navbar-brand" href="index"><img id="logo" src="logo.png"></a>
 	</nav>
 
-	<div class="container-fluid" id="container-fluid1">
+	<div class="container-fluid" id="container-fluid1" >
 		<div class="row ">
 			<div class="col-3 scroll bg-white fixed-top list-group" style="margin-top: 76px; min-height: 600px;">
 				<?php  if(!Auth::guard('ungvien')->check()) { ?>
 					<div class="card border-0 list-group-item">			
-						<form class="form-signin text-center" action="ungviendangnhap" method="POST">
+						<form class="form-signin" action="ungviendangnhap" method="POST">
 							<input type="hidden" name="_token" value="{{csrf_token()}}"/>
 							<h3 class="form-signin-heading ">Đăng nhập</h3>
 							<label for="inputEmail" class="sr-only">Email </label>
