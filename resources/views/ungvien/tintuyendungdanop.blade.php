@@ -19,23 +19,23 @@
 	  	</thead>
 	  	<tbody>
 	  		<?php foreach ($data as $key => $value): 
-$today = date("Y-m-d");
+/*$today = date("Y-m-d");
 $expire = $value->tintuyendung->hannophoso;
  $today_dt =  new DateTime(date("Y-m-d",mktime(0, 0, 0, date("m")-1, date("d"), date("Y"))));
  $expire_dt = new DateTime($expire);
  
-if ($expire_dt > $today_dt){
+if ($expire_dt > $today_dt){*/
 	  			?>
 	  			<tr>
 	  				<td>{{$key+1}}</td>
 	  				<td><a href="tintuyendung/{{$value->id}}">{{$value->tintuyendung->tieudetuyendung}}</a></td>
 	  				<td><a href="">{{$value->tintuyendung->nhatuyendung->tencongty}}</a></td>
-	  				<td><?php $date=date_create($value->ngaynoptin);
+	  				<td><?php $date=date_create($value->ngaynop);
 										echo date_format($date,"d/m/Y");
 										?></td>
 										<td><?php echo $value->trangthainoptin->tentrangthainoptin; ?></td>
 	  			</tr>
-	  		<?php } endforeach ?>
+	  		<?php /*}*/ endforeach ?>
 	  	</tbody>
 	  </table>
 	</div>
