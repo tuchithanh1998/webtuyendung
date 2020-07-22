@@ -17,12 +17,30 @@ use App\trinhdobangcap;
 use App\nguoithamkhao;
 use DateTime;
 use Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 class UngvienController extends Controller
 {
 
   public function postDoimatkhau(Request $request)
   {
+
+      if (!(Hash::check($request->oldpassword,Auth::guard('ungvien')->user()->matkhau))) 
+    return redirect()->back()->with('alert','Mật khẩu hiện tại không khớp.');
+
+     $this->validate($request,[
+  'oldpassword'=>'required|',
+  'newpassword1'=>'required',
+  'newpassword2'=>'required|same:newpassword1|different:oldpassword',
+],[
+  'oldpassword.required'=>'Mật khẩu không được để trống.',
+  'newpassword1.required'=>'Mật khẩu không được để trống.',
+  'newpassword2.required'=>'Mật khẩu không được để trống.',
+  'newpassword2.same'=>'Mật khẩu mới không khớp.',
+  'newpassword2.different'=>'Mật khẩu mới phải khác mật khẩu cũ.',
+]);
+
+
    ungvien::where('id',Auth::guard('ungvien')->user()->id)->update(['matkhau'=>bcrypt($request->newpassword2)]);
    return redirect()->back()->with('alert','Đổi mật khẩu thành công');
  }
