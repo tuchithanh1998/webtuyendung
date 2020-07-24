@@ -29,7 +29,7 @@ class UngvienController extends Controller
     return redirect()->back()->with('alert','Mật khẩu hiện tại không khớp.');
 
      $this->validate($request,[
-  'oldpassword'=>'required|min:8',
+  'oldpassword'=>'required',
   'newpassword1'=>'required|min:8',
   'newpassword2'=>'required|same:newpassword1|different:oldpassword|min:8',
 ],[
@@ -50,6 +50,15 @@ class UngvienController extends Controller
 
  public function postSodienthoai(Request $request)
  {
+   $this->validate($request,[
+  'sodienthoai'=>'required|min:10|max:10',
+  
+],[
+  'sodienthoai.required'=>'Số điện thoại không hợp lệ.',
+   'sodienthoai.min'=>'Số điện thoại không hợp lệ.',
+    'sodienthoai.max'=>'Số điện thoại không hợp lệ.',
+
+]);
 
   ungvien::where('id',Auth::guard('ungvien')->user()->id)->update(['sodienthoai'=>$request->sodienthoai]);
   return redirect()->back()->with('alert','Cập nhật thành công');
