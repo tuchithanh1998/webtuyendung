@@ -51,7 +51,7 @@ class NhatuyendungController extends Controller
 
 
 		nhatuyendung::where('id',Auth::guard('nhatuyendung')->user()->id)->update(['matkhau'=>bcrypt($request->newpassword2)]);
-		return redirect()->back();
+		return redirect()->back()->with('Đổi mật khẩu thành công.');
 
 	}
 	public function getUngvien($id_ungvien)
@@ -87,7 +87,7 @@ class NhatuyendungController extends Controller
 		if($ungvien==ungvien::query())
 		{
 
-			$ungvien=ungvien::where('timkiem',1)->where('trangthai',1)->get();
+			$ungvien=ungvien::where('timkiem',1)->where('trangthai',1)->where('id_nganhnghe','>',0)->get();
 
 		}
 		else
