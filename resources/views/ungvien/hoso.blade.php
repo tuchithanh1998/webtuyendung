@@ -527,7 +527,7 @@
 												<div class="col-sm-8">
 													<div class="custom-file">
 																	<input  type="file" name="filesTest" required="true" onchange="return fileValidation()" class="custom-file-input" id="inputGroupFile" aria-describedby="inputGroupFileAddon">
-																	<label class="custom-file-label"  for="inputGroupFile">Chọn ảnh</label>
+																	<label class="custom-file-label"  for="inputGroupFile">Chọn ảnhn</label>
 																</div>
 												</div>
 											</div>
@@ -1699,7 +1699,7 @@ if(!allowedExtensions.exec(filePath)){
 if (fileInput.files && fileInput.files[0]) {
 	var reader = new FileReader();
 	reader.onload = function(e) {
-		document.getElementById('imagePreview').innerHTML = '<img style="width:700px;height:400px;" src="'+e.target.result+'"/>';
+		document.getElementById('imagePreview').innerHTML = '<img style="width:400px;height:300px;" src="'+e.target.result+'"/>';
 	};
 	reader.readAsDataURL(fileInput.files[0]);
 }
