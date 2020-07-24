@@ -1646,7 +1646,7 @@
 
 											if($('#thanhpho'+v.id).val()!=v.id)
 											{
-												if(localStorage.length<2){
+												if(localStorage.length<3){
 
 													kq= '<div class="list-inline-item w-25" id="form-check-'+v.id+'" title="Xóa" onclick="remove(this,'+v.id+')" >    <input  type="checkbox" checked  id="thanhpho'+v.id+'"  name="thanhpho[]" value="'+v.id+'" class="custom-control-input">    <label class="" for="thanhpho'+v.id+'">'+v.tenthanhpho+' x</label>  </div>';
 

@@ -67,14 +67,16 @@
 	<div class="col-12 " style="margin-top: 10px; margin-bottom: 5px;">
 		<div class="card">
 			<div class="card-header">THÔNG TIN TỔNG QUAN</div>
-			<div class="card-body">
+			<div class="card-body row">
+					<div class="col-6">
+				
 				<p class="card-text"><span class="font-weight-bold">Vị trí mong muốn: </span>{{$data->vitrimongmuon}}</p>
 				<p class="card-text"><span class="font-weight-bold">Ngành nghề: </span>{{$data->nganhnghe->tennganhnghe}}</p>
 				<p class="card-text"><span class="font-weight-bold">Cấp bậc: </span>{{$data->capbac->tencapbac}}</p>
 				<p class="card-text"><span class="font-weight-bold">Hình thức làm việc: </span>{{$data->hinhthuclamviec->tenhinhthuclamviec}}</p>
 				<p class="card-text"><span class="font-weight-bold">Kinh nghiệm: </span>{{$data->kinhnghiem->tenkinhnghiem}}</p>
 				<p class="card-text"><span class="font-weight-bold">Trình độ: </span>{{$data->trinhdo->tentrinhdo}}</p>			
-				<p class="card-text"><span class="font-weight-bold">Ảnh đại diện: </span>{{$data->mucluong}}</p>
+				<p class="card-text"><span class="font-weight-bold">Mức lương: </span>{{$data->mucluong}}</p>
 				<p class="card-text"><span class="font-weight-bold">Thành phố: </span>
 					<?php foreach ($data->ungvien_thanhpho as $key => $value): ?>
 						{{$value->tenthanhpho}}
@@ -85,6 +87,13 @@
 						{{$value->tenkynang}}
 					<?php endforeach ?>
 				</p>
+			</div>
+				<div class="col-6">
+				@if($data->anhdaidien!=null)
+					<img style="width:400px;height:300px;" src="upload/img/ungvien/anhdaidien/{{$data->anhdaidien}}"/>
+
+					@endif
+				</div>
 			</div>
 		</div>
 	</div>

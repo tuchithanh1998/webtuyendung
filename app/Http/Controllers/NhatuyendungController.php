@@ -10,6 +10,7 @@ use App\tintuyendung_kynang;
 use App\tintuyendung_thanhpho;
 use App\ungvien_nop_tin;
 use App\ungvien;
+use App\mucluong;
 use Illuminate\Support\Facades\Hash;
 
 class NhatuyendungController extends Controller
@@ -31,23 +32,23 @@ class NhatuyendungController extends Controller
 	public function postDoimatkhau(Request $request)
 	{
 
-			 if (!(Hash::check($request->oldpassword,Auth::guard('nhatuyendung')->user()->matkhau))) 
-    return redirect()->back()->with('alert','Mật khẩu hiện tại không khớp.');
+		if (!(Hash::check($request->oldpassword,Auth::guard('nhatuyendung')->user()->matkhau))) 
+			return redirect()->back()->with('alert','Mật khẩu hiện tại không khớp.');
 
-     $this->validate($request,[
-  'oldpassword'=>'required',
-  'newpassword1'=>'required|min:8',
-  'newpassword2'=>'required|same:newpassword1|different:oldpassword|min:8',
-],[
-  'oldpassword.required'=>'Mật khẩu không được để trống.',
-  'newpassword1.required'=>'Mật khẩu không được để trống.',
-  'newpassword2.required'=>'Mật khẩu không được để trống.',
-  'oldpassword.min'=>'Mật khẩu tối tiểu 8 kí tự.',
-  'newpassword1.min'=>'Mật khẩu tối tiểu 8 kí tự.',
-  'newpassword2.min'=>'Mật khẩu tối tiểu 8 kí tự.',
-  'newpassword2.same'=>'Mật khẩu mới không khớp.',
-  'newpassword2.different'=>'Mật khẩu mới phải khác mật khẩu cũ.',
-]);
+		$this->validate($request,[
+			'oldpassword'=>'required',
+			'newpassword1'=>'required|min:8',
+			'newpassword2'=>'required|same:newpassword1|different:oldpassword|min:8',
+		],[
+			'oldpassword.required'=>'Mật khẩu không được để trống.',
+			'newpassword1.required'=>'Mật khẩu không được để trống.',
+			'newpassword2.required'=>'Mật khẩu không được để trống.',
+			'oldpassword.min'=>'Mật khẩu tối tiểu 8 kí tự.',
+			'newpassword1.min'=>'Mật khẩu tối tiểu 8 kí tự.',
+			'newpassword2.min'=>'Mật khẩu tối tiểu 8 kí tự.',
+			'newpassword2.same'=>'Mật khẩu mới không khớp.',
+			'newpassword2.different'=>'Mật khẩu mới phải khác mật khẩu cũ.',
+		]);
 
 
 		nhatuyendung::where('id',Auth::guard('nhatuyendung')->user()->id)->update(['matkhau'=>bcrypt($request->newpassword2)]);
@@ -72,6 +73,35 @@ class NhatuyendungController extends Controller
 			});
 		}
 
+
+		if(isset($_GET['trinhdo']))
+		{
+			$ungvien->when($_GET['trinhdo']!="",function($q)
+			{
+				return $q->where('id_trinhdo','=',$_GET['trinhdo']);
+			});
+		}
+		if(isset($_GET['capbac']))
+		{
+			$ungvien->when($_GET['capbac']!="",function($q)
+			{
+				return $q->where('id_capbac','=',$_GET['capbac']);
+			});
+		}
+		if(isset($_GET['hinhthuclamviec']))
+		{
+			$ungvien->when($_GET['hinhthuclamviec']!="",function($q)
+			{
+				return $q->where('id_hinhthuclamviec','=',$_GET['hinhthuclamviec']);
+			});
+		}
+		if(isset($_GET['thanhpho'])&&$_GET['thanhpho']!="")
+		{
+			
+			$ungvien->join('ungvien_thanhpho',
+				'ungvien.id','=','ungvien_thanhpho.id_ungvien')->where('ungvien_thanhpho.id_thanhpho',$_GET['thanhpho']);
+			
+		}
 		if (isset($_GET['kynang'])) 
 		{
 			$dskynang=[];
@@ -84,6 +114,45 @@ class NhatuyendungController extends Controller
 			$ungvien->join('ungvien_kynang', 'ungvien.id', '=', 'ungvien_kynang.id_ungvien')
 			->whereIn('ungvien_kynang.id_kynang',$dskynang);
 		}
+
+			if (isset($_GET['kinhnghiem'])) 
+		{
+			$dskinhnghiem=[];
+
+			foreach ($_GET['kinhnghiem'] as $key => $value) 
+			{
+
+				array_push($dskinhnghiem,$value);
+			} 
+			$ungvien->whereIn('id_kinhnghiem',$dskinhnghiem);
+		}
+		if (isset($_GET['mucluong'])) 
+		{
+			
+			$ungvien->when($_GET['mucluong']!="",function($q)
+			{
+				$mucluong=mucluong::findOrFail($_GET['mucluong']);
+				return $q->WhereBetween('mucluongmongmuon',[$mucluong->mucluong1,$mucluong->mucluong2]);
+			});
+			
+		}
+		if (isset($_GET['kynang'])) 
+		{
+			$dskynang=[];
+
+			foreach ($_GET['kynang'] as $key => $value) 
+			{
+
+				array_push($dskynang,$value);
+			} 
+			$ungvien->join('ungvien_kynang', 'ungvien.id', '=', 'ungvien_kynang.id_ungvien')
+			->whereIn('ungvien_kynang.id_kynang',$dskynang);
+		}
+
+
+
+
+
 		if($ungvien==ungvien::query())
 		{
 
@@ -92,7 +161,7 @@ class NhatuyendungController extends Controller
 		}
 		else
 		{
-			$ungvien=$ungvien->where('timkiem',1)->where('trangthai',1)->get();
+			$ungvien=$ungvien->where('timkiem',1)->where('trangthai',1)->where('id_nganhnghe','>',0)->get();
 		}
 		return view('nhatuyendung.timungvien',['data'=>$ungvien]);
 	}
