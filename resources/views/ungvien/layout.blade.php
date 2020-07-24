@@ -93,7 +93,7 @@
 					<img src="upload\img\layout\search.svg">Quản lý thông tin cá nhân	
 				</div></a>
 				<a href="ung-vien/ho-so" class="list-group-item border-0"><div >
-					<img src="upload\img\layout\search.svg">Quản lý hồ sơ
+					<img src="upload\img\layout\search.svg">Quản lý hồ sơ việc làm
 				</div></a>
 				<a href="ungvien/tintuyendungdanop" class="list-group-item border-0"><div >
 					<img src="upload\img\layout\search.svg">Quản lý tin tuyển dụng đã nộp	
