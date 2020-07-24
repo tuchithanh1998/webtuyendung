@@ -10,6 +10,7 @@ use App\tintuyendung_kynang;
 use App\tintuyendung_thanhpho;
 use App\ungvien_nop_tin;
 use App\ungvien;
+use Illuminate\Support\Facades\Hash;
 
 class NhatuyendungController extends Controller
 {
