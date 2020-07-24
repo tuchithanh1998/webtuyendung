@@ -376,7 +376,7 @@ public function getNophoso($id){
   }
 
 
-  return redirect()->back()->with('success','Đã nộp tin tuyển dụng');
+  return redirect()->back()->with('success','Đã nộp hồ sơ.');
 
 }
 public function postThongtincanhan(Request $request)
