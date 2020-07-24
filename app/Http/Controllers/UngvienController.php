@@ -127,7 +127,46 @@ public function getTrinhdobangcapxoa($id)
 
 public function postTrinhdobangcapmoi(Request $request)
 {
+
+
+  $this->validate($request,[
+  'tenbangcap'=>'required',
+  'truongdaotao'=>'required',
+  'chuyennganh'=>'required',
+  'thoigiantotnghiep'=>'required',
+
+],[
+  'oldpassword.required'=>'Tên bằng cấp không được để trống.',
+   'truongdaotao.required'=>'Trường đào tạo không được để trống.',
+    'chuyennganh.required'=>'Chuyên ngành không được để trống.',
+     'thoigiantotnghiep.required'=>'Thời gian tốt nghiệp không được để trống.',
+  
+]);
+
  $trinhdobangcap=new trinhdobangcap;
+
+ if($request->hasFile('filesTest'))
+  {
+
+
+
+    if (Auth::guard('ungvien')->user()->anhdaidien!=null)
+    {
+      unlink("upload/img/ungvien/bangcap/".Auth::guard('ungvien')->user()->anhdaidien);
+    }
+
+
+    $file=$request->filesTest;
+    $name=$file->getClientOriginalName();
+    $hinh=Str::random(4)."_".$name;
+    while ( file_exists("upload/img/ungvien/bangcap/".$hinh)) {
+      $hinh=Str::random(4)."_".$name;
+    }
+    $file->move("upload/img/ungvien/bangcap/",$hinh);  $trinhdobangcap->anh=$hinh;
+  }
+
+
+
  $trinhdobangcap->tenbangcap=$request->tenbangcap;
  $trinhdobangcap->truongdaotao=$request->truongdaotao;
  $trinhdobangcap->chuyennganh=$request->chuyennganh;
@@ -136,7 +175,7 @@ public function postTrinhdobangcapmoi(Request $request)
 
  $trinhdobangcap->save();
  return redirect()->back()->with('alert','Thêm thành công.');
-  // $trinhdobangcap->anh=$request->anh;
+  
 }
 
 public function postTrinhdobangcapsua(Request $request,$id)
