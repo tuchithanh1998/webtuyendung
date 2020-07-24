@@ -42,7 +42,7 @@
 			echo $data->trinhdo->tentrinhdo;
 		?>
 	</p>			
-	<p class="card-text"><span class="font-weight-bold">Ảnh đại diện: </span></p>{{$data->mucluong}}
+	
 	<p class="card-text"><span class="font-weight-bold">Thành phố: </span>
 		<?php foreach ($data->ungvien_thanhpho as $key => $value): ?>
 			{{$value->tenthanhpho}}
