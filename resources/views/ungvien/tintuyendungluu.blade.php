@@ -19,7 +19,7 @@
 	  	</thead>
 	  	<tbody>
 	  		<?php foreach ($data as $key => $value):
-
+$giatri=0;
 $today = date("Y-m-d");
 $expire = $value->tintuyendung->hannophoso;
  $today_dt = new DateTime($today);
@@ -28,13 +28,13 @@ $expire = $value->tintuyendung->hannophoso;
 if ($expire_dt > $today_dt) {
 
 
-
+$giatri++;
 
 	  		 ?>
 	  			<tr>
-	  				<td>{{$key+1}}</td>
-	  				<td><a href="tintuyendung/{{$value->id}}">{{$value->tintuyendung->tieudetuyendung}}</a></td>
-	  				<td><a href="">{{$value->tintuyendung->nhatuyendung->tencongty}}</a></td>
+	  				<td>{{$giatri}}</td>
+	  				<td><a href="tintuyendung/{{$value->tintuyendung->id}}">{{$value->tintuyendung->tieudetuyendung}}</a></td>
+	  				<td><a href="danh-sach-tin-nha-tuyen-dung/{{$value->tintuyendung->nhatuyendung->id}}.html">{{$value->tintuyendung->nhatuyendung->tencongty}}</a></td>
 	  				<td><?php $date=date_create($value->tintuyendung->hannophoso);
 										echo date_format($date,"d/m/Y");
 										?></td>

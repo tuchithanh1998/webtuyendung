@@ -102,20 +102,9 @@ class NhatuyendungController extends Controller
 				'ungvien.id','=','ungvien_thanhpho.id_ungvien')->where('ungvien_thanhpho.id_thanhpho',$_GET['thanhpho']);
 			
 		}
-		if (isset($_GET['kynang'])) 
-		{
-			$dskynang=[];
+		
 
-			foreach ($_GET['kynang'] as $key => $value) 
-			{
-
-				array_push($dskynang,$value);
-			} 
-			$ungvien->join('ungvien_kynang', 'ungvien.id', '=', 'ungvien_kynang.id_ungvien')
-			->whereIn('ungvien_kynang.id_kynang',$dskynang);
-		}
-
-			if (isset($_GET['kinhnghiem'])) 
+		if (isset($_GET['kinhnghiem'])) 
 		{
 			$dskinhnghiem=[];
 
