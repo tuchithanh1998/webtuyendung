@@ -138,7 +138,7 @@
 					continue;*/
 
 					?>	
-					<li class="list-group-item" style="padding: 0px; <?php  if($key!=0) echo "margin-top: 4px;"; ?>  margin-bottom: 0px;">
+					<li class="list-group-item" style="padding: 0px; <?php echo "margin-top: 4px;"; ?>  margin-bottom: 0px;">
 						<div class="card border-0" >
 							<div class="row no-gutters ">
 								<div class="col-auto" title="Công ty">
@@ -383,7 +383,7 @@ $(document).ready(function(){
 		$("#demo").JPaging({
 
 			visiblePageSize:1,
-			pageSize: 2,
+			pageSize: 5,
 			
 
 		});

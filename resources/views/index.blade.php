@@ -32,7 +32,7 @@
 			</ul>
 			<ul class="navbar-nav mr-2 ">
 				<li class="nav-item ">
-					<a class="nav-link" href="#">Dành Cho Nhà Tuyển Dụng</a>
+					<a class="nav-link" href="nhatuyendung">Dành Cho Nhà Tuyển Dụng</a>
 				</li>
 			</ul>
 		</div>
