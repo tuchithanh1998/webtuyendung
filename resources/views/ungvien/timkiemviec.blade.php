@@ -126,23 +126,13 @@
 					<?php } else { ?>  <h6>Tìm thấy {{count($data)}}</h6>  <?php }
 
 					foreach ($data as $key => $value): 
-			/*		if($value->trangthai!=1)
-						continue;
-
-					$today = date("Y-m-d");
-					$expire = $value->hannophoso;
-					$today_dt = new DateTime($today);
-					$expire_dt = new DateTime($expire);
-
-					if ($expire_dt < $today_dt)
-					continue;*/
-
+	
 					?>	
-					<li class="list-group-item" style="padding: 0px; <?php echo "margin-top: 4px;"; ?>  margin-bottom: 0px;">
-						<div class="card border-0" >
+					<li class="list-group-item border-0" style="padding: 0px; <?php   echo "margin-top: 4px;"; ?>  margin-bottom: 0px;">
+						<div class="card " >
 							<div class="row no-gutters ">
 								<div class="col-auto" title="Công ty">
-									<img src="//placehold.it/60" class="img-fluid" alt="{{$value->nhatuyendung->tencongty}}" title="{{$value->nhatuyendung->tencongty}}">
+									<img src="//placehold.it/64" class="img-fluid" alt="{{$value->nhatuyendung->tencongty}}" title="{{$value->nhatuyendung->tencongty}}">
 								</div>
 								<div class="col">
 									<div class="card-block px-2 ">
@@ -383,7 +373,7 @@ $(document).ready(function(){
 		$("#demo").JPaging({
 
 			visiblePageSize:1,
-			pageSize: 5,
+			pageSize: 2,
 			
 
 		});
