@@ -18,8 +18,10 @@
 	  		</tr>
 	  	</thead>
 	  	<tbody>
-	  		<?php foreach ($data as $key => $value):
+	  		<?php 
 $giatri=0;
+	  		foreach ($data as $key => $value):
+
 $today = date("Y-m-d");
 $expire = $value->tintuyendung->hannophoso;
  $today_dt = new DateTime($today);

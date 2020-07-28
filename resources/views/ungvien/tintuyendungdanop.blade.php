@@ -28,7 +28,7 @@ if ($expire_dt > $today_dt){*/
 	  			?>
 	  			<tr>
 	  				<td>{{$key+1}}</td>
-	  				<td><a href="tintuyendung/{{$value->id}}">{{$value->tintuyendung->tieudetuyendung}}</a></td>
+	  				<td><a href="tintuyendung/{{$value->tintuyendung->id}}">{{$value->tintuyendung->tieudetuyendung}}</a></td>
 	  				<td><a href="danh-sach-tin-nha-tuyen-dung/{{$value->tintuyendung->nhatuyendung->id}}.html">{{$value->tintuyendung->nhatuyendung->tencongty}}</a></td>
 	  				<td><?php $date=date_create($value->ngaynop);
 										echo date_format($date,"d/m/Y");
