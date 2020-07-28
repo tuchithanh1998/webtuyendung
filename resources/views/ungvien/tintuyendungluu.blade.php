@@ -13,7 +13,7 @@
 	  			<th></th>
 	  			<th>Tiêu đề</th>
 	  			<th>Công ty</th>
-	  			<th>Hết hạn</th>
+	  			<th>Ngày hết hạn nộp hồ sơ</th>
 	  			<th></th>
 	  		</tr>
 	  	</thead>

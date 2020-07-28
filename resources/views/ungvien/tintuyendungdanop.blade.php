@@ -14,6 +14,7 @@
 	  			<th>Tiêu đề</th>
 	  			<th>Công ty</th>
 	  			<th>Ngày nộp hồ sơ</th>
+	  			<th>Ngày hết hạn nộp hồ sơ</th>
 	  			<th></th>
 	  		</tr>
 	  	</thead>
@@ -33,7 +34,11 @@ if ($expire_dt > $today_dt){*/
 	  				<td><?php $date=date_create($value->ngaynop);
 										echo date_format($date,"d/m/Y");
 										?></td>
-										<td><?php echo $value->trangthainoptin->tentrangthainoptin; ?></td>
+									
+					<td><?php $date=date_create($value->tintuyendung->hannophoso);
+										echo date_format($date,"d/m/Y");
+										?></td>
+											<td><?php echo $value->trangthainoptin->tentrangthainoptin; ?></td>
 	  			</tr>
 	  		<?php /*}*/ endforeach ?>
 	  	</tbody>
