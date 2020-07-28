@@ -28,7 +28,7 @@ class AdminController extends Controller
     public function postSuathanhpho(Request $request,$id_thanhpho)
     {
 
-        thanhpho::where('id',$id_thanhpho)->update(['tenthanhpho'=>$request->tenthanhpho]);
+        thanhpho::where('id',$id_thanhpho)->update(['tenthanhpho'=>$request->tenthanhpho,'trangthai'=>$request->Radios]);
         return redirect()->back()->with('alert','Cập nhật thành công.');
     }
 
@@ -41,7 +41,7 @@ class AdminController extends Controller
     public function postSuacapbac(Request $request,$id_capbac)
     {
 
-        capbac::where('id',$id_capbac)->update(['tencapbac'=>$request->tencapbac]);
+        capbac::where('id',$id_capbac)->update(['tencapbac'=>$request->tencapbac,'trangthai'=>$request->Radios]);
         return redirect()->back()->with('alert','Cập nhật thành công.');
     }
 
@@ -54,7 +54,7 @@ class AdminController extends Controller
     /*Hình thức làm việc*/
     public function postSuahinhthuclamviec(Request $request,$id_hinhthuclamviec)
     {
-        hinhthuclamviec::where('id',$id_hinhthuclamviec)->update(['tenhinhthuclamviec'=>$request->tenhinhthuclamviec]);
+        hinhthuclamviec::where('id',$id_hinhthuclamviec)->update(['tenhinhthuclamviec'=>$request->tenhinhthuclamviec,'trangthai'=>$request->Radios]);
         return redirect()->back()->with('alert','Cập nhật thành công.');
     }
     public function postThemhinhthuclamviec(Request $request)
@@ -66,7 +66,7 @@ class AdminController extends Controller
     /*Kinh nghiệm*/
     public function postSuakinhnghiem(Request $request,$id_kinhnghiem)
     {
-        kinhnghiem::where('id',$id_kinhnghiem)->update(['tenkinhnghiem'=>$request->tenkinhnghiem]);
+        kinhnghiem::where('id',$id_kinhnghiem)->update(['tenkinhnghiem'=>$request->tenkinhnghiem,'trangthai'=>$request->Radios]);
         return redirect()->back()->with('alert','Cập nhật thành công.');
     }
     public function postThemkinhnghiem(Request $request)
@@ -77,7 +77,7 @@ class AdminController extends Controller
     /*Trình độ*/
     public function postSuatrinhdo(Request $request,$id_trinhdo)
     {
-        trinhdo::where('id',$id_trinhdo)->update(['tentrinhdo'=>$request->tentrinhdo]);
+        trinhdo::where('id',$id_trinhdo)->update(['tentrinhdo'=>$request->tentrinhdo,'trangthai'=>$request->Radios]);
         return redirect()->back()->with('alert','Cập nhật thành công.');
     }
     public function postThemtrinhdo(Request $request)
@@ -88,7 +88,7 @@ class AdminController extends Controller
     /*Ngành nghề*/
     public function postSuanganhnghe(Request $request,$id_nganhnghe)
     {
-        nganhnghe::where('id',$id_nganhnghe)->update(['tennganhnghe'=>$request->tennganhnghe]);
+        nganhnghe::where('id',$id_nganhnghe)->update(['tennganhnghe'=>$request->tennganhnghe,'trangthai'=>$request->Radios]);
         return redirect()->back()->with('alert','Cập nhật thành công.');
     }
     public function postThemnganhnghe(Request $request)
@@ -99,7 +99,7 @@ class AdminController extends Controller
     /*Kỹ năng*/
     public function postSuakynang(Request $request,$id_kynang)
     {
-        kynang::where('id',$id_kynang)->update(['tenkynang'=>$request->tenkynang,'id_nganhnghe'=>$request->nganhnghe]);
+        kynang::where('id',$id_kynang)->update(['tenkynang'=>$request->tenkynang,'id_nganhnghe'=>$request->nganhnghe,'trangthai'=>$request->Radios]);
         return redirect()->back()->with('alert','Cập nhật thành công.');
     }
     public function postThemkynang(Request $request)
@@ -110,7 +110,7 @@ class AdminController extends Controller
     /*Quy mô nhân sự*/
     public function postSuaquymonhansu(Request $request,$id_quymonhansu)
     {
-        quymonhansu::where('id',$id_quymonhansu)->update(['quymo'=>$request->quymo]);
+        quymonhansu::where('id',$id_quymonhansu)->update(['quymo'=>$request->quymo,'trangthai'=>$request->Radios]);
         return redirect()->back()->with('alert','Cập nhật thành công.');
     }
     public function postThemquymonhansu(Request $request)
@@ -121,7 +121,7 @@ class AdminController extends Controller
     /*Mức lương*/
     public function postSuamucluong(Request $request,$id_mucluong)
     {
-        mucluong::where('id',$id_mucluong)->update(['tenmucluong'=>$request->tenmucluong,'mucluong1'=>$request->mucluong1,'mucluong2'=>$request->mucluong2]);
+        mucluong::where('id',$id_mucluong)->update(['tenmucluong'=>$request->tenmucluong,'mucluong1'=>$request->mucluong1,'mucluong2'=>$request->mucluong2,'trangthai'=>$request->Radios]);
         return redirect()->back()->with('alert','Cập nhật thành công.');
     }
     public function postThemmucluong(Request $request)
@@ -132,7 +132,7 @@ class AdminController extends Controller
     /*Ngoại ngữ*/
     public function postSuangoaingu(Request $request,$id_ngoaingu)
     {
-        ngoaingu::where('id',$id_ngoaingu)->update(['tenngoaingu'=>$request->tenngoaingu]);
+        ngoaingu::where('id',$id_ngoaingu)->update(['tenngoaingu'=>$request->tenngoaingu,'trangthai'=>$request->Radios]);
         return redirect()->back()->with('alert','Cập nhật thành công.');
     }
     public function postThemngoaingu(Request $request)

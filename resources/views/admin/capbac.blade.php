@@ -54,6 +54,7 @@
                     <tr>
                       <th>Mã</th>
                       <th>Tên cấp bậc</th>
+                      <th>Trạng thái</th>
                       <th>Thao tác             </th>
                     </tr>
                   </thead>
@@ -61,6 +62,7 @@
                     <tr>
                      <th>Mã</th>
                       <th>Tên cấp bậc</th>
+                      <th>Trạng thái</th>
                       <th>Thao tác             </th>
                     </tr>
                   </tfoot>
@@ -69,6 +71,14 @@
                    <tr>
                       <td>{{$value->id}}</td>
                       <td>{{$value->tencapbac}}</td>
+                      <td><?php 
+                      if($value->trangthai==1){
+                        echo "Hiện";
+                      }
+                      else
+                        echo "Ẩn";
+
+                      ?></td>
                       <td><button type="button" id="capbac" class="btn btn-primary list-inline-item" data-toggle="modal" data-target="#capbac{{$value->id}}">Sửa</button>
                         <div class="modal fade" id="capbac{{$value->id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
               <div class="modal-dialog modal-lg">
@@ -94,6 +104,20 @@
                               <input type="" name="tencapbac" value="{{$value->tencapbac}}" class="form-control" id="tencapbac" >
                             </div>
                           </div>
+                          <div class="radio">
+          <label>
+            <input type="radio" name="Radios"  value="1" 
+<?php if($value->trangthai==1) echo "checked"; ?>
+            >
+            Hiện
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="Radios" value="2" <?php if($value->trangthai==2) echo "checked"; ?>>
+            Ẩn
+          </label>
+        </div>
                       <div class="form-group row"> 
                         <div class="col-sm-10">
                           <button type="submit" class="btn btn-primary w-25">Lưu</button>

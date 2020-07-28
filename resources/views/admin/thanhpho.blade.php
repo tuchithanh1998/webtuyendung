@@ -57,14 +57,16 @@
                     <tr>
                       <th>Mã</th>
                       <th>Tên thành phố</th>
-                      <th>Thao tác             </th>
+                      <th>Trạng thái</th>
+                      <th>Thao tác</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
                      <th>Mã</th>
                       <th>Tên thành phố</th>
-                      <th>Thao tác             </th>
+                      <th>Trạng thái</th>
+                      <th>Thao tác</th>
                     </tr>
                   </tfoot>
                   <tbody>                  
@@ -72,6 +74,14 @@
                    <tr>
                       <td>{{$value->id}}</td>
                       <td>{{$value->tenthanhpho}}</td>
+                      <td><?php
+                          if ($value->trangthai==1) {
+                            echo "Hiện";
+                          }
+                          else
+                            echo "Ẩn";
+
+                       ?></td>
                       <td>      <button type="button" id="thanhpho" class="btn btn-primary list-inline-item" data-toggle="modal" data-target="#thanhpho{{$value->id}}">Sửa</button>   
              
             <div class="modal fade" id="thanhpho{{$value->id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
@@ -98,6 +108,20 @@
                               <input type="" name="tenthanhpho" value="{{$value->tenthanhpho}}" class="form-control" id="tenthanhpho" >
                             </div>
                           </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="Radios"  value="1" 
+<?php if($value->trangthai==1) echo "checked"; ?>
+            >
+            Hiện
+          </label>
+        </div>
+        <div class="radio">
+          <label>
+            <input type="radio" name="Radios" value="2" <?php if($value->trangthai==2) echo "checked"; ?>>
+            Ẩn
+          </label>
+        </div>
                       <div class="form-group row"> 
                         <div class="col-sm-10">
                           <button type="submit" class="btn btn-primary w-25">Lưu</button>
@@ -109,10 +133,9 @@
               </div>
             </div>
           </div>
-     
-
   </div></div>
-                      </td>            
+                      </td>
+            
                     </tr>
 <?php endforeach ?>                   
                   </tbody>
