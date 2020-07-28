@@ -11,11 +11,65 @@ use App\tintuyendung_thanhpho;
 use App\ungvien_nop_tin;
 use App\ungvien;
 use App\mucluong;
+use DateTime;
+use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 
 class NhatuyendungController extends Controller
 {
+	public function postThongtinnguoilienhe(Request $request)
+	{
 
+	}
+
+	public function postThongtincongty(Request $request)
+	{
+
+		$this->validate($request,[
+			
+			'tencongty'=>'required',
+			'diachicongty'=>'required',
+			'id_thanhpho'=>'required',
+			'sodienthoai'=>'required',
+			
+			'id_quymonhansu'=>'required',
+
+			
+
+		],[
+			'tencongty.required'=>'Tên công ty không được để trống.',
+			'diachicongty.required'=>'Địa chỉ không được để trống.',
+			'id_thanhpho.required'=>'Thành phố không được để trống.',
+			'sodienthoai.required'=>'Số điện thoại không được để trống.',
+			
+			'id_quymonhansu.required'=>'Quy mô nhân sự không được để trống.',
+
+		]);
+		if($request->hasFile('filesTest'))
+		{
+
+
+
+			if (Auth::guard('nhatuyendung')->user()->logo!=null)
+			{
+				unlink("upload/img/nhatuyendung/logo/".Auth::guard('nhatuyendung')->user()->logo);
+			}
+
+
+			$file=$request->filesTest;
+			$name=$file->getClientOriginalName();
+			$hinh=Str::random(4)."_".$name;
+			while ( file_exists("upload/img/nhatuyendung/logo/".$hinh)) {
+				$hinh=Str::random(4)."_".$name;
+			}
+			$file->move("upload/img/nhatuyendung/logo/",$hinh);  
+		}
+
+		nhatuyendung::where('id',Auth::guard('nhatuyendung')->user()->id)->update(['tencongty'=>$request->tencongty,'diachicongty'=>$request->diachicongty,'id_thanhpho'=>$request->thanhpho,'sodienthoai'=>$request->sodienthoai,'gioithieu'=>$request->gioithieu,'id_quymonhansu'=>$request->quymo,'websitecongty'=>$request->websitecongty,'logo'=>$hinh]);
+
+
+		return redirect()->back();
+	}
 	public function getHuyTintuyendung($id_tintuyendung)
 	{
 		$tintuyendung=tintuyendung::where('id',$id_tintuyendung)->where('id_nhatuyendung',Auth::guard('nhatuyendung')->user()->id)->update(['trangthai'=>2]);
@@ -52,7 +106,7 @@ class NhatuyendungController extends Controller
 
 
 		nhatuyendung::where('id',Auth::guard('nhatuyendung')->user()->id)->update(['matkhau'=>bcrypt($request->newpassword2)]);
-		return redirect()->back()->with('Đổi mật khẩu thành công.');
+		return redirect()->back()->with('alert','Đổi mật khẩu thành công.');
 
 	}
 	public function getUngvien($id_ungvien)
@@ -171,7 +225,45 @@ class NhatuyendungController extends Controller
 	public function getDangtintuyendung(){
 		return view('nhatuyendung.dangtintuyendung');
 	}
-	public function postDangtintuyendung(Request $request){
+	public function postDangtintuyendung(Request $request)
+	{
+		$this->validate($request,[			
+			'tieudetuyendung'=>'required',
+			'soluongcantuyen'=>'required|integer|between:1,50',
+			'dotuoi'=>'required',
+			'motacongviec'=>'required',	
+			'quyenloi'=>'required',
+			'thanhpho'=>'required',
+		//	'kynang'=>'required',
+			'gioitinh'=>'required',
+			'kinhnghiem'=>'required',
+			'hannophoso'=>'required',
+			'capbac'=>'required',
+			'nganhnghe'=>'required',
+			'hinhthuclamviec'=>'required',
+			'mucluong'=>'required',
+			'trinhdo'=>'required',
+		],[
+
+			'tieudetuyendung.required'=>'Tiêu đề tuyển dụng không được để trống.',
+			'soluongcantuyen.required'=>'Số lượng cần tuyển không được để trống.',
+			'soluongcantuyen.between'=>'Số lượng tuyển dụng tối thiểu 1 tối đa 50.',
+			'dotuoi.required'=>'Độ tuổi không được để trống.',
+			'quyenloi.required'=>'Quyển lợi không được để trống',		
+			'motacongviec.required'=>'Mô tả công việc không được để trống',
+			'thanhpho.required'=>'Thành phố không được để trống.',		
+			'gioitinh.required'=>'Giới tính không được để trống.',
+			'kinhnghiem.required'=>'Kinh nghiệm không được để trống.',
+			'hannophoso.required'=>'Hạn nộp hồ sơ không được để trống.',
+			'capbac.required'=>'Cấp bậc không được để trống.',
+			'nganhnghe.required'=>'Ngành nghề không được để trống.',
+			'hinhthuclamviec.required'=>'Hình thức làm việc không được để trống.',
+			'mucluong.required'=>'Mức lương không được để trống được để trống.',
+			'trinhdo.required'=>'Trình độ bằng cấp không được để trống.',
+
+
+		]);
+
 
 
 		$tintuyendung=new tintuyendung;
@@ -183,7 +275,8 @@ class NhatuyendungController extends Controller
 		$tintuyendung->motacongviec=$request->motacongviec;
 		$tintuyendung->quyenloi=$request->quyenloi;
 		$tintuyendung->yeucaukhac=$request->yeucaukhac;
-		$tintuyendung->hannophoso=$request->hannophoso;
+		$date=new DateTime();
+		$tintuyendung->hannophoso=$date->modify('+'.$request->hannophoso.' day');
 		$tintuyendung->id_capbac=$request->capbac;
 		$tintuyendung->id_nganhnghe=$request->nganhnghe;
 		$tintuyendung->id_hinhthuclamviec=$request->hinhthuclamviec;
@@ -191,7 +284,7 @@ class NhatuyendungController extends Controller
 		$tintuyendung->id_trinhdo=$request->trinhdo;
 		$tintuyendung->id_nhatuyendung=	Auth::guard('nhatuyendung')->user()->id;
 		$tintuyendung->save();
-
+if($request->kynang!=null)
 		foreach ($request->kynang as $key => $value) {
 			$tintuyendung_kynang=new tintuyendung_kynang;
 			$tintuyendung_kynang->id_tintuyendung=$tintuyendung->id;
@@ -207,7 +300,7 @@ class NhatuyendungController extends Controller
 			$tintuyendung_thanhpho->save();
 		}
 
-		return redirect()->back();
+		return redirect()->back()->with('alert','Đăng tin tuyển dụng thành công.');
 
 /*foreach ($request->kynang as $key => $value) {
 	

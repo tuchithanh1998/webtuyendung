@@ -178,7 +178,7 @@
 				</div>
 				<div class="card-body row">
 
-					<div class="col-6">
+					<div class="col-4">
 						<p class="card-text"><span class="font-weight-bold">Tên bằng cấp:</span> {{$value->tenbangcap}}</p>
 						<p class="card-text"><span class="font-weight-bold">Trường đào tạo: </span> {{$value->truongdaotao}}</p>
 						<p class="card-text"><span class="font-weight-bold">Chuyên ngành</span> {{$value->chuyennganh}}</p>
@@ -186,8 +186,17 @@
 						echo date_format($date,"Y-m"); ?>
 					</p>
 				</div>
-				<div class="col-6">	
-					<p class="card-text"><span class="font-weight-bold"></span>  <img style="height: 200px;" src="//placehold.it/200">  </p>
+				<div class="col-8">	
+					<p class="card-text"><span class="font-weight-bold"></span>
+@if($value->anh!=null)
+					<img style="height:200px; max-width: 500px;" src="upload/img/ungvien/bangcap/{{$value->anh}}"/>
+
+					@else
+
+					  <img style="height: 200px;" src="//placehold.it/200"> 
+
+@endif
+					   </p>
 				</div>
 			</div>
 		</div>

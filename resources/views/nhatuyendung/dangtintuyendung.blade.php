@@ -87,9 +87,15 @@
 
 
 				<div class="form-group row">
-					<label for="example-date-input" class="col-4 col-form-label">Hạn nộp: *</label>
+					<label for="example-date-input" class="col-4 col-form-label">Thời hạn : *</label>
 					<div class="col-8">
-						<input class="form-control" type="date" name="hannophoso" id="example-date-input">
+						<!--<input class="form-control" type="date" name="hannophoso" id="example-date-input">-->
+						<select class="form-control w-100" id="hannophoso" name="hannophoso">
+							<option value="7" >1 Tuần</option>
+								<option value="14" >2 Tuần</option>
+									<option value="30" >1 Tháng</option>
+										
+					</select>
 					</div>
 				</div>
 
@@ -339,7 +345,7 @@
 
 					if($('#thanhpho'+v.id).val()!=v.id)
 					{
-						if(localStorage.length<2){
+						if(localStorage.length<3){
 
 							kq= '<div class="list-inline-item w-25" id="form-check-'+v.id+'" title="Xóa" onclick="remove(this,'+v.id+')" >    <input  type="checkbox" checked  id="thanhpho'+v.id+'"  name="thanhpho[]" value="'+v.id+'" class="custom-control-input">    <label class="" for="thanhpho'+v.id+'">'+v.tenthanhpho+' x</label>  </div>';
 

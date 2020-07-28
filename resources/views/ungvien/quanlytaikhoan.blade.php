@@ -325,22 +325,23 @@
 	$(document).ready(function(){
 
 		$('#thongtincanhan').click(function(){
-			$.ajax({
+		
+	$.ajax({
+		type:'GET',
+		url:'api/thanhpho',
+		success:function(data){
 
-				type:'GET',
-				url:'api/thanhpho',
-				success:function(data){
-
-					var kq='';
-					$.each(data,function(k,v){				
-						kq= '<option  value="'+v.id+'">'+v.tenthanhpho+'</option>';
-						if($('#idthanhpho')[0].title==v.id)
-							kq= '<option selected value="'+v.id+'">'+v.tenthanhpho+'</option>';
-						$('#thanhpho').append(kq);					
-					});
-
-				}
+			var kq='';
+			$.each(data,function(k,v){				
+				kq= '<option value="'+v.id+'">'+v.tenthanhpho+'</option>';
+				if(v.id=={{Auth::guard('ungvien')->user()->id_thanhpho}})
+					kq= '<option selected value="'+v.id+'">'+v.tenthanhpho+'</option>';
+					$('#thanhpho').append(kq);					
 			});
+			localStorage.clear();
+
+		}
+	});
 
 
 		});
