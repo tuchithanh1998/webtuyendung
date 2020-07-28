@@ -76,84 +76,63 @@
 								</div>
 
 								<div class="dropdown-menu w-100" aria-labelledby="dropdownKinhnghiem" id="dropdownKinhnghiemlist">
-  <!--<div class="form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-  </div>
-   <div class="form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck2">
-    <label class="form-check-label" for="exampleCheck2">Check me out</label>
-  </div>
-   <div class="form-check">
-    <input type="checkbox" class="form-check-input" id="exampleCheck3">
-    <label class="form-check-label" for="exampleCheck3">Check me out</label>
-</div>-->
-</div>
-</div>
-</div>
-</div>
-<div class="form-inline ">
-	<div class="form-group w-50">								
-		<label class="sr-only">Trình độ</label>
-		<select class="form-control w-100" id="trinhdo" name="trinhdo">
-			<option  value="">Trình độ</option>							
-		</select>
+									
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="form-inline ">
+						<div class="form-group w-50">								
+							<label class="sr-only">Trình độ</label>
+							<select class="form-control w-100" id="trinhdo" name="trinhdo">
+								<option  value="">Trình độ</option>							
+							</select>
+						</div>
+						<div class="form-group w-50 ">								
+							<label class="sr-only">Hinh thức làm việc</label>
+							<select class="form-control w-100" id="hinhthuclamviec" name="hinhthuclamviec">
+								<option  value="">Hinh thức làm việc</option>							
+							</select>
+						</div>
+					</div>
+					<button style="margin-top: 5px;" type="button submit" class="btn btn-info"><img src="upload\img\layout\search.svg">Tìm kiếm</button>
+				</form>
+
+			</div>
+			<br>
+		</div>
 	</div>
-	<div class="form-group w-50 ">								
-		<label class="sr-only">Hinh thức làm việc</label>
-		<select class="form-control w-100" id="hinhthuclamviec" name="hinhthuclamviec">
-			<option  value="">Hinh thức làm việc</option>							
-		</select>
-	</div>
-</div>
-<button style="margin-top: 5px;" type="button submit" class="btn btn-info"><img src="upload\img\layout\search.svg">Tìm kiếm</button>
-</form>
 
-</div>
-<br>
-</div>
-</div>
+	<div class="row bg-light" style="padding-top:50px; padding-bottom: 50px; margin-top: 25px; margin-bottom: 25px;">
+		<div class="col-sm-10 offset-sm-1 ">
+			<ul class="list-group list-group-flush w-100"  <?php  if(isset($data)==true&&count($data)>2) { ?> id="demo" <?php } ?> >
 
-<div class="row bg-light" style="padding-top:50px; padding-bottom: 50px; margin-top: 25px; margin-bottom: 25px;">
-	<div class="col-sm-10 offset-sm-1 ">
-		<ul class="list-group list-group-flush w-100"  <?php  if(isset($data)==true&&count($data)>2) { ?> id="demo" <?php } ?> >
-
-			<?php 
-			if(isset($data)==true)
-			{	
-				if(count($data)==0)
-				{
-					?>
-
-					<li><h6>Không tìm thấy</h6></li>
 				<?php 
-			}
+				if(isset($data)==true)
+				{	
+					if(count($data)==0)
+					{
+						?>
 
-if(isset($alert)){
-	?>
+						<li><h6>Không tìm thấy</h6></li>
+						<?php 
+					}
 
-<h6>{{$alert}} {{count($data)}}</h6>
+					if(isset($alert)){
+						?>
 
-<?php } else { ?>  <h6>Tìm thấy {{count($data)}}</h6>  <?php }
+						<h6>{{$alert}} {{count($data)}}</h6>
 
-				foreach ($data as $key => $value): 
-			/*		if($value->trangthai!=1)
-						continue;
+					<?php } else { ?>  <h6>Tìm thấy {{count($data)}}</h6>  <?php }
 
-					$today = date("Y-m-d");
-					$expire = $value->hannophoso;
-					$today_dt = new DateTime($today);
-					$expire_dt = new DateTime($expire);
-
-					if ($expire_dt < $today_dt)
-						continue;*/
-
+					foreach ($data as $key => $value): 
+	
 					?>	
-					<li class="list-group-item" style="padding: 0px; <?php  if($key!=0) echo "margin-top: 4px;"; ?>  margin-bottom: 0px;">
-						<div class="card border-0" >
+					<li class="list-group-item border-0" style="padding: 0px; <?php   echo "margin-top: 4px;"; ?>  margin-bottom: 0px;">
+						<div class="card " >
 							<div class="row no-gutters ">
 								<div class="col-auto" title="Công ty">
-									<img src="//placehold.it/60" class="img-fluid" alt="{{$value->nhatuyendung->tencongty}}" title="{{$value->nhatuyendung->tencongty}}">
+									<img src="//placehold.it/64" class="img-fluid" alt="{{$value->nhatuyendung->tencongty}}" title="{{$value->nhatuyendung->tencongty}}">
 								</div>
 								<div class="col">
 									<div class="card-block px-2 ">
@@ -350,6 +329,7 @@ $(document).ready(function(){
 
 				kq= '<div class="form-check">    <input type="checkbox" class="form-check-input" id="mucluong'+v.id+'"  name="mucluong[]" value="'+v.id+'">    <label class="form-check-label" for="mucluong'+v.id+'">'+v.tenmucluong+'</label>  </div>';
 				
+				
 				$('#dropdownMucluonglist').append(kq);
 			});
 
@@ -392,7 +372,7 @@ $(document).ready(function(){
 		
 		$("#demo").JPaging({
 
-		 visiblePageSize:1,
+			visiblePageSize:1,
 			pageSize: 2,
 			
 

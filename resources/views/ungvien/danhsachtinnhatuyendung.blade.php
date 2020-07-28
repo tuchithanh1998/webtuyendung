@@ -12,7 +12,7 @@
 						<h5 class="card-title">{{$data->tencongty}}</h5>
 						<p class="card-text"><span class="font-weight-bold text-info">Địa chỉ: </span>{{$data->diachicongty}} {{$data->thanhpho->tenthanhpho}}</p>
 						<p class="card-text"><span class="font-weight-bold text-info">Số điện thoại: </span>{{$data->sodienthoai}}</p>					
-						<p class="card-text"><span class="font-weight-bold text-info" >Website: </span><a href="{{$data->websitecongty}}">{{$data->websitecongty}}</a></p>
+						<p class="card-text"><span class="font-weight-bold text-info" >Website: </span><a href="http://{{$data->websitecongty}}">{{$data->websitecongty}}</a></p>
 						<p class="card-text"><span class="font-weight-bold text-info">Quy mô nhân sự: </span>{{$data->quymonhansu->quymo}}</p>					
 					</div>
 				</div>

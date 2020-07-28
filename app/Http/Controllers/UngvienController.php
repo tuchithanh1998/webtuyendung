@@ -25,48 +25,54 @@ class UngvienController extends Controller
   public function postDoimatkhau(Request $request)
   {
 
-      if (!(Hash::check($request->oldpassword,Auth::guard('ungvien')->user()->matkhau))) 
-    return redirect()->back()->with('alert','Mật khẩu hiện tại không khớp.');
+    if (!(Hash::check($request->oldpassword,Auth::guard('ungvien')->user()->matkhau))) 
+      return redirect()->back()->with('alert','Mật khẩu hiện tại không khớp.');
 
-     $this->validate($request,[
-  'oldpassword'=>'required',
-  'newpassword1'=>'required|min:8',
-  'newpassword2'=>'required|same:newpassword1|different:oldpassword|min:8',
-],[
-  'oldpassword.required'=>'Mật khẩu không được để trống.',
-  'newpassword1.required'=>'Mật khẩu không được để trống.',
-  'newpassword2.required'=>'Mật khẩu không được để trống.',
-  'oldpassword.min'=>'Mật khẩu tối tiểu 8 kí tự.',
-  'newpassword1.min'=>'Mật khẩu tối tiểu 8 kí tự.',
-  'newpassword2.min'=>'Mật khẩu tối tiểu 8 kí tự.',
-  'newpassword2.same'=>'Mật khẩu mới không khớp.',
-  'newpassword2.different'=>'Mật khẩu mới phải khác mật khẩu cũ.',
-]);
+    $this->validate($request,[
+      'oldpassword'=>'required',
+      'newpassword1'=>'required|min:8',
+      'newpassword2'=>'required|same:newpassword1|different:oldpassword|min:8',
+    ],[
+      'oldpassword.required'=>'Mật khẩu không được để trống.',
+      'newpassword1.required'=>'Mật khẩu không được để trống.',
+      'newpassword2.required'=>'Mật khẩu không được để trống.',
+      'oldpassword.min'=>'Mật khẩu tối tiểu 8 kí tự.',
+      'newpassword1.min'=>'Mật khẩu tối tiểu 8 kí tự.',
+      'newpassword2.min'=>'Mật khẩu tối tiểu 8 kí tự.',
+      'newpassword2.same'=>'Mật khẩu mới không khớp.',
+      'newpassword2.different'=>'Mật khẩu mới phải khác mật khẩu cũ.',
+    ]);
 
 
-   ungvien::where('id',Auth::guard('ungvien')->user()->id)->update(['matkhau'=>bcrypt($request->newpassword2)]);
-   return redirect()->back()->with('alert','Đổi mật khẩu thành công');
- }
+    ungvien::where('id',Auth::guard('ungvien')->user()->id)->update(['matkhau'=>bcrypt($request->newpassword2)]);
+    return redirect()->back()->with('alert','Đổi mật khẩu thành công');
+  }
 
- public function postSodienthoai(Request $request)
- {
+  public function postSodienthoai(Request $request)
+  {
    $this->validate($request,[
-  'sodienthoai'=>'required|min:10|max:10',
-  
-],[
-  'sodienthoai.required'=>'Số điện thoại không hợp lệ.',
-   'sodienthoai.min'=>'Số điện thoại không hợp lệ.',
+    'sodienthoai'=>'required|min:10|max:10',
+
+  ],[
+    'sodienthoai.required'=>'Số điện thoại không hợp lệ.',
+    'sodienthoai.min'=>'Số điện thoại không hợp lệ.',
     'sodienthoai.max'=>'Số điện thoại không hợp lệ.',
 
-]);
+  ]);
 
-  ungvien::where('id',Auth::guard('ungvien')->user()->id)->update(['sodienthoai'=>$request->sodienthoai]);
-  return redirect()->back()->with('alert','Cập nhật thành công');
-}
-public function postAnh(Request $request)
-{
+   ungvien::where('id',Auth::guard('ungvien')->user()->id)->update(['sodienthoai'=>$request->sodienthoai]);
+   return redirect()->back()->with('alert','Cập nhật thành công');
+ }
+ public function postAnh(Request $request)
+ {
 
+  $this->validate($request,[
+    'filesTest'=>'required',
 
+  ],[
+    'filesTest.required'=>'Ảnh không hợp lệ.',
+
+  ]);
   if($request->hasFile('filesTest'))
   {
 
@@ -98,6 +104,20 @@ public function getNguoithamkhaoxoa($id)
 
 public function postNguoithamkhaomoi(Request $request)
 {
+
+ $this->validate($request,[
+  'hoten'=>'required',
+  'sodienthoai'=>'required',
+  'congty'=>'required',
+  'chucvu'=>'required',
+  
+],[
+  'hoten.required'=>'Họ tên không được để trống.',
+  'sodienthoai.required'=>'Số điện thoại không được để trống.',
+  'congty.required'=>'Tên công ty không được để trống.',
+  'chucvu.required'=>'Chức vụ không được để trống.',
+]);
+
  $nguoithamkhao=new nguoithamkhao;
  $nguoithamkhao->hoten=$request->hoten;
  $nguoithamkhao->congty=$request->congty;
@@ -109,6 +129,19 @@ public function postNguoithamkhaomoi(Request $request)
 }
 public function postNguoithamkhaosua(Request $request,$id)
 {
+
+   $this->validate($request,[
+  'hoten'=>'required',
+  'sodienthoai'=>'required',
+  'congty'=>'required',
+  'chucvu'=>'required',
+  
+],[
+  'hoten.required'=>'Họ tên không được để trống.',
+  'sodienthoai.required'=>'Số điện thoại không được để trống.',
+  'congty.required'=>'Tên công ty không được để trống.',
+  'chucvu.required'=>'Chức vụ không được để trống.',
+]);
   $nguoithamkhao=nguoithamkhao::where('id',$id)->where('id_ungvien',Auth::guard('ungvien')->user()->id)->get();
   $nguoithamkhao[0]->hoten=$request->hoten;
   $nguoithamkhao[0]->congty=$request->congty;
@@ -120,7 +153,13 @@ public function postNguoithamkhaosua(Request $request,$id)
 }
 public function getTrinhdobangcapxoa($id)
 {
+
+
   $trinhdobangcap=trinhdobangcap::where('id_ungvien',Auth::guard('ungvien')->user()->id)->where('id',$id)->get();
+   if ($trinhdobangcap[0]->anh!=null)
+    {
+      unlink("upload/img/ungvien/bangcap/".$trinhdobangcap[0]->anh);
+    }
   $trinhdobangcap[0]->delete();
   return redirect()->back()->with('alert','Xóa thành công.');
 }
@@ -130,56 +169,58 @@ public function postTrinhdobangcapmoi(Request $request)
 
 
   $this->validate($request,[
-  'tenbangcap'=>'required',
-  'truongdaotao'=>'required',
-  'chuyennganh'=>'required',
-  'thoigiantotnghiep'=>'required',
+    'tenbangcap'=>'required',
+    'truongdaotao'=>'required',
+    'chuyennganh'=>'required',
+    'thoigiantotnghiep'=>'required',
 
-],[
-  'oldpassword.required'=>'Tên bằng cấp không được để trống.',
-   'truongdaotao.required'=>'Trường đào tạo không được để trống.',
+  ],[
+    'oldpassword.required'=>'Tên bằng cấp không được để trống.',
+    'truongdaotao.required'=>'Trường đào tạo không được để trống.',
     'chuyennganh.required'=>'Chuyên ngành không được để trống.',
-     'thoigiantotnghiep.required'=>'Thời gian tốt nghiệp không được để trống.',
-  
-]);
+    'thoigiantotnghiep.required'=>'Thời gian tốt nghiệp không được để trống.',
 
- $trinhdobangcap=new trinhdobangcap;
+  ]);
 
- if($request->hasFile('filesTest'))
+  $trinhdobangcap=new trinhdobangcap;
+
+  if($request->hasFile('filesTest'))
   {
-
-
-
-    if (Auth::guard('ungvien')->user()->anhdaidien!=null)
-    {
-      unlink("upload/img/ungvien/bangcap/".Auth::guard('ungvien')->user()->anhdaidien);
-    }
-
-
     $file=$request->filesTest;
     $name=$file->getClientOriginalName();
     $hinh=Str::random(4)."_".$name;
-    while ( file_exists("upload/img/ungvien/bangcap/".$hinh)) {
+    while (file_exists("upload/img/ungvien/bangcap/".$hinh)) {
       $hinh=Str::random(4)."_".$name;
     }
     $file->move("upload/img/ungvien/bangcap/",$hinh);  $trinhdobangcap->anh=$hinh;
   }
+  $trinhdobangcap->tenbangcap=$request->tenbangcap;
+  $trinhdobangcap->truongdaotao=$request->truongdaotao;
+  $trinhdobangcap->chuyennganh=$request->chuyennganh;
+  $trinhdobangcap->id_ungvien=Auth::guard('ungvien')->user()->id;
+  $trinhdobangcap->thoigiantotnghiep=date($request->thoigiantotnghiep.'-01');
 
-
-
- $trinhdobangcap->tenbangcap=$request->tenbangcap;
- $trinhdobangcap->truongdaotao=$request->truongdaotao;
- $trinhdobangcap->chuyennganh=$request->chuyennganh;
- $trinhdobangcap->id_ungvien=Auth::guard('ungvien')->user()->id;
- $trinhdobangcap->thoigiantotnghiep=date($request->thoigiantotnghiep.'-01');
-
- $trinhdobangcap->save();
- return redirect()->back()->with('alert','Thêm thành công.');
+  $trinhdobangcap->save();
+  return redirect()->back()->with('alert','Thêm thành công.');
   
 }
 
 public function postTrinhdobangcapsua(Request $request,$id)
 {
+
+    $this->validate($request,[
+    'tenbangcap'=>'required',
+    'truongdaotao'=>'required',
+    'chuyennganh'=>'required',
+    'thoigiantotnghiep'=>'required',
+
+  ],[
+    'oldpassword.required'=>'Tên bằng cấp không được để trống.',
+    'truongdaotao.required'=>'Trường đào tạo không được để trống.',
+    'chuyennganh.required'=>'Chuyên ngành không được để trống.',
+    'thoigiantotnghiep.required'=>'Thời gian tốt nghiệp không được để trống.',
+
+  ]);
   $trinhdobangcap=trinhdobangcap::where('id_ungvien',Auth::guard('ungvien')->user()->id)->where('id',$id)->get();
   $trinhdobangcap[0]->tenbangcap=$request->tenbangcap;
   $trinhdobangcap[0]->truongdaotao=$request->truongdaotao;
@@ -187,8 +228,32 @@ public function postTrinhdobangcapsua(Request $request,$id)
   $trinhdobangcap[0]->id_ungvien=Auth::guard('ungvien')->user()->id;
   $trinhdobangcap[0]->thoigiantotnghiep=date($request->thoigiantotnghiep.'-01');
 
+
+ if($request->hasFile('filesTestup'))
+  {
+
+
+
+    if ($trinhdobangcap[0]->anh!=null)
+    {
+      unlink("upload/img/ungvien/bangcap/".$trinhdobangcap[0]->anh);
+    }
+
+
+    $file=$request->filesTestup;
+    $name=$file->getClientOriginalName();
+    $hinh=Str::random(4)."_".$name;
+    while ( file_exists("upload/img/ungvien/bangcap/".$hinh)) {
+      $hinh=Str::random(4)."_".$name;
+    }
+    $file->move("upload/img/ungvien/bangcap/",$hinh);  
+ echo  $trinhdobangcap[0]->anh=$hinh;
+  }
+
+
+
   $trinhdobangcap[0]->save();
-  return redirect()->back()->with('alert','Thêm thành công.');
+  return redirect()->back()->with('alert','Sửa thành công.');
 }
 
 public function getTrinhdongoainguxoa($id_ngoaingu)

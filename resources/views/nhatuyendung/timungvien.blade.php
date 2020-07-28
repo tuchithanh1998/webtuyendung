@@ -14,6 +14,25 @@
 								<option  value="">Ngành nghề</option>							
 							</select>
 						</div>
+
+						<div class="form-group  w-100">
+							<label class="sr-only">Địa điểm</label>
+							<select class="form-control w-100" id="thanhpho" name="thanhpho">
+								<option class=""  style="" value="">Thành phố</option>
+							</select>
+						</div>
+						<div class="form-group w-100">								
+							<label class="sr-only">Trình độ</label>
+							<select class="form-control w-100" id="trinhdo" name="trinhdo">
+								<option  value="">Trình độ</option>							
+							</select>
+						</div>
+						<div class="form-group w-100 ">								
+							<label class="sr-only">Hinh thức làm việc</label>
+							<select class="form-control w-100" id="hinhthuclamviec" name="hinhthuclamviec">
+								<option  value="">Hinh thức làm việc</option>							
+							</select>
+						</div>
 					</div>
 					<div class="col-6">
 
@@ -24,12 +43,48 @@
 								<div class="dropdown-toggle w-100 form-control" href="#" role="button" id="dropdownKynang" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 									Kỹ năng
 								</div>
-							<div class="dropdown-menu w-100 text-center" aria-labelledby="dropdownKynang" id="dropdownKynanglist">
+								<div class="dropdown-menu w-100 text-center" aria-labelledby="dropdownKynang" id="dropdownKynanglist">
 								</div>
 							</div>
 						</div>
+
+
+						<div class="form-group  w-100 text-left">
+							<div class="dropdown w-100 ">
+																
+							<label class="sr-only">Mức lương</label>
+							<select class="form-control w-100" id="mucluong" name="mucluong">
+								<option  value="">Mức lương</option>							
+							</select>
+						
+							</div>
+
+						</div>
+						<div class="form-group w-100 text-left">
+							<div class="dropdown w-100 ">
+
+								<div class="dropdown-toggle w-100 form-control" href="#" role="button" id="dropdownKinhnghiem" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+									Kinh nghiệm
+								</div>
+
+								<div class="dropdown-menu w-100" aria-labelledby="dropdownKinhnghiem" id="dropdownKinhnghiemlist">
+									
+								</div>
+							</div>
+						</div>
+
+						<div class="form-group w-100">								
+							<label class="sr-only">Cấp bậc</label>
+							<select class="form-control w-100" id="capbac" name="capbac">
+								<option  value="">Cấp bậc</option>							
+							</select>
+						</div>
+
 					</div>
-<button style="margin-top: 5px;" type="button submit" class="btn btn-info"><img src="upload\img\layout\search.svg">Tìm kiếm</button>
+
+
+
+					<button style="margin-top: 5px;" type="button submit" class="btn btn-info"><img src="upload\img\layout\search.svg">Tìm kiếm</button>
 
 
 
@@ -55,7 +110,7 @@
 									<th>Ngành nghề</th>
 									<th >Kỹ năng</th>
 									<th></th>
-								
+
 								</tr>
 							</thead>
 							<tbody class="">
@@ -74,102 +129,212 @@
 
 										</td>
 										<td  data-toggle="modal" data-target="#trangthai{{$key}}" style="margin: 0px;padding: 10px;" >
-										
-								
-									</tr>
 
 
-							
+										</tr>
 
 
-								<?php endforeach ?>
-							</tbody>
-						</table>
 
+
+
+									<?php endforeach ?>
+								</tbody>
+							</table>
+
+						</div>
 					</div>
+
+
 				</div>
-
-
 			</div>
 		</div>
 	</div>
-</div>
 
 
-@endsection
-@section('script')
-<script type="text/javascript">
+	@endsection
+	@section('script')
+	<script type="text/javascript">
 
-	function getParameterByName(name, url) {
-		if (!url) url = window.location.href;
-		name = name.replace(/[\[\]]/g, '\\$&');
-		var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
-		results = regex.exec(url);
-		if (!results) return null;
-		if (!results[2]) return '';
-		return decodeURIComponent(results[2].replace(/\+/g, ' '));
-	}
+		function getParameterByName(name, url) {
+			if (!url) url = window.location.href;
+			name = name.replace(/[\[\]]/g, '\\$&');
+			var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+			results = regex.exec(url);
+			if (!results) return null;
+			if (!results[2]) return '';
+			return decodeURIComponent(results[2].replace(/\+/g, ' '));
+		}
 
 
 
-	$('#nganhnghe').change(function(){
+		$('#nganhnghe').change(function(){
 
-		$.ajax({
-			type:'GET',
-			url:'api/kynang/'+$('#nganhnghe').val(),
-			success:function(data){
-				$('#dropdownKynanglist').html('');
-				var kq='';
-				$.each(data,function(k,v){
-					kq='<div class="form-check">    <input type="checkbox" class="form-check-input" id="kynang'+v.id+'"  name="kynang[]" value="'+v.id+'">    <label class="form-check-label" for="kynang'+v.id+'">'+v.tenkynang+'</label>  </div>';
+			$.ajax({
+				type:'GET',
+				url:'api/kynang/'+$('#nganhnghe').val(),
+				success:function(data){
+					$('#dropdownKynanglist').html('');
+					var kq='';
+					$.each(data,function(k,v){
+						kq='<div class="form-check">    <input type="checkbox" class="form-check-input" id="kynang'+v.id+'"  name="kynang[]" value="'+v.id+'">    <label class="form-check-label" for="kynang'+v.id+'">'+v.tenkynang+'</label>  </div>';
 
-					$('#dropdownKynanglist').append(kq);
-				});
+						$('#dropdownKynanglist').append(kq);
+					});
 
-			}
+				}
+			});
 		});
-	});
 
-	$(document).ready(function(){
+		$(document).ready(function(){
+			$.ajax({
+				type:'GET',
+				url:'api/trinhdo',
+				success:function(data){
+
+					var kq='';
+					$.each(data,function(k,v){				
+						kq= '<option value="'+v.id+'">'+v.tentrinhdo+'</option>';
+						if(getParameterByName('trinhdo')==v.id)
+							kq= '<option selected value="'+v.id+'">'+v.tentrinhdo+'</option>';
+						$('#trinhdo').append(kq);					
+					});
+
+				}
+			});
+			$.ajax({
+				type:'GET',
+				url:'api/hinhthuclamviec',
+				success:function(data){
+
+					var kq='';
+					$.each(data,function(k,v){				
+						kq= '<option value="'+v.id+'">'+v.tenhinhthuclamviec+'</option>';
+						if(getParameterByName('hinhthuclamviec')==v.id)
+							kq= '<option selected value="'+v.id+'">'+v.tenhinhthuclamviec+'</option>';
+						$('#hinhthuclamviec').append(kq);					
+					});
+
+				}
+			});
+
+			$.ajax({
+				type:'GET',
+				url:'api/thanhpho',
+				success:function(data){
+
+					var kq='';
+					$.each(data,function(k,v){				
+						kq= '<option value="'+v.id+'">'+v.tenthanhpho+'</option>';
+if(getParameterByName('thanhpho')==v.id)
+						{
+
+							kq= '<option selected value="'+v.id+'">'+v.tenthanhpho+'</option>';
+
+						}
+						$('#thanhpho').append(kq);					
+					});
+				
+
+				}
+			});
+				$.ajax({
+				type:'GET',
+				url:'api/capbac',
+				success:function(data){
+
+					var kq='';
+					$.each(data,function(k,v){				
+						kq= '<option value="'+v.id+'">'+v.tencapbac+'</option>';
+if(getParameterByName('capbac')==v.id)
+						{
+
+							kq= '<option selected value="'+v.id+'">'+v.tencapbac+'</option>';
+
+						}
+						$('#capbac').append(kq);					
+					});
+					
+
+				}
+			});
 
 
-		$.ajax({
-			type:'GET',
-			url:'api/nganhnghe',
-			success:function(data){
+				$.ajax({
+				type:'GET',
+				url:'api/mucluong',
+				success:function(data){
 
-				var kq='';
-				$.each(data,function(k,v){
+					var kq='';
+					$.each(data,function(k,v){				
+						kq= '<option value="'+v.id+'">'+v.tenmucluong+'</option>';
+						if(getParameterByName('mucluong')==v.id)
+						{
 
-					kq= '<option value="'+v.id+'">'+v.tennganhnghe+'</option>';
-					if(getParameterByName('nganhnghe')==v.id)
-					{
+							kq= '<option selected value="'+v.id+'">'+v.tenmucluong+'</option>';
 
-						kq= '<option selected value="'+v.id+'">'+v.tennganhnghe+'</option>';
+						}
 
-					}
-					$('#nganhnghe').append(kq);
-				});
+						$('#mucluong').append(kq);					
+					});
+					
 
-			}
-		});
+				}
+			});
+
+
+			$.ajax({
+				type:'GET',
+				url:'api/nganhnghe',
+				success:function(data){
+
+					var kq='';
+					$.each(data,function(k,v){
+
+						kq= '<option value="'+v.id+'">'+v.tennganhnghe+'</option>';
+						if(getParameterByName('nganhnghe')==v.id)
+						{
+
+							kq= '<option selected value="'+v.id+'">'+v.tennganhnghe+'</option>';
+
+						}
+						$('#nganhnghe').append(kq);
+					});
+
+				}
+			});
 
 
 			$.ajax({
 
-		type:'GET',
-		url:'api/kynang/'+getParameterByName('nganhnghe'),
-		success:function(data){
-			$('#dropdownKynanglist').html('');
-			var kq='';
-			$.each(data,function(k,v){
-				kq='<div class="text-left"><div class="form-check">    <input type="checkbox" class="form-check-input " id="kynang'+v.id+'"  name="kynang[]" value="'+v.id+'">    <label class="form-check-label " for="kynang'+v.id+'">'+v.tenkynang+'</label>  </div></div';
+				type:'GET',
+				url:'api/kynang/'+getParameterByName('nganhnghe'),
+				success:function(data){
+					$('#dropdownKynanglist').html('');
+					var kq='';
+					$.each(data,function(k,v){
+						kq='<div class="text-left"><div class="form-check">    <input type="checkbox" class="form-check-input " id="kynang'+v.id+'"  name="kynang[]" value="'+v.id+'">    <label class="form-check-label " for="kynang'+v.id+'">'+v.tenkynang+'</label>  </div></div';
 
-				$('#dropdownKynanglist').append(kq);
+						$('#dropdownKynanglist').append(kq);
+					});
+
+				}
 			});
 
-		}
-	});
-	});
-</script>
-@endsection
+
+
+			$.ajax({
+				type:'GET',
+				url:'api/kinhnghiem',
+				success:function(data){
+
+					var kq='';
+					$.each(data,function(k,v){
+						kq='<div class="form-check">    <input type="checkbox" class="form-check-input" id="kinhnghiem'+v.id+'"  name="kinhnghiem[]" value="'+v.id+'">    <label class="form-check-label" for="kinhnghiem'+v.id+'">'+v.tenkinhnghiem+'</label>  </div>';			
+						$('#dropdownKinhnghiemlist').append(kq);
+					});
+
+				}
+			});
+		});
+	</script>
+	@endsection

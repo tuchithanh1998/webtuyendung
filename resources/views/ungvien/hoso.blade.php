@@ -400,7 +400,12 @@
 									</p>
 								</div>
 								<div class="col-6">	
-									<p class="card-text"><span class="font-weight-bold"></span>  <img style="height: 200px;" src="//placehold.it/200">  </p>
+									<p class="card-text"><span class="font-weight-bold"></span>  
+						@if($value->anh!=null)
+								<img style="height: 200px;" src="upload/img/ungvien/bangcap/{{$value->anh}}">
+								@else
+										<img style="height: 200px;" src="//placehold.it/200">  
+									@endif</p>
 								</div>
 							</div>
 						</div>
@@ -417,7 +422,7 @@
 
 											<div class="row">
 												<div class="col-6 text-left text-info">
-													THAY ĐỔI
+													CẬP NHẬT TRÌNH ĐỘ BẰNG CẤP
 												</div>
 												<div class="col-6 text-right">
 													<sub>	(*)Thông tin bắt buộc nhập</sub>
@@ -425,7 +430,7 @@
 											</div>
 										</div>
 										<div class="card-body">
-											<form action="ung-vien/ho-so/trinh-do-bang-cap-sua/{{$value->id}}" method="POST">
+											<form enctype="multipart/form-data" action="ung-vien/ho-so/trinh-do-bang-cap-sua/{{$value->id}}" method="POST">
 												<input type="hidden" name="_token" value="{{csrf_token()}}"/>
 												<div class="form-group row">
 													<label for="tenbangcap" class="col-sm-4 col-form-label">Tên bằng cáp: *</label>
@@ -455,8 +460,11 @@
 												<div class="form-group row">
 													<label for="anh" class="col-sm-4 col-form-label">Ảnh: </label>
 													<div class="col-sm-8">
-														<input type="file" class="form-control" value="" id="anh" name="anh">
-													</div>
+													<div class="custom-file">
+																	<input  type="file" name="filesTestup" required="true" onchange="return fileValidationup()" class="custom-file-input" id="inputGroupFileup" aria-describedby="inputGroupFileAddonup">
+																	<label class="custom-file-label"  for="inputGroupFileup">Chọn ảnh</label>
+																</div>
+												</div>
 												</div>
 												
 												<div class="form-group row">
@@ -465,6 +473,7 @@
 													</div>
 												</div>
 											</form>
+											 <div  id="imagePreviewup"></div>
 										</div>
 									</div>
 								</div>
@@ -496,7 +505,7 @@
 										</div>
 									</div>
 									<div class="card-body">
-										<form action="ung-vien/ho-so/trinh-do-bang-cap-moi" method="POST">
+										<form  enctype="multipart/form-data" action="ung-vien/ho-so/trinh-do-bang-cap-moi" method="POST">
 											<input type="hidden" name="_token" value="{{csrf_token()}}"/>
 											<div class="form-group row">
 												<label for="tenbangcap" class="col-sm-4 col-form-label">Tên bằng cấp: *</label>
@@ -1646,7 +1655,7 @@
 
 											if($('#thanhpho'+v.id).val()!=v.id)
 											{
-												if(localStorage.length<2){
+												if(localStorage.length<3){
 
 													kq= '<div class="list-inline-item w-25" id="form-check-'+v.id+'" title="Xóa" onclick="remove(this,'+v.id+')" >    <input  type="checkbox" checked  id="thanhpho'+v.id+'"  name="thanhpho[]" value="'+v.id+'" class="custom-control-input">    <label class="" for="thanhpho'+v.id+'">'+v.tenthanhpho+' x</label>  </div>';
 
@@ -1700,6 +1709,27 @@ if (fileInput.files && fileInput.files[0]) {
 	var reader = new FileReader();
 	reader.onload = function(e) {
 		document.getElementById('imagePreview').innerHTML = '<img style="width:400px;height:300px;" src="'+e.target.result+'"/>';
+	};
+	reader.readAsDataURL(fileInput.files[0]);
+}
+}
+}
+
+				function fileValidationup(){
+		var fileInput = document.getElementById('inputGroupFileup');
+var filePath = fileInput.value;//lấy giá trị input theo id
+var allowedExtensions = /(\.jpg|\.jpeg|\.png|\.gif)$/i;//các tập tin cho phép
+//Kiểm tra định dạng
+if(!allowedExtensions.exec(filePath)){
+	alert('Vui lòng upload các file có định dạng: .jpeg/.jpg/.png/.gif only.');
+	fileInput.value ='';
+	return false;
+}else{
+//Image preview
+if (fileInput.files && fileInput.files[0]) {
+	var reader = new FileReader();
+	reader.onload = function(e) {
+		document.getElementById('imagePreviewup').innerHTML = '<img style="width:400px;height:300px;" src="'+e.target.result+'"/>';
 	};
 	reader.readAsDataURL(fileInput.files[0]);
 }
