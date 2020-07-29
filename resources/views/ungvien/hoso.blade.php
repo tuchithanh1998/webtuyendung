@@ -44,12 +44,12 @@
 	</p>			
 	
 	<p class="card-text"><span class="font-weight-bold">Thành phố: </span>
-		<?php foreach ($data->ungvien_thanhpho as $key => $value): ?>
+		<?php foreach ($data->ungvien_thanhpho as $key => $value): if($key!=0) echo " , ";?>
 			{{$value->tenthanhpho}}
 		<?php endforeach ?>
 	</p>
 	<p class="card-text"><span class="font-weight-bold">Kỹ năng: </span>
-		<?php foreach ($data->ungvien_kynang as $key => $value): ?>
+		<?php foreach ($data->ungvien_kynang as $key => $value): if($key!=0) echo " , "  ?>
 			{{$value->tenkynang}}
 		<?php endforeach ?>
 	</p>
@@ -1533,7 +1533,7 @@
 
 
 
-								$.ajax({
+						/*		$.ajax({
 									type:'GET',
 									url:'api/kynang/'+{{Auth::guard('ungvien')->user()->id_nganhnghe}},
 									success:function(data){
@@ -1546,7 +1546,7 @@
 										});
 
 									}
-								});
+								});*/
 
 
 
@@ -1559,14 +1559,15 @@
 										var kq='';
 										$.each(data,function(k,v){				
 											kq= '<option  value="'+v.id+'">'+v.tenkinhnghiem+'</option>';
-											if({{Auth::guard('ungvien')->user()->id_trinhdo}}==v.id)
+											if(v.id=={{Auth::guard('ungvien')->user()->id_kinhnghiem==null?0:Auth::guard('ungvien')->user()->id_kinhnghiem}})
+										
 												kq= '<option selected value="'+v.id+'">'+v.tenkinhnghiem+'</option>';
 											$('#kinhnghiem').append(kq);					
 										});
 
 									}
 								});
-								$.ajax({
+									$.ajax({
 
 									type:'GET',
 									url:'api/trinhdo',
@@ -1575,7 +1576,7 @@
 										var kq='';
 										$.each(data,function(k,v){				
 											kq= '<option  value="'+v.id+'">'+v.tentrinhdo+'</option>';
-											if({{Auth::guard('ungvien')->user()->id_kinhnghiem}}==v.id)
+									if(v.id=={{Auth::guard('ungvien')->user()->id_trinhdo==null?0:Auth::guard('ungvien')->user()->id_trinhdo}})
 												kq= '<option selected value="'+v.id+'">'+v.tentrinhdo+'</option>';
 											$('#trinhdo').append(kq);					
 										});
@@ -1592,7 +1593,7 @@
 										var kq='';
 										$.each(data,function(k,v){				
 											kq= '<option  value="'+v.id+'">'+v.tennganhnghe+'</option>';
-											if({{Auth::guard('ungvien')->user()->id_nganhnghe}}==v.id)
+											if(v.id=={{Auth::guard('ungvien')->user()->id_nganhnghe==null?0:Auth::guard('ungvien')->user()->id_nganhnghe}})
 												kq= '<option selected value="'+v.id+'">'+v.tennganhnghe+'</option>';
 											$('#nganhnghe').append(kq);					
 										});
@@ -1608,7 +1609,7 @@
 										var kq='';
 										$.each(data,function(k,v){				
 											kq= '<option  value="'+v.id+'">'+v.tencapbac+'</option>';
-											if({{Auth::guard('ungvien')->user()->id_capbac}}==v.id)
+											if(v.id=={{Auth::guard('ungvien')->user()->id_capbac==null?0:Auth::guard('ungvien')->user()->id_capbac}})
 												kq= '<option selected value="'+v.id+'">'+v.tencapbac+'</option>';
 											$('#capbac').append(kq);					
 										});
@@ -1624,7 +1625,7 @@
 										var kq='';
 										$.each(data,function(k,v){				
 											kq= '<option  value="'+v.id+'">'+v.tenhinhthuclamviec+'</option>';
-											if({{Auth::guard('ungvien')->user()->id_hinhthuclamviec}}==v.id)
+										if(v.id=={{Auth::guard('ungvien')->user()->id_hinhthuclamviec==null?0:Auth::guard('ungvien')->user()->id_hinhthuclamviec}})
 												kq= '<option selected value="'+v.id+'">'+v.tenhinhthuclamviec+'</option>';
 											$('#hinhthuclamviec').append(kq);					
 										});

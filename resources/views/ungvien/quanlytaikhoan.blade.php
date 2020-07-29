@@ -324,7 +324,7 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 
-		$('#thongtincanhan').click(function(){
+	
 		
 	$.ajax({
 		type:'GET',
@@ -334,7 +334,8 @@
 			var kq='';
 			$.each(data,function(k,v){				
 				kq= '<option value="'+v.id+'">'+v.tenthanhpho+'</option>';
-				if(v.id=={{Auth::guard('ungvien')->user()->id_thanhpho}})
+
+				if(v.id=={{Auth::guard('ungvien')->user()->id_thanhpho==null?0:Auth::guard('ungvien')->user()->id_thanhpho}})
 					kq= '<option selected value="'+v.id+'">'+v.tenthanhpho+'</option>';
 					$('#thanhpho').append(kq);					
 			});
@@ -344,7 +345,7 @@
 	});
 
 
-		});
+		
 	});
 
 

@@ -64,14 +64,10 @@ else{
 											if ($expire_dt > $today_dt) {
 
 												if(Auth::guard('ungvien')->check())
-{
+												{
 													if(!App\ungvien_nop_tin::where('id_ungvien',Auth::guard('ungvien')->user()->id)->where('id_tintuyendung',$data->id)->first())
 														{?>
-
-
-
 															<form action="ung-vien/nop-ho-so/{{$data->id}}">
-
 																<button type="submit" class="btn btn-danger w-100 h-100" >NỘP HỒ SƠ</button>
 															</form>
 															<?php 

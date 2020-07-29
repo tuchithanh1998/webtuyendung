@@ -130,7 +130,7 @@ public function postNguoithamkhaomoi(Request $request)
 public function postNguoithamkhaosua(Request $request,$id)
 {
 
-   $this->validate($request,[
+ $this->validate($request,[
   'hoten'=>'required',
   'sodienthoai'=>'required',
   'congty'=>'required',
@@ -142,24 +142,24 @@ public function postNguoithamkhaosua(Request $request,$id)
   'congty.required'=>'Tên công ty không được để trống.',
   'chucvu.required'=>'Chức vụ không được để trống.',
 ]);
-  $nguoithamkhao=nguoithamkhao::where('id',$id)->where('id_ungvien',Auth::guard('ungvien')->user()->id)->get();
-  $nguoithamkhao[0]->hoten=$request->hoten;
-  $nguoithamkhao[0]->congty=$request->congty;
-  $nguoithamkhao[0]->sodienthoai=$request->sodienthoai;
-  $nguoithamkhao[0]->chucvu=$request->chucvu;
-  $nguoithamkhao[0]->id_ungvien=Auth::guard('ungvien')->user()->id;
-  $nguoithamkhao[0]->save();
-  return redirect()->back()->with('alert','Sửa thành công.');
+ $nguoithamkhao=nguoithamkhao::where('id',$id)->where('id_ungvien',Auth::guard('ungvien')->user()->id)->get();
+ $nguoithamkhao[0]->hoten=$request->hoten;
+ $nguoithamkhao[0]->congty=$request->congty;
+ $nguoithamkhao[0]->sodienthoai=$request->sodienthoai;
+ $nguoithamkhao[0]->chucvu=$request->chucvu;
+ $nguoithamkhao[0]->id_ungvien=Auth::guard('ungvien')->user()->id;
+ $nguoithamkhao[0]->save();
+ return redirect()->back()->with('alert','Sửa thành công.');
 }
 public function getTrinhdobangcapxoa($id)
 {
 
 
   $trinhdobangcap=trinhdobangcap::where('id_ungvien',Auth::guard('ungvien')->user()->id)->where('id',$id)->get();
-   if ($trinhdobangcap[0]->anh!=null)
-    {
-      unlink("upload/img/ungvien/bangcap/".$trinhdobangcap[0]->anh);
-    }
+  if ($trinhdobangcap[0]->anh!=null)
+  {
+    unlink("upload/img/ungvien/bangcap/".$trinhdobangcap[0]->anh);
+  }
   $trinhdobangcap[0]->delete();
   return redirect()->back()->with('alert','Xóa thành công.');
 }
@@ -208,7 +208,7 @@ public function postTrinhdobangcapmoi(Request $request)
 public function postTrinhdobangcapsua(Request $request,$id)
 {
 
-    $this->validate($request,[
+  $this->validate($request,[
     'tenbangcap'=>'required',
     'truongdaotao'=>'required',
     'chuyennganh'=>'required',
@@ -229,7 +229,7 @@ public function postTrinhdobangcapsua(Request $request,$id)
   $trinhdobangcap[0]->thoigiantotnghiep=date($request->thoigiantotnghiep.'-01');
 
 
- if($request->hasFile('filesTestup'))
+  if($request->hasFile('filesTestup'))
   {
 
 
@@ -247,7 +247,7 @@ public function postTrinhdobangcapsua(Request $request,$id)
       $hinh=Str::random(4)."_".$name;
     }
     $file->move("upload/img/ungvien/bangcap/",$hinh);  
- echo  $trinhdobangcap[0]->anh=$hinh;
+    echo  $trinhdobangcap[0]->anh=$hinh;
   }
 
 
@@ -397,9 +397,26 @@ public function postKhac(Request $request){
 
 public function postHoso(Request $request){
 
+
+
+
+
   $ungvien=ungvien::find(Auth::guard('ungvien')->user()->id);
 
   $ungvien->vitrimongmuon=$request->vitrimongmuon;
+  if($request->nganhnghe!=$ungvien->id_nganhnghe)
+     $ungvien_kynang=ungvien_kynang::where('id_ungvien',Auth::guard('ungvien')->user()->id)->delete();
+  if($request->kynang!=null)
+ { 
+  $ungvien_kynang=ungvien_kynang::where('id_ungvien',Auth::guard('ungvien')->user()->id)->delete();
+  foreach (  $request->kynang as $key => $value) {
+
+   $ungvien_kynang=new ungvien_kynang;
+   $ungvien_kynang->id_ungvien=Auth::guard('ungvien')->user()->id;
+   $ungvien_kynang->id_kynang=$value;
+   $ungvien_kynang->save();
+ }
+}
   $ungvien->id_nganhnghe=$request->nganhnghe;
 
   $ungvien->id_capbac=$request->capbac;
@@ -408,23 +425,20 @@ public function postHoso(Request $request){
   $ungvien->id_trinhdo=$request->trinhdo;
 
   $ungvien->save();
-  $ungvien_thanhpho=ungvien_thanhpho::where('id_ungvien',Auth::guard('ungvien')->user()->id)->delete();
-  foreach (  $request->thanhpho as $key => $value) {
+  if($request->thanhpho!=null)
+  {
+    $ungvien_thanhpho=ungvien_thanhpho::where('id_ungvien',Auth::guard('ungvien')->user()->id)->delete();
 
-   $ungvien_thanhpho=new ungvien_thanhpho;
-   $ungvien_thanhpho->id_ungvien=Auth::guard('ungvien')->user()->id;
-   $ungvien_thanhpho->id_thanhpho=$value;
-   $ungvien_thanhpho->save();
- }
- $ungvien_kynang=ungvien_kynang::where('id_ungvien',Auth::guard('ungvien')->user()->id)->delete();
- foreach (  $request->kynang as $key => $value) {
+    foreach (  $request->thanhpho as $key => $value) {
 
-   $ungvien_kynang=new ungvien_kynang;
-   $ungvien_kynang->id_ungvien=Auth::guard('ungvien')->user()->id;
-   $ungvien_kynang->id_kynang=$value;
-   $ungvien_kynang->save();
+     $ungvien_thanhpho=new ungvien_thanhpho;
+     $ungvien_thanhpho->id_ungvien=Auth::guard('ungvien')->user()->id;
+     $ungvien_thanhpho->id_thanhpho=$value;
+     $ungvien_thanhpho->save();
+   }
  }
- return redirect()->back();
+ 
+return redirect()->back();
 
 }
 public function getHoso(){
