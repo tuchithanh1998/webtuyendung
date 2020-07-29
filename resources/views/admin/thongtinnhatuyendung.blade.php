@@ -108,17 +108,6 @@
 
 
 
-
-@if(count($errors)>0)
-      <div class="alert alert-warning list-inline-item" role="alert"> 
-        @foreach($errors->all() as $err)
-        {{$err}}<br>
-        @endforeach
-      </div>
-      @endif
-
-
-
 @endsection
 @section ('script')
 

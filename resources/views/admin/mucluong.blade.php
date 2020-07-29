@@ -96,8 +96,8 @@
                             echo "Ẩn";
 
                        ?></td>
-                      <td><button type="button" id="mucluong" class="btn btn-primary list-inline-item" data-toggle="modal" data-target="#mucluong{{$value->id}}">Sửa</button>
-                        <div class="modal fade" id="mucluong{{$value->id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+                      <td><button type="button" id="mucluong" class="btn btn-primary list-inline-item" data-toggle="modal" data-target="#mucluong-{{$value->id}}">Sửa</button>
+                        <div class="modal fade" id="mucluong-{{$value->id}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
               <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                   <div class="row">
@@ -116,21 +116,21 @@
                         <div class="card-body"><form action="admin/thong-so/muc-luong/postmucluong/{{$value->id}}" method="POST">
                           <input type="hidden" name="_token" value="{{csrf_token()}}"/>
                           <div class="form-group row">
-                            <label for="tenmucluong" class="col-sm-4 col-form-label">Tên mức lương: *</label>
+                            <label for="tenmucluong-{{$value->id}}" class="col-sm-4 col-form-label">Tên mức lương: *</label>
                             <div class="col-sm-8">
-                              <input type="" name="tenmucluong" value="{{$value->tenmucluong}}" class="form-control" id="tenmucluong" >
+                              <input type="" name="tenmucluong" value="{{$value->tenmucluong}}" class="form-control" id="tenmucluong-{{$value->id}}" >
                             </div>
                           </div>
                           <div class="form-group row">
-                            <label for="mucluong1" class="col-sm-4 col-form-label">Mức lương đầu: *</label>
+                            <label for="mucluong1-{{$value->id}}" class="col-sm-4 col-form-label">Mức lương đầu: *</label>
                             <div class="col-sm-8">
-                              <input type="" name="mucluong1" value="{{$value->mucluong1}}" class="form-control" id="mucluong1" >
+                              <input type="" name="mucluong1" value="{{$value->mucluong1}}" class="form-control" id="mucluong1-{{$value->id}}" >
                             </div>
                           </div>
                           <div class="form-group row">
-                            <label for="mucluong2" class="col-sm-4 col-form-label">Mức lương sau: *</label>
+                            <label for="mucluong2-{{$value->id}}" class="col-sm-4 col-form-label">Mức lương sau: *</label>
                             <div class="col-sm-8">
-                              <input type="" name="mucluong2" value="{{$value->mucluong2}}" class="form-control" id="mucluong2" >
+                              <input type="" name="mucluong2" value="{{$value->mucluong2}}" class="form-control" id="mucluong2-{{$value->id}}" >
                             </div>
                           </div>
                           <div class="radio">
@@ -170,13 +170,7 @@
   </div>
 </div>
 </div>
-@if(count($errors)>0)
-      <div class="alert alert-warning list-inline-item" role="alert"> 
-        @foreach($errors->all() as $err)
-        {{$err}}<br>
-        @endforeach
-      </div>
-      @endif
+
 @endsection
 @section ('script')
  <!-- Page level plugins -->

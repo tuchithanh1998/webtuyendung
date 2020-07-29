@@ -144,6 +144,26 @@
       </div>
     </div>
   </div>
+  @if(count($errors)>0)
+<div class="alert alert-warning alert-dismissible fixed-top fade show" style="margin-top: 100px; margin-left: 900px;  max-width: 300px;" role="alert">
+
+   @foreach($errors->all() as $err)
+        {{$err}}<br>
+        @endforeach
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+     @endif
+
+     @if (session('alert'))
+<div class="alert alert-warning alert-dismissible fade show fixed-top w-25" style="margin-top: 10%; margin-left:75%;" role="alert">
+  <strong>{{session('alert')}}</strong>
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+@endif
   <!-- Bootstrap core JavaScript-->
   <script src="admin/vendor/jquery/jquery.min.js"></script>
   <script src="admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
@@ -151,6 +171,14 @@
   <script src="admin/vendor/jquery-easing/jquery.easing.min.js"></script>
   <!-- Custom scripts for all pages-->
   <script src="admin/js/sb-admin-2.min.js"></script>
+  <script type="text/javascript">
+$(document).ready(function() {
+    // show the alert
+    setTimeout(function() {
+        $(".alert").alert('close');
+    }, 2000);
+});
+</script>
          @yield('script')
 </body>
 </html>
