@@ -12,36 +12,39 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Email</th>
+                      <th>STT</th>
                       <th>Họ & Tên</th>
+                      <th>Email</th>
                       <th>Địa chỉ</th>
                       <th>Số điện thoại</th>
-                      <th>Ngày sinh</th>
                          <th>Trạng thái</th>
                       <th>             </th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
-                       <th>Email</th>
+                      <th>STT</th>
                       <th>Họ & Tên</th>
+                       <th>Email</th>
                       <th>Địa chỉ</th>
                       <th>Số điện thoại</th>
-                      <th>Ngày sinh</th>
                          <th>Trạng thái</th>
                       <th>             </th>
                     </tr>
                   </tfoot>
                   <tbody>
                    
-                    <?php foreach ($data as $key => $value): ?>
+                    <?php
+$stt=0;
+                     foreach ($data as $key => $value):
+                     $stt++; ?>
   <tr>
-                      <td>{{$value->email}}</td>
+                      <td>{{$stt}}</td>
                       <td>{{$value->hoten}}</td>
+                      <td>{{$value->email}}</td>
                       <td>{{$value->diachi}} @if($value->id_thanhpho!=null) {{$value->thanhpho->tenthanhpho}}
                       @endif</td>
                       <td>{{$value->sodienthoai}}</td>
-                      <td>{{$value->ngaysinh}}</td>
                       <td><?php
                           if ($value->trangthai==1) {
                             echo "Mở";
@@ -50,20 +53,44 @@
                             echo "Khóa";
 
                        ?></td>
-                      <td><button type="button" data-toggle="modal" data-target="#exampleModal{{$key}}"  class="btn btn-light">Thay đổi</button>
+                      <td><button type="button" data-toggle="modal" data-target="#exampleModal{{$key}}"  class="btn btn-light">Chi tiết</button>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal{{$key}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-xl">
     <div class="modal-content">   <form action="admin/ung-vien/{{$value->id}}" method="POST"><input type="hidden" name="_token" value="{{csrf_token()}}"/>
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Chọn chứ năng cần thực hiện!</h5>
+        <h5 class="modal-title" id="exampleModalLabel" style="color: red;">THÔNG TIN ỨNG VIÊN</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
      
+     <div class="card">
+       <div class="card-body row">
+          <ul class="list-unstyled col-6">
+        <li>Họ và tên:  {{$value->hoten}}</li>
+        <li>Địa chỉ:  {{$value->diachi}} @if($value->id_thanhpho!=null) {{$value->thanhpho->tenthanhpho}}
+        @endif</li>
+        <li>Email: {{$value->email}}</li>
+        <li>Số điện thoại: {{$value->sodienthoai}}</li>
+        <li>Ngày sinh: {{$value->ngaysinh}}</li>
+        <li>Giới tính: {{$value->gioitinh}}</li>
+        <li>Tình trạng hôn nhân: {{$value->tinhtranghonnhan}}</li>
+        </ul>
+        <ul class="list-unstyled col-6">
+        <li>Mục tiêu:  {{$value->muctieu}}</li>
+        <li>Kỹ năng sở trường:  {{$value->kynangsotruong}}</li>
+        <li>Sở thích:  {{$value->sothich}}</li>
+        @if($value->anhdaidien!="")
+        <li><img style="width: 300px; height: 300px;"  src="upload/img/ungvien/anhdaidien/{{$value->anhdaidien}}"></li>
+        @endif
+        </ul>
+       </div>
+     </div>
+
+     <h6 class="modal-title" id="exampleModalLabel" style="color: red; text-decoration: underline;">Chọn chức năng!</h6>
         <div class="radio">
           <label>
             <input type="radio" name="Radios"  value="1" 

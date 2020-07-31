@@ -12,10 +12,9 @@
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Tiêu đề</th>
-                      <th>Số lượng cần tuyển</th>
+                      <th>STT</th>
+                      <th>Tiêu đề tuyển dụng</th>
                       <th>Nhà tuyển dụng</th>
-                      <th>Hồ sơ ứng tuyển</th>
                       <th>Thời hạn</th>
                          <th>Trạng thái</th>
                       <th>             </th>
@@ -23,22 +22,23 @@
                   </thead>
                   <tfoot>
                     <tr>
+                      <th>STT</th>
                        <th>Tiêu đề</th>
-                      <th>Số lượng cần tuyển</th>
                       <th>Nhà tuyển dụng</th>
-                      <th>Hồ sơ ứng tuyển</th>
                       <th>Thời hạn</th>
                          <th>Trạng thái</th>
                       <th>             </th>
                     </tr>
                   </tfoot>
                   <tbody>
-                  <?php foreach ($data as $key => $value): ?>
+                  <?php 
+                  $stt=0;
+                  foreach ($data as $key => $value):
+                  $stt++; ?>
                   <tr>
+                    <td>{{$stt}}</td>
                       <td>{{$value->tieudetuyendung}}</td>
-                      <td>{{$value->soluongcantuyen}}</td>
                       <td>{{$value->nhatuyendung->tencongty}}</td>
-                      <td>{{$value->gioitinh}}</td>
                       <td>{{$value->hannophoso}}</td>
                       <td><?php
                           if ($value->trangthai==1) {
@@ -48,20 +48,36 @@
                             echo "Ẩn";
 
                        ?></td>
-                      <td><button type="button" data-toggle="modal" data-target="#exampleModal{{$key}}"  class="btn btn-light">Thay đổi</button>
+                      <td><button type="button" data-toggle="modal" data-target="#exampleModal{{$key}}"  class="btn btn-light">Chi tiết</button>
 
 <!-- Modal -->
 <div class="modal fade" id="exampleModal{{$key}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
+  <div class="modal-dialog modal-xl">
     <div class="modal-content">   <form action="admin/tin-tuyen-dung/{{$value->id}}" method="POST"><input type="hidden" name="_token" value="{{csrf_token()}}"/>
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Chọn chứ năng cần thực hiện!</h5>
+        <h5 class="modal-title" id="exampleModalLabel" style="color: red;">THÔNG TIN TIN TUYỂN DỤNG</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
      
+     <div class="card">
+       <div class="card-body row">
+          <ul class="list-unstyled col-6">
+        <li>Tiêu đề tuyển dụng:  {{$value->tieudetuyendung}}</li>
+        <li>Số lượng cần tuyển:  {{$value->soluongcantuyen}}</li>
+        <li>Giới tính: {{$value->gioitinh}}</li>
+        <li>Độ tuổi: {{$value->dotuoi}}</li>
+        <li>Mô tả công việc: {{$value->motacongviec}}</li>
+        <li>Quyền lợi: {{$value->quyenloi}}</li>
+        <li>Yêu cầu khác: {{$value->yeucaukhac}}</li>
+        <li>Hạn nộp hồ sơ: {{$value->hannophoso}}}</li>
+        </ul>
+       </div>
+     </div>
+
+     <h6 class="modal-title" id="exampleModalLabel" style="color: red; text-decoration: underline;">Chọn chức năng!</h6>
         <div class="radio">
           <label>
             <input type="radio" name="Radios"  value="1" 

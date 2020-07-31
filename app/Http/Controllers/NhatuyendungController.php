@@ -282,6 +282,7 @@ class NhatuyendungController extends Controller
 		$tintuyendung->id_hinhthuclamviec=$request->hinhthuclamviec;
 		$tintuyendung->id_mucluong=$request->mucluong;
 		$tintuyendung->id_trinhdo=$request->trinhdo;
+		$tintuyendung->ngaydangtin=new DateTime();
 		$tintuyendung->id_nhatuyendung=	Auth::guard('nhatuyendung')->user()->id;
 		$tintuyendung->save();
 if($request->kynang!=null)
@@ -365,6 +366,7 @@ foreach ($request->thanhpho as $key => $value) {
 		$nhatuyendung->emaillienhe=$request->emaillienhe;
 		$nhatuyendung->logo=$request->logo;
 		$nhatuyendung->gioithieu=$request->gioithieu;
+		$nhatuyendung->ngaytao=new DateTime();
 		$nhatuyendung->save();
 
 		$arr = [
