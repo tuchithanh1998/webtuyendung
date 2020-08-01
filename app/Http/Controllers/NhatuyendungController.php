@@ -11,12 +11,40 @@ use App\tintuyendung_thanhpho;
 use App\ungvien_nop_tin;
 use App\ungvien;
 use App\mucluong;
+use App\nhatuyendung_luu_ungvien;
 use DateTime;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 
 class NhatuyendungController extends Controller
 {
+
+	public function getXoaungviendaluu($id)
+	{
+		if(nhatuyendung_luu_ungvien::where('id_ungvien',$id)->where('id_nhatuyendung',Auth::guard('nhatuyendung')->user()->id)->first()!="")
+			{	nhatuyendung_luu_ungvien::where('id_ungvien',$id)->where('id_nhatuyendung',Auth::guard('nhatuyendung')->user()->id)->delete();
+		return redirect()->back()->with('alert','Xóa thành công.');
+	}
+	return redirect()->back()->with('alert','Không tồn tại.');
+}
+public function getUngviendaluu()
+{
+		//$data=nhatuyendung_luu_ungvien::where('id_nhatuyendung',Auth::guard('nhatuyendung')->user()->id)->get();
+	$data=	Auth::guard('nhatuyendung')->user()->luuungvien;
+	return view('nhatuyendung.ungviendaluu',['data'=>$data]);
+}
+
+public function getNhatuyendungluuungvien($id)
+{
+	if(nhatuyendung_luu_ungvien::where('id_ungvien',$id)->where('id_nhatuyendung',Auth::guard('nhatuyendung')->user()->id)->first()=="")
+		{	$x=new nhatuyendung_luu_ungvien;
+			$x->id_ungvien=$id;
+			$x->id_nhatuyendung=Auth::guard('nhatuyendung')->user()->id;
+			$x->save();
+			return redirect()->back()->with('alert','Thêm thành công.');
+		}
+		return redirect()->back()->with('alert','Đã tồn tại.');
+	}
 	public function postThongtinnguoilienhe(Request $request)
 	{
 
@@ -26,23 +54,23 @@ class NhatuyendungController extends Controller
 	{
 
 		$this->validate($request,[
-			
+
 			'tencongty'=>'required',
 			'diachicongty'=>'required',
-			'id_thanhpho'=>'required',
+			'thanhpho'=>'required',
 			'sodienthoai'=>'required',
-			
-			'id_quymonhansu'=>'required',
 
-			
+			'quymon'=>'required',
+
+
 
 		],[
 			'tencongty.required'=>'Tên công ty không được để trống.',
 			'diachicongty.required'=>'Địa chỉ không được để trống.',
-			'id_thanhpho.required'=>'Thành phố không được để trống.',
+			'thanhpho.required'=>'Thành phố không được để trống.',
 			'sodienthoai.required'=>'Số điện thoại không được để trống.',
-			
-			'id_quymonhansu.required'=>'Quy mô nhân sự không được để trống.',
+
+			'quymo.required'=>'Quy mô nhân sự không được để trống.',
 
 		]);
 		if($request->hasFile('filesTest'))
@@ -82,7 +110,7 @@ class NhatuyendungController extends Controller
 
 		return view('nhatuyendung.tintuyendung',['data'=>$tintuyendung[0]]);
 	}
-	
+
 	public function postDoimatkhau(Request $request)
 	{
 
@@ -151,12 +179,12 @@ class NhatuyendungController extends Controller
 		}
 		if(isset($_GET['thanhpho'])&&$_GET['thanhpho']!="")
 		{
-			
+
 			$ungvien->join('ungvien_thanhpho',
 				'ungvien.id','=','ungvien_thanhpho.id_ungvien')->where('ungvien_thanhpho.id_thanhpho',$_GET['thanhpho']);
-			
+
 		}
-		
+
 
 		if (isset($_GET['kinhnghiem'])) 
 		{
@@ -171,13 +199,13 @@ class NhatuyendungController extends Controller
 		}
 		if (isset($_GET['mucluong'])) 
 		{
-			
+
 			$ungvien->when($_GET['mucluong']!="",function($q)
 			{
 				$mucluong=mucluong::findOrFail($_GET['mucluong']);
 				return $q->WhereBetween('mucluongmongmuon',[$mucluong->mucluong1,$mucluong->mucluong2]);
 			});
-			
+
 		}
 		if (isset($_GET['kynang'])) 
 		{
@@ -285,23 +313,23 @@ class NhatuyendungController extends Controller
 		$tintuyendung->ngaydangtin=new DateTime();
 		$tintuyendung->id_nhatuyendung=	Auth::guard('nhatuyendung')->user()->id;
 		$tintuyendung->save();
-if($request->kynang!=null)
-		foreach ($request->kynang as $key => $value) {
-			$tintuyendung_kynang=new tintuyendung_kynang;
-			$tintuyendung_kynang->id_tintuyendung=$tintuyendung->id;
-			$tintuyendung_kynang->id_kynang=$value;
-			$tintuyendung_kynang->save();
-		}
+		if($request->kynang!=null)
+			foreach ($request->kynang as $key => $value) {
+				$tintuyendung_kynang=new tintuyendung_kynang;
+				$tintuyendung_kynang->id_tintuyendung=$tintuyendung->id;
+				$tintuyendung_kynang->id_kynang=$value;
+				$tintuyendung_kynang->save();
+			}
 
 
-		foreach ($request->thanhpho as $key => $value) {
-			$tintuyendung_thanhpho=new tintuyendung_thanhpho;
-			$tintuyendung_thanhpho->id_tintuyendung=$tintuyendung->id;
-			$tintuyendung_thanhpho->id_thanhpho=$value;
-			$tintuyendung_thanhpho->save();
-		}
+			foreach ($request->thanhpho as $key => $value) {
+				$tintuyendung_thanhpho=new tintuyendung_thanhpho;
+				$tintuyendung_thanhpho->id_tintuyendung=$tintuyendung->id;
+				$tintuyendung_thanhpho->id_thanhpho=$value;
+				$tintuyendung_thanhpho->save();
+			}
 
-		return redirect()->back()->with('alert','Đăng tin tuyển dụng thành công.');
+			return redirect()->back()->with('alert','Đăng tin tuyển dụng thành công.');
 
 /*foreach ($request->kynang as $key => $value) {
 	

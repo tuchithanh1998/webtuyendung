@@ -40,4 +40,8 @@ class nhatuyendung extends Authenticatable
     {
         return $this->hasMany('App\tintuyendung','id_nhatuyendung');
     }
+      public function luuungvien()
+    {
+        return $this->hasMany('App\nhatuyendung_luu_ungvien','id_nhatuyendung');
+    }
 }

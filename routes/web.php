@@ -95,6 +95,13 @@ Route::get('nha-tuyen-dung/tin-da-dang/huy/{id_tintuyendung}','NhatuyendungContr
 Route::post('nha-tuyen-dung/quan-ly-tai-khoan/doi-mat-khau','NhatuyendungController@postDoimatkhau')->middleware('login_nhatuyendung');
 Route::post('nha-tuyen-dung/quan-ly-tai-khoan/thong-tin-cong-ty','NhatuyendungController@postThongtincongty')->middleware('login_nhatuyendung');
 Route::post('nha-tuyen-dung/quan-ly-tai-khoan/thong-tin-nguoi-lien-he','NhatuyendungController@postThongtinnguoilienhe')->middleware('login_nhatuyendung');
+Route::get('nha-tuyen-dung/ung-vien/luu/{id_ungvien}','NhatuyendungController@getNhatuyendungluuungvien')->middleware('login_nhatuyendung');
+Route::get('nha-tuyen-dung/ung-vien-da-luu','NhatuyendungController@getUngviendaluu')->middleware('login_nhatuyendung');
+Route::get('nha-tuyen-dung/ung-vien/xoa/{id_ungvien}','NhatuyendungController@getXoaungviendaluu')->middleware('login_nhatuyendung');
+
+
+
+
 
 
 Route::get('/admin/login','AdminController@getDangnhap');

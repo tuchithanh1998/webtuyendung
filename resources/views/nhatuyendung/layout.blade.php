@@ -53,12 +53,16 @@
           <div class="card list-group-item border-0">
             <div class="row no-gutters ">
               <div class="col-auto">
+                @if(Auth::guard('nhatuyendung')->user()->logo!="")
+                <img src="upload/img/nhatuyendung/logo/{{Auth::guard('nhatuyendung')->user()->logo}}" style="width: 64px;height: 64px;" class="img-fluid" alt="">
+                @else
                 <img src="//placehold.it/64" class="img-fluid" alt="">
+                @endif
               </div>
               <div class="col">
                 <div class="card-block px-2">
 
-                  <p class="card-text"> <a href="" style="color:#6C757D;"><?php echo Auth::guard('nhatuyendung')->user()->tencongty; ?></a></p>
+                  <p class="card-text"> <a style="color:#6C757D;"><?php echo Auth::guard('nhatuyendung')->user()->tencongty; ?></a></p>
 
                   <p class="card-text"> <a href="nhatuyendung/thoat" style="color:#6C757D;">Thoát</a></p>
                 </div>
@@ -79,7 +83,7 @@
         <a href="nha-tuyen-dung\tim-ung-vien" class="list-group-item border-0"><div >
           <img src="upload\img\layout\search.svg">Tìm hồ sơ ứng viên
         </div></a>
-        <a href="nhatuyendung\ungviendaluu" class="list-group-item border-0"><div >
+        <a href="nha-tuyen-dung\ung-vien-da-luu" class="list-group-item border-0"><div >
           <img src="upload\img\layout\search.svg">Quản lý hồ sơ đã lưu
         </div></a>
        
