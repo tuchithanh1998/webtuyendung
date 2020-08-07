@@ -15,7 +15,7 @@ class QuymonhansuController extends Controller
      */
     public function index()
     {
-         $quymonhansu=quymonhansu::all();
+         $quymonhansu=quymonhansu::where('trangthai','1')->get();
         return response()->json($quymonhansu);
     }
 

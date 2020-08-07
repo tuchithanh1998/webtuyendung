@@ -15,7 +15,7 @@ class HinhthuclamviecController extends Controller
      */
     public function index()
     {
-         $hinhthuclamviec=hinhthuclamviec::all();
+         $hinhthuclamviec=hinhthuclamviec::where('trangthai','1')->get();
         return response()->json($hinhthuclamviec);
     }
 

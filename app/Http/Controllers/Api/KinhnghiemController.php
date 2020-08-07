@@ -15,7 +15,7 @@ class KinhnghiemController extends Controller
      */
     public function index()
     {
-       $kinhnghiem=kinhnghiem::all();
+       $kinhnghiem=kinhnghiem::where('trangthai','1')->get();
         return response()->json($kinhnghiem);
     }
 

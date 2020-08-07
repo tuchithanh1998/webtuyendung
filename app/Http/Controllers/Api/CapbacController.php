@@ -15,7 +15,7 @@ class CapbacController extends Controller
      */
     public function index()
     {
-         $capbac=capbac::all();
+         $capbac=capbac::where('trangthai','1')->get();
         return response()->json($capbac);
     }
 

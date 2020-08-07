@@ -37,7 +37,7 @@ class KynangController extends Controller
      */
     public function show($id)
     {
-        $kynang=kynang::where('id_nganhnghe',$id)->get();
+        $kynang=kynang::where('id_nganhnghe',$id)->where('trangthai','1')->get();
         return response()->json($kynang);
     }
 

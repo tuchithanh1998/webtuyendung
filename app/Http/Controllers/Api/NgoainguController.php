@@ -14,7 +14,7 @@ class NgoainguController extends Controller
      */
     public function index()
     {
-          $ngoaingu=ngoaingu::all();
+          $ngoaingu=ngoaingu::where('trangthai','1')->get();
         return response()->json($ngoaingu);
     }
 

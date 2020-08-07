@@ -317,7 +317,7 @@ public function postTrinhdongoaingumoi(Request $request)
 
     $trinhdotinhoc->save();
 
-    return redirect()->back();
+    return redirect()->back()->with('alert','Cập nhật thành công.');
   }
 
 
@@ -337,7 +337,7 @@ public function postTrinhdongoaingumoi(Request $request)
    }
 
 
-   return redirect()->back()->with('success','Đã lưu tin tuyển dụng');
+   return redirect()->back()->with('alert','Đã lưu tin tuyển dụng');
  }
 
 
@@ -347,43 +347,83 @@ public function postTrinhdongoaingumoi(Request $request)
 
  public function getKinhnghiemlamviecxoa($id){
   $kinhnghiemlamviec=kinhnghiemlamviec::find($id)->delete();
-  return redirect()->back();
+  return redirect()->back()->with('alert','Xóa thành công.');
 }
 public function postKinhnghiemlamviec(Request $request){
-  $kinhnghiemlamviec=new kinhnghiemlamviec;
-  $kinhnghiemlamviec->tencongty=$request->tencongty;
-  $kinhnghiemlamviec->chucdanh=$request->chucdanh;
-  $kinhnghiemlamviec->thoigianbatdau=date($request->thoigianbatdau.'-01');
-  $kinhnghiemlamviec->thoigianketthuc=date($request->thoigianketthuc.'-01');
-  $kinhnghiemlamviec->congviechientai=$request->congviechientai;
-  $kinhnghiemlamviec->mucluong=$request->mucluong;
-  $kinhnghiemlamviec->motacongviec=$request->motacongviec;
-  $kinhnghiemlamviec->thanhtich=$request->thanhtich;
-  $kinhnghiemlamviec->id_ungvien=Auth::guard('ungvien')->user()->id;
-  $kinhnghiemlamviec->save();
-  return redirect()->back();
+
+ $this->validate($request,[
+  'tencongty'=>'required',
+  'chucdanh'=>'required',
+  'thoigianbatdau'=>'required',
+  'mucluong'=>'required',
+  'motacongviec'=>'required',
+
+
+],[
+  'tencongty.required'=>'Tên công ty không được để trống.',
+  'chucdanh.required'=>'Chức danh không được để trống.',
+  'thoigianbatdau.required'=>'Thời gian được để trống.',
+  'mucluong.required'=>'Mức lương không được để trống.',
+  'motacongviec.required'=>'Mô tả công việc không được để trống.',
+
+]);
+ $kinhnghiemlamviec=new kinhnghiemlamviec;
+ $kinhnghiemlamviec->tencongty=$request->tencongty;
+ $kinhnghiemlamviec->chucdanh=$request->chucdanh;
+ $kinhnghiemlamviec->thoigianbatdau=date($request->thoigianbatdau.'-01');
+ if($request->thoigianketthuc)
+ $kinhnghiemlamviec->thoigianketthuc=date($request->thoigianketthuc.'-01');
+ if($request->hiennay||!$request->thoigianketthuc)
+ $kinhnghiemlamviec->congviechientai=1;
+ $kinhnghiemlamviec->mucluong=$request->mucluong;
+ $kinhnghiemlamviec->motacongviec=$request->motacongviec;
+ $kinhnghiemlamviec->thanhtich=$request->thanhtich;
+ $kinhnghiemlamviec->id_ungvien=Auth::guard('ungvien')->user()->id;
+ $kinhnghiemlamviec->save();
+ return redirect()->back()->with('alert','Thêm thành công.');
 
 }
 
 public function postKinhnghiemlamviecsua(Request $request,$id){
 
+
+ $this->validate($request,[
+  'tencongty'=>'required',
+  'chucdanh'=>'required',
+  'thoigianbatdau'=>'required',
+  'mucluong'=>'required',
+  'motacongviec'=>'required',
+
+
+],[
+  'tencongty.required'=>'Tên công ty không được để trống.',
+  'chucdanh.required'=>'Chức danh không được để trống.',
+  'thoigianbatdau.required'=>'Thời gian được để trống.',
+  'mucluong.required'=>'Mức lương không được để trống.',
+  'motacongviec.required'=>'Mô tả công việc không được để trống.',
+
+]);
  $kinhnghiemlamviec=kinhnghiemlamviec::find($id);
  $kinhnghiemlamviec->tencongty=$request->tencongty;
  $kinhnghiemlamviec->chucdanh=$request->chucdanh;
  $kinhnghiemlamviec->thoigianbatdau=date($request->thoigianbatdau.'-01');
+ if($request->thoigianketthuc)
  $kinhnghiemlamviec->thoigianketthuc=date($request->thoigianketthuc.'-01');
- $kinhnghiemlamviec->congviechientai=$request->congviechientai;
+ if($request->hiennay||!$request->thoigianketthuc)
+ $kinhnghiemlamviec->congviechientai=1;
+
  $kinhnghiemlamviec->mucluong=$request->mucluong;
  $kinhnghiemlamviec->motacongviec=$request->motacongviec;
  $kinhnghiemlamviec->thanhtich=$request->thanhtich;
  $kinhnghiemlamviec->save();
 
- return redirect()->back();
+ return redirect()->back()->with('alert','Cập nhật thành công.');
 
 
 
 }
-public function postKhac(Request $request){
+public function postKhac(Request $request)
+{
 
  $ungvien=ungvien::find(Auth::guard('ungvien')->user()->id);
 
@@ -392,7 +432,7 @@ public function postKhac(Request $request){
 
  $ungvien->sothich=$request->sothich;
  $ungvien->save();
- return redirect()->back();
+ return redirect()->back()->with('alert','Cập nhật thành công.');
 }
 
 public function postHoso(Request $request){
@@ -405,8 +445,8 @@ public function postHoso(Request $request){
 
   $ungvien->vitrimongmuon=$request->vitrimongmuon;
   if($request->nganhnghe!=$ungvien->id_nganhnghe)
-     $ungvien_kynang=ungvien_kynang::where('id_ungvien',Auth::guard('ungvien')->user()->id)->delete();
-  if($request->kynang!=null)
+   $ungvien_kynang=ungvien_kynang::where('id_ungvien',Auth::guard('ungvien')->user()->id)->delete();
+ if($request->kynang!=null)
  { 
   $ungvien_kynang=ungvien_kynang::where('id_ungvien',Auth::guard('ungvien')->user()->id)->delete();
   foreach (  $request->kynang as $key => $value) {
@@ -417,28 +457,28 @@ public function postHoso(Request $request){
    $ungvien_kynang->save();
  }
 }
-  $ungvien->id_nganhnghe=$request->nganhnghe;
+$ungvien->id_nganhnghe=$request->nganhnghe;
 
-  $ungvien->id_capbac=$request->capbac;
-  $ungvien->id_hinhthuclamviec=$request->hinhthuclamviec;
-  $ungvien->id_kinhnghiem=$request->kinhnghiem;
-  $ungvien->id_trinhdo=$request->trinhdo;
+$ungvien->id_capbac=$request->capbac;
+$ungvien->id_hinhthuclamviec=$request->hinhthuclamviec;
+$ungvien->id_kinhnghiem=$request->kinhnghiem;
+$ungvien->id_trinhdo=$request->trinhdo;
 
-  $ungvien->save();
-  if($request->thanhpho!=null)
-  {
-    $ungvien_thanhpho=ungvien_thanhpho::where('id_ungvien',Auth::guard('ungvien')->user()->id)->delete();
+$ungvien->save();
+if($request->thanhpho!=null)
+{
+  $ungvien_thanhpho=ungvien_thanhpho::where('id_ungvien',Auth::guard('ungvien')->user()->id)->delete();
 
-    foreach (  $request->thanhpho as $key => $value) {
+  foreach (  $request->thanhpho as $key => $value) {
 
-     $ungvien_thanhpho=new ungvien_thanhpho;
-     $ungvien_thanhpho->id_ungvien=Auth::guard('ungvien')->user()->id;
-     $ungvien_thanhpho->id_thanhpho=$value;
-     $ungvien_thanhpho->save();
-   }
+   $ungvien_thanhpho=new ungvien_thanhpho;
+   $ungvien_thanhpho->id_ungvien=Auth::guard('ungvien')->user()->id;
+   $ungvien_thanhpho->id_thanhpho=$value;
+   $ungvien_thanhpho->save();
  }
- 
-return redirect()->back();
+}
+
+return redirect()->back()->with('alert','Cập nhật thành công.');
 
 }
 public function getHoso(){
@@ -641,12 +681,52 @@ public function getTimkiemviec()
 
 
   if(Auth::guard('ungvien')->check()&&Auth::guard('ungvien')->user()->id_nganhnghe!=null)
+  {
     $data=tintuyendung::where('id_nganhnghe',Auth::guard('ungvien')->user()->id_nganhnghe)->where('trangthai',1)->where('hannophoso','>',new DateTime())->get();
-  else
-    $data=tintuyendung::where('trangthai',1)->where('hannophoso','>',new DateTime())->get();
+
+    $kynangcuaungvien=array();
+    $datax=array();
+    foreach (Auth::guard('ungvien')->user()->ungvien_kynang as $key => $value) 
+    {
+     array_push($kynangcuaungvien,$value->id);
+   }
+
+//   var_dump($kynangcuaungvien);
 
 
-  return view('ungvien.timkiemviec',['data'=>$data,'alert'=>'Công Việc Phù Hợp']);
+
+   foreach ($data as $key1 => $value1)
+   {
+    $kynangcuatintuyendung=array();
+    foreach ($value1->kynang as $key2 => $value2) 
+    { 
+     array_push($kynangcuatintuyendung,$value2->id);
+    // echo $value2->id;
+
+
+   }
+//printf($value1);
+   $dataend=array();
+   $datax[count(array_intersect($kynangcuaungvien,$kynangcuatintuyendung))][]=$value1;
+   // var_dump($kynangcuatintuyendung);
+   // echo $key1; var_dump(array_intersect($kynangcuaungvien,$kynangcuatintuyendung));
+//  echo count(array_intersect($kynangcuaungvien,$kynangcuatintuyendung));
+ }
+
+//var_dump($datax);
+ for ($i=0; $i <= count($kynangcuaungvien) ; $i++) { 
+  if(isset($datax[$i]))
+    foreach ($datax[$i] as $key => $value) {
+      $dataend[]=$value;
+    }
+  }
+  $data = array_reverse($dataend);
+} 
+else
+  $data=tintuyendung::where('trangthai',1)->where('hannophoso','>',new DateTime())->get();
+
+
+return view('ungvien.timkiemviec',['data'=>$data,'alert'=>'Công Việc Phù Hợp']);
 }
 
 
@@ -754,147 +834,14 @@ else{
   $kq=$tintuyendung;
 }
 
-/*foreach ($kq as $key => $value) {
- $kq2[$value->id]=$value;
-}*/
 
-return view('ungvien.timkiemviec',['data'=>$kq]);
 
 
 }
 
 
 
-/*public function getTimkiemviec()
-{
- $timkiem="";  
- $kq=[];
- $kq2=[];
- $tintuyendung=tintuyendung::query();
 
-
- if(isset($_GET['nganhnghe']))
- {
-  $tintuyendung->when($_GET['nganhnghe']!="",function($q)
-  {
-   return $q->where('id_nganhnghe','=',$_GET['nganhnghe']);
- });
-}
-if(isset($_GET['hinhthuclamviec']))
-{
-  $tintuyendung->when($_GET['hinhthuclamviec']!="",function($q)
-  {
-   return $q->where('id_hinhthuclamviec','=',$_GET['hinhthuclamviec']);
- });
-}
-
-if(isset($_GET['tencongviec']))
-{
-  $tintuyendung->when($_GET['tencongviec']!="",function($q)
-  {
-   return $q->where('tieudetuyendung','like','%'.$_GET['tencongviec'].'%');
- });
-}
-
-if(isset($_GET['trinhdo']))
-{
-  $tintuyendung->when($_GET['trinhdo']!="",function($q)
-  {
-   return $q->where('id_trinhdo',$_GET['trinhdo']);
- });
-}
-
-
-
-if (isset($_GET['mucluong'])) 
-{
-  $dsml=[];
-
-  foreach ($_GET['mucluong'] as $key => $value) 
-  {
-
-   array_push($dsml,$value);
- }	$tintuyendung->whereIn('id_mucluong',$dsml);		
-}
-
-if (isset($_GET['kinhnghiem'])) 
-{
-  $dskn=[];
-
-  foreach ($_GET['kinhnghiem'] as $key => $value) 
-  {
-
-   array_push($dskn,$value);
- }	$tintuyendung->whereIn('id_kinhnghiem',$dskn);
-}
-
-
-if (isset($_GET['kynang'])) 
-{
-  $dskynang=[];
-
-  foreach ($_GET['kynang'] as $key => $value) 
-  {
-
-   array_push($dskynang,$value);
- } 
-  $tintuyendung->join('tintuyendung_kynang', 'tintuyendung.id', '=', 'tintuyendung_kynang.id_tintuyendung')
- ->whereIn('tintuyendung_kynang.id_kynang',$dskynang);
-}
-
-if (!isset($_GET['nganhnghe'])&&!isset($_GET['tencongviec'])&&!isset($_GET['trinhdo'])&&!isset($_GET['thanhpho'])&&!isset($_GET['kynang'])&&!isset($_GET['kinhnghiem'])&&!isset($_GET['hinhthuclamviec'])&&!isset($_GET['mucluong'])) 
-{
-if(Auth::guard('ungvien')->check()&&Auth::guard('ungvien')->user()->id_nganhnghe!=null)
-  $data=tintuyendung::where('id_nganhnghe',Auth::guard('ungvien')->user()->id_nganhnghe)->where('trangthai',1)->get();
-else
-  $data=tintuyendung::where('trangthai',1)->get();
-  return view('ungvien.timkiemviec',['data'=>$data]);
-}
-elseif($tintuyendung==tintuyendung::query())
-{		
-  $tintuyendung=tintuyendung::where('trangthai',1)->get();
-}		
-else
-{
-  $tintuyendung=$tintuyendung->get();
-}
-
-if (isset($_GET['thanhpho']))
-{
-  if($_GET['thanhpho']!="")
-  {		
-   foreach ($tintuyendung as $key => $value)
-   { 
-    $x=$value->dsthanhpho;
-    foreach ($x as $key1 => $value1) 
-    {
-     if($value1['id_thanhpho']==$_GET['thanhpho'])
-     { 
-      array_push($kq,$value);
-      break;
-    }
-  }
-}
-
-foreach ($kq as $key => $value) {
- $kq2[$value->id]=$value;
-}
-
-return view('ungvien.timkiemviec',['data'=>$kq2]);
-}
-}
-
-$kq=$tintuyendung;
-foreach ($kq as $key => $value) {
-
-
-  
- $kq2[$value->id]=$value;
-}
-return view('ungvien.timkiemviec',['data'=>$kq]);
-
-
-}*/
 
 public function getTintuyendung($id)
 {	

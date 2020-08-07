@@ -15,7 +15,7 @@ class ThanhphoController extends Controller
      */
     public function index()
     {
-        $thanhpho=thanhpho::all();
+        $thanhpho=thanhpho::where('trangthai','1')->get();
         return response()->json($thanhpho);
         
     }

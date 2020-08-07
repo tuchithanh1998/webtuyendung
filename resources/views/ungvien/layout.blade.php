@@ -294,6 +294,13 @@
 			@yield('script')
 			<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 			<script src="../../../../assets/js/ie10-viewport-bug-workaround.js"></script>
-			
+			  <script type="text/javascript">
+$(document).ready(function() {
+    // show the alert
+    setTimeout(function() {
+        $(".alert").alert('close');
+    }, 2000);
+});
+</script>
 		</body>
 		</html>

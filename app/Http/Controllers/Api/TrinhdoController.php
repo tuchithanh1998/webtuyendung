@@ -14,7 +14,7 @@ class TrinhdoController extends Controller
      */
     public function index()
     {
-         $trinhdo=trinhdo::all();
+         $trinhdo=trinhdo::where('trangthai','1')->get();
         return response()->json($trinhdo);
     }
 

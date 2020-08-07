@@ -14,7 +14,7 @@ class NganhngheController extends Controller
      */
     public function index()
     {
-        $nganhnghe=nganhnghe::all();
+        $nganhnghe=nganhnghe::where('trangthai','1')->get();
         return response()->json($nganhnghe);
     
     }
