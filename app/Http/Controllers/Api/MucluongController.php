@@ -15,7 +15,7 @@ class MucluongController extends Controller
      */
     public function index()
     {
-        $mucluong=mucluong::::where('trangthai','1')->get();
+        $mucluong=mucluong::where('trangthai','1')->get();
         return response()->json($mucluong);
     }
 

@@ -834,8 +834,7 @@ else{
   $kq=$tintuyendung;
 }
 
-
-
+return view('ungvien.timkiemviec',['data'=>$kq]);
 
 }
 
