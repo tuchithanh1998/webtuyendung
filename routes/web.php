@@ -74,8 +74,8 @@ Route::post('/ung-vien/quan-ly-tai-khoan/doi-mat-khau', 'UngvienController@postD
 
 
 
-Route::get('/nhatuyendung','NhatuyendungController@getDangky');
-Route::post('/nhatuyendung','NhatuyendungController@postDangky');
+Route::get('/nha-tuyen-dung','NhatuyendungController@getDangky');
+Route::post('/nha-tuyen-dung','NhatuyendungController@postDangky');
 Route::post('/nhatuyendungdangnhap','NhatuyendungController@postDangnhap');
 
 Route::get('/nhatuyendung/thoat','NhatuyendungController@getThoat');

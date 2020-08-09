@@ -86,20 +86,20 @@
 
 				
 				<a href="timkiemviec" class="list-group-item border-0"><div >
-					<img src="upload\img\layout\search.svg">Tìm kiếm việc làm	
+				Tìm kiếm việc làm	
 				</div></a>
 
 				<a href="ungvien/quanlytaikhoan" class="list-group-item border-0"><div >
-					<img src="upload\img\layout\search.svg">Quản lý thông tin cá nhân	
+					Quản lý thông tin cá nhân	
 				</div></a>
 				<a href="ung-vien/ho-so" class="list-group-item border-0"><div >
-					<img src="upload\img\layout\search.svg">Quản lý hồ sơ việc làm
+					Quản lý hồ sơ việc làm
 				</div></a>
 				<a href="ungvien/tintuyendungdanop" class="list-group-item border-0"><div >
-					<img src="upload\img\layout\search.svg">Quản lý tin tuyển dụng đã nộp	
+					Quản lý tin tuyển dụng đã nộp	
 				</div></a>
 				<a href="ung-vien/tin-tuyen-dung-luu" class="list-group-item border-0"><div >
-					<img src="upload\img\layout\search.svg">Quản lý tin tuyển dụng đã lưu	
+					Quản lý tin tuyển dụng đã lưu	
 				</div></a>
 
 				

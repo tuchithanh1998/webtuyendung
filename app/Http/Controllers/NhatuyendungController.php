@@ -345,7 +345,7 @@ foreach ($request->thanhpho as $key => $value) {
 	}
 	public function getThoat(){
 		Auth::guard('nhatuyendung')->logout();
-		return redirect('nhatuyendung');
+		return redirect('nha-tuyen-dung');
 	}
 	public function getDangky(){
 		if(Auth::guard('nhatuyendung')->check())
