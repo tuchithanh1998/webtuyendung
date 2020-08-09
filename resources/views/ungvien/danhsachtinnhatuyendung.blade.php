@@ -5,7 +5,13 @@
 		<div class="card mb-3 w-100">
 			<div class="row no-gutters">
 				<div class="col-3">
-					<img src="//placehold.it/120" class="card-img w-100" alt="...">
+					@if($data->logo)
+										<img class="w-100" src="upload/img/nhatuyendung/logo/{{$data->logo}}"
+										class="img-fluid" alt="{{$data->tencongty}}" title="{{$data->tencongty}}">
+										@else								
+										<img src="//placehold.it/240"
+										class="img-fluid w-100" alt="{{$data->tencongty}}" title="{{$data->tencongty}}">
+										@endif
 				</div>
 				<div class="col-9">
 					<div class="card-body">
@@ -36,13 +42,26 @@
 
 					<li><h6>Không tìm thấy</h6></li>
 				<?php }
-				foreach ($data->tintuyendung as $key => $value): ?>	
+				foreach ($data->tintuyendung as $key => $value): 
+	  $today = date("Y-m-d");
+  $expire =$value->hannophoso;
+  $today_dt =  new DateTime(date("Y-m-d",mktime(0, 0, 0, date("m"), date("d"), date("Y"))));
+  $expire_dt = new DateTime($expire);
+
+  if ($expire_dt < $today_dt||$value->trangthai!=1) continue;
+					?>	
 					<li class="list-group-item" style="   padding: 0px; <?php  if($key!=0) echo "margin-top: 4px;"; ?>  margin-bottom: 0px;">
 						<div class="card border-0" >
 							<div class="row no-gutters ">
-								<div class="col-auto" title="Công ty">
-									<img src="//placehold.it/60" class="img-fluid" alt="{{$value->nhatuyendung->tencongty}}" title="{{$value->nhatuyendung->tencongty}}">
-								</div>
+							<!--	<div class="col-auto" title="Công ty">
+										@if($value->nhatuyendung->logo)
+										<img style="width: 64px;height: 64px;" src="upload/img/nhatuyendung/logo/{{$value->nhatuyendung->logo}}"
+										class="img-fluid" alt="{{$value->nhatuyendung->tencongty}}" title="{{$value->nhatuyendung->tencongty}}">
+										@else								
+										<img src="//placehold.it/64"
+										class="img-fluid" alt="{{$value->nhatuyendung->tencongty}}" title="{{$value->nhatuyendung->tencongty}}">
+										@endif
+								</div>-->
 								<div class="col">
 									<div class="card-block px-2 ">
 										<h6 class="card-title text-nowrap text-truncate" title="{{$value->tieudetuyendung}}" style="margin-top: 4px;"><a href="tintuyendung/{{$value->id}}">{{$value->tieudetuyendung}}</a></h6>
@@ -60,7 +79,7 @@
 									}
 									echo $value1->tenthanhpho;
 								} ?>'>
-								<img src="upload\img\layout\clock.svg"><p class="" >
+								<img src="upload\img\layout\map-pin.svg"><p class="" >
 									<?php foreach ($value->thanhpho as $key1 => $value1) {
 										if ($key1!=0) {
 											echo ",";
@@ -70,12 +89,13 @@
 								</p>
 							</div>
 							<div class="col-2 text-center" title="Hạn nộp" style="margin-left: 2px;">
-								<img src="upload\img\layout\clock.svg"><p>30/8/2020</p>
+								<img src="upload\img\layout\clock.svg"><p> <?php $date=date_create($value->hannophoso);
+										echo date_format($date,"d-m-Y"); ?></p>
 							</div>
-							<div class="col-1 text-center" title="Lưu việc làm" style="margin-left: 2px;">
+						<!--	<div class="col-1 text-center" title="Lưu việc làm" style="margin-left: 2px;">
 								<span class="glyphicon glyphicon-cog blue"></span>
 								<img src="upload\img\layout\clock.svg">
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</li>

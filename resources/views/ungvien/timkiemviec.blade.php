@@ -380,8 +380,8 @@ $(document).ready(function(){
 		
 		$("#demo").JPaging({
 
-			visiblePageSize:1,
-			pageSize: 2,
+			visiblePageSize:5,
+			pageSize: 10,
 			
 
 		});
