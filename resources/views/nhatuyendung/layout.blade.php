@@ -71,20 +71,20 @@
           </div>
         <?php } ?>
         <a href="nhatuyendung/quanlytaikhoan" class="list-group-item border-0"><div >
-          <img src="upload\img\layout\search.svg">Quản lý thông tin cá nhân 
+          Quản lý thông tin cá nhân 
         </div></a>
         <a href="nhatuyendung\dangtintuyendung" class="list-group-item border-0"><div >
-          <img src="upload\img\layout\search.svg">Tạo tin tuyển dụng
+        Tạo tin tuyển dụng
         </div></a>
         <a href="nhatuyendung\tindadang" class="list-group-item border-0"><div >
-          <img src="upload\img\layout\search.svg">Quản lý tin tuyển dụng
+         Quản lý tin tuyển dụng
         </div></a>
         
         <a href="nha-tuyen-dung\tim-ung-vien" class="list-group-item border-0"><div >
-          <img src="upload\img\layout\search.svg">Tìm hồ sơ ứng viên
+        Tìm hồ sơ ứng viên
         </div></a>
         <a href="nha-tuyen-dung\ung-vien-da-luu" class="list-group-item border-0"><div >
-          <img src="upload\img\layout\search.svg">Quản lý hồ sơ đã lưu
+        Quản lý hồ sơ đã lưu
         </div></a>
        
         

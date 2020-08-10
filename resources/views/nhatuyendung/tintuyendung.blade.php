@@ -47,13 +47,12 @@ else{
 					<div class="card-header bg-white text-left">
 						<div class="row">
 							<div class="col-md-6 list-group">
-								<span class="list-group-item border-0"><img src="upload\img\layout\clock.svg" style="margin-right: 5px;"><span class="font-weight-bold text-info">Mức lương: </span><span>{{$data->mucluong->tenmucluong}}</span></span>
-								<span class="list-group-item border-0"><img src="upload\img\layout\clock.svg" style="margin-right: 5px;"><span class="font-weight-bold text-info">Yêu cầu kinh nghiệm: </span><span>{{$data->kinhnghiem->tenkinhnghiem}}</span></span>
-								<span class="list-group-item border-0"><img src="upload\img\layout\clock.svg" style="margin-right: 5px;"><span class="font-weight-bold text-info">Cấp bậc: </span><span>{{$data->capbac->tencapbac}}</span></span>
-								<span class="list-group-item border-0"><img src="upload\img\layout\clock.svg" style="margin-right: 5px;"><span class="font-weight-bold text-info">Hình thức lam việc: </span><span>{{$data->hinhthuclamviec->tenhinhthuclamviec}}</span></span>
-								<span class="list-group-item border-0"><img src="upload\img\layout\clock.svg" style="margin-right: 5px;"><span class="font-weight-bold text-info">Số lượng cần tuyển: </span><span>{{$data->soluongcantuyen}}</span></span>
-
-								<span class="list-group-item border-0"><img src="upload\img\layout\clock.svg" style="margin-right: 5px;"><span class="font-weight-bold text-info">Yêu cầu kỹ năng: </span><span>	<?php foreach ($data->kynang as $key1 => $value1) {
+								<span class="list-group-item border-0"><span class="font-weight-bold text-info">Mức lương: </span><span>{{$data->mucluong->tenmucluong}}</span></span>
+								<span class="list-group-item border-0"><span class="font-weight-bold text-info">Yêu cầu kinh nghiệm: </span><span>{{$data->kinhnghiem->tenkinhnghiem}}</span></span>
+								<span class="list-group-item border-0"><span class="font-weight-bold text-info">Cấp bậc: </span><span>{{$data->capbac->tencapbac}}</span></span>
+								<span class="list-group-item border-0"><span class="font-weight-bold text-info">Hình thức lam việc: </span><span>{{$data->hinhthuclamviec->tenhinhthuclamviec}}</span></span>
+								<span class="list-group-item border-0"><span class="font-weight-bold text-info">Số lượng cần tuyển: </span><span>{{$data->soluongcantuyen}}</span></span>
+								<span class="list-group-item border-0"><span class="font-weight-bold text-info">Yêu cầu kỹ năng: </span><span>	<?php foreach ($data->kynang as $key1 => $value1) {
 									if ($key1!=0) {
 										echo ",";
 									}
@@ -62,7 +61,7 @@ else{
 
 							</div>
 							<div class="col-md-6 list-group">
-								<span class="list-group-item border-0"><img src="upload\img\layout\clock.svg" style="margin-right: 5px;"><span class="font-weight-bold text-info">Đại điểm làm việc: </span><span><?php foreach ($data->thanhpho as $key1 => $value1) {
+								<span class="list-group-item border-0"><span class="font-weight-bold text-info">Đại điểm làm việc: </span><span><?php foreach ($data->thanhpho as $key1 => $value1) {
 									if ($key1!=0) {
 										echo ",";
 									}
@@ -70,9 +69,9 @@ else{
 								} ?>
 
 							</span></span>
-							<span class="list-group-item border-0"><img src="upload\img\layout\clock.svg" style="margin-right: 5px;"><span class="font-weight-bold text-info">Trình độ: </span><span>{{$data->trinhdo->tentrinhdo}}</span></span>
-							<span class="list-group-item border-0"><img src="upload\img\layout\clock.svg" style="margin-right: 5px;"><span class="font-weight-bold text-info">Ngành nghề: </span><span>{{$data->nganhnghe->tennganhnghe}}</span></span>
-							<span class="list-group-item border-0"><img src="upload\img\layout\clock.svg" style="margin-right: 5px;"><span class="font-weight-bold text-info">Yêu cầu giới tính: </span><span>
+							<span class="list-group-item border-0"><span class="font-weight-bold text-info">Trình độ: </span><span>{{$data->trinhdo->tentrinhdo}}</span></span>
+							<span class="list-group-item border-0"><span class="font-weight-bold text-info">Ngành nghề: </span><span>{{$data->nganhnghe->tennganhnghe}}</span></span>
+							<span class="list-group-item border-0"><span class="font-weight-bold text-info">Yêu cầu giới tính: </span><span>
 								<?php if($data->gioitinh==1)
 								{echo "Nam";}
 								elseif ($data->gioitinh==2) {
@@ -81,7 +80,7 @@ else{
 									echo "Không yêu cầu";
 								}?>
 							</span></span>
-							<span class="list-group-item border-0"><img src="upload\img\layout\clock.svg" style="margin-right: 5px;"><span class="font-weight-bold text-info">Yêu cầu độ tuổi: </span><span>{{$data->dotuoi}}</span></span>
+							<span class="list-group-item border-0"><span class="font-weight-bold text-info">Yêu cầu độ tuổi: </span><span>{{$data->dotuoi}}</span></span>
 
 						</div>
 					</div>
