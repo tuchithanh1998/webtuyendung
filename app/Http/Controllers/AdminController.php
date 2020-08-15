@@ -255,12 +255,11 @@ class AdminController extends Controller
     {
         $this->validate($request,
         [
-            'tenkynang' => 'required|unique:kynang,tenkynang,'.$id_kynang.','
+            'tenkynang' => 'required:kynang,tenkynang,'.$id_kynang.','
         ],
 
         [
                 'tenkynang.required'=>'Không được để trống!',
-                 'tenkynang.unique'=>'Đã tồn tại!',
 
         ]
 
@@ -272,12 +271,11 @@ class AdminController extends Controller
     {
         $this->validate($request,
         [
-            'tenkynang' => 'required|unique:kynang,tenkynang',
+            'tenkynang' => 'required:kynang,tenkynang',
         ],
 
         [
                 'tenkynang.required'=>'Không được để trống!',
-                 'tenkynang.unique'=>'Đã tồn tại!',
 
         ]
 
@@ -290,7 +288,7 @@ class AdminController extends Controller
     {
         $this->validate($request,
         [
-            'quymo' => 'required|unique:kinhnghiem,quymonhansu,'.$id_quymonhansu.','
+            'quymo' => 'required|unique:quymonhansu,'.$id_quymonhansu.','
         ],
 
         [
@@ -307,7 +305,7 @@ class AdminController extends Controller
     {
         $this->validate($request,
         [
-            'quymo' => 'required|unique:kinhnghiem,quymonhansu',
+            'quymo' => 'required|unique:quymonhansu',
         ],
 
         [

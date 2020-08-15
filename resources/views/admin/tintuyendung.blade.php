@@ -72,7 +72,7 @@
         <li>Mô tả công việc: {{$value->motacongviec}}</li>
         <li>Quyền lợi: {{$value->quyenloi}}</li>
         <li>Yêu cầu khác: {{$value->yeucaukhac}}</li>
-        <li>Hạn nộp hồ sơ: {{$value->hannophoso}}}</li>
+        <li>Hạn nộp hồ sơ: {{$value->hannophoso}}</li>
         </ul>
        </div>
      </div>
