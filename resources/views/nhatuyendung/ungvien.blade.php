@@ -77,7 +77,7 @@
 				<p class="card-text"><span class="font-weight-bold">Hình thức làm việc: </span>{{$data->hinhthuclamviec->tenhinhthuclamviec}}</p>
 				<p class="card-text"><span class="font-weight-bold">Kinh nghiệm: </span>{{$data->kinhnghiem->tenkinhnghiem}}</p>
 				<p class="card-text"><span class="font-weight-bold">Trình độ: </span>{{$data->trinhdo->tentrinhdo}}</p>			
-				<p class="card-text"><span class="font-weight-bold">Mức lương: </span>{{$data->mucluong}}</p>
+				<p class="card-text"><span class="font-weight-bold">Mức lương: </span>{{$data->mucluongmongmuon}}</p>
 				<p class="card-text"><span class="font-weight-bold">Thành phố: </span>
 					<?php foreach ($data->ungvien_thanhpho as $key => $value): ?>
 						{{$value->tenthanhpho}}

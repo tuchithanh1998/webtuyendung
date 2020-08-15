@@ -8,6 +8,7 @@
 			<div class="card-header">THÔNG TIN HỒ SƠ<span><small class="text-info" data-toggle="modal" data-target="#thaydoihoso">...Cập nhật</small></span></div>
 			<div class="card-body">
 				<p class="card-text"><span class="font-weight-bold">Vị trí mong muốn: </span>{{$data->vitrimongmuon}}</p>
+				<p class="card-text"><span class="font-weight-bold">Mức lương mong muốn: </span>{{$data->mucluongmongmuon}} VNĐ</p>
 				<p class="card-text"><span class="font-weight-bold">Ngành nghề: </span><?php 
 
 				if($data->id_nganhnghe!="")
@@ -1218,7 +1219,13 @@
 																	<input type="text " class="form-control" value="{{Auth::guard('ungvien')->user()->vitrimongmuon}}" id="vitrimongmuon" name="vitrimongmuon">
 																</div>
 															</div>
-
+	<div class="form-group row">
+															<label for="mucluong" class="col-sm-4 col-form-label">Mức lương: *</label>
+															<div class="col-sm-7">
+																<input type="number" min="0" class="form-control" value="{{Auth::guard('ungvien')->user()->mucluongmongmuon}}"  id="mucluongmongmuon" name="mucluongmongmuon">
+															</div>
+															<label for="mucluong" class="col-sm-1 col-form-label">VNĐ</label>
+														</div>
 															<div class="form-group row">
 																<label for="nganhnghe" class="col-4 col-form-label">Ngành nghề: *</label>
 																<div class="col-8">

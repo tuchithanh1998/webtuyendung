@@ -450,6 +450,7 @@ public function postHoso(Request $request){
   $ungvien=ungvien::find(Auth::guard('ungvien')->user()->id);
 
   $ungvien->vitrimongmuon=$request->vitrimongmuon;
+    $ungvien->mucluongmongmuon=$request->mucluongmongmuon;
   if($request->nganhnghe!=$ungvien->id_nganhnghe)
    $ungvien_kynang=ungvien_kynang::where('id_ungvien',Auth::guard('ungvien')->user()->id)->delete();
  if($request->kynang!=null)
