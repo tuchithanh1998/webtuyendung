@@ -432,7 +432,11 @@ foreach ($request->thanhpho as $key => $value) {
         //kiểm tra trường remember có được chọn hay không
 
 		if (Auth::guard('nhatuyendung')->attempt($arr)) {
-
+if(Auth::guard('nhatuyendung')->user()->trangthai!=1)
+{
+  Auth::guard('ungvien')->logout();
+  return redirect()->back()->with('alert','Tài khoản bị khóa.');
+}
 			return redirect('nhatuyendung/quanlytaikhoan');
             //..code tùy chọn
             //đăng nhập thành công thì hiển thị thông báo đăng nhập thành công

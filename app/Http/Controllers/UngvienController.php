@@ -21,6 +21,12 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 class UngvienController extends Controller
 {
+public function getTintuyendunghuy($id)
+{
+  ungvien_nop_tin::where('id_ungvien',Auth::guard('ungvien')->user()->id)->where('id_tintuyendung',$id)->update(['id_trangthainoptin'=>4]);
+
+        return redirect()->back()->with('alert','Đã hủy nộp hồ sơ.');
+}
 
   public function postDoimatkhau(Request $request)
   {
@@ -601,10 +607,17 @@ public function postDangnhap(Request $request)
 
 if (Auth::guard('ungvien')->attempt($arr)) {
 
+if(Auth::guard('ungvien')->user()->trangthai!=1)
+{
+  Auth::guard('ungvien')->logout();
+  return redirect()->back()->with('alert','Tài khoản bị khóa.');
+}
   return redirect()->back();
             //..code tùy chọn
             //đăng nhập thành công thì hiển thị thông báo đăng nhập thành công
-} else {
+  }
+
+ else {
  return redirect()->back()->with('alert','Đăng nhập không thành công.');
 
 }
@@ -725,8 +738,10 @@ public function getTimkiemviec()
 else
   $data=tintuyendung::where('trangthai',1)->where('hannophoso','>',new DateTime())->get();
 
-
+if(Auth::guard('ungvien')->check())
 return view('ungvien.timkiemviec',['data'=>$data,'alert'=>'Công Việc Phù Hợp']);
+else
+return view('ungvien.timkiemviec',['data'=>$data,'alert'=>'Công Việc Hiện Có']);
 }
 
 

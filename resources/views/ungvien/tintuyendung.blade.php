@@ -34,8 +34,18 @@ else{
 								<h6 class="card-title"><a href="danh-sach-tin-nha-tuyen-dung/{{$data->id_nhatuyendung}}.html">{{$data->nhatuyendung->tencongty}}</a></h6>
 								<div class="row">
 									<div class="col-md-8 list-inline">
-										<form class="list-inline-item" action="ung-vien/luu-viec-lam/{{$data->id}}"><button type="submit" class="btn btn-light list-inline-item"><img src="upload\img\layout\save-off.svg">Lưu việc làm</button></form>
+							@if(Auth::guard('ungvien')->check())
 
+										<form class="list-inline-item" action="ung-vien/luu-viec-lam/{{$data->id}}">
+											<button type="submit" class="btn btn-light list-inline-item">
+												<img src="upload\img\layout\save-off.svg">Lưu việc làm
+											</button>
+										</form>
+							@else
+								<button type="submit" class="btn btn-light list-inline-item chuadangnhap">
+												<img src="upload\img\layout\save-off.svg">Lưu việc làm
+											</button>
+							@endif
 
 										<p class="list-inline-item"><img src="upload\img\layout\clock.svg">Hạn nộp hồ sơ :
 											<?php $date=date_create($data->hannophoso);
@@ -174,8 +184,10 @@ else{
 				$(document).ready(function(){
 					$('#nophoso').click(function(){
 						alert('Đăng nhập để nộp hồ sơ.')
+					});
+$('.chuadangnhap').click(function(){
+						alert('Đăng nhập để lưu tin tuyển dụng.')
 					})
-
 
 				});
 

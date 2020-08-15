@@ -16,6 +16,7 @@
 	  			<th>Ngày nộp hồ sơ</th>
 	  			<th>Ngày hết hạn nộp hồ sơ</th>
 	  			<th></th>
+	  			<th></th>
 	  		</tr>
 	  	</thead>
 	  	<tbody>
@@ -39,6 +40,10 @@ if ($expire_dt > $today_dt){*/
 										echo date_format($date,"d/m/Y");
 										?></td>
 											<td><?php echo $value->trangthainoptin->tentrangthainoptin; ?></td>
+												<td>@if($value->trangthainoptin->id!=4)
+											<form method="GET" action="ung-vien/tin-tuyen-dung-da-nop/{{$value->tintuyendung->id}}">	<button type="submit" style=" padding-top: 0;padding-bottom: 0;"  class="btn btn-warning">Hủy</button></form>	
+													@endif
+												</td>
 	  			</tr>
 	  		<?php /*}*/ endforeach ?>
 	  	</tbody>

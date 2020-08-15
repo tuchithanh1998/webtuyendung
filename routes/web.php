@@ -72,7 +72,7 @@ Route::post('/ungvien/quanlytaikhoan/postthongtincanhan/anh', 'UngvienController
 Route::post('/ungvien/quanlytaikhoan/postthongtincanhan/sodienthoai', 'UngvienController@postSodienthoai')->middleware('login_ungvien');
 Route::post('/ung-vien/quan-ly-tai-khoan/doi-mat-khau', 'UngvienController@postDoimatkhau')->middleware('login_ungvien');
 
-
+Route::get('/ung-vien/tin-tuyen-dung-da-nop/{id_tintuyendung}', 'UngvienController@getTintuyendunghuy')->middleware('login_ungvien');
 
 Route::get('/nha-tuyen-dung','NhatuyendungController@getDangky');
 Route::post('/nha-tuyen-dung','NhatuyendungController@postDangky');
