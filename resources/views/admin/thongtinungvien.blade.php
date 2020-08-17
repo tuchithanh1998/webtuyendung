@@ -70,19 +70,19 @@ $stt=0;
      <div class="card">
        <div class="card-body row">
           <ul class="list-unstyled col-6">
-        <li>Họ và tên:  {{$value->hoten}}</li>
-        <li>Địa chỉ:  {{$value->diachi}} @if($value->id_thanhpho!=null) {{$value->thanhpho->tenthanhpho}}
+        <li><h6 style="font-weight: bold;">Họ và tên:</h6>  {{$value->hoten}}</li>
+        <li><h6 style="font-weight: bold;">Địa chỉ:</h6>  {{$value->diachi}} @if($value->id_thanhpho!=null) {{$value->thanhpho->tenthanhpho}}
         @endif</li>
-        <li>Email: {{$value->email}}</li>
-        <li>Số điện thoại: {{$value->sodienthoai}}</li>
-        <li>Ngày sinh: {{$value->ngaysinh}}</li>
-        <li>Giới tính: {{$value->gioitinh}}</li>
-        <li>Tình trạng hôn nhân: {{$value->tinhtranghonnhan}}</li>
+        <li><h6 style="font-weight: bold;">Email:</h6> {{$value->email}}</li>
+        <li><h6 style="font-weight: bold;">Số điện thoại:</h6> {{$value->sodienthoai}}</li>
+        <li><h6 style="font-weight: bold;">Ngày sinh:</h6> {{$value->ngaysinh}}</li>
+        <li><h6 style="font-weight: bold;">Giới tính:</h6> {{$value->gioitinh}}</li>
+        <li><h6 style="font-weight: bold;">Tình trạng hôn nhân:</h6> {{$value->tinhtranghonnhan}}</li>
         </ul>
         <ul class="list-unstyled col-6">
-        <li>Mục tiêu:  {{$value->muctieu}}</li>
-        <li>Kỹ năng sở trường:  {{$value->kynangsotruong}}</li>
-        <li>Sở thích:  {{$value->sothich}}</li>
+        <li><h6 style="font-weight: bold;">Mục tiêu:</h6>  {{$value->muctieu}}</li>
+        <li><h6 style="font-weight: bold;">Kỹ năng sở trường:</h6>  {{$value->kynangsotruong}}</li>
+        <li><h6 style="font-weight: bold;">Sở thích:</h6>  {{$value->sothich}}</li>
         @if($value->anhdaidien!="")
         <li><img style="width: 300px; height: 300px;"  src="upload/img/ungvien/anhdaidien/{{$value->anhdaidien}}"></li>
         @endif

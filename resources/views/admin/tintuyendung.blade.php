@@ -65,14 +65,14 @@
      <div class="card">
        <div class="card-body row">
           <ul class="list-unstyled col-6">
-        <li>Tiêu đề tuyển dụng:  {{$value->tieudetuyendung}}</li>
-        <li>Số lượng cần tuyển:  {{$value->soluongcantuyen}}</li>
-        <li>Giới tính: {{$value->gioitinh}}</li>
-        <li>Độ tuổi: {{$value->dotuoi}}</li>
-        <li>Mô tả công việc: {{$value->motacongviec}}</li>
-        <li>Quyền lợi: {{$value->quyenloi}}</li>
-        <li>Yêu cầu khác: {{$value->yeucaukhac}}</li>
-        <li>Hạn nộp hồ sơ: {{$value->hannophoso}}</li>
+        <li><h6 style="font-weight: bold;">Tiêu đề tuyển dụng:</h6>  {{$value->tieudetuyendung}}</li>
+        <li><h6 style="font-weight: bold;">Số lượng cần tuyển:</h6>  {{$value->soluongcantuyen}}</li>
+        <li><h6 style="font-weight: bold;">Giới tính:</h6> {{$value->gioitinh}}</li>
+        <li><h6 style="font-weight: bold;">Độ tuổi:</h6> {{$value->dotuoi}}</li>
+        <li><h6 style="font-weight: bold;">Mô tả công việc:</h6> {{$value->motacongviec}}</li>
+        <li><h6 style="font-weight: bold;">Quyền lợi:</h6> {{$value->quyenloi}}</li>
+        <li><h6 style="font-weight: bold;">Yêu cầu khác:</h6> {{$value->yeucaukhac}}</li>
+        <li><h6 style="font-weight: bold;">Hạn nộp hồ sơ:</h6> {{$value->hannophoso}}</li>
         </ul>
        </div>
      </div>
