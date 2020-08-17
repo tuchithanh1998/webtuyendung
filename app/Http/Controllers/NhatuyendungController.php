@@ -47,6 +47,28 @@ public function getNhatuyendungluuungvien($id)
 	}
 	public function postThongtinnguoilienhe(Request $request)
 	{
+		$this->validate($request,[
+
+			'tennguoilienhe'=>'required',
+			'diachilienhe'=>'required',
+			'sodienthoailienhe'=>'required|max:10|min:10',
+			'emaillienhe'=>'required|email',
+		],[
+			'tennguoilienhe.required'=>'Tên  không được để trống.',
+			'diachilienhe.required'=>'Địa chỉ không được để trống.',
+			'sodienthoailienhe.required'=>'Số điện thoại không được để trống.',
+			'sodienthoailienhe.max'=>'Số điện thoại không hợp lệ.',
+			'sodienthoailienhe.min'=>'Số điện thoại không hợp lệ.',
+			'emaillienhe.required'=>'Email không được để trống.',
+			'emaillienhe.email'=>'Email không hợp lệ.',
+
+
+			
+
+		]);
+		$data=nhatuyendung::find(Auth::guard('nhatuyendung')->user()->id)->update(['tennguoilienhe'=>$request->tennguoilienhe,'diachilienhe'=>$request->diachilienhe,'sodienthoailienhe'=>$request->sodienthoailienhe,'emaillienhe'=>$request->emaillienhe]);
+
+		return redirect()->back()->with('alert','Sửa thành công.');
 
 	}
 
@@ -258,7 +280,7 @@ public function getNhatuyendungluuungvien($id)
 	}
 	public function postDangtintuyendung(Request $request)
 	{
-		$this->validate($request,[			
+		$test=	$this->validate($request,[			
 			'tieudetuyendung'=>'required',
 			'soluongcantuyen'=>'required|integer|between:1,50',
 			'dotuoi'=>'required',
@@ -295,7 +317,14 @@ public function getNhatuyendungluuungvien($id)
 
 		]);
 
+		if($test)
+		{
 
+		}
+		else
+		{
+			return redirect()->back()->withInput();
+		}
 
 		$tintuyendung=new tintuyendung;
 		$tintuyendung->tieudetuyendung=$request->tieudetuyendung;
@@ -362,7 +391,7 @@ foreach ($request->thanhpho as $key => $value) {
 	}
 	public function postDangky(Request $request){
 
-	$test=	$this->validate($request,[
+		$test=	$this->validate($request,[
 			'email'=>'required|max:255|email|unique:nhatuyendung,email',
 			'matkhau1'=>'required|max:255|min:8',
 			'matkhau2'=>'required|max:255|min:8|same:matkhau1',
@@ -431,14 +460,14 @@ foreach ($request->thanhpho as $key => $value) {
 
 		]);
 
-if($test)
-{
+		if($test)
+		{
 
-}
-else
-{
-	 return redirect()->back()->withInput();
-}
+		}
+		else
+		{
+			return redirect()->back()->withInput();
+		}
 
 
 		$nhatuyendung=new nhatuyendung;
