@@ -72,18 +72,18 @@ $stt++;
      <div class="card">
        <div class="card-body row">
           <ul class="list-unstyled col-6">
-        <li>Tên công ty:  {{$value->tencongty}}</li>
-        <li>Địa chỉ:  {{$value->diachicongty}}-{{$value->thanhpho->tenthanhpho}}</li>
-        <li>Email: {{$value->email}}</li>
-        <li>Số điện thoại: {{$value->sodienthoai}}</li>
-        <li>Giới thiệu: {{$value->gioithieu}}</li>
-        <li>Quy mô nhân sự: {{$value->quymonhansu->quymo}}</li>
+        <li><h6 style="font-weight: bold;">Tên công ty:</h6>  {{$value->tencongty}}</li>
+        <li><h6 style="font-weight: bold;">Địa chỉ:</h6>  {{$value->diachicongty}}-{{$value->thanhpho->tenthanhpho}}</li>
+        <li><h6 style="font-weight: bold;">Email:</h6> {{$value->email}}</li>
+        <li><h6 style="font-weight: bold;">Số điện thoại:</h6> {{$value->sodienthoai}}</li>
+        <li><h6 style="font-weight: bold;">Giới thiệu:</h6> {{$value->gioithieu}}</li>
+        <li><h6 style="font-weight: bold;">Quy mô nhân sự:</h6> {{$value->quymonhansu->quymo}}</li>
         </ul>
         <ul class="list-unstyled col-6">
-        <li>Tên người liên hệ:  {{$value->tennguoilienhe}}</li>
-        <li>Địa chỉ liên hệ:  {{$value->diachilienhe}}</li>
-        <li>Số điện thoại liên hệ:  {{$value->sodienthoailienhe}}</li>
-        <li>Email liên hệ:  {{$value->emaillienhe}}</li>
+        <li><h6 style="font-weight: bold;">Tên người liên hệ:</h6>  {{$value->tennguoilienhe}}</li>
+        <li><h6 style="font-weight: bold;">Địa chỉ liên hệ:</h6>  {{$value->diachilienhe}}</li>
+        <li><h6 style="font-weight: bold;">Số điện thoại liên hệ:</h6>  {{$value->sodienthoailienhe}}</li>
+        <li><h6 style="font-weight: bold;">Email liên hệ: </h6> {{$value->emaillienhe}}</li>
         @if($value->logo!="")
         <li><img style="width: 300px; height: 300px;"  src="upload/img/nhatuyendung/logo/{{$value->logo}}"></li>
         @endif
