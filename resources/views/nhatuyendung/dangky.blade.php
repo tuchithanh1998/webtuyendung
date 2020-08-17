@@ -28,26 +28,26 @@
 					<div class="form-group row">
 						<label for="inputEmail3" class="col-sm-4 col-form-label">Email: *</label>
 						<div class="col-sm-8">
-							<input type="email" class="form-control" name="email">
+							<input type="email" class="form-control" name="email" value="{{ old('email') }}">
 						</div>
 					</div>
 
 					<div class="form-group row">
 						<label for="example-date-input" class="col-4 col-form-label">Mật khẩu: *</label>
 						<div class="col-8">
-							<input class="form-control" type="password" name="matkhau1">
+							<input class="form-control" type="password" name="matkhau1" value="{{ old('matkhau1') }}">
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="example-date-input" class="col-4 col-form-label">Nhập lại mật khẩu: *</label>
 						<div class="col-8">
-							<input class="form-control" type="password" name="matkhau2" >
+							<input class="form-control" type="password" name="matkhau2" value="{{ old('matkhau2') }}" >
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="inputEmail3" class="col-sm-4 col-form-label">Tên công ty: *</label>
 						<div class="col-sm-8">
-							<input type="text" class="form-control" name="tencongty">
+							<input type="text" class="form-control" name="tencongty" value="{{ old('tencongty') }}">
 						</div>
 					</div>
 
@@ -55,7 +55,7 @@
 					<div class="form-group row">
 						<label for="inputEmail3" class="col-sm-4 col-form-label">Địa chỉ công ty: *</label>
 						<div class="col-sm-8">
-							<input type="text" class="form-control" name="diachicongty">
+							<input type="text" class="form-control" name="diachicongty" value="{{ old('diachicongty') }}">
 						</div>
 					</div>
 
@@ -71,13 +71,13 @@
 					<div class="form-group row">
 						<label for="inputEmail3" class="col-sm-4 col-form-label">Số điện thoại: *</label>
 						<div class="col-sm-8">
-							<input type="number" class="form-control" name="sodienthoai">
+							<input type="number" class="form-control" name="sodienthoai" value="{{ old('sodienthoai') }}">
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="inputEmail3" class="col-sm-4 col-form-label">Giới thiệu: *</label>
 						<div class="col-sm-8">
-							<textarea class="form-control" id="exampleFormControlTextarea1" name="gioithieu" rows="3"></textarea>
+							<textarea class="form-control" id="exampleFormControlTextarea1" name="gioithieu"  rows="3">{{ old('gioithieu') }}</textarea>
 						</div>
 					</div>
 					<div class="form-group row">
@@ -91,31 +91,31 @@
 					<div class="form-group row">
 						<label for="inputEmail3" class="col-sm-4 col-form-label">Website Công ty: </label>
 						<div class="col-sm-8">
-							<input type="text" class="form-control" name="websitecongty">
+							<input type="text" class="form-control" name="websitecongty" value="{{ old('websitecongty') }}">
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="inputEmail3" class="col-sm-4 col-form-label">Tên người liên hệ: *</label>
 						<div class="col-sm-8">
-							<input type="text" class="form-control" name="tennguoilienhe">
+							<input type="text" class="form-control" name="tennguoilienhe" value="{{ old('tennguoilienhe') }}">
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="inputEmail3" class="col-sm-4 col-form-label">Đại chỉ liên hệ: *</label>
 						<div class="col-sm-8">
-							<input type="text" class="form-control" name="diachilienhe">
+							<input type="text" class="form-control" name="diachilienhe" value="{{ old('diachilienhe') }}">
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="inputEmail3" class="col-sm-4 col-form-label">Số điện thoại liên hệ: *</label>
 						<div class="col-sm-8">
-							<input type="text" class="form-control" name="sodienthoailienhe">
+							<input type="text" class="form-control" name="sodienthoailienhe" value="{{ old('sodienthoailienhe') }}">
 						</div>
 					</div>
 					<div class="form-group row">
 						<label for="inputEmail3" class="col-sm-4 col-form-label">Email liên hệ: *</label>
 						<div class="col-sm-8">
-							<input type="text" class="form-control" name="emaillienhe">
+							<input type="text" class="form-control" name="emaillienhe" value="{{ old('emaillienhe') }}">
 						</div>
 					</div>
 					<div class="form-group row">

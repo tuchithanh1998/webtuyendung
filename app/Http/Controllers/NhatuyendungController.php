@@ -60,7 +60,7 @@ public function getNhatuyendungluuungvien($id)
 			'thanhpho'=>'required',
 			'sodienthoai'=>'required',
 
-			'quymon'=>'required',
+			'quymo'=>'required',
 
 
 
@@ -359,7 +359,7 @@ foreach ($request->thanhpho as $key => $value) {
 	}
 	public function postDangky(Request $request){
 
-		$this->validate($request,[
+	$test=	$this->validate($request,[
 			'email'=>'required|max:255|email|unique:nhatuyendung,email',
 			'matkhau1'=>'required|max:255|min:8',
 			'matkhau2'=>'required|max:255|min:8|same:matkhau1',
@@ -426,7 +426,25 @@ foreach ($request->thanhpho as $key => $value) {
 			'sodienthoailienhe.max'=>'Số điện thoại không hợp lệ.',
 			'sodienthoailienhe.min'=>'Số điện thoại không hợp lệ.',
 
-		]);
+		])->withInput();
+
+
+
+/*if ($this->validate()->fails()) {
+            return redirect()->back()->withInput();
+        }
+
+        if( $test )
+{ 
+
+}
+else
+{ 
+
+return redirect()->back()->withInput();
+
+ };*/
+
 		$nhatuyendung=new nhatuyendung;
 		$nhatuyendung->email=$request->email;
 		$nhatuyendung->matkhau=bcrypt($request->matkhau2);
