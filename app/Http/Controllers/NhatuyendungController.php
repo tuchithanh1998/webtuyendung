@@ -380,7 +380,12 @@ foreach ($request->thanhpho as $key => $value) {
 			'email.required'=>'Email không được để trống.',
 			'email.max'=>'Email không hợp lệ.',
 			'email.email'=>'Email không hợp lệ.',
-			'email.required'=>'Email đã được đăng ký.',
+			'email.unique'=>'Email đã được đăng ký.',
+
+			'emaillienhe.required'=>'Email không được để trống.',
+			'emaillienhe.max'=>'Email không hợp lệ.',
+			'emaillienhe.email'=>'Email không hợp lệ.',
+
 
 			'matkhau1.required'=>'Mật khẩu không được để trống.',
 			'matkhau1.max'=>'Mật khẩu không hợp lệ.',
@@ -393,6 +398,10 @@ foreach ($request->thanhpho as $key => $value) {
 			'matkhau2.same'=>'Mật khẩu nhập lại phải giống nhau.',
 
 
+			'gioithieu.required'=>'Giới thiệu không được để trống.',
+			'gioithieu.max'=>'Giới thiệu không hợp lệ.',
+			'gioithieu.min'=>'Giới thiệu không hợp lệ.',
+
 			'tencongty.required'=>'Tên công ty không được để trống.',
 			'tencongty.max'=>'Tên công ty không hợp lệ.',
 
@@ -404,6 +413,14 @@ foreach ($request->thanhpho as $key => $value) {
 			'sodienthoai.required'=>'Số điện thoại không được để trống.',
 			'sodienthoai.max'=>'Số điện thoại không hợp lệ.',
 			'sodienthoai.min'=>'Số điện thoại không hợp lệ.',
+
+			'websitecongty.max'=>'Website công ty không hợp lệ.',
+
+			'diachilienhe.required'=>'Địa chỉ không được để trống.',
+			'diachilienhe.max'=>'Địa chỉ thoại không hợp lệ.',
+
+			'tennguoilienhe.required'=>'Tên người liên hệ không được để trống.',
+			'tennguoilienhe.max'=>'Tên người liên hệ không hợp lệ.',
 
 			'sodienthoailienhe.required'=>'Số điện thoại không được để trống.',
 			'sodienthoailienhe.max'=>'Số điện thoại không hợp lệ.',
