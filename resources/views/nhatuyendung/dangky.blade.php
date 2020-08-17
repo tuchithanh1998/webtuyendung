@@ -23,7 +23,7 @@
 
 			</div>
 			<div class="card-body">
-				<form enctype="multipart/form-data" action="nhatuyendung" method="POST">
+				<form enctype="multipart/form-data" action="nha-tuyen-dung" method="POST">
 					    <input type="hidden" name="_token" value="{{csrf_token()}}"/>
 					<div class="form-group row">
 						<label for="inputEmail3" class="col-sm-4 col-form-label">Email: *</label>

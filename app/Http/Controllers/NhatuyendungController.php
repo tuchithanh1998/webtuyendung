@@ -363,20 +363,51 @@ foreach ($request->thanhpho as $key => $value) {
 			'email'=>'required|max:255|email|unique:nhatuyendung,email',
 			'matkhau1'=>'required|max:255|min:8',
 			'matkhau2'=>'required|max:255|min:8|same:matkhau1',
-			'tencongty'=>'required',
+			'tencongty'=>'required|max:255',
 			'diachicongty'=>'required|max:255',
 			'thanhpho'=>'required',
-			'sodienthoai'=>'required|max:255',
-			'gioithieu'=>'required|min:10|max:1000',
+			'sodienthoai'=>'required|max:10|min:10',
+			'gioithieu'=>'required|min:1|max:1000',
 			'quymo'=>'required',
 			'websitecongty'=>'max:255',
 			'tennguoilienhe'=>'required|max:255',
 			'diachilienhe'=>'required|max:255',
-			'sodienthoailienhe'=>'required',
+			'sodienthoailienhe'=>'required|max:10|min:10',
 			'emaillienhe'=>'required|max:255|email',
 			
 		],[
 			
+			'email.required'=>'Email không được để trống.',
+			'email.max'=>'Email không hợp lệ.',
+			'email.email'=>'Email không hợp lệ.',
+			'email.required'=>'Email đã được đăng ký.',
+
+			'matkhau1.required'=>'Mật khẩu không được để trống.',
+			'matkhau1.max'=>'Mật khẩu không hợp lệ.',
+			'matkhau1.min'=>'Mật khẩu không hợp lệ.',
+
+
+			'matkhau2.required'=>'Mật khẩu không được để trống.',
+			'matkhau2.max'=>'Mật khẩu không hợp lệ.',
+			'matkhau2.min'=>'Mật khẩu không hợp lệ.',
+			'matkhau2.same'=>'Mật khẩu nhập lại phải giống nhau.',
+
+
+			'tencongty.required'=>'Tên công ty không được để trống.',
+			'tencongty.max'=>'Tên công ty không hợp lệ.',
+
+			'diachicongty.required'=>'Địa chỉ công ty không được để trống.',
+			'diachicongty.max'=>'Địa chỉ công ty không hợp lệ.',
+
+			'thanhpho.required'=>'Thành phố không được để trống.',
+
+			'sodienthoai.required'=>'Số điện thoại không được để trống.',
+			'sodienthoai.max'=>'Số điện thoại không hợp lệ.',
+			'sodienthoai.min'=>'Số điện thoại không hợp lệ.',
+
+			'sodienthoailienhe.required'=>'Số điện thoại không được để trống.',
+			'sodienthoailienhe.max'=>'Số điện thoại không hợp lệ.',
+			'sodienthoailienhe.min'=>'Số điện thoại không hợp lệ.',
 
 		]);
 		$nhatuyendung=new nhatuyendung;
@@ -401,6 +432,23 @@ foreach ($request->thanhpho as $key => $value) {
 			'email' => $request->email,
 			'password' => $request->matkhau2,
 		];
+
+		if($request->hasFile('logo'))
+		{
+
+
+
+
+
+			$file=$request->logo;
+			$name=$file->getClientOriginalName();
+			$hinh=Str::random(4)."_".$name;
+			while ( file_exists("upload/img/nhatuyendung/logo/".$hinh)) {
+				$hinh=Str::random(4)."_".$name;
+			}
+			$file->move("upload/img/nhatuyendung/logo/",$hinh);  
+		}
+
 		if (Auth::guard('nhatuyendung')->attempt($arr)) {
 
 			return redirect('nhatuyendung/quanlytaikhoan');
@@ -432,11 +480,11 @@ foreach ($request->thanhpho as $key => $value) {
         //kiểm tra trường remember có được chọn hay không
 
 		if (Auth::guard('nhatuyendung')->attempt($arr)) {
-if(Auth::guard('nhatuyendung')->user()->trangthai!=1)
-{
-  Auth::guard('ungvien')->logout();
-  return redirect()->back()->with('alert','Tài khoản bị khóa.');
-}
+			if(Auth::guard('nhatuyendung')->user()->trangthai!=1)
+			{
+				Auth::guard('ungvien')->logout();
+				return redirect()->back()->with('alert','Tài khoản bị khóa.');
+			}
 			return redirect('nhatuyendung/quanlytaikhoan');
             //..code tùy chọn
             //đăng nhập thành công thì hiển thị thông báo đăng nhập thành công
