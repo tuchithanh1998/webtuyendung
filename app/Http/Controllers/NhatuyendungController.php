@@ -92,6 +92,9 @@ public function getNhatuyendungluuungvien($id)
 			}
 			$file->move("upload/img/nhatuyendung/logo/",$hinh);  
 		}
+		else{
+			$hinh=Auth::guard('nhatuyendung')->user()->logo;
+		}
 
 		nhatuyendung::where('id',Auth::guard('nhatuyendung')->user()->id)->update(['tencongty'=>$request->tencongty,'diachicongty'=>$request->diachicongty,'id_thanhpho'=>$request->thanhpho,'sodienthoai'=>$request->sodienthoai,'gioithieu'=>$request->gioithieu,'id_quymonhansu'=>$request->quymo,'websitecongty'=>$request->websitecongty,'logo'=>$hinh]);
 
@@ -368,7 +371,7 @@ foreach ($request->thanhpho as $key => $value) {
 			'thanhpho'=>'required',
 			'sodienthoai'=>'required|max:10|min:10',
 			'gioithieu'=>'required|min:1|max:1000',
-		//	'quymo'=>'required',
+			'quymo'=>'required',
 			'websitecongty'=>'max:255',
 			'tennguoilienhe'=>'required|max:255',
 			'diachilienhe'=>'required|max:255',
@@ -426,24 +429,17 @@ foreach ($request->thanhpho as $key => $value) {
 			'sodienthoailienhe.max'=>'Số điện thoại không hợp lệ.',
 			'sodienthoailienhe.min'=>'Số điện thoại không hợp lệ.',
 
-		])->withInput();
+		]);
 
-
-
-/*if ($this->validate()->fails()) {
-            return redirect()->back()->withInput();
-        }
-
-        if( $test )
-{ 
+if($test)
+{
 
 }
 else
-{ 
+{
+	 return redirect()->back()->withInput();
+}
 
-return redirect()->back()->withInput();
-
- };*/
 
 		$nhatuyendung=new nhatuyendung;
 		$nhatuyendung->email=$request->email;
