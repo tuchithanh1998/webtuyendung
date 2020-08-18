@@ -102,7 +102,7 @@
 				<div class="col-12 container">
 					<ul class="list-unstyled row">
 						
-						<?php $data=App\tintuyendung::where('trangthai',1)->where('hannophoso','>',new DateTime())->take(6)->get()->sortByDesc('id');
+						<?php $data=App\tintuyendung::where('trangthai',1)->where('hannophoso','>',new DateTime())->orderBy('id', 'DESC')->take(6)->get();
 						foreach ($data as $key => $value) {
 								
 
