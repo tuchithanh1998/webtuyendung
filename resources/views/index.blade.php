@@ -18,7 +18,7 @@
 </head>
 
 <body>
-	<nav class="navbar navbar-expand-md navbar-dark fixed-top bg-white" style="">
+	<nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #87CEEB !important;">
 		<a class="navbar-brand" href=""><img id="logo" src="logo.png"></a>
 
 		<button class="navbar-toggler" id="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
@@ -222,7 +222,7 @@
 				</div></div>
 			</div>
 
-			<div class="container-fluid" id="container2" style="background-color: #66CCFF;">
+			<div class="container-fluid"  style="background-color: #87CEEB !important;">
 				<div class="row ">
 					<div class="col-sm-3">
 						<img src="logo.png" class="d-block w-100" alt="...">
