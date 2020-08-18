@@ -21,95 +21,96 @@
 /*	body::-webkit-scrollbar {
   width: 1em;
   	float: left;
-}*/
-   #test{
-          
-         
-            overflow-y :scroll;
-        }
+  	}*/
+  	#test{
+  		
+  		
+  		overflow-y :scroll;
+  	}
 
-        body { padding-right: 0 !important }
-</style>
-<body class="bg-main" id="test">
+  	body { padding-right: 0 !important }
+  </style>
+  <body class="bg-main" id="test">
 
-	<nav class="rounded-bottom navbar navbar-expand-md navbar-dark fixed-top" style="background-color:hsl(180, 100%, 93%);">
-		<a class="navbar-brand" href="index"><img id="logo" src="logo.png"></a>
-	</nav>
+  	<nav class="rounded-bottom navbar navbar-expand-md navbar-dark fixed-top" style="background-color:hsl(180, 100%, 93%);">
+  		<a class="navbar-brand" href="index"><img id="logo" src="logo.png"></a>
+  	</nav>
 
-	<div class="container-fluid" id="container-fluid1" >
-		<div class="row ">
-			<div class="col-3 scroll bg-white fixed-top list-group" style="margin-top: 76px; min-height: 600px;">
-				<?php  if(!Auth::guard('ungvien')->check()) { ?>
-					<div class="card border-0 list-group-item">			
-						<form class="form-signin" action="ungviendangnhap" method="POST">
-							<input type="hidden" name="_token" value="{{csrf_token()}}"/>
-							<h3 class="form-signin-heading ">Đăng nhập</h3>
-							<label for="inputEmail" class="sr-only">Email </label>
-							<input type="email" id="inputEmail" name="email"  style="margin-bottom: 3px;" class="form-control border-0" placeholder="Email" required autofocus>
-							<label for="inputPassword" class="sr-only">Mật khẩu</label>
-							<input type="password" name="password" id="inputPassword" class="form-control border-0" placeholder="Mật khẩu" required>
-							
+  	<div class="container-fluid" id="container-fluid1" >
+  		<div class="row ">
+  			<div class="col-3 scroll bg-white fixed-top list-group" style="margin-top: 76px; min-height: 600px;">
+  				<?php  if(!Auth::guard('ungvien')->check()) { ?>
+  					<div class="card border-0 list-group-item">			
+  						<form class="form-signin" action="ungviendangnhap" method="POST">
+  							<input type="hidden" name="_token" value="{{csrf_token()}}"/>
+  							<h3 class="form-signin-heading ">Đăng nhập</h3>
+  							<label for="inputEmail" class="sr-only">Email </label>
+  							<input type="email" id="inputEmail" name="email"  style="margin-bottom: 3px;" class="form-control border-0" placeholder="Email" required autofocus>
+  							<label for="inputPassword" class="sr-only">Mật khẩu</label>
+  							<input type="password" name="password" id="inputPassword" class="form-control border-0" placeholder="Mật khẩu" required>
+  							
+  							<div class="list-inline">
+  								
+  								<a class="list-inline-item" href="" >
+  									Quên mật khẩu
+  								</a>|
+  								<a class="list-inline-item" href="" data-toggle="modal" data-target="#formdangky">
+  									Đăng ký 
+  								</a>
+  							</div>
+  							<button type="submit" class="btn btn-info">Đăng nhập</button>
+  						</form>		
+  						
+  					</div>
+  				<?php } else{?>
+  					<div class="card list-group-item border-0">
+  						<div class="row no-gutters ">
+  							<div class="col-auto">
+  								
+  								@if(Auth::guard('ungvien')->user()->anhdaidien!=null)
+  								<img src="upload/img/ungvien/anhdaidien/{{Auth::guard('ungvien')->user()->anhdaidien}}" class="img-fluid" style="width: 64px;height: 64px;" alt="">
+  								@else
+  								<img src="//placehold.it/64" class="img-fluid" alt="">
+  								@endif
+  							</div>
+  							<div class="col">
+  								<div class="card-block px-2">
 
-							<button type="submit" class="btn btn-info ">Đăng nhập</button>
-						</form>		
-						<div class=" list-inline">							
-							<a class="list-inline-item">
-								Quên mật khẩu |
-							</a>
-							<a class="list-inline-item" data-toggle="modal" data-target="#formdangky">
-								Đăng ký 
-							</a>
-						</div>	
-					</div>
-				<?php } else{?>
-					<div class="card list-group-item border-0">
-						<div class="row no-gutters ">
-							<div class="col-auto">
-			
-			@if(Auth::guard('ungvien')->user()->anhdaidien!=null)
-					<img src="upload/img/ungvien/anhdaidien/{{Auth::guard('ungvien')->user()->anhdaidien}}" class="img-fluid" style="width: 64px;height: 64px;" alt="">
-					@else
-								<img src="//placehold.it/64" class="img-fluid" alt="">
-								@endif
-							</div>
-							<div class="col">
-								<div class="card-block px-2">
+  									<p class="card-text">	<?php echo Auth::guard('ungvien')->user()->hoten; ?></p>
 
-									<p class="card-text">	<?php echo Auth::guard('ungvien')->user()->hoten; ?></p>
+  									<p class="card-text">	<a href="ungvien/thoat" style="color:#6C757D;">Thoát</a></p>
+  								</div>
+  							</div>
+  						</div>
+  					</div>
+  				<?php } ?>
 
-									<p class="card-text">	<a href="ungvien/thoat" style="color:#6C757D;">Thoát</a></p>
-								</div>
-							</div>
-						</div>
-					</div>
-				<?php } ?>
+  				
+  				<a href="timkiemviec" class="list-group-item border-0"><div >
+  					Tìm kiếm việc làm	
+  				</div></a>
 
-				
-				<a href="timkiemviec" class="list-group-item border-0"><div >
-				Tìm kiếm việc làm	
-				</div></a>
+  				<a href="ungvien/quanlytaikhoan" class="list-group-item border-0"><div >
+  					Quản lý thông tin cá nhân	
+  				</div></a>
+  				<a href="ung-vien/ho-so" class="list-group-item border-0"><div >
+  					Quản lý hồ sơ việc làm
+  				</div></a>
+  				<a href="ungvien/tintuyendungdanop" class="list-group-item border-0"><div >
+  					Quản lý tin tuyển dụng đã nộp	
+  				</div></a>
+  				<a href="ung-vien/tin-tuyen-dung-luu" class="list-group-item border-0"><div >
+  					Quản lý tin tuyển dụng đã lưu	
+  				</div></a>
 
-				<a href="ungvien/quanlytaikhoan" class="list-group-item border-0"><div >
-					Quản lý thông tin cá nhân	
-				</div></a>
-				<a href="ung-vien/ho-so" class="list-group-item border-0"><div >
-					Quản lý hồ sơ việc làm
-				</div></a>
-				<a href="ungvien/tintuyendungdanop" class="list-group-item border-0"><div >
-					Quản lý tin tuyển dụng đã nộp	
-				</div></a>
-				<a href="ung-vien/tin-tuyen-dung-luu" class="list-group-item border-0"><div >
-					Quản lý tin tuyển dụng đã lưu	
-				</div></a>
-
-				
+  				
 
 
-			</div>
+  			</div>
 
-			<div class="col-3 bg-white"></div>
+  			<div class="col-3 bg-white"></div>
 
-			<div class="col-9 bg-white ">
+  			<div class="col-9 bg-white ">
 
 
 				<?php /*var_dump(Auth::guard('ungvien'));
@@ -270,13 +271,13 @@
 		</div>
 		@endif
 
-			@if ($errors->any())
+		@if ($errors->any())
 		<div class="alert alert-warning alert-dismissible fade show fixed-top w-25" style="margin-top: 10%; margin-left:75%;" role="alert">
-			   <ul>
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
+			<ul>
+				@foreach ($errors->all() as $error)
+				<li>{{ $error }}</li>
+				@endforeach
+			</ul>
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 				<span aria-hidden="true">&times;</span>
 			</button>
@@ -294,13 +295,13 @@
 			@yield('script')
 			<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 			<script src="../../../../assets/js/ie10-viewport-bug-workaround.js"></script>
-			  <script type="text/javascript">
-$(document).ready(function() {
+			<script type="text/javascript">
+				$(document).ready(function() {
     // show the alert
     setTimeout(function() {
-        $(".alert").alert('close');
+    	$(".alert").alert('close');
     }, 2000);
 });
 </script>
-		</body>
-		</html>
+</body>
+</html>

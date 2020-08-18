@@ -1,7 +1,7 @@
 @extends('nhatuyendung.layout')
 @section('content')
-
-<form action="nha-tuyen-dung/ung-vien/luu/{{$data->id}}" method="GET"><button class="btn btn-primary"  role="button" style="position: fixed; bottom: 10px; right: 10px; z-index: 1;">Lưu ứng viên</button></form>
+<a href="{{ url()->previous() }}" class="btn btn-primary"  role="button" style="position: fixed; bottom: 10px; right: 10px; z-index: 1;">Quay lại</a>
+<form action="nha-tuyen-dung/ung-vien/luu/{{$data->id}}" method="GET"><button class="btn btn-primary"  role="button" style="position: fixed; bottom: 60px; right: 10px; z-index: 1;">Lưu ứng viên</button></form>
 
 <div class="row bg-main">
 	<div class="col-12 " style="margin-top: 10px; margin-bottom: 5px;">
@@ -77,7 +77,7 @@
 				<p class="card-text"><span class="font-weight-bold">Hình thức làm việc: </span>{{$data->hinhthuclamviec->tenhinhthuclamviec}}</p>
 				<p class="card-text"><span class="font-weight-bold">Kinh nghiệm: </span>{{$data->kinhnghiem->tenkinhnghiem}}</p>
 				<p class="card-text"><span class="font-weight-bold">Trình độ: </span>{{$data->trinhdo->tentrinhdo}}</p>			
-				<p class="card-text"><span class="font-weight-bold">Mức lương: </span>{{$data->mucluongmongmuon}}</p>
+				<p class="card-text"><span class="font-weight-bold">Mức lương: </span>{{number_format($data->mucluongmongmuon)}} vnđ</p>
 				<p class="card-text"><span class="font-weight-bold">Thành phố: </span>
 					<?php foreach ($data->ungvien_thanhpho as $key => $value): ?>
 						{{$value->tenthanhpho}}
@@ -170,7 +170,7 @@
 
 
 						<div class="col-6">
-							Trình độ bằng cấp
+						TRÌNH ĐỘ BẰNG CẤP
 						</div>
 						<div class="col-6 text-right">
 							
@@ -212,7 +212,7 @@
 				<div class="card-header">
 					<div class="row">
 						<div class="col-6">
-							KINH NGHIỆM LÀM VIỆC<span><small class="text-info" data-toggle="modal" data-target="#kinhnghiemlamviec{{$key}}">...Thay đổi</small></span>
+							KINH NGHIỆM LÀM VIỆC
 						</div>
 						<div class="col-6 text-right"></div>
 					</div>
@@ -229,7 +229,7 @@
 						$date=date_create($value->thoigianbatdau);
 						echo date_format($date,"m/Y");
 					}?></p>
-					<p class="card-text"><span class="font-weight-bold">Mức lương:</span> {{$value->mucluong}} Triệu</p>
+					<p class="card-text"><span class="font-weight-bold">Mức lương:</span> {{number_format($value->mucluong)}} vnđ</p>
 					<p class="card-text"><span class="font-weight-bold">Mô tả công việc :</span> {{$value->motacongviec}}</p>
 					<p class="card-text"><span class="font-weight-bold">Thành tích:</span> {{$value->thanhtich}}</p>
 				</div>

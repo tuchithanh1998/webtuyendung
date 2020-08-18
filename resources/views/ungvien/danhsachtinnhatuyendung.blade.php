@@ -1,5 +1,6 @@
 @extends('ungvien.layout')
 @section('content')
+<a href="{{ url()->previous() }}" class="btn btn-primary"  role="button" style="position: fixed; bottom: 10px; right: 10px; z-index: 1;">Quay lại</a>
 <div class="row bg-main">
 	<div class="col-12" style="margin-top: 10px; margin-bottom: 5px;">
 		<div class="card mb-3 w-100">

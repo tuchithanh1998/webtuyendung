@@ -40,9 +40,9 @@
                   <label>
                     <input type="checkbox" value="remember-me">Ghi nhớ  |</label>
                 </div>
-                <a class="list-inline-item">
-                  Quên mật khẩu
-                </a>
+                  <a class="list-inline-item" href="nha-tuyen-dung" style="color: black;">
+                    Quên mật khẩu
+                  </a>
                
               </div>
 

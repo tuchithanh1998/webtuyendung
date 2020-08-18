@@ -21,12 +21,12 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 class UngvienController extends Controller
 {
-public function getTintuyendunghuy($id)
-{
-  ungvien_nop_tin::where('id_ungvien',Auth::guard('ungvien')->user()->id)->where('id_tintuyendung',$id)->update(['id_trangthainoptin'=>4]);
+  public function getTintuyendunghuy($id)
+  {
+    ungvien_nop_tin::where('id_ungvien',Auth::guard('ungvien')->user()->id)->where('id_tintuyendung',$id)->update(['id_trangthainoptin'=>4]);
 
-        return redirect()->back()->with('alert','Đã hủy nộp hồ sơ.');
-}
+    return redirect()->back()->with('alert','Đã hủy nộp hồ sơ.');
+  }
 
   public function postDoimatkhau(Request $request)
   {
@@ -378,9 +378,9 @@ public function postKinhnghiemlamviec(Request $request){
  $kinhnghiemlamviec->chucdanh=$request->chucdanh;
  $kinhnghiemlamviec->thoigianbatdau=date($request->thoigianbatdau.'-01');
  if($request->thoigianketthuc)
- $kinhnghiemlamviec->thoigianketthuc=date($request->thoigianketthuc.'-01');
+   $kinhnghiemlamviec->thoigianketthuc=date($request->thoigianketthuc.'-01');
  if($request->hiennay||!$request->thoigianketthuc)
- $kinhnghiemlamviec->congviechientai=1;
+   $kinhnghiemlamviec->congviechientai=1;
  $kinhnghiemlamviec->mucluong=$request->mucluong;
  $kinhnghiemlamviec->motacongviec=$request->motacongviec;
  $kinhnghiemlamviec->thanhtich=$request->thanhtich;
@@ -414,9 +414,9 @@ public function postKinhnghiemlamviecsua(Request $request,$id){
  $kinhnghiemlamviec->chucdanh=$request->chucdanh;
  $kinhnghiemlamviec->thoigianbatdau=date($request->thoigianbatdau.'-01');
  if($request->thoigianketthuc)
- $kinhnghiemlamviec->thoigianketthuc=date($request->thoigianketthuc.'-01');
+   $kinhnghiemlamviec->thoigianketthuc=date($request->thoigianketthuc.'-01');
  if($request->hiennay||!$request->thoigianketthuc)
- $kinhnghiemlamviec->congviechientai=1;
+   $kinhnghiemlamviec->congviechientai=1;
 
  $kinhnghiemlamviec->mucluong=$request->mucluong;
  $kinhnghiemlamviec->motacongviec=$request->motacongviec;
@@ -450,7 +450,7 @@ public function postHoso(Request $request){
   $ungvien=ungvien::find(Auth::guard('ungvien')->user()->id);
 
   $ungvien->vitrimongmuon=$request->vitrimongmuon;
-    $ungvien->mucluongmongmuon=$request->mucluongmongmuon;
+  $ungvien->mucluongmongmuon=$request->mucluongmongmuon;
   if($request->nganhnghe!=$ungvien->id_nganhnghe)
    $ungvien_kynang=ungvien_kynang::where('id_ungvien',Auth::guard('ungvien')->user()->id)->delete();
  if($request->kynang!=null)
@@ -608,17 +608,17 @@ public function postDangnhap(Request $request)
 
 if (Auth::guard('ungvien')->attempt($arr)) {
 
-if(Auth::guard('ungvien')->user()->trangthai!=1)
-{
-  Auth::guard('ungvien')->logout();
-  return redirect()->back()->with('alert','Tài khoản bị khóa.');
-}
+  if(Auth::guard('ungvien')->user()->trangthai!=1)
+  {
+    Auth::guard('ungvien')->logout();
+    return redirect()->back()->with('alert','Tài khoản bị khóa.');
+  }
   return redirect()->back();
             //..code tùy chọn
             //đăng nhập thành công thì hiển thị thông báo đăng nhập thành công
-  }
+}
 
- else {
+else {
  return redirect()->back()->with('alert','Đăng nhập không thành công.');
 
 }
@@ -740,9 +740,9 @@ else
   $data=tintuyendung::where('trangthai',1)->where('hannophoso','>',new DateTime())->get();
 
 if(Auth::guard('ungvien')->check())
-return view('ungvien.timkiemviec',['data'=>$data,'alert'=>'Công Việc Phù Hợp']);
+  return view('ungvien.timkiemviec',['data'=>$data,'alert'=>'Công Việc Phù Hợp']);
 else
-return view('ungvien.timkiemviec',['data'=>$data,'alert'=>'Công Việc Hiện Có']);
+  return view('ungvien.timkiemviec',['data'=>$data,'alert'=>'Công Việc Hiện Có']);
 }
 
 
@@ -803,7 +803,7 @@ if (isset($_GET['kinhnghiem']))
 }
 
 
-if (isset($_GET['kynang'])) 
+/*if (isset($_GET['kynang'])) 
 {
   $dskynang=[];
 
@@ -815,7 +815,7 @@ if (isset($_GET['kynang']))
  $tintuyendung->join('tintuyendung_kynang', 'tintuyendung.id', '=', 'tintuyendung_kynang.id_tintuyendung')
  ->whereIn('tintuyendung_kynang.id_kynang',$dskynang);
 }
-
+*/
 if($tintuyendung==tintuyendung::query())
 {
 
@@ -825,9 +825,42 @@ if($tintuyendung==tintuyendung::query())
 else
 {
   $tintuyendung=$tintuyendung->where('trangthai',1)->where('hannophoso','>',new DateTime())->get();
+
+  if (isset($_GET['kynang'])) 
+  {
+    $dskynang=[];
+
+    foreach ($_GET['kynang'] as $key => $value) 
+    {
+
+     array_push($dskynang,$value);
+   } 
+   
+   $datax=array();
+
+   foreach ($tintuyendung as $key1 => $value1)
+   {
+    $kynangcuatintuyendung=array();
+    foreach ($value1->kynang as $key2 => $value2) 
+    { 
+     array_push($kynangcuatintuyendung,$value2->id);
+   }
+
+   $dataend=array();
+   $datax[count(array_intersect($dskynang,$kynangcuatintuyendung))][]=$value1;
+
+ }
+
+ for ($i=0; $i <= count($dskynang) ; $i++) { 
+  if(isset($datax[$i]))
+    foreach ($datax[$i] as $key => $value) {
+      $dataend[]=$value;
+    }
+  }
+  $tintuyendung = array_reverse($dataend);
 }
 
-
+}
 
 if (isset($_GET['thanhpho'])&&$_GET['thanhpho']!="")
 {

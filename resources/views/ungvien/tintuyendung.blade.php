@@ -1,6 +1,6 @@
 @extends('ungvien.layout')
 @section('content')
-
+<a href="{{ url()->previous() }}" class="btn btn-primary"  role="button" style="position: fixed; bottom: 10px; right: 10px; z-index: 1;">Quay lại</a>
 <?php 
 if(!isset($data)||is_null($data))
 {	

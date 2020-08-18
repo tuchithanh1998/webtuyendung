@@ -68,10 +68,10 @@
  				</div>
  			</div>
 
- 		<div class="modal fade " id="thongtincongty" tabindex="-1" role="dialog" aria-labelledby="Thongtin" aria-hidden="true">
+ 			<div class="modal fade " id="thongtincongty" tabindex="-1" role="dialog" aria-labelledby="Thongtin" aria-hidden="true">
  				<div class="modal-dialog modal-xl">
  					<div class="modal-content"><form enctype="multipart/form-data"  action="nha-tuyen-dung/quan-ly-tai-khoan/thong-tin-cong-ty" method="POST">	
- 						 @csrf
+ 						@csrf
  						<div class="modal-header">
  							<h5 class="modal-title" id="Thongtin">Thông tin công ty</h5>
  							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -80,67 +80,67 @@
  						</div>
  						<div class="modal-body">
  							
- 								<div class="form-group row">
- 									<label for="inputEmail3" class="col-sm-4 col-form-label">Tên công ty: *</label>
- 									<div class="col-sm-8">
- 										<input type="text" class="form-control" value="<?php echo Auth::guard('nhatuyendung')->user()->tencongty; ?>" name="tencongty">
- 									</div>
+ 							<div class="form-group row">
+ 								<label for="inputEmail3" class="col-sm-4 col-form-label">Tên công ty: *</label>
+ 								<div class="col-sm-8">
+ 									<input type="text" class="form-control" value="<?php echo Auth::guard('nhatuyendung')->user()->tencongty; ?>" name="tencongty">
  								</div>
+ 							</div>
 
 
- 								<div class="form-group row">
- 									<label for="inputEmail3" class="col-sm-4 col-form-label">Địa chỉ công ty: *</label>
- 									<div class="col-sm-8">
- 										<input type="text" class="form-control" value="<?php echo Auth::guard('nhatuyendung')->user()->diachicongty; ?>" name="diachicongty">
- 									</div>
+ 							<div class="form-group row">
+ 								<label for="inputEmail3" class="col-sm-4 col-form-label">Địa chỉ công ty: *</label>
+ 								<div class="col-sm-8">
+ 									<input type="text" class="form-control" value="<?php echo Auth::guard('nhatuyendung')->user()->diachicongty; ?>" name="diachicongty">
  								</div>
+ 							</div>
 
- 								<div class="form-group row">
- 									<label for="exampleSelect1" class="col-sm-4 col-form-label">Tỉnh/thành phố: *</label>
- 									<div class="col-sm-8">
- 										<select class="form-control" id="thanhpho" name="thanhpho">
+ 							<div class="form-group row">
+ 								<label for="exampleSelect1" class="col-sm-4 col-form-label">Tỉnh/thành phố: *</label>
+ 								<div class="col-sm-8">
+ 									<select class="form-control" id="thanhpho" name="thanhpho">
  										
- 										</select>
- 									</div>
+ 									</select>
  								</div>
+ 							</div>
 
- 								<div class="form-group row">
- 									<label for="inputEmail3" class="col-sm-4 col-form-label">Số điện thoại: *</label>
- 									<div class="col-sm-8">
- 										<input type="number" class="form-control" value="<?php echo Auth::guard('nhatuyendung')->user()->sodienthoai; ?>" name="sodienthoai">
+ 							<div class="form-group row">
+ 								<label for="inputEmail3" class="col-sm-4 col-form-label">Số điện thoại: *</label>
+ 								<div class="col-sm-8">
+ 									<input type="number" class="form-control" value="<?php echo Auth::guard('nhatuyendung')->user()->sodienthoai; ?>" name="sodienthoai">
+ 								</div>
+ 							</div>
+ 							<div class="form-group row">
+ 								<label for="inputEmail3" class="col-sm-4 col-form-label">Giới thiệu: *</label>
+ 								<div class="col-sm-8">
+ 									<textarea class="form-control" id="exampleFormControlTextarea1" name="gioithieu" rows="3"><?php echo Auth::guard('nhatuyendung')->user()->gioithieu; ?></textarea>
+ 								</div>
+ 							</div>
+ 							<div class="form-group row">
+ 								<label for="exampleSelect1" class="col-sm-4 col-form-label">Quy mô nhân sự: *</label>
+ 								<div class="col-sm-8">
+ 									<select class="form-control" id="quymo" name="quymo">
+ 										<?php foreach (App\quymonhansu::all() as $key => $value): ?>
+ 											<option <?php if($value->id== Auth::guard('nhatuyendung')->user()->id_quymonhansu) echo "selected"; ?> value="{{$value->id}}">{{$value->quymo}}</option>
+ 										<?php endforeach ?>
+ 									</select>
+ 								</div>
+ 							</div>
+ 							<div class="form-group row">
+ 								<label for="inputEmail3" class="col-sm-4 col-form-label">Website Công ty: </label>
+ 								<div class="col-sm-8">
+ 									<input type="text" class="form-control" value="<?php echo Auth::guard('nhatuyendung')->user()->websitecongty; ?>" name="websitecongty">
+ 								</div>
+ 							</div>
+ 							<div class="form-group row">
+ 								<label for="anh" class="col-sm-4 col-form-label">Ảnh: </label>
+ 								<div class="col-sm-8">
+ 									<div class="custom-file">
+ 										<input  type="file" name="filesTest" onchange="return fileValidation()" class="custom-file-input" id="inputGroupFile" aria-describedby="inputGroupFileAddon">
+ 										<label class="custom-file-label"  for="inputGroupFile">Chọn ảnh</label>
  									</div>
  								</div>
- 								<div class="form-group row">
- 									<label for="inputEmail3" class="col-sm-4 col-form-label">Giới thiệu: *</label>
- 									<div class="col-sm-8">
- 										<textarea class="form-control" id="exampleFormControlTextarea1" name="gioithieu" rows="3"><?php echo Auth::guard('nhatuyendung')->user()->gioithieu; ?></textarea>
- 									</div>
- 								</div>
- 								<div class="form-group row">
- 									<label for="exampleSelect1" class="col-sm-4 col-form-label">Quy mô nhân sự: *</label>
- 									<div class="col-sm-8">
- 										<select class="form-control" id="quymo" name="quymo">
- 											<?php foreach (App\quymonhansu::all() as $key => $value): ?>
- 												<option <?php if($value->id== Auth::guard('nhatuyendung')->user()->id_quymonhansu) echo "selected"; ?> value="{{$value->id}}">{{$value->quymo}}</option>
- 											<?php endforeach ?>
- 										</select>
- 									</div>
- 								</div>
- 								<div class="form-group row">
- 									<label for="inputEmail3" class="col-sm-4 col-form-label">Website Công ty: </label>
- 									<div class="col-sm-8">
- 										<input type="text" class="form-control" value="<?php echo Auth::guard('nhatuyendung')->user()->websitecongty; ?>" name="websitecongty">
- 									</div>
- 								</div>
- 								<div class="form-group row">
- 									<label for="anh" class="col-sm-4 col-form-label">Ảnh: </label>
- 									<div class="col-sm-8">
- 										<div class="custom-file">
- 											<input  type="file" name="filesTest" onchange="return fileValidation()" class="custom-file-input" id="inputGroupFile" aria-describedby="inputGroupFileAddon">
- 											<label class="custom-file-label"  for="inputGroupFile">Chọn ảnh</label>
- 										</div>
- 									</div>
- 								</div>
+ 							</div>
 
  							
  							<div  id="imagePreview"></div>
@@ -179,47 +179,50 @@
  		</div>
 
  		<div class="modal fade" id="thongtinnguoilienhe" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-xl">
-    <div class="modal-content"><form  action="nha-tuyen-dung/quan-ly-tai-khoan/thong-tin-nguoi-lien-he" method="POST">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-       <div class="form-group row">
-						<label for="inputEmail3" class="col-sm-4 col-form-label">Tên người liên hệ: *</label>
-						<div class="col-sm-8">
-							<input type="text" class="form-control" value="<?php echo Auth::guard('nhatuyendung')->user()->tennguoilienhe; ?>" name="tennguoilienhe">
-						</div>
-					</div>
-					<div class="form-group row">
-						<label for="inputEmail3" class="col-sm-4 col-form-label">Đại chỉ liên hệ: *</label>
-						<div class="col-sm-8">
-							<input type="text" class="form-control" value="<?php echo Auth::guard('nhatuyendung')->user()->diachilienhe; ?>" name="diachilienhe">
-						</div>
-					</div>
-					<div class="form-group row">
-						<label for="inputEmail3" class="col-sm-4 col-form-label">Số điện thoại liên hệ: *</label>
-						<div class="col-sm-8">
-							<input type="text" value="<?php echo Auth::guard('nhatuyendung')->user()->sodienthoailienhe; ?>" class="form-control" name="sodienthoailienhe">
-						</div>
-					</div>
-					<div class="form-group row">
-						<label for="inputEmail3" class="col-sm-4 col-form-label">Email liên hệ: *</label>
-						<div class="col-sm-8">
-							<input type="text" value="<?php echo Auth::guard('nhatuyendung')->user()->emaillienhe; ?>" class="form-control" name="emaillienhe">
-						</div>
-					</div>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-        <button type="submit" class="btn btn-primary">Lưu thay đổi</button>
-      </div>
-    </form></div>
-  </div>
-</div>
+ 			<div class="modal-dialog modal-xl">
+ 				<div class="modal-content">
+ 					<form  action="nha-tuyen-dung/quan-ly-tai-khoan/thong-tin-nguoi-lien-he" method="POST">
+ 						  @csrf
+ 						<div class="modal-header">
+ 							<h5 class="modal-title" id="exampleModalLabel">THÔNG TIN NGƯỜI LIÊN HỆ</h5>
+ 							<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+ 								<span aria-hidden="true">&times;</span>
+ 							</button>
+ 						</div>
+ 						<div class="modal-body">
+ 							<div class="form-group row">
+ 								<label for="inputEmail3" class="col-sm-4 col-form-label">Tên người liên hệ: *</label>
+ 								<div class="col-sm-8">
+ 									<input type="text" class="form-control" value="<?php echo Auth::guard('nhatuyendung')->user()->tennguoilienhe; ?>" name="tennguoilienhe">
+ 								</div>
+ 							</div>
+ 							<div class="form-group row">
+ 								<label for="inputEmail3" class="col-sm-4 col-form-label">Đại chỉ liên hệ: *</label>
+ 								<div class="col-sm-8">
+ 									<input type="text" class="form-control" value="<?php echo Auth::guard('nhatuyendung')->user()->diachilienhe; ?>" name="diachilienhe">
+ 								</div>
+ 							</div>
+ 							<div class="form-group row">
+ 								<label for="inputEmail3" class="col-sm-4 col-form-label">Số điện thoại liên hệ: *</label>
+ 								<div class="col-sm-8">
+ 									<input type="text" value="<?php echo Auth::guard('nhatuyendung')->user()->sodienthoailienhe; ?>" class="form-control" name="sodienthoailienhe">
+ 								</div>
+ 							</div>
+ 							<div class="form-group row">
+ 								<label for="inputEmail3" class="col-sm-4 col-form-label">Email liên hệ: *</label>
+ 								<div class="col-sm-8">
+ 									<input type="text" value="<?php echo Auth::guard('nhatuyendung')->user()->emaillienhe; ?>" class="form-control" name="emaillienhe">
+ 								</div>
+ 							</div>
+ 						</div>
+ 						<div class="modal-footer">
+ 							<button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+ 							<button type="submit" class="btn btn-primary">Lưu thay đổi</button>
+ 						</div>
+ 					</form>
+ 				</div>
+ 			</div>
+ 		</div>
  	</div>
  </div>
 
@@ -319,7 +322,7 @@ $(document).ready(function(){
 				kq= '<option value="'+v.id+'">'+v.tenthanhpho+'</option>';
 				if(v.id=={{Auth::guard('nhatuyendung')->user()->id_thanhpho}})
 					kq= '<option selected value="'+v.id+'">'+v.tenthanhpho+'</option>';
-					$('#thanhpho').append(kq);					
+				$('#thanhpho').append(kq);					
 			});
 			localStorage.clear();
 

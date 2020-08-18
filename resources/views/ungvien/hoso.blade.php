@@ -8,7 +8,7 @@
 			<div class="card-header">THÔNG TIN HỒ SƠ<span><small class="text-info" data-toggle="modal" data-target="#thaydoihoso">...Cập nhật</small></span></div>
 			<div class="card-body">
 				<p class="card-text"><span class="font-weight-bold">Vị trí mong muốn: </span>{{$data->vitrimongmuon}}</p>
-				<p class="card-text"><span class="font-weight-bold">Mức lương mong muốn: </span>{{$data->mucluongmongmuon}} VNĐ</p>
+				<p class="card-text"><span class="font-weight-bold">Mức lương mong muốn: </span>{{number_format($data->mucluongmongmuon)}} vnđ</p>
 				<p class="card-text"><span class="font-weight-bold">Ngành nghề: </span><?php 
 
 				if($data->id_nganhnghe!="")
@@ -591,7 +591,7 @@
 										$date=date_create($value->thoigianbatdau);
 										echo date_format($date,"m/Y");
 									}?></p>
-									<p class="card-text"><span class="font-weight-bold">Mức lương:</span> {{$value->mucluong}} Triệu</p>
+									<p class="card-text"><span class="font-weight-bold">Mức lương:</span> {{number_format($value->mucluong)}} vnđ</p>
 									<p class="card-text"><span class="font-weight-bold">Mô tả công việc :</span> {{$value->motacongviec}}</p>
 									<p class="card-text"><span class="font-weight-bold">Thành tích:</span> {{$value->thanhtich}}</p>
 								</div>
@@ -644,9 +644,10 @@
 														</div>
 														<div class="form-group row">
 															<label for="mucluong" class="col-sm-4 col-form-label">Mức lương: *</label>
-															<div class="col-sm-8">
+															<div class="col-sm-7">
 																<input type="number" class="form-control" value="{{$value->mucluong}}" id="mucluong" name="mucluong">
 															</div>
+			<label for="mucluong" class="col-sm-1 col-form-label">vnđ</label>
 														</div>
 														<div class="form-group row">
 															<label for="motacongviec" class="col-sm-4 col-form-label">Mô tả công việc: *</label>

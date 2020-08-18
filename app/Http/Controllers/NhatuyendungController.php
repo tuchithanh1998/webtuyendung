@@ -69,7 +69,6 @@ public function getNhatuyendungluuungvien($id)
 		$data=nhatuyendung::find(Auth::guard('nhatuyendung')->user()->id)->update(['tennguoilienhe'=>$request->tennguoilienhe,'diachilienhe'=>$request->diachilienhe,'sodienthoailienhe'=>$request->sodienthoailienhe,'emaillienhe'=>$request->emaillienhe]);
 
 		return redirect()->back()->with('alert','Sửa thành công.');
-
 	}
 
 	public function postThongtincongty(Request $request)
@@ -469,7 +468,21 @@ foreach ($request->thanhpho as $key => $value) {
 			return redirect()->back()->withInput();
 		}
 
+if($request->hasFile('filesTest'))
+		{
 
+
+
+
+
+			$file=$request->filesTest;
+			$name=$file->getClientOriginalName();
+			$hinh=Str::random(4)."_".$name;
+			while ( file_exists("upload/img/nhatuyendung/logo/".$hinh)) {
+				$hinh=Str::random(4)."_".$name;
+			}
+			$file->move("upload/img/nhatuyendung/logo/",$hinh);  
+		}
 		$nhatuyendung=new nhatuyendung;
 		$nhatuyendung->email=$request->email;
 		$nhatuyendung->matkhau=bcrypt($request->matkhau2);
@@ -483,7 +496,7 @@ foreach ($request->thanhpho as $key => $value) {
 		$nhatuyendung->diachilienhe=$request->diachilienhe;
 		$nhatuyendung->sodienthoailienhe=$request->sodienthoailienhe;
 		$nhatuyendung->emaillienhe=$request->emaillienhe;
-		$nhatuyendung->logo=$request->logo;
+		$nhatuyendung->logo=$hinh;
 		$nhatuyendung->gioithieu=$request->gioithieu;
 		$nhatuyendung->ngaytao=new DateTime();
 		$nhatuyendung->save();
@@ -493,21 +506,7 @@ foreach ($request->thanhpho as $key => $value) {
 			'password' => $request->matkhau2,
 		];
 
-		if($request->hasFile('logo'))
-		{
-
-
-
-
-
-			$file=$request->logo;
-			$name=$file->getClientOriginalName();
-			$hinh=Str::random(4)."_".$name;
-			while ( file_exists("upload/img/nhatuyendung/logo/".$hinh)) {
-				$hinh=Str::random(4)."_".$name;
-			}
-			$file->move("upload/img/nhatuyendung/logo/",$hinh);  
-		}
+		
 
 		if (Auth::guard('nhatuyendung')->attempt($arr)) {
 

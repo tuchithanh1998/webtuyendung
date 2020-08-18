@@ -95,7 +95,7 @@
 	</div>
 	<div class=" bg-light">
 		<div id="container" id="container-vieclam" class="container bg-light">
-			<div class="col-sm-10 offset-sm-1 text-center"><h3 class="display-3">Việc Làm Nổi Bật</h3></div>
+			<div class="col-sm-10 offset-sm-1 text-center"><h3 class="display-3">Việc Làm Mới</h3></div>
 			<div class="row ">
 				<div class="col-12 container">
 					<ul class="list-unstyled row">
@@ -234,10 +234,10 @@
 						</ul>  	  	  	  	 
 					</div>
 					<div class="col-sm-3">
-
+s
 					</div>
 					<div class="col-sm-3">
-
+s
 					</div>
 				</div>
 			</div>
