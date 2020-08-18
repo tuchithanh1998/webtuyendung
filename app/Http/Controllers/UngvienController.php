@@ -327,7 +327,7 @@ public function postTrinhdongoaingumoi(Request $request)
   }
 
 
-  public function getLuuvieclam($id)
+  public function getLuuvieclam(Request $request,$id)
   {
     $timkiem=ungvien_luu_tin::where('id_ungvien',Auth::guard('ungvien')->user()->id)->where('id_tintuyendung',$id)->get();
 
@@ -342,8 +342,8 @@ public function postTrinhdongoaingumoi(Request $request)
      $ungvien_luu_tin->save();
    }
 
-
-   return redirect()->back()->with('alert','Đã lưu tin tuyển dụng');
+//echo url()->previous();
+   return redirect()->back()->with('alert','Đã lưu tin tuyển dụng')->with('url',$request->url);
  }
 
 

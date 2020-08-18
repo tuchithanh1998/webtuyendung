@@ -34,7 +34,7 @@ Route::get('/ungvien/quanlytaikhoan', 'UngvienController@getQuanlytaikhoan')->mi
 Route::post('ungvien/quanlytaikhoan/postThongtincanhan', 'UngvienController@postThongtincanhan')->middleware('login_ungvien');
 Route::get('/ungvien/thoat', 'UngvienController@getThoat');
 
-Route::get('/ung-vien/luu-viec-lam/{id}', 'UngvienController@getLuuvieclam')->middleware('login_ungvien');
+Route::post('/ung-vien/luu-viec-lam/{id}', 'UngvienController@getLuuvieclam')->middleware('login_ungvien');
 Route::get('/ung-vien/nop-ho-so/{id}', 'UngvienController@getNophoso')->middleware('login_ungvien');
 
 Route::get('/ungvien/tintuyendungdanop', 'UngvienController@getTintuyendungdanop')->middleware('login_ungvien');

@@ -95,152 +95,94 @@
 	</div>
 	<div class=" bg-light">
 		<div id="container" id="container-vieclam" class="container bg-light">
-			<div class="col-sm-10 offset-sm-1 text-center"><h3 class="display-3">Việc Làm Mới</h3></div>
+			<div class="col-sm-10 offset-sm-1 text-center">
+				<h3 class="display-3">Việc Làm Mới</h3>
+			</div>
 			<div class="row ">
 				<div class="col-12 container">
 					<ul class="list-unstyled row">
-						<li class="list-item col-6 py-2">
+						
+						<?php $data=App\tintuyendung::where('trangthai',1)->where('hannophoso','>',new DateTime())->take(6)->get()->sortByDesc('id');
+						foreach ($data as $key => $value) {
+								
+
+						?>
+<li class="list-item col-6 py-2">
 							<div class="card">
 								<div class="row no-gutters">
-									<div class="col-auto">
-										<img src="//placehold.it/120" class="img-fluid" alt="">
+									<div class="col-auto" title="Công ty">
+
+										@if($value->nhatuyendung->logo)
+										<img style="width: 120px;height: 120px;" src="upload/img/nhatuyendung/logo/{{$value->nhatuyendung->logo}}"
+										class="img-fluid" alt="{{$value->nhatuyendung->tencongty}}" title="{{$value->nhatuyendung->tencongty}}">
+										@else								
+										<img src="//placehold.it/120"
+										class="img-fluid" alt="{{$value->nhatuyendung->tencongty}}" title="{{$value->nhatuyendung->tencongty}}">
+										@endif
 									</div>
 									<div class="col">
-										<div class="card-block px-2"><h5 class="card-title ">Kế toán xuất nhập khẩu</h5>
-											<p class="card-text">	<a href="" style="color:#6C757D;"> Công ty đầu tư NSEF</a></p>
+										<div class="card-block px-2">
+											<h5 class="card-title  text-nowrap text-truncate " title="{{$value->tieudetuyendung}}" style="margin-top: 4px;text-decoration: none;"><a href="tintuyendung/{{$value->id}}">{{$value->tieudetuyendung}}</a></h5>
+											
+												<p class="card-text  text-nowrap text-truncate" title="{{$value->nhatuyendung->tencongty}}"><a href="danh-sach-tin-nha-tuyen-dung/{{$value->id_nhatuyendung}}.html" style="color: black;">{{$value->nhatuyendung->tencongty}}</a></p>
 											<ul class="list-inline">
-												<li class="list-inline-item"><p class="card-text "> <img src="upload\img\layout\dollar-sign.svg"> 5-10 triệu </p></li>
-												<li class="list-inline-item"><p class="card-text "> <img src="upload\img\layout\clock.svg">Hạn chót: 30/8/2020</p></li>
+												<li class="list-inline-item"><p class="card-text "> 
+													<img src="upload\img\layout\dollar-sign.svg">{{$value->mucluong->tenmucluong}}</p>
+												</li>
+												<li class="list-inline-item">
+													<p class="card-text ">
+														<img src="upload\img\layout\clock.svg">Hạn chót: <?php 
+
+									$date=date_create($value->hannophoso);
+									echo date_format($date,"d/m/Y");
+									?>
+													</p>
+												</li>
 											</ul> 
 										</div>
 									</div>
-								</div></div></li>
+								</div>
+							</div>
+						</li>
 
-								<li class="list-item col-6 py-2"><div class="card">
-									<div class="row no-gutters">
-										<div class="col-auto">
-											<img src="//placehold.it/120" class="img-fluid" alt="">
-										</div>
-										<div class="col">
-											<div class="card-block px-2">
-												<h5 class="card-title ">Kế toán xuất nhập khẩu</h5>
-												<p class="card-text">	<a href="" style="color:#6C757D;"> Công ty đầu tư NSEF</a></p>
+						<?php
+}
 
-												<ul class="list-inline">
-													<li class="list-inline-item"><p class="card-text "> <img src="upload\img\layout\dollar-sign.svg"> 5-10 triệu </p></li>
-													<li class="list-inline-item"><p class="card-text "> <img src="upload\img\layout\clock.svg">Hạn chót: 30/8/2020</p></li>
-												</ul> 
-											</div>
-										</div>
-									</div>
-								</div></li>
-
-								<li class="list-item col-6 py-2"><div class="card">
-									<div class="row no-gutters">
-										<div class="col-auto">
-											<img src="//placehold.it/120" class="img-fluid" alt="">
-										</div>
-										<div class="col">
-											<div class="card-block px-2">
-												<h5 class="card-title ">Kế toán xuất nhập khẩu</h5>
-												<p class="card-text">	<a href="" style="color:#6C757D;"> Công ty đầu tư NSEF</a></p>
-												<ul class="list-inline">
-													<li class="list-inline-item"><p class="card-text "> <img src="upload\img\layout\dollar-sign.svg"> 5-10 triệu </p></li>
-													<li class="list-inline-item"><p class="card-text "> <img src="upload\img\layout\clock.svg">Hạn chót: 30/8/2020</p></li>
-												</ul> 
-											</div>
-										</div>
-									</div>
-
-								</div></li>
-
-								<li class="list-item col-6 py-2"><div class="card">
-									<div class="row no-gutters">
-										<div class="col-auto">
-											<img src="//placehold.it/120" class="img-fluid" alt="">
-										</div>
-										<div class="col">
-											<div class="card-block px-2">
-												<h5 class="card-title ">Kế toán xuất nhập khẩu</h5>
-												<p class="card-text">	<a href="" style="color:#6C757D;"> Công ty đầu tư NSEF</a></p>
-												<ul class="list-inline">
-													<li class="list-inline-item"><p class="card-text "> <img src="upload\img\layout\dollar-sign.svg"> 5-10 triệu </p></li>
-													<li class="list-inline-item"><p class="card-text "> <img src="upload\img\layout\clock.svg">Hạn chót: 30/8/2020</p></li>
-												</ul> 
-											</div>
-										</div>
-									</div>
-								</div></li>
-
-								<li class="list-item col-6 py-2"><div class="card">
-									<div class="row no-gutters">
-										<div class="col-auto">
-											<img src="//placehold.it/120" class="img-fluid" alt="">
-										</div>
-										<div class="col">
-											<div class="card-block px-2">
-												<h5 class="card-title ">Kế toán xuất nhập khẩu</h5>
-												<p class="card-text">	<a href="" style="color:#6C757D;"> Công ty đầu tư NSEF</a></p>
-												<ul class="list-inline">
-													<li class="list-inline-item"><p class="card-text "> <img src="upload\img\layout\dollar-sign.svg"> 5-10 triệu </p></li>
-													<li class="list-inline-item"><p class="card-text "> <img src="upload\img\layout\clock.svg">Hạn chót: 30/8/2020</p></li>
-												</ul> 
-											</div>
-										</div>
-									</div>
-								</div></li>
-
-								<li class="list-item col-6 py-2"><div class="card">
-									<div class="row no-gutters">
-										<div class="col-auto">
-											<img src="//placehold.it/120" class="img-fluid" alt="">
-										</div>
-										<div class="col">
-											<div class="card-block px-2">
-												<h5 class="card-title ">Kế toán xuất nhập khẩu</h5>
-												<p class="card-text">	<a href="" style="color:#6C757D;"> Công ty đầu tư NSEF</a></p>
-												<ul class="list-inline">
-													<li class="list-inline-item"><p class="card-text "> <img src="upload\img\layout\dollar-sign.svg"> 5-10 triệu </p></li>
-													<li class="list-inline-item"><p class="card-text "> <img src="upload\img\layout\clock.svg">Hạn chót: 30/8/2020</p></li>
-												</ul> 
-											</div>
-										</div>
-									</div>
-								</div></li>
-							</ul>
-						</div>
+						?>
+						</ul>
 					</div>
 				</div>
 			</div>
+		</div>
 
-			<div id="container" id="container-nganhnghe" class="container">
-				<h3 class="display-3">Việc Làm Theo Ngành Nghề</h3>
-				<div class="row" ><div class="col-12 container">
-					<ul class="list-unstyled row" id="dsvieclam">
-						
-					</ul>
-				</div></div>
-			</div>
+		<div id="container" id="container-nganhnghe" class="container">
+			<h3 class="display-3">Việc Làm Theo Ngành Nghề</h3>
+			<div class="row" ><div class="col-12 container">
+				<ul class="list-unstyled row" id="dsvieclam">
 
-			<div class="container-fluid"  style="background-color: #87CEEB !important;">
-				<div class="row ">
-					<div class="col-sm-3">
-						<img src="logo.png" class="d-block w-100" alt="...">
-					</div>
-					<div class="col-sm-3 ">
-						<ul class="list-unstyled">
-							<li>Từ Chí Thành</li>
-							<li>Phạm Ngọc Thạch</li>
-						</ul>  	  	  	  	 
-					</div>
-					<div class="col-sm-3">
-s
-					</div>
-					<div class="col-sm-3">
-s
-					</div>
+				</ul>
+			</div></div>
+		</div>
+
+		<div class="container-fluid"  style="background-color: #87CEEB !important;">
+			<div class="row ">
+				<div class="col-sm-3">
+					<img src="logo.png" class="d-block w-100" alt="...">
+				</div>
+				<div class="col-sm-3 ">
+					<ul class="list-unstyled">
+						<li>Từ Chí Thành</li>
+						<li>Phạm Ngọc Thạch</li>
+					</ul>  	  	  	  	 
+				</div>
+				<div class="col-sm-3">
+					s
+				</div>
+				<div class="col-sm-3">
+					s
 				</div>
 			</div>
+		</div>
 
 		<!-- Bootstrap core JavaScript
 			================================================== -->
@@ -291,7 +233,7 @@ s
 							var kq='';
 							$.each(data,function(k,v){
 
-								kq= '<li class="list-item col-4 py-2"><a href="">'+v.tennganhnghe+'</a></li>';
+								kq= '<li class="list-item col-4 py-2"><a href="timkiemviec?nganhnghe='+v.id+'">'+v.tennganhnghe+'</a></li>';
 								$('#dsvieclam').append(kq);
 							});
 

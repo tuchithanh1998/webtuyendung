@@ -1,6 +1,10 @@
 @extends('ungvien.layout')
 @section('content')
+@if (session('url'))
+<a href="{{ session('url') }}" class="btn btn-primary"  role="button" style="position: fixed; bottom: 10px; right: 10px; z-index: 1;">Quay lại</a>
+@else
 <a href="{{ url()->previous() }}" class="btn btn-primary"  role="button" style="position: fixed; bottom: 10px; right: 10px; z-index: 1;">Quay lại</a>
+@endif
 <?php 
 if(!isset($data)||is_null($data))
 {	
@@ -34,18 +38,20 @@ else{
 								<h6 class="card-title"><a href="danh-sach-tin-nha-tuyen-dung/{{$data->id_nhatuyendung}}.html">{{$data->nhatuyendung->tencongty}}</a></h6>
 								<div class="row">
 									<div class="col-md-8 list-inline">
-							@if(Auth::guard('ungvien')->check())
+										@if(Auth::guard('ungvien')->check())
 
-										<form class="list-inline-item" action="ung-vien/luu-viec-lam/{{$data->id}}">
+										<form class="list-inline-item" action="ung-vien/luu-viec-lam/{{$data->id}}" method="POST">
+											<input type="hidden" name="_token" value="{{csrf_token()}}"/>
+											<input type="hidden" name="url" value="{{ url()->previous() }}"/>
 											<button type="submit" class="btn btn-light list-inline-item">
 												<img src="upload\img\layout\save-off.svg">Lưu việc làm
 											</button>
 										</form>
-							@else
-								<button type="submit" class="btn btn-light list-inline-item chuadangnhap">
-												<img src="upload\img\layout\save-off.svg">Lưu việc làm
-											</button>
-							@endif
+										@else
+										<button type="submit" class="btn btn-light list-inline-item chuadangnhap">
+											<img src="upload\img\layout\save-off.svg">Lưu việc làm
+										</button>
+										@endif
 
 										<p class="list-inline-item"><img src="upload\img\layout\clock.svg">Hạn nộp hồ sơ :
 											<?php $date=date_create($data->hannophoso);
@@ -185,7 +191,7 @@ else{
 					$('#nophoso').click(function(){
 						alert('Đăng nhập để nộp hồ sơ.')
 					});
-$('.chuadangnhap').click(function(){
+					$('.chuadangnhap').click(function(){
 						alert('Đăng nhập để lưu tin tuyển dụng.')
 					})
 
