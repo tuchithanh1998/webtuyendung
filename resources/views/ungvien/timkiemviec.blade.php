@@ -382,10 +382,7 @@ $(document).ready(function(){
 
 			visiblePageSize:1,
 			pageSize: 10,
-		
-
-			
-
+	
 		});
 		
 	});
