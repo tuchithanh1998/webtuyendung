@@ -112,7 +112,7 @@ else{
 											<span class="list-group-item border-0"><span class="font-weight-bold text-info">Mức lương: </span><span>{{$data->mucluong->tenmucluong}}</span></span>
 											<span class="list-group-item border-0"><span class="font-weight-bold text-info">Yêu cầu kinh nghiệm: </span><span>{{$data->kinhnghiem->tenkinhnghiem}}</span></span>
 											<span class="list-group-item border-0"><span class="font-weight-bold text-info">Cấp bậc: </span><span>{{$data->capbac->tencapbac}}</span></span>
-											<span class="list-group-item border-0"><span class="font-weight-bold text-info">Hình thức lam việc: </span><span>{{$data->hinhthuclamviec->tenhinhthuclamviec}}</span></span>
+											<span class="list-group-item border-0"><span class="font-weight-bold text-info">Hình thức làm việc: </span><span>{{$data->hinhthuclamviec->tenhinhthuclamviec}}</span></span>
 											<span class="list-group-item border-0"><span class="font-weight-bold text-info">Số lượng cần tuyển: </span><span>{{$data->soluongcantuyen}}</span></span>
 											<span class="list-group-item border-0"><span class="font-weight-bold text-info">Yêu cầu kỹ năng: </span><span>	<?php foreach ($data->kynang as $key1 => $value1) {
 												if ($key1!=0) {
@@ -123,7 +123,7 @@ else{
 
 										</div>
 										<div class="col-md-6 list-group">
-											<span class="list-group-item border-0"><span class="font-weight-bold text-info">Đại điểm làm việc: </span><span><?php foreach ($data->thanhpho as $key1 => $value1) {
+											<span class="list-group-item border-0"><span class="font-weight-bold text-info">Địa điểm làm việc: </span><span><?php foreach ($data->thanhpho as $key1 => $value1) {
 												if ($key1!=0) {
 													echo ",";
 												}

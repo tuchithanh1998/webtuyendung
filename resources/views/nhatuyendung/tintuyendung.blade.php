@@ -61,7 +61,7 @@ else{
 
 							</div>
 							<div class="col-md-6 list-group">
-								<span class="list-group-item border-0"><span class="font-weight-bold text-info">Đại điểm làm việc: </span><span><?php foreach ($data->thanhpho as $key1 => $value1) {
+								<span class="list-group-item border-0"><span class="font-weight-bold text-info">Địa điểm làm việc: </span><span><?php foreach ($data->thanhpho as $key1 => $value1) {
 									if ($key1!=0) {
 										echo ",";
 									}
