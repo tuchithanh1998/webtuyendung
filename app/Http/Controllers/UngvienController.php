@@ -748,13 +748,7 @@ else
 
 $tintuyendung=tintuyendung::query();
 
-if(isset($_GET['nganhnghe']))
-{
-  $tintuyendung->when($_GET['nganhnghe']!="",function($q)
-  {
-   return $q->where('id_nganhnghe','=',$_GET['nganhnghe']);
- });
-}
+
 if(isset($_GET['hinhthuclamviec']))
 {
   $tintuyendung->when($_GET['hinhthuclamviec']!="",function($q)
@@ -782,40 +776,31 @@ if(isset($_GET['trinhdo']))
 
 if (isset($_GET['mucluong'])) 
 {
-  $dsml=[];
 
-  foreach ($_GET['mucluong'] as $key => $value) 
+$tintuyendung->when($_GET['mucluong']!="",function($q)
   {
+   return $q->where('id_mucluong',$_GET['mucluong']);
+ });
 
-   array_push($dsml,$value);
- }  $tintuyendung->whereIn('id_mucluong',$dsml);    
 }
 
 if (isset($_GET['kinhnghiem'])) 
 {
-  $dskn=[];
-
-  foreach ($_GET['kinhnghiem'] as $key => $value) 
+ $tintuyendung->when($_GET['kinhnghiem']!="",function($q)
   {
-
-   array_push($dskn,$value);
- }  $tintuyendung->whereIn('id_kinhnghiem',$dskn);
+   return $q->where('id_kinhnghiem',$_GET['kinhnghiem']);
+ });
 }
 
-
-/*if (isset($_GET['kynang'])) 
+if(isset($_GET['nganhnghe']))
 {
-  $dskynang=[];
-
-  foreach ($_GET['kynang'] as $key => $value) 
+  $tintuyendung->when($_GET['nganhnghe']!="",function($q)
   {
-
-   array_push($dskynang,$value);
- } 
- $tintuyendung->join('tintuyendung_kynang', 'tintuyendung.id', '=', 'tintuyendung_kynang.id_tintuyendung')
- ->whereIn('tintuyendung_kynang.id_kynang',$dskynang);
+   return $q->where('id_nganhnghe','=',$_GET['nganhnghe']);
+ });
 }
-*/
+
+
 if($tintuyendung==tintuyendung::query())
 {
 

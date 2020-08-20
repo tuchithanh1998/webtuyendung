@@ -40,17 +40,10 @@
 							</select>
 						</div>
 						<div class="form-group  w-50 text-left">
-							<div class="dropdown w-100 ">
-
-								<div class="dropdown-toggle w-100 form-control" href="#" role="button" id="dropdownMucluong" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									Mức lương
-								</div>
-
-								<div class="dropdown-menu w-100 text-left" aria-labelledby="dropdownMucluong" id="dropdownMucluonglist">
-
-								</div>
-							</div>
-
+							<label class="sr-only">Mức lương</label>
+							<select class="form-control w-100" id="mucluong" name="mucluong">
+								<option class=""  style="" value="">Mức lương</option>
+							</select>
 						</div>
 					</div>
 
@@ -68,17 +61,11 @@
 							</div>
 
 						</div>
-						<div class="form-group w-50 text-left">
-							<div class="dropdown w-100 ">
-
-								<div class="dropdown-toggle w-100 form-control" href="#" role="button" id="dropdownKinhnghiem" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-									Kinh nghiệm
-								</div>
-
-								<div class="dropdown-menu w-100" aria-labelledby="dropdownKinhnghiem" id="dropdownKinhnghiemlist">
-									
-								</div>
-							</div>
+						<div class="form-group w-50 text-left">								
+							<label class="sr-only">Kinh nghiệm</label>
+							<select class="form-control w-100" id="kinhnghiem" name="kinhnghiem">
+								<option  value="">Kinh nghiệm</option>							
+							</select>
 						</div>
 					</div>
 					<div class="form-inline ">
@@ -256,9 +243,8 @@ $('#nganhnghe').change(function(){
 		}
 	});
 });
-$(document).ready(function(){
 
-
+function thanhpho(){
 	$.ajax({
 		type:'GET',
 		url:'api/thanhpho',
@@ -272,9 +258,14 @@ $(document).ready(function(){
 				$('#thanhpho').append(kq);					
 			});
 
+		}, error: function(XMLHttpRequest, textStatus, errorThrown) {
+
+			thanhpho();  
 		}
 	});
+}
 
+function nganhnghe(){
 	$.ajax({
 		type:'GET',
 		url:'api/nganhnghe',
@@ -293,9 +284,15 @@ $(document).ready(function(){
 				$('#nganhnghe').append(kq);
 			});
 
+		}, error: function(XMLHttpRequest, textStatus, errorThrown) {
+
+			nganhnghe();      
 		}
 	});
-	$.ajax({
+}
+
+function trinhdo(){
+$.ajax({
 		type:'GET',
 		url:'api/trinhdo',
 		success:function(data){
@@ -308,9 +305,15 @@ $(document).ready(function(){
 				$('#trinhdo').append(kq);					
 			});
 
+		}, error: function(XMLHttpRequest, textStatus, errorThrown) {
+
+		trinhdo();     
 		}
 	});
-	$.ajax({
+}
+
+function hinhthuclamviec(){
+		$.ajax({
 		type:'GET',
 		url:'api/hinhthuclamviec',
 		success:function(data){
@@ -323,9 +326,14 @@ $(document).ready(function(){
 				$('#hinhthuclamviec').append(kq);					
 			});
 
+		}, error: function(XMLHttpRequest, textStatus, errorThrown) {
+
+			hinhthuclamviec();    
 		}
 	});
+}
 
+function mucluong(){
 	$.ajax({
 		type:'GET',
 		url:'api/mucluong',
@@ -335,14 +343,22 @@ $(document).ready(function(){
 			var kq='';
 			$.each(data,function(k,v){
 
-				kq= '<div class="form-check">    <input type="checkbox" class="form-check-input" id="mucluong'+v.id+'"  name="mucluong[]" value="'+v.id+'">    <label class="form-check-label" for="mucluong'+v.id+'">'+v.tenmucluong+'</label>  </div>';
+
+				kq= '<option value="'+v.id+'">'+v.tenmucluong+'</option>';
+				if(getParameterByName('mucluong')==v.id)
+					kq= '<option selected value="'+v.id+'">'+v.tenmucluong+'</option>';
+				$('#mucluong').append(kq);	
+
 				
-				
-				$('#dropdownMucluonglist').append(kq);
 			});
 
+		}, error: function(XMLHttpRequest, textStatus, errorThrown) {
+
+		mucluong();      
 		}
 	});
+}
+function kinhnghiem(){
 	$.ajax({
 		type:'GET',
 		url:'api/kinhnghiem',
@@ -350,12 +366,19 @@ $(document).ready(function(){
 
 			var kq='';
 			$.each(data,function(k,v){
-				kq='<div class="form-check">    <input type="checkbox" class="form-check-input" id="kinhnghiem'+v.id+'"  name="kinhnghiem[]" value="'+v.id+'">    <label class="form-check-label" for="kinhnghiem'+v.id+'">'+v.tenkinhnghiem+'</label>  </div>';			
-				$('#dropdownKinhnghiemlist').append(kq);
+				kq= '<option value="'+v.id+'">'+v.tenkinhnghiem+'</option>';
+				if(getParameterByName('kinhnghiem')==v.id)
+					kq= '<option selected value="'+v.id+'">'+v.tenkinhnghiem+'</option>';
+				$('#kinhnghiem').append(kq);	
 			});
 
+		}, error: function(XMLHttpRequest, textStatus, errorThrown) {
+
+			kinhnghiem();   
 		}
 	});
+}
+function kynang(){
 	$.ajax({
 
 		type:'GET',
@@ -369,8 +392,25 @@ $(document).ready(function(){
 				$('#dropdownKynanglist').append(kq);
 			});
 
+		}, error: function(XMLHttpRequest, textStatus, errorThrown) {
+
+			kynang();   
 		}
 	});
+}
+$(document).ready(function(){
+
+	thanhpho();
+	nganhnghe();     
+	trinhdo();	
+	hinhthuclamviec();
+	mucluong();
+	kinhnghiem();
+	kynang();
+	
+	
+	
+
 	$('#tencongviec').val(getParameterByName('tencongviec'));
 
 
@@ -382,7 +422,7 @@ $(document).ready(function(){
 
 			visiblePageSize:1,
 			pageSize: 10,
-	
+
 		});
 		
 	});
