@@ -616,8 +616,18 @@ if (Auth::guard('ungvien')->attempt($arr)) {
   }
   if(Auth::guard('ungvien')->user()->xacthuc!=1)
   {
+ $ungvien->token= hash_hmac('sha256', Str::random(40), config('app.key'));
+  $ungvien->save();
+    $data=[
+        'name'=> $ungvien->hoten,    
+        'activation_link'=>route('user.activate',$ungvien->token),
+      ];
+   //   $data->activation_link=route('user.activate',$ungvien->matkhau);
+      \Mail::to($ungvien->email)->send(new \App\Mail\Mail($data));
     Auth::guard('ungvien')->logout();
-    return redirect()->back()->with('alert','Tài khoản chưa xác thực mail.');
+
+
+    return redirect()->back()->with('alert','Đã gửi lại mail xác thực.');
   }
   return redirect()->back();
             //..code tùy chọn
@@ -719,7 +729,7 @@ public function postDangky(Request $request)
 
 
       ]);
-      $ungvien=ungvien::where($request->email)->FirstOrDefault();
+      $ungvien=ungvien::where('email',$request->email)->firstOrFail();
       if($ungvien)
       {
         $ungvien->token=hash_hmac('sha256', Str::random(40), config('app.key'));
@@ -741,22 +751,25 @@ public function postDangky(Request $request)
    public function getMatkhau($token)
    {
 
-     $ungvien=ungvien::where('token',$token)->FirstOrDefault();
+     $ungvien=ungvien::where('token',$token)->firstOrFail();
     if($ungvien)
     {
       $password=Str::random(8);
           $ungvien->matkhau=bcrypt($password);
-          return redirect('ung-vien-dang-ky')->with('password','Mật khẩu mới là'.$password);
+            $ungvien->token= hash_hmac('sha256', Str::random(40), config('app.key'));
+          $ungvien->save();
+          return redirect('ung-vien-dang-ky')->with('password','Mật khẩu mới là : '.$password);
     }
     else
     {
-
+ return redirect('ung-vien-dang-ky');
     }
   }
 public function getXacthuc($token)
 {
 
-  ungvien::where('token',$token)->update(['xacthuc'=>1]);
+  ungvien::where('token',$token)->update(['xacthuc'=>1,'token'=>hash_hmac('sha256', Str::random(40), config('app.key'))]);
+
   return redirect('ung-vien-dang-ky')->with('alert','Xác thực mail thành công.');
 }
 public function getQuanlytaikhoan()

@@ -120,9 +120,11 @@
 
 				 ?>
 				 @yield('content')
+						
 
-
-
+@if (session('password'))
+		<p>Mật khẩu mới : {{session('password')}}</p>
+		@endif
 
 			<!--	 @if(count($errors)>0)
 				 <div class="alert alert-warning list-inline-item" role="alert"> 
