@@ -52,7 +52,7 @@
   							
   							<div class="list-inline">
   								
-  								<a class="list-inline-item" href="" >
+  								<a class="list-inline-item" href="" data-toggle="modal" data-target="#formquenmatkhau" >
   									Quên mật khẩu
   								</a>|
   								<a class="list-inline-item" href="" data-toggle="modal" data-target="#formdangky">
@@ -230,6 +230,57 @@
 			</div>
 		</div>
 
+
+<div class="modal fade bd-example-modal-lg" id="formquenmatkhau" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div class="row">
+						<div class="col-sm-12 text-center">
+							<div class="card">
+								<div class="card-header bg-white">
+
+									<div class="row">
+										<div class="col-6 text-left text-info">
+											QUÊN MẬT KHẨU
+										</div>
+										<div class="col-6 text-right">
+
+											<sub>	(*)Thông tin bắt buộc nhập</sub>
+										</div>
+									</div>
+
+
+
+
+								</div>
+								<div class="card-body">
+									<form action="ungvienquenmatkhau" method="POST">
+										<input type="hidden" name="_token" value="{{csrf_token()}}"/>
+										<div class="form-group row">
+											<label for="inputEmail" class="col-sm-4 col-form-label">Email:</label>
+											<div class="col-sm-8">
+												<input type="email " class="form-control" id="inputEmail" name="email">
+											</div>
+										</div>
+
+							
+										<div class="form-group row">
+											<div class="col-sm-10">
+												<button type="submit" class="btn btn-primary w-25">Gửi</button>
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+
+
 		<!-- Modal -->
 		<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered" role="document">
@@ -301,7 +352,7 @@
     // show the alert
     setTimeout(function() {
     	$(".alert").alert('close');
-    }, 2000);
+    }, 5000);
 });
 </script>
 </body>

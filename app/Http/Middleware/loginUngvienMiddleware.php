@@ -20,8 +20,9 @@ class loginUngvienMiddleware
        
         return $next($request);
     }
-    else{
-        return  redirect('timkiemviec');
+    else
+    {
+        return  redirect('ung-vien-dang-ky');
             }
 }
 }

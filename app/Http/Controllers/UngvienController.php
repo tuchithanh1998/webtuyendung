@@ -17,6 +17,7 @@ use App\trinhdobangcap;
 use App\nguoithamkhao;
 use DateTime;
 use Auth;
+use Mail;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 class UngvienController extends Controller
@@ -613,6 +614,11 @@ if (Auth::guard('ungvien')->attempt($arr)) {
     Auth::guard('ungvien')->logout();
     return redirect()->back()->with('alert','Tài khoản bị khóa.');
   }
+  if(Auth::guard('ungvien')->user()->xacthuc!=1)
+  {
+    Auth::guard('ungvien')->logout();
+    return redirect()->back()->with('alert','Tài khoản chưa xác thực mail.');
+  }
   return redirect()->back();
             //..code tùy chọn
             //đăng nhập thành công thì hiển thị thông báo đăng nhập thành công
@@ -622,6 +628,14 @@ else {
  return redirect()->back()->with('alert','Đăng nhập không thành công.');
 
 }
+}
+
+public function getDangky()
+{
+  if(Auth::guard('ungvien')->check())
+    return redirect('ungvien/quanlytaikhoan');
+
+  return view('ungvien.layout');
 }
 
 public function postDangky(Request $request)
@@ -659,6 +673,7 @@ public function postDangky(Request $request)
   $ungvien->sodienthoai=$request->sodienthoai;
   $ungvien->email=$request->email;
   $ungvien->ngaytaohoso=new DateTime;
+  $ungvien->token= hash_hmac('sha256', Str::random(40), config('app.key'));
   $ungvien->save();
 
   $trinhdotinhoc=new trinhdotinhoc;
@@ -669,18 +684,83 @@ public function postDangky(Request $request)
     'email' => $request->email,
     'password' => $request->matkhau2,
   ];
-  if (Auth::guard('ungvien')->attempt($arr)) {
 
-   return redirect()->back();
-            //..code tùy chọn
-            //đăng nhập thành công thì hiển thị thông báo đăng nhập thành công
- }
+  /* Mail::send('mailungvien', array('name'=> $ungvien->hoten,'email'=> $ungvien->email,'id'=>$ungvien->id,'content'=>  $ungvien->matkhau), function($message){
+          $message->to($ungvien->email, 'Xác thực tài khoản ...')->subject('Xác thực tài khoản ...');
+      });
+*/
+
+      $data=[
+        'name'=> $ungvien->hoten,    
+        'activation_link'=>route('user.activate',$ungvien->token),
+      ];
+   //   $data->activation_link=route('user.activate',$ungvien->matkhau);
+      \Mail::to($ungvien->email)->send(new \App\Mail\Mail($data));
+
+      return redirect()->back()->with('alert','Đăng ký thành công xác thực mail để sử dụng.');
+    }
+
+
+    public function postQuenmatkhau(Request $request)
+    {
+
+      $this->validate($request,[
+
+        'email'=>'required|max:255|email',
+
+
+      ],[
+
+        'email.required'=>'Email không được để trống.',
+        'email.max'=>'Email tối đa 255 ký tự.',
+        'email.email'=>'Email không hợp lệ.',
 
 
 
+
+      ]);
+      $ungvien=ungvien::where($request->email)->FirstOrDefault();
+      if($ungvien)
+      {
+        $ungvien->token=hash_hmac('sha256', Str::random(40), config('app.key'));
+        $ungvien->save();
+        $data=[
+          'name'=> $ungvien->hoten,    
+          'quenmatkhau_link'=>route('user.quenmatkhau',$ungvien->token),
+        ];
+   //   $data->activation_link=route('user.activate',$ungvien->matkhau);
+        \Mail::to($ungvien->email)->send(new \App\Mail\MailQuenmatkhau($data));
+        return redirect()->back()->with('alert','Vào mail để lấy mật khẩu.');
+      }
+      else
+      {
+       return redirect()->back()->with('alert','Email chưa đăng ký.');
+     }
+   }
+
+   public function getMatkhau($token)
+   {
+
+     $ungvien=ungvien::where('token',$token)->FirstOrDefault();
+    if($ungvien)
+    {
+      $password=Str::random(8);
+          $ungvien->matkhau=bcrypt($password);
+          return redirect('ung-vien-dang-ky')->with('password','Mật khẩu mới là'.$password);
+    }
+    else
+    {
+
+    }
+  }
+public function getXacthuc($token)
+{
+
+  ungvien::where('token',$token)->update(['xacthuc'=>1]);
+  return redirect('ung-vien-dang-ky')->with('alert','Xác thực mail thành công.');
 }
-
-public function getQuanlytaikhoan(){
+public function getQuanlytaikhoan()
+{
 
  return view('ungvien.quanlytaikhoan');
 }
@@ -777,7 +857,7 @@ if(isset($_GET['trinhdo']))
 if (isset($_GET['mucluong'])) 
 {
 
-$tintuyendung->when($_GET['mucluong']!="",function($q)
+  $tintuyendung->when($_GET['mucluong']!="",function($q)
   {
    return $q->where('id_mucluong',$_GET['mucluong']);
  });
@@ -787,7 +867,7 @@ $tintuyendung->when($_GET['mucluong']!="",function($q)
 if (isset($_GET['kinhnghiem'])) 
 {
  $tintuyendung->when($_GET['kinhnghiem']!="",function($q)
-  {
+ {
    return $q->where('id_kinhnghiem',$_GET['kinhnghiem']);
  });
 }
