@@ -28,9 +28,9 @@ Route::get('/ung-vien-dang-ky','UngvienController@getDangky');
 Route::post('/ungviendangnhap', 'UngvienController@postDangnhap');
 Route::post('/ungviendangky', 'UngvienController@postDangky');
 
-Route::get('/timkiemviec','UngvienController@getTimkiemviec');
-Route::get('/tintuyendung/{id}','UngvienController@getTintuyendung');
-Route::get('/danh-sach-tin-nha-tuyen-dung/{id}.html','UngvienController@getNhatuyendung');
+Route::get('/timkiemviec','UngvienController@getTimkiemviec')->middleware('login_ungvien');
+Route::get('/tintuyendung/{id}','UngvienController@getTintuyendung')->middleware('login_ungvien');
+Route::get('/danh-sach-tin-nha-tuyen-dung/{id}.html','UngvienController@getNhatuyendung')->middleware('login_ungvien');
 Route::post('/ungvienquenmatkhau', 'UngvienController@postQuenmatkhau');
 
 Route::get('/ungvienquenmatkhau/{token}', 'UngvienController@getMatkhau')->name('user.quenmatkhau');
