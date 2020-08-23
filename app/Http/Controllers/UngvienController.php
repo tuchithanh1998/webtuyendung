@@ -616,20 +616,21 @@ if (Auth::guard('ungvien')->attempt($arr)) {
   }
   if(Auth::guard('ungvien')->user()->xacthuc!=1)
   {
- $ungvien->token= hash_hmac('sha256', Str::random(40), config('app.key'));
-  $ungvien->save();
-    $data=[
-        'name'=> $ungvien->hoten,    
-        'activation_link'=>route('user.activate',$ungvien->token),
-      ];
+    $ungvien=Auth::guard('ungvien')->user();
+   $ungvien->token= hash_hmac('sha256', Str::random(40), config('app.key'));
+   $ungvien->save();
+   $data=[
+    'name'=> $ungvien->hoten,    
+    'activation_link'=>route('user.activate',$ungvien->token),
+  ];
    //   $data->activation_link=route('user.activate',$ungvien->matkhau);
-      \Mail::to($ungvien->email)->send(new \App\Mail\Mail($data));
-    Auth::guard('ungvien')->logout();
+  \Mail::to($ungvien->email)->send(new \App\Mail\Mail($data));
+  Auth::guard('ungvien')->logout();
 
 
-    return redirect()->back()->with('alert','Đã gửi lại mail xác thực.');
-  }
-  return redirect()->back();
+  return redirect()->back()->with('alert','Đã gửi lại mail xác thực.');
+}
+return redirect()->back();
             //..code tùy chọn
             //đăng nhập thành công thì hiển thị thông báo đăng nhập thành công
 }
@@ -752,21 +753,21 @@ public function postDangky(Request $request)
    {
 
      $ungvien=ungvien::where('token',$token)->firstOrFail();
-    if($ungvien)
-    {
+     if($ungvien)
+     {
       $password=Str::random(8);
-          $ungvien->matkhau=bcrypt($password);
-            $ungvien->token= hash_hmac('sha256', Str::random(40), config('app.key'));
-          $ungvien->save();
-          return redirect('ung-vien-dang-ky')->with('password','Mật khẩu mới là : '.$password);
+      $ungvien->matkhau=bcrypt($password);
+      $ungvien->token= hash_hmac('sha256', Str::random(40), config('app.key'));
+      $ungvien->save();
+      return redirect('ung-vien-dang-ky')->with('password','Mật khẩu mới là : '.$password);
     }
     else
     {
- return redirect('ung-vien-dang-ky');
-    }
-  }
-public function getXacthuc($token)
-{
+     return redirect('ung-vien-dang-ky');
+   }
+ }
+ public function getXacthuc($token)
+ {
 
   ungvien::where('token',$token)->update(['xacthuc'=>1,'token'=>hash_hmac('sha256', Str::random(40), config('app.key'))]);
 
@@ -777,7 +778,40 @@ public function getQuanlytaikhoan()
 
  return view('ungvien.quanlytaikhoan');
 }
+public function array_sort($array, $on, $order=SORT_ASC)
+{
+    $new_array = array();
+    $sortable_array = array();
 
+    if (count($array) > 0) {
+        foreach ($array as $k => $v) {
+            if (is_array($v)) {
+                foreach ($v as $k2 => $v2) {
+                    if ($k2 == $on) {
+                        $sortable_array[$k] = $v2;
+                    }
+                }
+            } else {
+                $sortable_array[$k] = $v;
+            }
+        }
+
+        switch ($order) {
+            case SORT_ASC:
+                asort($sortable_array);
+            break;
+            case SORT_DESC:
+                arsort($sortable_array);
+            break;
+        }
+
+        foreach ($sortable_array as $k => $v) {
+            $new_array[$k] = $array[$k];
+        }
+    }
+
+    return $new_array;
+}
 public function getTimkiemviec()
 {
 
@@ -820,10 +854,26 @@ public function getTimkiemviec()
 //  echo count(array_intersect($kynangcuaungvien,$kynangcuatintuyendung));
  }
 
+
+for ($i=0; $i <= count($kynangcuaungvien) ; $i++) { 
+  if(isset($datax[$i])&&count($datax[$i])>=2)
+  {
+   
+  $datax[$i]=$this->array_sort($datax[$i], 'id_mucluong', SORT_ASC);
+  }
+    }
+
+
+
+
 //var_dump($datax);
- for ($i=0; $i <= count($kynangcuaungvien) ; $i++) { 
+
+
+
+for ($i=0; $i <= count($kynangcuaungvien) ; $i++) { 
   if(isset($datax[$i]))
-    foreach ($datax[$i] as $key => $value) {
+    foreach ($datax[$i] as $key => $value)
+    {
       $dataend[]=$value;
     }
   }
