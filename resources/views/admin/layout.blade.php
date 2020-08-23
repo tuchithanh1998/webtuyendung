@@ -76,6 +76,21 @@
           </div>
         </div>
       </li>
+
+      @if(Auth::guard('admin')->user()->quyen==1)
+            <hr class="sidebar-divider my-0">
+      <hr class="sidebar-divider">
+            <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities2" aria-expanded="true" aria-controls="collapseUtilities">
+          <span>Tạo quản trị viện</span>
+        </a>
+        <div id="collapseUtilities2" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <a class="collapse-item" href="admin/themquantrivien">Thêm mới quản trị viên</a>
+          </div>
+        </div>
+      </li>
+      @endif
     </ul>
     <!-- Content Wrapper -->
     <div id="content-wrapper" class="d-flex flex-column">
@@ -94,9 +109,79 @@
           <ul class="navbar-nav ml-auto">
             <!-- Nav Item - Messages -->
             <li class="nav-item dropdown no-arrow">              
-              <a class="dropdown-item" style="color: red;">
+              <a class="dropdown-item" data-toggle="modal" data-target="#thongtincanhan" style="color: red;">
                 {{Auth::guard('admin')->user()->ten}}
-              </a>  <!--<span class="mr-2 d-none d-lg-inline text-gray-600 small">{{Auth::guard('admin')->user()->ten}}</span>--></li>
+              </a>
+
+
+
+
+<!-- Modal -->
+<div class="modal fade" id="thongtincanhan" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-xl">
+    <div class="modal-content">   
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel" style="color: red;">THÔNG TIN ỨNG VIÊN</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+     <div class="card">
+       <div class="card-body row">
+          <ul class="list-unstyled col-6">
+            <li><h6 style="font-weight: bold;">Họ và tên:</h6> {{Auth::guard('admin')->user()->ten}}</li><br>
+            <li><h6 style="font-weight: bold;">Email:</h6> {{Auth::guard('admin')->user()->email}}</li><br>
+            <li><h6 style="font-weight: bold;">Số điện thoại:</h6> {{Auth::guard('admin')->user()->sodienthoai}}</li><br>
+            <li><h6 style="font-weight: bold;">Địa chỉ:</h6> {{Auth::guard('admin')->user()->diachi}}</li><br>
+        </ul>
+        <ul class="list-unstyled col-6">
+          <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="doimatkhauModalLabel">ĐỔI MẬT KHẨU</h5>
+      </div>
+      <div class="modal-body ">
+        <form action="admin/doi-mat-khau" method="POST">
+          <input type="hidden" name="_token" value="{{csrf_token()}}"/>
+  <div class="form-group row">
+    <label for="inputPassword" class="col-sm-4 col-form-label">Mật khẩu hiện tại:</label>
+    <div class="col-sm-8">
+      <input type="password"  name="oldpassword" class="form-control" id="inputPassword">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputPassword1" class="col-sm-4 col-form-label">Mật khẩu mới:</label>
+    <div class="col-sm-8">
+      <input type="password" class="form-control" name="newpassword1" id="inputPassword1">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="inputPassword2" class="col-sm-4 col-form-label">Nhập lại mật khẩu:</label>
+    <div class="col-sm-8">
+      <input type="password" class="form-control"  name="newpassword2" id="inputPassword2">
+    </div>
+  </div><div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+        <button type="submit" class="btn btn-primary">Lưu</button>
+      </div>
+</form>
+</div>
+      
+    </div>
+  </div>
+        </ul>
+       </div>
+     </div>    
+      </div>
+    
+    </div>
+  </div>
+</div>
+                      
+
+
+            </li>
             <div class="topbar-divider d-none d-sm-block"></div>
             <!-- Nav Item - User Information -->
             <li class="nav-item dropdown no-arrow">

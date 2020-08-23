@@ -76,8 +76,18 @@ $stt=0;
         <li><h6 style="font-weight: bold;">Email:</h6> {{$value->email}}</li>
         <li><h6 style="font-weight: bold;">Số điện thoại:</h6> {{$value->sodienthoai}}</li>
         <li><h6 style="font-weight: bold;">Ngày sinh:</h6> {{$value->ngaysinh}}</li>
-        <li><h6 style="font-weight: bold;">Giới tính:</h6> {{$value->gioitinh}}</li>
-        <li><h6 style="font-weight: bold;">Tình trạng hôn nhân:</h6> {{$value->tinhtranghonnhan}}</li>
+        <li><h6 style="font-weight: bold;">Giới tính:</h6>
+          @if($value->gioitinh==1)
+                                                                Nam
+                                                                @else
+                                                                Nữ
+                                                                @endif
+          </li>
+        <li><h6 style="font-weight: bold;">Tình trạng hôn nhân:</h6> @if($value->tinhtranghonnhan==1)
+                                                                Độc thân
+                                                                @else
+                                                                Đã có gia đình
+                                                                @endif</li>
         </ul>
         <ul class="list-unstyled col-6">
         <li><h6 style="font-weight: bold;">Mục tiêu:</h6>  {{$value->muctieu}}</li>

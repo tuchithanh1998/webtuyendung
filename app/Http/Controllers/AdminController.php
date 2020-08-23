@@ -18,12 +18,105 @@ use App\kynang;
 use App\quymonhansu;
 use App\mucluong;
 use App\ngoaingu;
+use Illuminate\Support\Facades\Hash;
 
 
 
 
 class AdminController extends Controller
 {
+    public function postDoimatkhauadmin(Request $request)
+    {
+        if (!(Hash::check($request->oldpassword,Auth::guard('admin')->user()->matkhau))) 
+      return redirect()->back()->with('alert','Mật khẩu hiện tại không khớp.');
+
+    $this->validate($request,[
+      'oldpassword'=>'required',
+      'newpassword1'=>'required|min:8',
+      'newpassword2'=>'required|same:newpassword1|different:oldpassword|min:8',
+    ],[
+      'oldpassword.required'=>'Mật khẩu không được để trống.',
+      'newpassword1.required'=>'Mật khẩu không được để trống.',
+      'newpassword2.required'=>'Mật khẩu không được để trống.',
+      'oldpassword.min'=>'Mật khẩu tối tiểu 8 kí tự.',
+      'newpassword1.min'=>'Mật khẩu tối tiểu 8 kí tự.',
+      'newpassword2.min'=>'Mật khẩu tối tiểu 8 kí tự.',
+      'newpassword2.same'=>'Mật khẩu mới không khớp.',
+      'newpassword2.different'=>'Mật khẩu mới phải khác mật khẩu cũ.',
+    ]);
+
+
+    admin::where('id',Auth::guard('admin')->user()->id)->update(['matkhau'=>bcrypt($request->newpassword2)]);
+    return redirect()->back()->with('alert','Đổi mật khẩu thành công');
+    }
+    /*Quan tri vien*/
+    public function getThemquantrivien()
+    {
+         $admin=admin::where('quyen','<>',1)->get();
+
+        return view('admin.themquantrivien',['data'=>$admin]);
+    
+    }
+
+    public function postThemquantrivien(Request $request)
+    {
+
+
+        $this->validate($request,
+        [
+            'tenquantri' => 'required',
+            'email' => 'required|unique:admin,email|email',
+            'matkhau' => 'required|min:8',
+            'sodienthoai' => 'required|min:10|max:10',
+            'diachi' => 'required',
+           
+        ],
+
+        [
+                'tenquantri.required'=>'Tên không được để trống!',
+                'email.required'=>'Email không được để trống!',
+                'email.email'=>'Email không đúng định dạng!',
+                'email.unique'=>'Email đã tồn tại!',
+                'matkhau.required'=>'Mật khẩu không được để trống!',
+                'matkhau.min'=>'Mật khẩu tối thiểu 8 kí tự!',
+                'sodienthoai.required'=>'Số điện thoại không được để trống!',
+                'sodienthoai.min'=>'Số điện thoại tối thiểu 10 kí tự!',
+                'sodienthoai.max'=>'Số điện thoại số đa 10 kí tự!',    
+                'diachi.required'=>'Địa chỉ không được để trống!',
+        ]
+
+    );
+
+        admin::insert(['ten'=>$request->tenquantri, 'email'=>$request->email,'matkhau'=>bcrypt($request->matkhau),'sodienthoai'=>$request->sodienthoai,'diachi'=>$request->diachi,'quyen'=>2,'trangthai'=>1]);
+                return redirect()->back()->with('alert','Thêm thành công.');
+    }
+
+    public function postSuaquantrivien(Request $request,$id_admin)
+    {
+        $this->validate($request,
+        [
+            'tenquantri' => 'required:admin,tenquantri',
+            'email' => 'required:admin,email|email',
+            'sodienthoai' => 'required|min:10|max:10',
+            'diachi' => 'required',
+           
+        ],
+
+        [
+                'tenquantri.required'=>'Tên không được để trống!',
+                'email.required'=>'Email không được để trống!',
+                'email.email'=>'Email không đúng định dạng!',
+                'sodienthoai.required'=>'Số điện thoại không được để trống!',
+                'sodienthoai.min'=>'Số điện thoại tối thiểu 10 kí tự!',
+                'sodienthoai.max'=>'Số điện thoại số đa 10 kí tự!',    
+                'diachi.required'=>'Địa chỉ không được để trống!',
+        ]
+
+    );
+
+       admin::where('id',$id_admin)->update(['ten'=>$request->tenquantri, 'email'=>$request->email,'sodienthoai'=>$request->sodienthoai,'diachi'=>$request->diachi,'trangthai'=>$request->Radios]);
+        return redirect()->back()->with('alert','Cập nhật thành công.');
+    }
     /*Thành phố*/
     public function postSuathanhpho(Request $request,$id_thanhpho)
     {
@@ -452,10 +545,12 @@ class AdminController extends Controller
         ];
 
         if (Auth::guard('admin')->attempt($arr)) {
-
+                    if(Auth::guard('admin')->user()->trangthai!=1)
+                    {
+                        Auth::guard('admin')->logout();
+                        return redirect()->back()->with('alert','Tài khoản đã bị khóa!');
+                    }
             return redirect('admin/index');
-            //..code tùy chọn
-            //đăng nhập thành công thì hiển thị thông báo đăng nhập thành công
         } else {
 
          return redirect()->back()->with('alert','Đăng nhập không thành công.');

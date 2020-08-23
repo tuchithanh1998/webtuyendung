@@ -7,7 +7,6 @@ use App\tintuyendung;
 use App\ungvien_thanhpho;
 use App\ungvien_kynang;
 use App\ungvien_luu_tin;
-use App\kinhnghiemlamviec;;
 use App\ungvien;
 use App\trinhdotinhoc;
 use App\nhatuyendung;

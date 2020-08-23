@@ -162,6 +162,11 @@ Route::post('admin/thong-so/muc-luong/postmucluong', 'AdminController@postThemmu
 Route::get('admin/thong-so/ngoai-ngu','AdminController@getNgoaingu')->middleware('login_admin');
 Route::post('admin/thong-so/ngoai-ngu/postngoaingu/{id_ngoaingu}', 'AdminController@postSuangoaingu')->middleware('login_admin');
 Route::post('admin/thong-so/ngoai-ngu/postngoaingu', 'AdminController@postThemngoaingu')->middleware('login_admin');
+/*quan tri vien*/
+Route::get('admin/themquantrivien','AdminController@getThemquantrivien')->middleware('login_admin');
+Route::post('admin/themquantrivien/them','AdminController@postThemquantrivien')->middleware('login_admin');
+Route::post('admin/themquantrivien/sua/{id}','AdminController@postSuaquantrivien')->middleware('login_admin');
+Route::post('admin/doi-mat-khau','AdminController@postDoimatkhauadmin')->middleware('login_admin');
 
 /*Route::fallback(function(){
 	return redirect('index');
