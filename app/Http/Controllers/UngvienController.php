@@ -548,7 +548,7 @@ public function getNhatuyendung($id)
 
 }
 
-public function getNophoso($id){
+public function getNophoso(Request $request,$id){
 
   $today = date("Y-m-d");
   $expire =tintuyendung::findOrFail($id)->hannophoso;
@@ -556,7 +556,7 @@ public function getNophoso($id){
   $expire_dt = new DateTime($expire);
 
   if ($expire_dt < $today_dt||tintuyendung::findOrFail($id)->trangthai!=1)
-    return redirect()->back()->with('success','Nộp hồ sơ thất bại.');
+    return redirect()->back()->with('success','Nộp hồ sơ thất bại.')->with('url',$request->url);
 
 
   $timkiem=ungvien_nop_tin::where('id_ungvien',Auth::guard('ungvien')->user()->id)->where('id_tintuyendung',$id)->get();
@@ -568,7 +568,7 @@ public function getNophoso($id){
   else {
 
     if(Auth::guard('ungvien')->user()->id_nganhnghe=="")
-      return redirect()->back()->with('success','Chưa cập nhật hồ sơ.');
+      return redirect()->back()->with('success','Chưa cập nhật hồ sơ.')->with('url',$request->url);
 
 
 
@@ -581,7 +581,7 @@ public function getNophoso($id){
   }
 
 
-  return redirect()->back()->with('success','Đã nộp hồ sơ.');
+  return redirect()->back()->with('success','Đã nộp hồ sơ.')->with('url',$request->url);
 
 }
 public function postThongtincanhan(Request $request)

@@ -42,7 +42,18 @@ else{
 
 										<form class="list-inline-item" action="ung-vien/luu-viec-lam/{{$data->id}}" method="POST">
 											<input type="hidden" name="_token" value="{{csrf_token()}}"/>
-											<input type="hidden" name="url" value="{{ url()->previous() }}"/>
+											
+											@if (session('url'))
+											
+											<input type="hidden" name="url" value="{{ session('url') }}"/>
+											@else
+											<input type="hidden" name="url" 
+
+
+											value="{{ url()->previous() }}"
+
+											/>
+											@endif
 											<button type="submit" class="btn btn-light list-inline-item">
 												<img src="upload\img\layout\save-off.svg">Lưu việc làm
 											</button>
@@ -83,7 +94,19 @@ else{
 												{
 													if(!App\ungvien_nop_tin::where('id_ungvien',Auth::guard('ungvien')->user()->id)->where('id_tintuyendung',$data->id)->first())
 														{?>
-															<form action="ung-vien/nop-ho-so/{{$data->id}}">
+															<form action="ung-vien/nop-ho-so/{{$data->id}}" method="POST">
+																<input type="hidden" name="_token" value="{{csrf_token()}}"/>
+																@if (session('url'))
+											
+											<input type="hidden" name="url" value="{{ session('url') }}"/>
+											@else
+											<input type="hidden" name="url" 
+
+
+											value="{{ url()->previous() }}"
+
+											/>
+											@endif
 																<button type="submit" class="btn btn-danger w-100 h-100" >NỘP HỒ SƠ</button>
 															</form>
 															<?php 
