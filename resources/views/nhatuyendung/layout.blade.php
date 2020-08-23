@@ -36,10 +36,10 @@
               <label for="inputPassword" class="sr-only">Mật khẩu</label>
               <input type="password" name="password" id="inputPassword" class="form-control border-0" placeholder="Mật khẩu" required>
               <div class="list-inline">
-                <div class="checkbox list-inline-item">
+             <!--   <div class="checkbox list-inline-item">
                   <label>
                     <input type="checkbox" value="remember-me">Ghi nhớ  |</label>
-                </div>
+                </div>-->
                   <a class="list-inline-item" href="nha-tuyen-dung" style="color: black;">
                     Quên mật khẩu
                   </a>

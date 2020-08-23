@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\tintuyendung;
+use App\tintuyendung_thanhpho;
 use App\ungvien_thanhpho;
 use App\ungvien_kynang;
 use App\ungvien_luu_tin;
@@ -443,20 +444,58 @@ public function postKhac(Request $request)
 
 public function postHoso(Request $request){
 
+  if(count(ungvien_kynang::where('id_ungvien',Auth::guard('ungvien')->user()->id)->get())==0)
+   $this->validate($request,[
+    'kynang'=>'required',
 
 
 
+  ],[
+    'kynang.required'=>'Ít nhất 1 kỹ năng.',
 
-  $ungvien=ungvien::find(Auth::guard('ungvien')->user()->id);
 
-  $ungvien->vitrimongmuon=$request->vitrimongmuon;
-  $ungvien->mucluongmongmuon=$request->mucluongmongmuon;
-  if($request->nganhnghe!=$ungvien->id_nganhnghe)
+  ]);
+ if(count(ungvien_thanhpho::where('id_ungvien',Auth::guard('ungvien')->user()->id)->get())==0)
+   $this->validate($request,[
+    'thanhpho'=>'required',
+
+
+
+  ],[
+    'thanhpho.required'=>'Ít nhất 1 kỹ năng.',
+
+
+  ]);
+
+ $this->validate($request,[
+  'vitrimongmuon'=>'required',
+  'mucluongmongmuon'=>'required',
+  'nganhnghe'=>'required',
+  'capbac'=>'required',
+  'kinhnghiem'=>'required',
+  'hinhthuclamviec'=>'required',
+  'trinhdo'=>'required',
+
+
+
+],[
+  'vitrimongmuon.required'=>'Ít nhất 1 kỹ năng.',
+  'vitrimongmuon.required'=>'Ít nhất 1 kỹ năng.',
+
+
+]);
+
+ $ungvien=ungvien::find(Auth::guard('ungvien')->user()->id);
+
+ $ungvien->vitrimongmuon=$request->vitrimongmuon;
+ $ungvien->mucluongmongmuon=$request->mucluongmongmuon;
+ if($request->nganhnghe!=$ungvien->id_nganhnghe)
    $ungvien_kynang=ungvien_kynang::where('id_ungvien',Auth::guard('ungvien')->user()->id)->delete();
  if($request->kynang!=null)
  { 
   $ungvien_kynang=ungvien_kynang::where('id_ungvien',Auth::guard('ungvien')->user()->id)->delete();
-  foreach (  $request->kynang as $key => $value) {
+  foreach (  $request->kynang as $key => $value) 
+  {
 
    $ungvien_kynang=new ungvien_kynang;
    $ungvien_kynang->id_ungvien=Auth::guard('ungvien')->user()->id;
@@ -508,7 +547,7 @@ public function getNhatuyendung($id)
 
 }
 
-public function getNophoso($id){
+public function getNophoso(Request $request,$id){
 
   $today = date("Y-m-d");
   $expire =tintuyendung::findOrFail($id)->hannophoso;
@@ -516,7 +555,7 @@ public function getNophoso($id){
   $expire_dt = new DateTime($expire);
 
   if ($expire_dt < $today_dt||tintuyendung::findOrFail($id)->trangthai!=1)
-    return redirect()->back()->with('success','Nộp hồ sơ thất bại.');
+    return redirect()->back()->with('success','Nộp hồ sơ thất bại.')->with('url',$request->url);
 
 
   $timkiem=ungvien_nop_tin::where('id_ungvien',Auth::guard('ungvien')->user()->id)->where('id_tintuyendung',$id)->get();
@@ -528,7 +567,7 @@ public function getNophoso($id){
   else {
 
     if(Auth::guard('ungvien')->user()->id_nganhnghe=="")
-      return redirect()->back()->with('success','Chưa cập nhật hồ sơ.');
+      return redirect()->back()->with('success','Chưa cập nhật hồ sơ.')->with('url',$request->url);
 
 
 
@@ -541,7 +580,7 @@ public function getNophoso($id){
   }
 
 
-  return redirect()->back()->with('success','Đã nộp hồ sơ.');
+  return redirect()->back()->with('success','Đã nộp hồ sơ.')->with('url',$request->url);
 
 }
 public function postThongtincanhan(Request $request)
@@ -616,20 +655,20 @@ if (Auth::guard('ungvien')->attempt($arr)) {
   if(Auth::guard('ungvien')->user()->xacthuc!=1)
   {
     $ungvien=Auth::guard('ungvien')->user();
-   $ungvien->token= hash_hmac('sha256', Str::random(40), config('app.key'));
-   $ungvien->save();
-   $data=[
-    'name'=> $ungvien->hoten,    
-    'activation_link'=>route('user.activate',$ungvien->token),
-  ];
+    $ungvien->token= hash_hmac('sha256', Str::random(40), config('app.key'));
+    $ungvien->save();
+    $data=[
+      'name'=> $ungvien->hoten,    
+      'activation_link'=>route('user.activate',$ungvien->token),
+    ];
    //   $data->activation_link=route('user.activate',$ungvien->matkhau);
-  \Mail::to($ungvien->email)->send(new \App\Mail\Mail($data));
-  Auth::guard('ungvien')->logout();
+    \Mail::to($ungvien->email)->send(new \App\Mail\Mail($data));
+    Auth::guard('ungvien')->logout();
 
 
-  return redirect()->back()->with('alert','Đã gửi lại mail xác thực.');
-}
-return redirect()->back();
+    return redirect()->back()->with('alert','Đã gửi lại mail xác thực.');
+  }
+  return redirect()->back();
             //..code tùy chọn
             //đăng nhập thành công thì hiển thị thông báo đăng nhập thành công
 }
@@ -779,37 +818,37 @@ public function getQuanlytaikhoan()
 }
 public function array_sort($array, $on, $order=SORT_ASC)
 {
-    $new_array = array();
-    $sortable_array = array();
+  $new_array = array();
+  $sortable_array = array();
 
-    if (count($array) > 0) {
-        foreach ($array as $k => $v) {
-            if (is_array($v)) {
-                foreach ($v as $k2 => $v2) {
-                    if ($k2 == $on) {
-                        $sortable_array[$k] = $v2;
-                    }
-                }
-            } else {
-                $sortable_array[$k] = $v;
-            }
+  if (count($array) > 0) {
+    foreach ($array as $k => $v) {
+      if (is_array($v)) {
+        foreach ($v as $k2 => $v2) {
+          if ($k2 == $on) {
+            $sortable_array[$k] = $v2;
+          }
         }
-
-        switch ($order) {
-            case SORT_ASC:
-                asort($sortable_array);
-            break;
-            case SORT_DESC:
-                arsort($sortable_array);
-            break;
-        }
-
-        foreach ($sortable_array as $k => $v) {
-            $new_array[$k] = $array[$k];
-        }
+      } else {
+        $sortable_array[$k] = $v;
+      }
     }
 
-    return $new_array;
+    switch ($order) {
+      case SORT_ASC:
+      asort($sortable_array);
+      break;
+      case SORT_DESC:
+      arsort($sortable_array);
+      break;
+    }
+
+    foreach ($sortable_array as $k => $v) {
+      $new_array[$k] = $array[$k];
+    }
+  }
+
+  return $new_array;
 }
 public function getTimkiemviec()
 {
@@ -822,69 +861,90 @@ public function getTimkiemviec()
 
   if(Auth::guard('ungvien')->check()&&Auth::guard('ungvien')->user()->id_nganhnghe!=null)
   {
-    $data=tintuyendung::where('id_nganhnghe',Auth::guard('ungvien')->user()->id_nganhnghe)->where('trangthai',1)->where('hannophoso','>',new DateTime())->get();
-
-    $kynangcuaungvien=array();
-    $datax=array();
-    foreach (Auth::guard('ungvien')->user()->ungvien_kynang as $key => $value) 
-    {
-     array_push($kynangcuaungvien,$value->id);
+//Thành phố của ứng viên
+    $dsthanhpho=\DB::table('ungvien_thanhpho')->where('id_ungvien',Auth::guard('ungvien')->user()->id)->get();
+   $thanhphoungvien=array();
+foreach ($dsthanhpho as $key10 => $value10) 
+   {
+     array_push($thanhphoungvien,$value10->id_thanhpho);
    }
 
-//   var_dump($kynangcuaungvien);
+//Danh sách tin tuyển dụng
+   $data=tintuyendung::where('id_nganhnghe',Auth::guard('ungvien')->user()->id_nganhnghe)->where('trangthai',1)->where('hannophoso','>',new DateTime())->get();
 
-
-
+$datax=array();
+   $kynangcuaungvien=array();
+   
+   foreach (Auth::guard('ungvien')->user()->ungvien_kynang as $key => $value) 
+   {
+     array_push($kynangcuaungvien,$value->id);
+   }
+//Chạy danh sách tin tuyển dụng
    foreach ($data as $key1 => $value1)
    {
+    //danh sách thành phố tin tuyển dung
+
+     $thanhphotintuyendung=array();
+     foreach ($value1->thanhpho as $key4 => $value4) 
+     { 
+
+      array_push($thanhphotintuyendung,$value4->id);
+
+
+    } 
+   // var_dump( $thanhphoungvien);
+   // var_dump( $thanhphotintuyendung);
+   
+//echo count(array_intersect($thanhphotintuyendung,$thanhphoungvien));
+    if(count(array_intersect($thanhphotintuyendung,$thanhphoungvien))==0)
+      {
+        unset($data[$key1]);
+        continue;
+       
+      }
     $kynangcuatintuyendung=array();
     foreach ($value1->kynang as $key2 => $value2) 
     { 
-     array_push($kynangcuatintuyendung,$value2->id);
-    // echo $value2->id;
 
-
-   }
-//printf($value1);
-   $dataend=array();
-   $datax[count(array_intersect($kynangcuaungvien,$kynangcuatintuyendung))][]=$value1;
-   // var_dump($kynangcuatintuyendung);
-   // echo $key1; var_dump(array_intersect($kynangcuaungvien,$kynangcuatintuyendung));
-//  echo count(array_intersect($kynangcuaungvien,$kynangcuatintuyendung));
- }
-
-
-for ($i=0; $i <= count($kynangcuaungvien) ; $i++) { 
-  if(isset($datax[$i])&&count($datax[$i])>=2)
-  {
-   
-  $datax[$i]=$this->array_sort($datax[$i], 'id_mucluong', SORT_ASC);
-  }
+      array_push($kynangcuatintuyendung,$value2->id);
     }
 
+    
+    $datax[count(array_intersect($kynangcuaungvien,$kynangcuatintuyendung))][]=$value1;
 
-
-
-//var_dump($datax);
-
-
-
-for ($i=0; $i <= count($kynangcuaungvien) ; $i++) { 
-  if(isset($datax[$i]))
-    foreach ($datax[$i] as $key => $value)
+  }
+$dataend=array();
+//Sắp xếp theo mức lương
+  for ($i=0; $i <= count($kynangcuaungvien) ; $i++)
+  { 
+    if(isset($datax[$i])&&count($datax[$i])>=2)
     {
-      $dataend[]=$value;
+
+      $datax[$i]=$this->array_sort($datax[$i], 'id_mucluong', SORT_ASC);
     }
   }
-  $data = array_reverse($dataend);
-} 
-else
-  $data=tintuyendung::where('trangthai',1)->where('hannophoso','>',new DateTime())->get();
 
-if(Auth::guard('ungvien')->check())
-  return view('ungvien.timkiemviec',['data'=>$data,'alert'=>'Công Việc Phù Hợp']);
-else
-  return view('ungvien.timkiemviec',['data'=>$data,'alert'=>'Công Việc Hiện Có']);
+
+//Chuyển mảng 2 chiều thành 1 chiều
+  for ($i=0; $i <= count($kynangcuaungvien) ; $i++)
+  { 
+    if(isset($datax[$i]))
+      foreach ($datax[$i] as $key => $value)
+      {
+        
+        array_push($dataend,$value);
+     //   $dataend[]=$value;
+      }
+    }
+    $data = array_reverse($dataend);
+  } 
+  else
+    $data=tintuyendung::where('trangthai',1)->where('hannophoso','>',new DateTime())->get();
+
+  if(Auth::guard('ungvien')->check())
+    return view('ungvien.timkiemviec',['data'=>$data,'alert'=>'Công Việc Phù Hợp']);
+  else
+    return view('ungvien.timkiemviec',['data'=>$data,'alert'=>'Công Việc Hiện Có']);
 }
 
 
