@@ -61,7 +61,7 @@
 		</div>
 	</div>
 
-	<div id="container" class="container">
+<!--	<div id="container" class="container">
 		<div class="row">
 			<div class="col-sm-10 offset-sm-1 text-center">
 				<h1 class="display-3">Tìm Việc Nhanh</h1>		
@@ -162,7 +162,7 @@
 
 				</ul>
 			</div></div>
-		</div>
+		</div>-->
 
 		<div class="container-fluid"  style="background-color: #87CEEB !important;">
 			<div class="row ">
