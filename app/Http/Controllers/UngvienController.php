@@ -779,7 +779,7 @@ public function postDangky(Request $request)
         ];
    //   $data->activation_link=route('user.activate',$ungvien->matkhau);
         \Mail::to($ungvien->email)->send(new \App\Mail\MailQuenmatkhau($data));
-        return redirect()->back()->with('alert','Vào mail để lấy mật khẩu.');
+        return redirect()->back()->with('alert','Mật khẩu mới đã được gửi vào mail.');
       }
       else
       {
