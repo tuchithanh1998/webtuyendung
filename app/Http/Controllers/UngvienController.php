@@ -797,11 +797,11 @@ public function postDangky(Request $request)
       $ungvien->matkhau=bcrypt($password);
       $ungvien->token= hash_hmac('sha256', Str::random(40), config('app.key'));
       $ungvien->save();
-      return redirect('ung-vien-dang-ky')->with('password','Mật khẩu mới là : '.$password);
+      return redirect('ung-vien')->with('password','Mật khẩu mới là : '.$password);
     }
     else
     {
-     return redirect('ung-vien-dang-ky');
+     return redirect('ung-vien');
    }
  }
  public function getXacthuc($token)
@@ -809,7 +809,7 @@ public function postDangky(Request $request)
 
   ungvien::where('token',$token)->update(['xacthuc'=>1,'token'=>hash_hmac('sha256', Str::random(40), config('app.key'))]);
 
-  return redirect('ung-vien-dang-ky')->with('alert','Xác thực mail thành công.');
+  return redirect('ung-vien')->with('alert','Xác thực mail thành công.');
 }
 public function getQuanlytaikhoan()
 {

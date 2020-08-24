@@ -31,7 +31,7 @@
 				<div class="form-group row">
 					<label for="inputEmail3" class="col-sm-4 col-form-label">Số lượng cần tuyển: *</label>
 					<div class="col-sm-8">
-						<input type="number" class="form-control" name="soluongcantuyen" value="{{ old('soluongcantuyen') }}">
+						<input type="number" min="1" class="form-control" name="soluongcantuyen" value="{{ old('soluongcantuyen') }}">
 					</div>
 				</div>
 				<div class="form-group row">

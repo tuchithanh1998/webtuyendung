@@ -137,7 +137,12 @@ else{
 											<span class="list-group-item border-0"><span class="font-weight-bold text-info">Cấp bậc: </span><span>{{$data->capbac->tencapbac}}</span></span>
 											<span class="list-group-item border-0"><span class="font-weight-bold text-info">Hình thức làm việc: </span><span>{{$data->hinhthuclamviec->tenhinhthuclamviec}}</span></span>
 											<span class="list-group-item border-0"><span class="font-weight-bold text-info">Số lượng cần tuyển: </span><span>{{$data->soluongcantuyen}}</span></span>
-											<span class="list-group-item border-0"><span class="font-weight-bold text-info">Yêu cầu kỹ năng: </span><span>	<?php foreach ($data->kynang as $key1 => $value1) {
+											<span class="list-group-item border-0"><span class="font-weight-bold text-info">Yêu cầu kỹ năng: </span><span>	<?php 
+
+												if(count($data->kynang)==0)
+													echo "Không yêu cầu.";
+
+											foreach ($data->kynang as $key1 => $value1) {
 												if ($key1!=0) {
 													echo ",";
 												}
