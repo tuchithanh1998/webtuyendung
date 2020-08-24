@@ -13,11 +13,66 @@ use App\ungvien;
 use App\mucluong;
 use App\nhatuyendung_luu_ungvien;
 use DateTime;
+use Mail;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Hash;
 
 class NhatuyendungController extends Controller
 {
+
+public function getMatkhau($token)
+   {
+
+     $nhatuyendung=nhatuyendung::where('token',$token)->firstOrFail();
+     if($nhatuyendung)
+     {
+      $password=Str::random(8);
+      $nhatuyendung->matkhau=bcrypt($password);
+      $nhatuyendung->token= hash_hmac('sha256', Str::random(40), config('app.key'));
+      $nhatuyendung->save();
+      return redirect('nha-tuyen-dung')->with('password','Mật khẩu mới là : '.$password);
+    }
+    else
+    {
+     return redirect('nha-tuyen-dung');
+   }
+ }
+	public function postQuenmatkhau(Request $request)
+    {
+
+      $this->validate($request,[
+
+        'email'=>'required|max:255|email',
+
+
+      ],[
+
+        'email.required'=>'Email không được để trống.',
+        'email.max'=>'Email tối đa 255 ký tự.',
+        'email.email'=>'Email không hợp lệ.',
+
+
+
+
+      ]);
+      $nhatuyendung=nhatuyendung::where('email',$request->email)->firstOrFail();
+      if($nhatuyendung)
+      {
+        $nhatuyendung->token=hash_hmac('sha256', Str::random(40), config('app.key'));
+        $nhatuyendung->save();
+        $data=[
+          'name'=> $nhatuyendung->tencongty,    
+          'quenmatkhau_link'=>route('nhatuyendung.quenmatkhau',$nhatuyendung->token),
+        ];
+   //   $data->activation_link=route('user.activate',$ungvien->matkhau);
+        \Mail::to($nhatuyendung->email)->send(new \App\Mail\MailQuenmatkhaunhatuyendung($data));
+        return redirect()->back()->with('alert','Vào mail để lấy mật khẩu.');
+      }
+      else
+      {
+       return redirect()->back()->with('alert','Email chưa đăng ký.');
+     }
+   }
 
 	public function getXoaungviendaluu($id)
 	{
@@ -471,10 +526,6 @@ foreach ($request->thanhpho as $key => $value) {
 if($request->hasFile('filesTest'))
 		{
 
-
-
-
-
 			$file=$request->filesTest;
 			$name=$file->getClientOriginalName();
 			$hinh=Str::random(4)."_".$name;
@@ -496,9 +547,13 @@ if($request->hasFile('filesTest'))
 		$nhatuyendung->diachilienhe=$request->diachilienhe;
 		$nhatuyendung->sodienthoailienhe=$request->sodienthoailienhe;
 		$nhatuyendung->emaillienhe=$request->emaillienhe;
-		$nhatuyendung->logo=$hinh;
+		if($request->hasFile('filesTest'))
+		{
+		$nhatuyendung->logo=$hinh;}
 		$nhatuyendung->gioithieu=$request->gioithieu;
+		  $nhatuyendung->token= hash_hmac('sha256', Str::random(40), config('app.key'));
 		$nhatuyendung->ngaytao=new DateTime();
+
 		$nhatuyendung->save();
 
 		$arr = [
@@ -508,16 +563,34 @@ if($request->hasFile('filesTest'))
 
 		
 
-		if (Auth::guard('nhatuyendung')->attempt($arr)) {
+	/*	if (Auth::guard('nhatuyendung')->attempt($arr)) {
 
 			return redirect('nhatuyendung/quanlytaikhoan');
-            //..code tùy chọn
-            //đăng nhập thành công thì hiển thị thông báo đăng nhập thành công
-		}
+           
+		}*/
+
+
+		 $data=[
+        'name'=> $nhatuyendung->tencongty,    
+        'activation_link'=>route('nhatuyendung.activate',$nhatuyendung->token),
+      ];
+   //   $data->activation_link=route('user.activate',$ungvien->matkhau);
+      \Mail::to($nhatuyendung->email)->send(new \App\Mail\Mailnhatuyendung($data));
+
+      return redirect()->back()->with('alert','Đăng ký thành công xác thực mail để sử dụng.');
+    }
 
 
 		
-	}
+	 public function getXacthuc($token)
+ {
+
+  nhatuyendung::where('token',$token)->update(['xacthuc'=>1,'token'=>hash_hmac('sha256', Str::random(40), config('app.key'))]);
+
+  return redirect('nha-tuyen-dung')->with('alert','Xác thực mail thành công.');
+}
+
+
 	public function getQuanlytaikhoan()
 	{
 		
@@ -544,6 +617,24 @@ if($request->hasFile('filesTest'))
 				Auth::guard('ungvien')->logout();
 				return redirect()->back()->with('alert','Tài khoản bị khóa.');
 			}
+
+if(Auth::guard('nhatuyendung')->user()->xacthuc!=1)
+  {
+    $nhatuyendung=Auth::guard('nhatuyendung')->user();
+    $nhatuyendung->token= hash_hmac('sha256', Str::random(40), config('app.key'));
+    $nhatuyendung->save();
+    $data=[
+      'name'=> $nhatuyendung->hoten,    
+      'activation_link'=>route('nhatuyendung.activate',$nhatuyendung->token),
+    ];
+   //   $data->activation_link=route('user.activate',$ungvien->matkhau);
+    \Mail::to($nhatuyendung->email)->send(new \App\Mail\Mailnhatuyendung($data));
+    Auth::guard('nhatuyendung')->logout();
+
+
+    return redirect()->back()->with('alert','Đã gửi lại mail xác thực.');
+  }
+
 			return redirect('nhatuyendung/quanlytaikhoan');
             //..code tùy chọn
             //đăng nhập thành công thì hiển thị thông báo đăng nhập thành công

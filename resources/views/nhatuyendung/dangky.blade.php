@@ -1,7 +1,14 @@
 @extends('nhatuyendung.layout')
 @section('content')
 
+@if(session('password'))
+<div class="row" style="margin-top: 20px; margin-bottom: 20px;">
+	<div class="col-12">
 
+		<div class="card">
+{{session('password')}}
+</div></div></div>
+@else
 <div class="row" style="margin-top: 20px; margin-bottom: 20px;">
 	<div class="col-12">
 
@@ -141,6 +148,7 @@
 
 	</div>
 </div>
+@endif
 @endsection
 @section('script')
 

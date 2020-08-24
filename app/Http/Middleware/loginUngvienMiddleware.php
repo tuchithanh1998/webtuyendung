@@ -22,7 +22,7 @@ class loginUngvienMiddleware
     }
     else
     {
-        return  redirect('ung-vien-dang-ky');
+        return  redirect('ung-vien');
             }
 }
 }

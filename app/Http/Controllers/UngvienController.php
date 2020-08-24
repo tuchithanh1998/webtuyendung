@@ -863,16 +863,16 @@ public function getTimkiemviec()
   {
 //Thành phố của ứng viên
     $dsthanhpho=\DB::table('ungvien_thanhpho')->where('id_ungvien',Auth::guard('ungvien')->user()->id)->get();
-   $thanhphoungvien=array();
-foreach ($dsthanhpho as $key10 => $value10) 
-   {
+    $thanhphoungvien=array();
+    foreach ($dsthanhpho as $key10 => $value10) 
+    {
      array_push($thanhphoungvien,$value10->id_thanhpho);
    }
 
 //Danh sách tin tuyển dụng
    $data=tintuyendung::where('id_nganhnghe',Auth::guard('ungvien')->user()->id_nganhnghe)->where('trangthai',1)->where('hannophoso','>',new DateTime())->get();
 
-$datax=array();
+   $datax=array();
    $kynangcuaungvien=array();
    
    foreach (Auth::guard('ungvien')->user()->ungvien_kynang as $key => $value) 
@@ -894,14 +894,14 @@ $datax=array();
     } 
    // var_dump( $thanhphoungvien);
    // var_dump( $thanhphotintuyendung);
-   
+    
 //echo count(array_intersect($thanhphotintuyendung,$thanhphoungvien));
     if(count(array_intersect($thanhphotintuyendung,$thanhphoungvien))==0)
-      {
-        unset($data[$key1]);
-        continue;
-       
-      }
+    {
+      unset($data[$key1]);
+      continue;
+      
+    }
     $kynangcuatintuyendung=array();
     foreach ($value1->kynang as $key2 => $value2) 
     { 
@@ -913,7 +913,7 @@ $datax=array();
     $datax[count(array_intersect($kynangcuaungvien,$kynangcuatintuyendung))][]=$value1;
 
   }
-$dataend=array();
+  $dataend=array();
 //Sắp xếp theo mức lương
   for ($i=0; $i <= count($kynangcuaungvien) ; $i++)
   { 

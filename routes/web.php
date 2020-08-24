@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/ung-vien/token/{token}', 'UngvienController@getXacthuc')->name('user.activate');
-
+Route::get('/nha-tuyen-dung/token/{token}', 'NhatuyendungController@getXacthuc')->name('nhatuyendung.activate');
 Route::get('/', function () {
 	return view('index');
 });
@@ -24,7 +24,7 @@ Route::get('/index', function () {
 Route::get('/test', 'UngvienController@test');
 //Route::get('/timkiemviec','Api\TimkiemviecController@index');
 
-Route::get('/ung-vien-dang-ky','UngvienController@getDangky');
+Route::get('/ung-vien','UngvienController@getDangky');
 Route::post('/ungviendangnhap', 'UngvienController@postDangnhap');
 Route::post('/ungviendangky', 'UngvienController@postDangky');
 
@@ -32,8 +32,9 @@ Route::get('/timkiemviec','UngvienController@getTimkiemviec')->middleware('login
 Route::get('/tintuyendung/{id}','UngvienController@getTintuyendung')->middleware('login_ungvien');
 Route::get('/danh-sach-tin-nha-tuyen-dung/{id}.html','UngvienController@getNhatuyendung')->middleware('login_ungvien');
 Route::post('/ungvienquenmatkhau', 'UngvienController@postQuenmatkhau');
-
+Route::post('/nhatuyendungquenmatkhau', 'NhatuyendungController@postQuenmatkhau');
 Route::get('/ungvienquenmatkhau/{token}', 'UngvienController@getMatkhau')->name('user.quenmatkhau');
+Route::get('/nhatuyendungquenmatkhau/{token}', 'NhatuyendungController@getMatkhau')->name('nhatuyendung.quenmatkhau');
 
 
 Route::get('/ungvien/quanlytaikhoan', 'UngvienController@getQuanlytaikhoan')->middleware('login_ungvien');

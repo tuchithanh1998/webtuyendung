@@ -40,7 +40,7 @@
                   <label>
                     <input type="checkbox" value="remember-me">Ghi nhớ  |</label>
                 </div>-->
-                  <a class="list-inline-item" href="nha-tuyen-dung" style="color: black;">
+                  <a class="list-inline-item" href="nha-tuyen-dung" style="color: black;" data-toggle="modal" data-target="#formquenmatkhau">
                     Quên mật khẩu
                   </a>
                
@@ -231,7 +231,52 @@
   </div>
 </div>
 
+<div class="modal fade bd-example-modal-lg" id="formquenmatkhau" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div class="row">
+            <div class="col-sm-12 text-center">
+              <div class="card">
+                <div class="card-header bg-white">
 
+                  <div class="row">
+                    <div class="col-6 text-left text-info">
+                      QUÊN MẬT KHẨU
+                    </div>
+                    <div class="col-6 text-right">
+
+                      <sub> (*)Thông tin bắt buộc nhập</sub>
+                    </div>
+                  </div>
+
+
+
+
+                </div>
+                <div class="card-body">
+                  <form action="nhatuyendungquenmatkhau" method="POST">
+                    <input type="hidden" name="_token" value="{{csrf_token()}}"/>
+                    <div class="form-group row">
+                      <label for="inputEmail" class="col-sm-4 col-form-label">Email:</label>
+                      <div class="col-sm-8">
+                        <input type="email " class="form-control" id="inputEmail" name="email">
+                      </div>
+                    </div>
+
+              
+                    <div class="form-group row">
+                      <div class="col-sm-10">
+                        <button type="submit" class="btn btn-primary w-25">Gửi</button>
+                      </div>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
 
 @if (session('alert'))
 <div class="alert alert-warning alert-dismissible fade show fixed-top w-25" style="margin-top: 10%; margin-left:75%;" role="alert">
