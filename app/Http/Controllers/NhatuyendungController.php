@@ -66,7 +66,7 @@ public function getMatkhau($token)
         ];
    //   $data->activation_link=route('user.activate',$ungvien->matkhau);
         \Mail::to($nhatuyendung->email)->send(new \App\Mail\MailQuenmatkhaunhatuyendung($data));
-        return redirect()->back()->with('alert','Vào mail để lấy mật khẩu.');
+ return redirect()->back()->with('alert','Mật khẩu mới đã được gửi vào mail.');
       }
       else
       {
