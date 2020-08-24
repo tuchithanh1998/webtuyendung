@@ -45,7 +45,7 @@ if ($expire_dt > $today_dt){
 													@endif
 												</td>
 	  			</tr>
-	  		<?php /*}*/ endforeach ?>
+	  		<?php } endforeach ?>
 	  	</tbody>
 	  </table>
 	</div>
