@@ -61,7 +61,11 @@
 
                   ?></td>
                   @if(Auth::guard('admin')->user()->quyen==1)
- <th>{{$value->id_admin}}-{{$value->admin->ten}}</th>
+ <th>
+  @if($value->id_admin)
+  {{$value->id_admin}}-{{$value->admin->ten}}
+  @endif
+}</th>
 @endif
                   <td><button type="button" data-toggle="modal" data-target="#exampleModal{{$key}}"  class="btn btn-light">Chi tiết</button>
 
