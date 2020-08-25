@@ -2,6 +2,8 @@
 <html>
 <head>
 	<title>Thông báo {{ $data['khoa'] }} của {{$data['taikhoan']}}</title>
+
+	
 </head>
 <body>
 	<p>

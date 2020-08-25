@@ -538,6 +538,8 @@ class AdminController extends Controller
         else
             $khoa='mở khóa';
 
+        
+
          $data=[
       'khoa'=> $khoa,    
       'ten'=> $ungvien->hoten,    
