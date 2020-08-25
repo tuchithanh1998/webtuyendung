@@ -105,7 +105,10 @@ class ungvien  extends Authenticatable
     {
         return $this->belongsTo('App\trinhdo','id_trinhdo');
     }
-
+public function admin()
+    {
+        return $this->belongsTo('App\admin','id_admin');
+    }
     public function tintuyendung()
     {
         return $this->hasMany('App\ungvien_nop_tin','id_ungvien');

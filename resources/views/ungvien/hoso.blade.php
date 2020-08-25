@@ -54,6 +54,16 @@
 			{{$value->tenkynang}}
 		<?php endforeach ?>
 	</p>
+
+	<p class="card-text"><span class="font-weight-bold">Tìm kiếm và nhận Mail:</span>
+		<?php 
+
+		if($data->timkiem==1)
+			echo " Có.";
+		else
+			echo "Không.";
+		?>
+	</p>
 </div>
 </div>
 </div>
@@ -1294,8 +1304,28 @@
 
 																	</div>
 																</div>
+																
 															</div>
+<div class="form-group row">
 
+																<label  class="col-sm-4 col-form-label">Tìm kiếm và nhận Mail: *</label>
+																<div class="col-sm-8 list-inline">
+																	
+																	<div class="radio  list-inline-item">
+																		<label>
+																			<input type="radio" name="timkiem"  value="1" <?php if(Auth::guard('ungvien')->user()->timkiem==1) echo "checked"; ?>  >
+																			Có
+																		</label>
+																	</div>
+																	<div class="radio  list-inline-item">
+																		<label>
+																			<input type="radio" name="timkiem"value="2" <?php if(Auth::guard('ungvien')->user()->timkiem==2) echo "checked"; ?>>
+																			Không
+																		</label>
+																	</div>
+																</div>
+
+															</div>
 
 
 															<div class="form-group row">

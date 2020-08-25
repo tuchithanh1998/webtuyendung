@@ -462,7 +462,7 @@ public function postHoso(Request $request){
 
 
   ],[
-    'thanhpho.required'=>'Ít nhất 1 kỹ năng.',
+    'thanhpho.required'=>'Ít nhất 1 thành phố.',
 
 
   ]);
@@ -479,8 +479,8 @@ public function postHoso(Request $request){
 
 
 ],[
-  'vitrimongmuon.required'=>'Ít nhất 1 kỹ năng.',
-  'vitrimongmuon.required'=>'Ít nhất 1 kỹ năng.',
+  'vitrimongmuon.required'=>'Vị trí mong muốn không được để trống.',
+  'mucluongmongmuon.required'=>'Không được để trống.',
 
 
 ]);
@@ -509,6 +509,7 @@ $ungvien->id_capbac=$request->capbac;
 $ungvien->id_hinhthuclamviec=$request->hinhthuclamviec;
 $ungvien->id_kinhnghiem=$request->kinhnghiem;
 $ungvien->id_trinhdo=$request->trinhdo;
+$ungvien->timkiem=$request->timkiem;
 
 $ungvien->save();
 if($request->thanhpho!=null)
@@ -870,7 +871,7 @@ public function getTimkiemviec()
    }
 
 //Danh sách tin tuyển dụng
-   $data=tintuyendung::where('id_nganhnghe',Auth::guard('ungvien')->user()->id_nganhnghe)->where('trangthai',1)->where('hannophoso','>',new DateTime())->get();
+   $data=tintuyendung::where('id_nganhnghe',Auth::guard('ungvien')->user()->id_nganhnghe)->where('trangthai',1)->where('hannophoso','>',new DateTime())->whereIn('gioitinh',[3,Auth::guard('ungvien')->user()->gioitinh])->get();
 
    $datax=array();
    $kynangcuaungvien=array();

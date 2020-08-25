@@ -415,6 +415,19 @@ public function getNhatuyendungluuungvien($id)
 				$tintuyendung_thanhpho->save();
 			}
 
+
+/*$ungvien=ungvien::query();
+
+	$ungvien->when($request->gioitinh!=3,function($q)
+  {
+   return $q->where('gioitinh','=',$request->gioitinh);
+   });
+
+
+
+$ungvien=$ungvien::where('timkiem',1)->where('trangthai',1)->where('id_nganhnghe',$request->nganhnghe)->where('id_hinhthuclamviec',$request->hinhthuclamviec)->get();*/
+
+
 			return redirect()->back()->with('alert','Đăng tin tuyển dụng thành công.');
 
 /*foreach ($request->kynang as $key => $value) {
@@ -576,6 +589,9 @@ if($request->hasFile('filesTest'))
       ];
    //   $data->activation_link=route('user.activate',$ungvien->matkhau);
       \Mail::to($nhatuyendung->email)->send(new \App\Mail\Mailnhatuyendung($data));
+
+
+
 
       return redirect()->back()->with('alert','Đăng ký thành công xác thực mail để sử dụng.');
     }

@@ -527,7 +527,26 @@ class AdminController extends Controller
     }
     public function postThongtinungvien(Request $request ,$id_ungvien)
     {
-        ungvien::where('id',$id_ungvien)->update(['trangthai'=>$request->Radios]);
+            $ungvien=ungvien::findOrFail($id_ungvien);
+        if($ungvien->trangthai!=$request->Radios)
+        {
+        ungvien::where('id',$id_ungvien)->update(['trangthai'=>$request->Radios,'id_admin',Auth::guard('admin')->user()->id]);
+
+      
+        if($request->Radios==2)
+            $khoa='khóa'
+        else
+            $khoa='mở khóa'
+
+         $data=[
+      'khoa'=> $khoa,    
+      'ten'=> $ungvien->hoten,    
+      'taikhoan'=>$ungvien->email,
+    ];
+   
+    \Mail::to($ungvien->email)->send(new \App\Mail\Mailkhoataikhoan($data));
+
+}
         return redirect()->back()->with('alert','Cập nhật thành công.');
     }
     public function getThongtinungvien()
