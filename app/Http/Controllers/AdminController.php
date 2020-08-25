@@ -530,7 +530,7 @@ class AdminController extends Controller
             $ungvien=ungvien::findOrFail($id_ungvien);
         if($ungvien->trangthai!=$request->Radios)
         {
-        ungvien::where('id',$id_ungvien)->update(['trangthai'=>$request->Radios,'id_admin',Auth::guard('admin')->user()->id]);
+        ungvien::where('id',$id_ungvien)->update(['trangthai'=>$request->Radios,'id_admin'=>Auth::guard('admin')->user()->id]);
 
       
         if($request->Radios==2)
