@@ -65,7 +65,7 @@
   @if($value->id_admin)
   {{$value->id_admin}}-{{$value->admin->ten}}
   @endif
-}</th>
+</th>
 @endif
                   <td><button type="button" data-toggle="modal" data-target="#exampleModal{{$key}}"  class="btn btn-light">Chi tiết</button>
 
