@@ -534,9 +534,9 @@ class AdminController extends Controller
 
       
         if($request->Radios==2)
-            $khoa='khóa'
+            $khoa='khóa';
         else
-            $khoa='mở khóa'
+            $khoa='mở khóa';
 
          $data=[
       'khoa'=> $khoa,    
