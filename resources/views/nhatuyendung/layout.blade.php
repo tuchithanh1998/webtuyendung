@@ -8,7 +8,7 @@
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="icon" href="../../../../favicon.ico">
   <base href="{{asset('')}}">
-  <title>Tuyển Dụng STU</title>
+  <title>Việc Làm STU - Nhà Tuyển Dụng</title>
 
   <!-- Bootstrap core CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -19,10 +19,13 @@
 
 <body class="bg-white">
 
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color:hsl(180, 100%, 93%);">
+    <nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #87CEEB !important;">
     <a class="navbar-brand" href=""><img id="logo" src="logo.png"></a>
-  </nav>
 
+    <button class="navbar-toggler" id="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+  </nav>
   <div class="container-fluid" id="container-fluid1">
     <div class="row">
       <div class="col-sm-3 scroll bg-white fixed-top list-group" style="margin-top: 76px;">
@@ -208,26 +211,25 @@
 
                 @endif
 
-      <div class="bg-white w-100" id="container2">
-        <div class="row">
-          <div class="col-sm-3">
-            <img src="logo.png" class="d-block w-100" alt="...">
-          </div>
-          <div class="col-sm-3 ">
-            <ul class="list-unstyled">
-              <li>Từ Chí Thành</li>
-              <li>Phạm Ngọc Thạch</li>
-            </ul>                
-          </div>
-          <div class="col-sm-3">
+         <div class="bg-white" id="container2">
+          <div class="row ">
+            <div class="col-sm-3">
+              <img src="logo.png" class="d-block w-100" alt="...">
+            </div>
+            <div class="col-sm-6 ">
+              <ul class="list-unstyled">
+                <li> VieclamSTU - Website việc làm tốt nhất Việt Nam</li>
 
-          </div>
-          <div class="col-sm-3">
+              </ul>                
+            </div>
+            <div class="col-sm-3">
 
+            </div>
+            <div class="col-sm-3">
+
+            </div>
           </div>
-        </div>
-      </div>
-    </div>
+         </div>    </div>
   </div>
 </div>
 

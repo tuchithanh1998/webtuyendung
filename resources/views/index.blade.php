@@ -7,7 +7,7 @@
 	<meta name="author" content="">
 	<link rel="icon" href="../../../../favicon.ico">
 
-	<title>Tuyển Dụng STU</title>
+	<title>Tuyển dụng, việc làm, tìm việc làm nhanh nhất | Việc Làm STU</title>
 
 	<!-- Bootstrap core CSS -->
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
@@ -27,12 +27,12 @@
 		<div class="collapse navbar-collapse" id="navbarCollapse">
 			<ul class="navbar-nav mr-auto">
 				<li class="nav-item">
-					<a class="nav-link" href="timkiemviec">Dành Cho Ứng Viên</a>
+					<a class="nav-link" href="timkiemviec" style="font-weight: bold;">Cho Người Tìm Việc</a>
 				</li>
 			</ul>
 			<ul class="navbar-nav mr-2 ">
 				<li class="nav-item ">
-					<a class="nav-link" href="nha-tuyen-dung">Dành Cho Nhà Tuyển Dụng</a>
+					<a class="nav-link" href="nha-tuyen-dung" style="font-weight: bold;">Cho Nhà Tuyển Dụng</a>
 				</li>
 			</ul>
 		</div>
@@ -41,13 +41,17 @@
 		<div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
 			<div class="carousel-inner" id="container1">
 				<div class="carousel-item active">
-					<img src="logo.png" class="d-block w-100" style="height: 350px;" alt="...">
+					<a target="_blank" href="https://anhducdigital.vn/anh-duc-digital-tuyen-dung-nhan-su-moi.html
+"><img src="upload/img/slide/slide4.jpg" class="d-block w-100" style="height: 350px;" alt="...">
+					</a>
 				</div>
 				<div class="carousel-item">
-					<img src="logo.png" class="d-block w-100" style="height: 350px;" alt="...">
+					<a target="_blank" href="http://firstindependent.vn/nhan-vien-tuyen-dung-dao-tao-2/"><img src="upload/img/slide/slide2.jpg" class="d-block w-100" style="height: 350px;" alt="...">
+					</a>
 				</div>
 				<div class="carousel-item">
-					<img src="logo.png" class="d-block w-100" style="height: 350px;" alt="...">
+					<a target="_blank" href="https://www.trangantravel.com.vn/tuyen-nhan-vien-dieu-hanh-visa"><img src="upload/img/slide/slide5.jpg" class="d-block w-100" style="height: 350px;" alt="...">
+					</a>
 				</div>
 			</div>
 			<a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -64,7 +68,7 @@
 	<div id="container" class="container">
 		<div class="row">
 			<div class="col-sm-10 offset-sm-1 text-center">
-				<h1 class="display-3">Tìm Việc Nhanh</h1>		
+				<h2 class="display-3" style="color: blue;">Tìm Việc Nhanh</h2>		
 				<div class="info-form ">
 					<p>Việc làm hôm nay tự tin làm cầu nối cho tuyển dụng và tìm việc thành công</p>
 					<form action="timkiemviec" class="form-inline justify-content-center w-100" style="margin-bottom: 10px;">
@@ -87,7 +91,7 @@
 						</div>
 						<button type="submit" class="btn btn-info ">Tìm Kiếm</button>
 					</form>
-					<a href="" class="text-right"><img src="upload\img\layout\search.svg">Tìm kiếm nâng cao</a>
+					<a href="timkiemviec" class="text-right">Tìm kiếm nâng cao</a>
 				</div>
 				<br>
 			</div>
@@ -96,31 +100,22 @@
 
 	<div class=" bg-light">
 		<div id="container" id="container-vieclam" class="container bg-light">
-			
-
 			<div class="row ">
 				<div class="col-12 container">
+					<h5 class="display-4" style="color: blue; padding: 15px;">Nhà tuyển dụng hàng đầu</h5>
 					<ul class="list-unstyled row">
 			<?php $data=App\nhatuyendung::where('trangthai',1)->where('logo','<>',null)->take(12)->get();
 						foreach ($data as $key => $value) {
 
 
 							?>			<li class="list-item col-2 py-2">
-
-	
-
-
 							<div class="card">
 								<div class="row no-gutters" title="Công ty" style="text-align: center;">
 									
 										<img style="width: 160px ;height: 160px;" src="upload/img/nhatuyendung/logo/{{$value->logo}}"
 											class=" img-thumbnail" alt="{{$value->tencongty}}" title="{{$value->tencongty}}">
-									
 								</div>
 							</div>
-
-
-
 						</li>	<?php
 						}
 
@@ -194,33 +189,81 @@
 			</div>
 		</div>
 	</div>-->
+	<div id="container" class="container">
+		<h5 class="display-4" style="color: blue; padding: 15px;">Tại sao nên chọn Việc làm STU</h5>
+		<div class="row" >
+			<div class="col-6 ">
+			<img src="NTD.png">
+			<h6 style="color: blue;">Tuyển dụng hiệu quả và nhanh chóng</h6>
+			<ul style="list-style-type: none;" >
+				<li style="margin: 5px;"><p><img src="tich.png" style="max-width: 20px;">Hàng triệu ứng viên chất lượng</p></li>
+				<li style="margin: 5px;"><p><img src="tich.png" style="max-width: 20px;">Thông tin hồ sơ ứng viên được kiểm duyệt chặt chẽ, phân loại xác thực theo số điện thoại</p></li>
+				<li style="margin: 5px;"><p><img src="tich.png" style="max-width: 20px;">Cam kết với chế độ bảo hành chất lượng tuyển dụng</p></li>
+			</ul>
+		</div>
 
+		<div class="col-6 ">
+			<h6 style="color: blue;">Việc làm tốt nhất từ những nhà tuyển dụng hàng đầu</h6>
+			<ul style="list-style-type: none;" >
+				<li style="margin: 5px;"><p><img src="tich.png" style="max-width: 20px;">100% thông tin việc làm được xác thực và kiểm duyệt chặt chẽ</p></li>
+				<li style="margin: 5px;"><p><img src="tich.png" style="max-width: 20px;">Kết nối nhanh với nhà tuyển dụng, tìm kiếm việc làm dễ dàng</p></li>
+				<li style="margin: 5px;"><p><img src="tich.png" style="max-width: 20px;">Công cụ hỗ trợ đầy đủ, gợi ý việc làm phù hợp</p></li>
+			</ul>
+			<img src="Uv.png">
+		</div></div>
+	</div>
 	<div id="container" id="container-nganhnghe" class="container">
-		<h3 class="display-3">Việc Làm Theo Ngành Nghề</h3>
+		<h5 class="display-4" style="color: blue; padding: 15px;">Việc Làm Theo Ngành Nghề</h5>
 		<div class="row" ><div class="col-12 container">
 			<ul class="list-unstyled row" id="dsvieclam">
 
 			</ul>
 		</div></div>
 	</div>
+	
+	
 
 	<div class="container-fluid"  style="background-color: #87CEEB !important;">
 		<div class="row ">
-			<div class="col-sm-3">
+			<div class="col-sm-2">
 				<img src="logo.png" class="d-block w-100" alt="...">
 			</div>
-			<div class="col-sm-3 ">
+			<div class="col-sm-6">
 				<ul class="list-unstyled">
-					<li>Từ Chí Thành</li>
-					<li>Phạm Ngọc Thạch</li>
-				</ul>  	  	  	  	 
+				 	<li style="padding-top: 10px;"> 
+				 		<a class="list-inline-item" href="dieu-khoan-su-dung" target="_blank" style="color: black;">
+  									Điều khoản sử dụng 
+  						</a> |
+  						<a class="list-inline-item" href="quy-dinh-bao-mat" target="_blank" style="color: black;" >
+  									Quy định bảo mật 
+  						</a>
+  					</li>
+				</ul>
+				<ul class="list-unstyled" style="padding-top: 40px;">
+				<li>Trụ sở: 180 Cao Lỗ, Phường 4, Quận 8, TP. Hồ Chí Minh.</li>
+				<li>Điện thoại: (038) 3638 777  | (039) 651 6412</li>
+				<li>Email hỗ trợ NTV: ntv@vieclamSTU.com</li> 
+				<li>Email hỗ trợ NTD: ntd@vieclamSTU.com</li>
+				</ul>
+				
+
 			</div>
-			<div class="col-sm-3">
-				s
+			<div class="col-sm-4">
+				<ul class="list-unstyled">
+				 	<li style="padding-top: 10px;"> VieclamSTU - Website việc làm tốt nhất Việt Nam</li>
+				</ul>
+				<p>Kết nối với VieclamSTU</p>
+				<ul>
+					<a href=""><img src="facebook.png"><img src="youtube.png"></a>
+				</ul>
+				<p>Chứng nhân bởi</p>
+				<ul class="list-unstyled">  	  	  	  	 
+					<img style="padding-left: 50px;" src="dadangky.png">
+				</ul>
 			</div>
-			<div class="col-sm-3">
-				s
-			</div>
+			<div class="col-sm-12"><ul class="list-unstyled" style="padding-top: 30px; text-align: center;">  	  	  	  	 
+					Copyright © Công Ty Cổ Phần Việc Làm STU
+				</ul></div>
 		</div>
 	</div>
 

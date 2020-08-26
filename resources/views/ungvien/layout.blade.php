@@ -8,7 +8,7 @@
 	<meta name="csrf-token" content="{{ csrf_token() }}">
 	<link rel="icon" href="../../../../favicon.ico">
 	<base href="{{asset('')}}">
-	<title>Tuyển Dụng STU</title>
+	<title>Việc làm STU - Ứng Viên</title>
 	
 
 	<!-- Bootstrap core CSS -->
@@ -32,10 +32,14 @@
   	body { padding-right: 0 !important }
   </style>
   <body class="bg-main" id="test">
+  	<nav class="navbar navbar-expand-md navbar-dark fixed-top" style="background-color: #87CEEB !important;">
+		<a class="navbar-brand" href=""><img id="logo" src="logo.png"></a>
 
-  	<nav class="rounded-bottom navbar navbar-expand-md navbar-dark fixed-top" style="background-color:hsl(180, 100%, 93%);">
-  		<a class="navbar-brand" href="index"><img id="logo" src="logo.png"></a>
-  	</nav>
+		<button class="navbar-toggler" id="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+	</nav>
+
 
   	<div class="container-fluid" id="container-fluid1" >
   		<div class="row ">
@@ -178,10 +182,10 @@
 				 		<div class="col-sm-3">
 				 			<img src="logo.png" class="d-block w-100" alt="...">
 				 		</div>
-				 		<div class="col-sm-3 ">
+				 		<div class="col-sm-6 ">
 				 			<ul class="list-unstyled">
-				 				<li>Từ Chí Thành</li>
-				 				<li>Phạm Ngọc Thạch</li>
+				 				<li> VieclamSTU - Website việc làm tốt nhất Việt Nam</li>
+
 				 			</ul>  	  	  	  	 
 				 		</div>
 				 		<div class="col-sm-3">

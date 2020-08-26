@@ -18,6 +18,12 @@ Route::get('/nha-tuyen-dung/token/{token}', 'NhatuyendungController@getXacthuc')
 Route::get('/', function () {
 	return view('index');
 });
+Route::get('/dieu-khoan-su-dung', function () {
+	return view('dieukhoansudung');
+});
+Route::get('/quy-dinh-bao-mat', function () {
+	return view('quydinhbaomat');
+});
 Route::get('/index', function () {
 	return view('index');
 });
