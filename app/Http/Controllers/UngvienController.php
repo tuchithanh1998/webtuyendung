@@ -1086,8 +1086,14 @@ public function getTintuyendung($id)
 
  return view('ungvien.tintuyendung',['data'=>$tintuyendung]);
 }
-public function test()
+public function gettest()
 {
  return view('ungvien.test');
 }
+
+public function posttest(Request $request)
+{
+ 
+}
+
 }
