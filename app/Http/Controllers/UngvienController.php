@@ -17,6 +17,7 @@ use App\trinhdobangcap;
 use App\nguoithamkhao;
 use DateTime;
 use Auth;
+use \PDF;
 use Mail;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
@@ -1088,6 +1089,10 @@ public function getTintuyendung($id)
 }
 public function gettest()
 {
+  $data = ['a'=>''];
+   $pdf = PDF::loadView('ungvien.test', $data);
+  
+        return $pdf->download('itsolutionstuff.pdf');
  return view('ungvien.test');
 }
 
