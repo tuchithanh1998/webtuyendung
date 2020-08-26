@@ -27,7 +27,8 @@ Route::get('/quy-dinh-bao-mat', function () {
 Route::get('/index', function () {
 	return view('index');
 });
-Route::get('/test', 'UngvienController@test');
+Route::get('/test', 'UngvienController@gettest');
+Route::post('/test', 'UngvienController@posttest');
 //Route::get('/timkiemviec','Api\TimkiemviecController@index');
 
 Route::get('/ung-vien','UngvienController@getDangky');
