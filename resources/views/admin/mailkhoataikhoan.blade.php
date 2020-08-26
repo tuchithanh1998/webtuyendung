@@ -7,7 +7,7 @@
 </head>
 <body>
 	<p>
-		Chào {{ $data['ten'] }} {{$data['taikhoan']}} của bạn đã được {{ $data['khoa'] }} .
+		Chào {{ $data['ten'] }} {{$data['taikhoan']}} của bạn đã được {{ $data['khoa'] }} {{$data['nd']}}.
 	
 	
 

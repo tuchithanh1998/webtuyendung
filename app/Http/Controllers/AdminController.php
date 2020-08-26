@@ -499,15 +499,68 @@ class AdminController extends Controller
     }
     public function postThongtinnhatuyendung(Request $request ,$id_nhatuyendung)
     {
-        nhatuyendung::where('id',$id_nhatuyendung)->update(['trangthai'=>$request->Radios]);
+
+ $nhatuyendung=nhatuyendung::findOrFail($id_nhatuyendung);
+        if($nhatuyendung->trangthai!=$request->Radios)
+        {
+        nhatuyendung::where('id',$id_nhatuyendung)->update(['trangthai'=>$request->Radios,'id_admin'=>Auth::guard('admin')->user()->id]);
+
+      
+        if($request->Radios==2)
+            $khoa='khóa';
+        else
+            $khoa='mở khóa';
+
+        
+
+         $data=[
+      'khoa'=> $khoa,    
+      'ten'=> $nhatuyendung->tennguoilienhe,    
+      'taikhoan'=>$nhatuyendung->tencongty,
+      'nd'=>'tài khoản ',
+    ];
+   
+    \Mail::to($nhatuyendung->email)->send(new \App\Mail\Mailkhoataikhoan($data));
+
+
+    //    nhatuyendung::where('id',$id_nhatuyendung)->update(['trangthai'=>$request->Radios]);
 
       //  echo nhatuyendung::where('id',$id_nhatuyendung)->get();
 
+       }
         return redirect()->back()->with('alert','Cập nhật thành công.');
     }
     public function postTintuyendung(Request $request ,$id_tintuyendung)
     {
-        tintuyendung::where('id',$id_tintuyendung)->update(['trangthai'=>$request->Radios]);
+
+$tintuyendung=tintuyendung::findOrFail($id_tintuyendung);
+        if($tintuyendung->trangthai!=$request->Radios)
+        {
+
+
+        $nhatuyendung= nhatuyendung::findOrFail($tintuyendung->id_nhatuyendung);   
+        tintuyendung::where('id',$id_tintuyendung)->update(['trangthai'=>$request->Radios,'id_admin'=>Auth::guard('admin')->user()->id]);
+
+      
+        if($request->Radios==2)
+            $khoa='khóa tin tuyển dụng';
+        else
+            $khoa='mở khóa tin tuyển dụng';
+
+        
+
+         $data=[
+      'khoa'=> $khoa,    
+      'ten'=> $nhatuyendung->tennguoilienhe,    
+      'taikhoan'=>$nhatuyendung->tencongty,
+      'nd'=>$tintuyendung->tieudetuyendung,
+    ];
+   
+    \Mail::to($nhatuyendung->email)->send(new \App\Mail\Mailkhoataikhoan($data));
+
+
+}
+        //tintuyendung::where('id',$id_tintuyendung)->update(['trangthai'=>$request->Radios]);
         return redirect()->back()->with('alert','Cập nhật thành công.');
     }
     public function getIndex()
