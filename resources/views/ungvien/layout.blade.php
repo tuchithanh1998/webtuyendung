@@ -119,7 +119,47 @@
 				 echo Auth::guard('ungvien')->user()->attributes['password'];*/
 
 				 ?>
+				 <div   style="min-height:  493px;">
+				 	<div class=" bg-light">
+		<div id="container" id="container-vieclam" class="container bg-light">
+			
+
+			<div class="row ">
+				<div class="col-12 container">
+				<h3 style="text-align: center;">Nhà tuyển dụng hàng đầu</h3>					
+					<ul  class="list-unstyled row">
+			<?php $data=App\nhatuyendung::where('trangthai',1)->where('logo','<>',null)->take(12)->get();
+						foreach ($data as $key => $value) {
+
+
+							?>			<li class="list-item col-2 py-2">
+
+	
+
+
+							<div class="card">
+								<div class="row no-gutters" title="Công ty" style="text-align: center;">
+									
+										<img style="width: 160px ;height: 160px;" src="upload/img/nhatuyendung/logo/{{$value->logo}}"
+											class=" img-thumbnail" alt="{{$value->tencongty}}" title="{{$value->tencongty}}">
+									
+								</div>
+							</div>
+
+
+
+						</li>	<?php
+						}
+
+						?>
+					</ul>
+				</div>
+			</div>
+
+		</div>
+	</div>
 				 @yield('content')
+				</div>
 						
 
 @if (session('password'))
