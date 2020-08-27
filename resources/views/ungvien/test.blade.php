@@ -11,7 +11,7 @@
               <div class="card"  style=" width:114px; height:152px;">
 
                 @if(Auth::guard('ungvien')->user()->anhdaidien)
-                <img  class="card-img-top " style="text-align: center; width:114px; height: 152px;" src="upload/ungvien/anhdaidien/{{Auth::guard('ungvien')->user()->anhdaidien}}" alt="">
+                <img  class="card-img-top " style="text-align: center; width:114px; height: 152px;" src="upload/img/ungvien/anhdaidien/{{Auth::guard('ungvien')->user()->anhdaidien}}" alt="">
                 @else
                 <img  class="card-img-top " style="text-align: center; width:114px; height: 152px;" src="//placehold.it/64" alt="">    
                 @endif            
