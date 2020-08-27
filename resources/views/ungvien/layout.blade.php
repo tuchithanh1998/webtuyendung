@@ -123,8 +123,10 @@
 				 echo Auth::guard('ungvien')->user()->attributes['password'];*/
 
 				 ?>
+
+
 				 <div   style="min-height:  493px;">
-				 	<div class=" bg-light">
+	@if(!Auth::guard('ungvien')->check())				 	<div class=" bg-light">
 		<div id="container" id="container-vieclam" class="container bg-light">
 			
 
@@ -161,7 +163,7 @@
 			</div>
 
 		</div>
-	</div>
+	</div>@endif
 				 @yield('content')
 				</div>
 						

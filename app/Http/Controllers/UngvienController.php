@@ -433,6 +433,26 @@ public function postKinhnghiemlamviecsua(Request $request,$id){
 public function postKhac(Request $request)
 {
 
+ $this->validate($request,[
+  'muctieu'=>'required|max:500',
+  'kynangsotruong'=>'required|max:500',
+  'sothich'=>'required|max:500',
+  
+
+
+],[
+  'muctieu.required'=>'Mục tiêu không được để trống.',
+  'kynangsotruong.required'=>'Kỹ năng sở trường không được để trống.',
+  'sothich.required'=>'Sở thích không được để trống.',
+
+  'muctieu.max'=>'Mục tiêu tối đa 500 kí tự.',
+  'kynangsotruong.max'=>'Kỹ năng sở trường tối đa 500 kí tự.',
+  'sothich.max'=>'Sở thích tối đa 500 kí tự.',
+ 
+
+]);
+
+
  $ungvien=ungvien::find(Auth::guard('ungvien')->user()->id);
 
  $ungvien->muctieu=$request->muctieu;
@@ -1089,10 +1109,11 @@ public function getTintuyendung($id)
 }
 public function gettest()
 {
-  $data = ['a'=>''];
+ /* $data = ['a'=>''];
    $pdf = PDF::loadView('ungvien.test', $data);
-  
-        return $pdf->download('itsolutionstuff.pdf');
+  PDF::setOptions(['dpi' => 150, 'defaultFont' => 'sans-serif']);
+  return $pdf->stream( 'ungvien.test' )->header('Content-Type','application/pdf');
+        return $pdf->download('itsolutionstuff.pdf');*/
  return view('ungvien.test');
 }
 
