@@ -5,7 +5,7 @@
 <input type="button" id="create_pdf" value="Xuất file PDF">
 <div class="container-fluid">
     <form class="form " style="max-width: none; width: 714px;">
-
+<div style="padding-left: 5px;padding-right: 5px;">
         <div class="row">
             <div class="col-3">
               <div class="card"  style=" width:114px; height:152px;">
@@ -280,6 +280,7 @@ foreach ($ungvien_ngoaingu as $key => $value) {
         <hr class="my-1" >
         <p ><?php echo  Auth::guard('ungvien')->user()->sothich; ?></p>
     </div>
+</div>
 </div>
 </form>
 </div>
