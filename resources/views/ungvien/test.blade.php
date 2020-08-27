@@ -102,7 +102,7 @@ foreach ($kinhnghiemlamviec as $key => $value) {
      echo date_format($date,"m/Y");
      ?>
  </div>
- <div class="col-8" style="">
+ <div class="col-8">
    <p style="margin: 0px;">{{$value->tencongty}}</p>
    <p style="margin: 0px;">{{$value->chucdanh}}</p>
    
@@ -285,7 +285,7 @@ foreach ($ungvien_ngoaingu as $key => $value) {
 </form>
 </div>
 
-
+<a href="{{ url()->previous() }}" class="btn btn-primary"  role="button" style="position: fixed; bottom: 10px; right: 10px; z-index: 1;">Quay lại</a>
 @endsection
 @section('script')
 <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.7.0/build/reset-fonts-grids/reset-fonts-grids.css" media="all" /> 
