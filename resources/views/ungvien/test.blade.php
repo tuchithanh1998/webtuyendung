@@ -9,31 +9,36 @@
         <div class="row">
             <div class="col-3">
               <div class="card"  style=" width:114px; height:152px;">
-                  <img  class="card-img-top " style="text-align: center; width:114px; height: 152px;" src="logo.png" alt="">                     
-              </div>
-          </div>
-          <div class="col-9">
-             <h3>{{Auth::guard('ungvien')->user()->hoten}}</h3>
-             <p style="font-family: Tahoma;margin-bottom: 1;">{{Auth::guard('ungvien')->user()->vitrimongmuon}}</p>
-             <div class="row">
-              <div class="col-4" style="margin: 0px; padding-right: 0px;">
 
-               <p style="margin: 1px; padding: 1px; font-family: Tahoma;">Ngày sinh: </p>
-               <p style="margin: 1px; padding: 1px;font-family: Tahoma;margin-top: 0px;margin-bottom: 1;">Giới tính: </p>
-               <p style="margin: 1px; padding: 1px;font-family: Tahoma;margin-top: 0px;margin-bottom: 1;">Điện thoại: </p>
-               <p style="margin: 1px; padding: 1px;font-family: Tahoma;margin-top: 0px;margin-bottom: 1;">Email: </p>
-               <p style="margin: 1px; padding: 1px;font-family: Tahoma;margin-top: 0px;margin-bottom: 1;">Địa chỉ: </p>
-           </div>
-           <div class="col-8" style="margin: 0px; padding-left: 0px;">
-            <p style="margin: 1px; padding: 1px;font-family: Tahoma;margin-top: 0px;margin-bottom: 1;">{{Auth::guard('ungvien')->user()->ngaysinh}}</p>
-            <p style="margin: 1px; padding: 1px;font-family: Tahoma;margin-top: 0px;margin-bottom: 1;"><?php if(Auth::guard('ungvien')->user()->gioitinh==1) echo "Nam"; 
-            if(Auth::guard('ungvien')->user()->gioitinh==2) echo "Nữ";?></p>
-            <p style="margin: 1px; padding: 1px;font-family: Tahoma;margin-top: 0px;margin-bottom: 1;">{{Auth::guard('ungvien')->user()->sodienthoai}}</p>
-
-            <p style="margin: 1px; padding: 1px;font-family: Tahoma;margin-top: 0px;margin-bottom: 1;">{{Auth::guard('ungvien')->user()->email}}</p>
-            <p style="margin: 1px; padding: 1px;font-family: Tahoma;margin-top: 0px;margin-bottom: 1;">{{Auth::guard('ungvien')->user()->diachi}} {{Auth::guard('ungvien')->user()->thanhpho->tenthanhpho}}</p>
+                @if(Auth::guard('ungvien')->user()->anhdaidien)
+                <img  class="card-img-top " style="text-align: center; width:114px; height: 152px;" src="upload/ungvien/anhdaidien/{{Auth::guard('ungvien')->user()->anhdaidien}}" alt="">
+                @else
+                <img  class="card-img-top " style="text-align: center; width:114px; height: 152px;" src="//placehold.it/64" alt="">    
+                @endif            
+            </div>
         </div>
+        <div class="col-9">
+         <h3>{{Auth::guard('ungvien')->user()->hoten}}</h3>
+         <p style="font-family: Tahoma;margin-bottom: 1;">{{Auth::guard('ungvien')->user()->vitrimongmuon}}</p>
+         <div class="row">
+          <div class="col-4" style="margin: 0px; padding-right: 0px;">
+
+           <p style="margin: 1px; padding: 1px; font-family: Tahoma;">Ngày sinh: </p>
+           <p style="margin: 1px; padding: 1px;font-family: Tahoma;margin-top: 0px;margin-bottom: 1;">Giới tính: </p>
+           <p style="margin: 1px; padding: 1px;font-family: Tahoma;margin-top: 0px;margin-bottom: 1;">Điện thoại: </p>
+           <p style="margin: 1px; padding: 1px;font-family: Tahoma;margin-top: 0px;margin-bottom: 1;">Email: </p>
+           <p style="margin: 1px; padding: 1px;font-family: Tahoma;margin-top: 0px;margin-bottom: 1;">Địa chỉ: </p>
+       </div>
+       <div class="col-8" style="margin: 0px; padding-left: 0px;">
+        <p style="margin: 1px; padding: 1px;font-family: Tahoma;margin-top: 0px;margin-bottom: 1;">{{Auth::guard('ungvien')->user()->ngaysinh}}</p>
+        <p style="margin: 1px; padding: 1px;font-family: Tahoma;margin-top: 0px;margin-bottom: 1;"><?php if(Auth::guard('ungvien')->user()->gioitinh==1) echo "Nam"; 
+        if(Auth::guard('ungvien')->user()->gioitinh==2) echo "Nữ";?></p>
+        <p style="margin: 1px; padding: 1px;font-family: Tahoma;margin-top: 0px;margin-bottom: 1;">{{Auth::guard('ungvien')->user()->sodienthoai}}</p>
+
+        <p style="margin: 1px; padding: 1px;font-family: Tahoma;margin-top: 0px;margin-bottom: 1;">{{Auth::guard('ungvien')->user()->email}}</p>
+        <p style="margin: 1px; padding: 1px;font-family: Tahoma;margin-top: 0px;margin-bottom: 1;">{{Auth::guard('ungvien')->user()->diachi}} {{Auth::guard('ungvien')->user()->thanhpho->tenthanhpho}}</p>
     </div>
+</div>
 </div>
 </div>
 <br>
@@ -89,15 +94,15 @@ foreach ($kinhnghiemlamviec as $key => $value) {
 
  <div class="col-4">
      <?php $date=date_create($value->thoigianbatdau);
-                                    echo date_format($date,"m/Y");
-                                    ?>-<?php 
-                                    
-                                
-                                        $date=date_create($value->thoigianketthuc);
-                                        echo date_format($date,"m/Y");
-                                    ?>
-</div>
-<div class="col-8" style="">
+     echo date_format($date,"m/Y");
+     ?>-<?php 
+     
+     
+     $date=date_create($value->thoigianketthuc);
+     echo date_format($date,"m/Y");
+     ?>
+ </div>
+ <div class="col-8" style="">
    <p style="margin: 0px;">{{$value->tencongty}}</p>
    <p style="margin: 0px;">{{$value->chucdanh}}</p>
    
