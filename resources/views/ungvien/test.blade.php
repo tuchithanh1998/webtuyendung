@@ -2,38 +2,39 @@
 @section('content')
 
 
-    <input type="button" id="create_pdf" value="Xuất file PDF">
-    <div class="container-fluid">
-        <form class="form " style="max-width: none; width: 714px;">
+<input type="button" id="create_pdf" value="Xuất file PDF">
+<div class="container-fluid">
+    <form class="form " style="max-width: none; width: 714px;">
 
-            <div class="row">
-                <div class="col-3">
-                  <div class="card"  style=" width:114px; height:152px;">
-                      <img  class="card-img-top " style="text-align: center; width:114px; height: 152px;" src="logo.png" alt="">                     
-                  </div>
+        <div class="row">
+            <div class="col-3">
+              <div class="card"  style=" width:114px; height:152px;">
+                  <img  class="card-img-top " style="text-align: center; width:114px; height: 152px;" src="logo.png" alt="">                     
               </div>
-              <div class="col-9">
-                 <h3>{{Auth::guard('ungvien')->user()->hoten}}</h3>
-                 <p style="font-family: Tahoma;margin-bottom: 1;">{{Auth::guard('ungvien')->user()->vitrimongmuon}}</p>
-                 <div class="row">
-                  <div class="col-4" style="margin: 0px; padding-right: 0px;">
+          </div>
+          <div class="col-9">
+             <h3>{{Auth::guard('ungvien')->user()->hoten}}</h3>
+             <p style="font-family: Tahoma;margin-bottom: 1;">{{Auth::guard('ungvien')->user()->vitrimongmuon}}</p>
+             <div class="row">
+              <div class="col-4" style="margin: 0px; padding-right: 0px;">
 
-                   <p style="margin: 1px; padding: 1px; font-family: Tahoma;">Ngày sinh: </p>
-                   <p style="margin: 1px; padding: 1px;font-family: Tahoma;margin-top: 0px;margin-bottom: 1;">Giới tính: </p>
-                   <p style="margin: 1px; padding: 1px;font-family: Tahoma;margin-top: 0px;margin-bottom: 1;">Điện thoại: </p>
-                   <p style="margin: 1px; padding: 1px;font-family: Tahoma;margin-top: 0px;margin-bottom: 1;">Email: </p>
-                   <p style="margin: 1px; padding: 1px;font-family: Tahoma;margin-top: 0px;margin-bottom: 1;">Địa chỉ: </p>
-               </div>
-               <div class="col-8" style="margin: 0px; padding-left: 0px;">
-                <p style="margin: 1px; padding: 1px;font-family: Tahoma;margin-top: 0px;margin-bottom: 1;">24/2/1998</p>
-                <p style="margin: 1px; padding: 1px;font-family: Tahoma;margin-top: 0px;margin-bottom: 1;">Nam</p>
-                <p style="margin: 1px; padding: 1px;font-family: Tahoma;margin-top: 0px;margin-bottom: 1;">0932726612</p>
+               <p style="margin: 1px; padding: 1px; font-family: Tahoma;">Ngày sinh: </p>
+               <p style="margin: 1px; padding: 1px;font-family: Tahoma;margin-top: 0px;margin-bottom: 1;">Giới tính: </p>
+               <p style="margin: 1px; padding: 1px;font-family: Tahoma;margin-top: 0px;margin-bottom: 1;">Điện thoại: </p>
+               <p style="margin: 1px; padding: 1px;font-family: Tahoma;margin-top: 0px;margin-bottom: 1;">Email: </p>
+               <p style="margin: 1px; padding: 1px;font-family: Tahoma;margin-top: 0px;margin-bottom: 1;">Địa chỉ: </p>
+           </div>
+           <div class="col-8" style="margin: 0px; padding-left: 0px;">
+            <p style="margin: 1px; padding: 1px;font-family: Tahoma;margin-top: 0px;margin-bottom: 1;">{{Auth::guard('ungvien')->user()->ngaysinh}}</p>
+            <p style="margin: 1px; padding: 1px;font-family: Tahoma;margin-top: 0px;margin-bottom: 1;"><?php if(Auth::guard('ungvien')->user()->gioitinh==1) echo "Nam"; 
+            if(Auth::guard('ungvien')->user()->gioitinh==2) echo "Nữ";?></p>
+            <p style="margin: 1px; padding: 1px;font-family: Tahoma;margin-top: 0px;margin-bottom: 1;">{{Auth::guard('ungvien')->user()->sodienthoai}}</p>
 
-                <p style="margin: 1px; padding: 1px;font-family: Tahoma;margin-top: 0px;margin-bottom: 1;">tuchithanh1998@gmail.com</p>
-                <p style="margin: 1px; padding: 1px;font-family: Tahoma;margin-top: 0px;margin-bottom: 1;">168/46 Lê Thị Bạch Cát P11 Q11 TP.HCM</p>
-            </div>
+            <p style="margin: 1px; padding: 1px;font-family: Tahoma;margin-top: 0px;margin-bottom: 1;">{{Auth::guard('ungvien')->user()->email}}</p>
+            <p style="margin: 1px; padding: 1px;font-family: Tahoma;margin-top: 0px;margin-bottom: 1;">{{Auth::guard('ungvien')->user()->diachi}} {{Auth::guard('ungvien')->user()->thanhpho->tenthanhpho}}</p>
         </div>
     </div>
+</div>
 </div>
 <br>
 <div class="row">
@@ -41,102 +42,221 @@
     <div class="col-12">
         <h5 >Mục tiêu nghề nghiệp</h5>
         <hr class="my-1" >
-        <p >Mục tiêu....</p>
+        <p ><?php echo  Auth::guard('ungvien')->user()->muctieu; ?></p>
+
     </div>
 </div>
 <div class="row">
    <div class="col-12">
     <h5>Học Vấn</h5> <hr class="my-1" >
 </div>
-<div class="col-4">
-    8/2016-12/2020
+
+<?php
+
+$trinhdobangcap=App\trinhdobangcap::where('id_ungvien',Auth::guard('ungvien')->user()->id)->get();
+
+foreach ($trinhdobangcap as $key => $value) {
+
+ ?>
+ <div class="col-4">
+    <?php 
+    $date = date_create($value->thoigiantotnghiep);
+    echo date_format($date, 'm-Y');
+
+    ?>
+
 </div>
 <div class="col-8">
-   <p style="margin: 0px;">Đại học</p>
-   <p style="margin: 0px;">Chuyên ngành</p>
-   <p style="margin: 0px;">Loại</p>
+   <p style="margin: 0px;">  {{$value->truongdaotao}}</p>
+   <p style="margin: 0px;">  {{$value->chuyennganh}}</p>
+   <p style="margin: 0px;">  {{$value->tenbangcap}}</p>
 </div>
 </div>
+<?php } ?>
+
 <div class="row">
    <div class="col-12">
     <h5>Kinh Nghiệm</h5> <hr class="my-1">
 </div>
-<div class="col-4">
-    8/2016-12/2020
+
+<?php
+
+$kinhnghiemlamviec=App\kinhnghiemlamviec::where('id_ungvien',Auth::guard('ungvien')->user()->id)->get();
+
+foreach ($kinhnghiemlamviec as $key => $value) {
+
+ ?>
+
+ <div class="col-4">
+     <?php $date=date_create($value->thoigianbatdau);
+                                    echo date_format($date,"m/Y");
+                                    ?>-<?php 
+                                    
+                                
+                                        $date=date_create($value->thoigianketthuc);
+                                        echo date_format($date,"m/Y");
+                                    ?>
 </div>
 <div class="col-8" style="">
-   <p style="margin: 0px;">Đại học</p>
-   <p style="margin: 0px;">Chuyên ngành</p>
-   <p style="margin: 0px;">Loại</p>
+   <p style="margin: 0px;">{{$value->tencongty}}</p>
+   <p style="margin: 0px;">{{$value->chucdanh}}</p>
+   
 </div>
-
+<?php } ?>
 </div>
 <div class="row">
    <div class="col-12">
-    <h5>Kĩ năng</h5> <hr class="my-1">
+    <h5>Kỹ năng</h5> <hr class="my-1">
 </div>
 
 <div class="col-12 container">
     <ul class="list-unstyled row">
-        <li class="border-0 list-item col-4 py-0">
-          1
+        <?php
+
+        $kynang=App\ungvien_kynang::where('id_ungvien',Auth::guard('ungvien')->user()->id)->get();
+
+        foreach ($kynang as $key => $value) {
+
+         ?>
+         <li class="border-0 list-item col-4 py-0">
+          {{$value->kynang->tenkynang}}
       </li>
-      <li class="border-0 list-item col-4 py-0">
-          1
-      </li>
-      <li class="border-0 list-item col- py-0">
-          1
-      </li>
-      <li class="border-0 list-item col-4 py-0">
-          1
-      </li>
-      <li class="border-0 list-item col-4 py-0">
-          1
-      </li>
-      <li class="border-0 list-item col- py-0">
-          1
-      </li>
-  </ul>
+  <?php } ?>
+</ul>
 </div>
 </div>
 <div class="row">
    <div class="col-12">
     <h5>Trình độ ngoại ngữ</h5> <hr class="my-1">
 </div>
-<div class="col-4">
-   Tiếng anh
+
+<?php $ungvien_ngoaingu= App\ungvien_ngoaingu::where('id_ungvien',Auth::guard('ungvien')->user()->id)->get(); 
+foreach ($ungvien_ngoaingu as $key => $value) {
+
+
+    ?>
+
+    <div class="col-4">
+     <p style="margin: 0px;padding-right: 0px; "> {{$value->ngoaingu->tenngoaingu}}</p>
+ </div>
+ <div class="col-2" style="padding-right: 0px;padding-left: 0px;">
+   <p style="margin: 0px;padding-right: 0px; ">Nghe:<?php if($value->trinhdonghe==1)
+   {echo "Tốt";}elseif ($value->trinhdonghe==2) {
+    echo "Khá";
+}elseif ($value->trinhdonghe==3) {
+    echo "Trung bình";
+}else{echo "Kém";}
+?></p>
 </div>
 <div class="col-2" style="padding-right: 0px;padding-left: 0px;">
-   <p style="margin: 0px;padding-right: 0px; ">Nghe:tốt</p>
+   <p style="margin: 0px;padding-right: 0px; ">Nói:<?php if($value->trinhdonoi==1)
+   {echo "Tốt";}elseif ($value->trinhdonoi==2) {
+    echo "Khá";
+}elseif ($value->trinhdonoi==3) {
+    echo "Trung bình";
+}else{echo "Kém";}
+?></p>
 </div>
 <div class="col-2" style="padding-right: 0px;padding-left: 0px;">
-   <p style="margin: 0px;padding-right: 0px; ">Nói:trung bình</p>
+   <p  style="margin: 0px;padding-right: 0px; ">Đọc:<?php if($value->trinhdodoc==1)
+   {echo "Tốt";}elseif ($value->trinhdodoc==2) {
+    echo "Khá";
+}elseif ($value->trinhdodoc==3) {
+    echo "Trung bình";
+}else{echo "Kém";}
+?></p>
 </div>
 <div class="col-2" style="padding-right: 0px;padding-left: 0px;">
-   <p  style="margin: 0px;padding-right: 0px; ">Đọc:khá</p>
+   <p style="margin: 0px;padding-right: 0px;">Viết:<?php if($value->trinhdoviet==1)
+   {echo "Tốt";}elseif ($value->trinhdoviet==2) {
+    echo "Khá";
+}elseif ($value->trinhdoviet==3) {
+    echo "Trung bình";
+}else{echo "Kém";}
+?></p>
 </div>
-<div class="col-2" style="padding-right: 0px;padding-left: 0px;">
-   <p style="margin: 0px;padding-right: 0px;">Viết:trung bình</p>
-</div>
+<?php } ?>
+
+
 </div>
 <div class="row">
    <div class="col-12">
     <h5>Trình độ tin học</h5> <hr class="my-1">
 </div>
 <div class="col-3">
-   Tiếng anh
+  <p style="margin: 0px;padding-right: 0px; ">MSWORD:<?php if(Auth::guard('ungvien')->user()->trinhdotinhoc[0]->msword!="")
+  {
+    if(Auth::guard('ungvien')->user()->trinhdotinhoc[0]->msword==1)
+    {
+        echo "Tốt";
+    }
+    elseif (Auth::guard('ungvien')->user()->trinhdotinhoc[0]->msword==2) {
+        echo "Khá";
+    }
+    elseif (Auth::guard('ungvien')->user()->trinhdotinhoc[0]->msword==3) {
+        echo "Trung bình";
+    }
+    else
+        {echo "Kém";}
+}
+?> </p>
 </div>
 <div class="col-3" style="padding-right: 0px;padding-left: 0px;">
-   <p style="margin: 0px;padding-right: 0px; ">Nghe:tốt</p>
+   <p style="margin: 0px;padding-right: 0px; ">MSPP:<?php if(Auth::guard('ungvien')->user()->trinhdotinhoc[0]->mspp!="")
+   {
+    if(Auth::guard('ungvien')->user()->trinhdotinhoc[0]->mspp==1)
+    {
+        echo "Tốt";
+    }
+    elseif (Auth::guard('ungvien')->user()->trinhdotinhoc[0]->mspp==2) {
+        echo "Khá";
+    }
+    elseif (Auth::guard('ungvien')->user()->trinhdotinhoc[0]->mspp==3) {
+        echo "Trung bình";
+    }
+    else
+        {echo "Kém";}
+}
+?> </p>
 </div>
 <div class="col-3" style="padding-right: 0px;padding-left: 0px;">
-   <p style="margin: 0px;padding-right: 0px; ">Nói:trung bình</p>
+   <p style="margin: 0px;padding-right: 0px; ">MSOUTLOOK:<?php if(Auth::guard('ungvien')->user()->trinhdotinhoc[0]->msoutlook!="")
+   {
+    if(Auth::guard('ungvien')->user()->trinhdotinhoc[0]->msoutlook==1)
+    {
+        echo "Tốt";
+    }
+    elseif (Auth::guard('ungvien')->user()->trinhdotinhoc[0]->msoutlook==2) {
+        echo "Khá";
+    }
+    elseif (Auth::guard('ungvien')->user()->trinhdotinhoc[0]->msoutlook==3) {
+        echo "Trung bình";
+    }
+    else
+        {echo "Kém";}
+}
+?> </p>
 </div>
 <div class="col-3" style="padding-right: 0px;padding-left: 0px;">
-   <p  style="margin: 0px;padding-right: 0px; ">Đọc:khá</p>
+   <p  style="margin: 0px;padding-right: 0px; ">MSEXCEL:<?php if(Auth::guard('ungvien')->user()->trinhdotinhoc[0]->msexcel!="")
+   {
+    if(Auth::guard('ungvien')->user()->trinhdotinhoc[0]->msexcel==1)
+    {
+        echo "Tốt";
+    }
+    elseif (Auth::guard('ungvien')->user()->trinhdotinhoc[0]->msexcel==2) {
+        echo "Khá";
+    }
+    elseif (Auth::guard('ungvien')->user()->trinhdotinhoc[0]->msexcel==3) {
+        echo "Trung bình";
+    }
+    else
+        {echo "Kém";}
+}
+?> </p>
 </div>
 <div class="col-12">
-  <p>Phần mềm khác : </p>
+  <p>Phần mềm khác : <?php echo  Auth::guard('ungvien')->user()->trinhdotinhoc[0]->phanmemkhac; ?></p>
 </div>
 
 </div>
@@ -145,7 +265,7 @@
     <div class="col-12">
         <h5 >Sở trường</h5>
         <hr class="my-1" >
-        <p >Mục tiêu....</p>
+        <p ><?php echo  Auth::guard('ungvien')->user()->kynangsotruong; ?></p>
     </div>
 </div>
 <div class="row">
@@ -153,7 +273,7 @@
     <div class="col-12">
         <h5 >Sở thích</h5>
         <hr class="my-1" >
-        <p >Mục tiêu....</p>
+        <p ><?php echo  Auth::guard('ungvien')->user()->sothich; ?></p>
     </div>
 </div>
 </form>
@@ -162,14 +282,14 @@
 
 @endsection
 @section('script')
- <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.7.0/build/reset-fonts-grids/reset-fonts-grids.css" media="all" /> 
-    <link rel="stylesheet" type="text/css" href="resume.css" media="all" />
+<link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.7.0/build/reset-fonts-grids/reset-fonts-grids.css" media="all" /> 
+<link rel="stylesheet" type="text/css" href="resume.css" media="all" />
 
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
-    <script>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<script src="https://code.jquery.com/jquery-1.12.4.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
+<script>
     (function () {
         var
         form = $('.form'),

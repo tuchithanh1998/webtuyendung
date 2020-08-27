@@ -15,6 +15,7 @@ use App\ungvien_nop_tin;
 use App\ungvien_ngoaingu;
 use App\trinhdobangcap;
 use App\nguoithamkhao;
+use App\kinhnghiemlamviec;
 use DateTime;
 use Auth;
 use \PDF;
@@ -274,6 +275,20 @@ public function getTrinhdongoainguxoa($id_ngoaingu)
 
 public function postTrinhdongoaingumoi(Request $request)
 {
+$this->validate($request,[
+    'trinhdonghe'=>'required',
+    'trinhdonoi'=>'required',
+    'trinhdodoc'=>'required',
+    'trinhdoviet'=>'required',
+
+  ],[
+    'trinhdonghe.required'=>'Trình độ nghe không được để trống.',
+    'trinhdonoi.required'=>'Trình độ nói không được để trống.',
+    'trinhdodoc.required'=>'Trình độ đọc không được để trống.',
+    'trinhdoviet.required'=>'Trình độ viết không được để trống.',
+
+  ]);
+
 
   if(count($ungvien_ngoaingu=ungvien_ngoaingu::where('id_ungvien',Auth::guard('ungvien')->user()->id)->where('id_ngoaingu',$request->ngoaingu)->get())==0)
 
@@ -321,7 +336,7 @@ public function postTrinhdongoaingumoi(Request $request)
     $trinhdotinhoc->mspp=$request->mspp;
     $trinhdotinhoc->msoutlook=$request->msoutlook;
     $trinhdotinhoc->msexcel=$request->msexcel;
-    $trinhdotinhoc->phanmemkhac=$request->phanmemkhac;
+    $trinhdotinhoc->phanmemkhac=nl2br($request->phanmemkhac);
 
     $trinhdotinhoc->save();
 
@@ -380,12 +395,23 @@ public function postKinhnghiemlamviec(Request $request){
  $kinhnghiemlamviec->chucdanh=$request->chucdanh;
  $kinhnghiemlamviec->thoigianbatdau=date($request->thoigianbatdau.'-01');
  if($request->thoigianketthuc)
-   $kinhnghiemlamviec->thoigianketthuc=date($request->thoigianketthuc.'-01');
- if($request->hiennay||!$request->thoigianketthuc)
-   $kinhnghiemlamviec->congviechientai=1;
+  { 
+
+    $kinhnghiemlamviec->thoigianketthuc=date($request->thoigianketthuc.'-01');
+ $kinhnghiemlamviec->congviechientai=0;
+}
+else
+{
+  $kinhnghiemlamviec->thoigianketthuc=null;
+  $kinhnghiemlamviec->congviechientai=1;
+}
+ /*if(!$request->hiennay)
+   $kinhnghiemlamviec->congviechientai=0;
+ else
+  $kinhnghiemlamviec->congviechientai=0;*/
  $kinhnghiemlamviec->mucluong=$request->mucluong;
- $kinhnghiemlamviec->motacongviec=$request->motacongviec;
- $kinhnghiemlamviec->thanhtich=$request->thanhtich;
+ $kinhnghiemlamviec->motacongviec=nl2br($request->motacongviec);
+ $kinhnghiemlamviec->thanhtich=nl2br($request->thanhtich);
  $kinhnghiemlamviec->id_ungvien=Auth::guard('ungvien')->user()->id;
  $kinhnghiemlamviec->save();
  return redirect()->back()->with('alert','Thêm thành công.');
@@ -415,10 +441,23 @@ public function postKinhnghiemlamviecsua(Request $request,$id){
  $kinhnghiemlamviec->tencongty=$request->tencongty;
  $kinhnghiemlamviec->chucdanh=$request->chucdanh;
  $kinhnghiemlamviec->thoigianbatdau=date($request->thoigianbatdau.'-01');
+
  if($request->thoigianketthuc)
+  { 
+
+    $kinhnghiemlamviec->thoigianketthuc=date($request->thoigianketthuc.'-01');
+ $kinhnghiemlamviec->congviechientai=0;
+}
+else
+{
+  $kinhnghiemlamviec->thoigianketthuc=null;
+  $kinhnghiemlamviec->congviechientai=1;
+}
+
+ /*if($request->thoigianketthuc)
    $kinhnghiemlamviec->thoigianketthuc=date($request->thoigianketthuc.'-01');
  if($request->hiennay||!$request->thoigianketthuc)
-   $kinhnghiemlamviec->congviechientai=1;
+   $kinhnghiemlamviec->congviechientai=1;*/
 
  $kinhnghiemlamviec->mucluong=$request->mucluong;
  $kinhnghiemlamviec->motacongviec=$request->motacongviec;
@@ -455,10 +494,9 @@ public function postKhac(Request $request)
 
  $ungvien=ungvien::find(Auth::guard('ungvien')->user()->id);
 
- $ungvien->muctieu=$request->muctieu;
- $ungvien->kynangsotruong=$request->kynangsotruong;
-
- $ungvien->sothich=$request->sothich;
+ $ungvien->muctieu= nl2br($request->muctieu);
+ $ungvien->kynangsotruong= nl2br($request->kynangsotruong);
+ $ungvien->sothich= nl2br($request->sothich);
  $ungvien->save();
  return redirect()->back()->with('alert','Cập nhật thành công.');
 }

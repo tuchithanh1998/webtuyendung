@@ -14,6 +14,6 @@ class ungvien_kynang extends Model
     }
      public function kynang()
     {
-        return $this->belongsTo('App\kyang','id_kynang');
+        return $this->belongsTo('App\kynang','id_kynang');
     }
 }

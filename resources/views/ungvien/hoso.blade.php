@@ -136,7 +136,9 @@
 								
 
 								
-								<div class="col-12"><p class="card-text"><span class="font-weight-bold">Phần mềm khác :</span>{{Auth::guard('ungvien')->user()->trinhdotinhoc[0]->phanmemkhac}}</p>
+								<div class="col-12"><p class="card-text"><span class="font-weight-bold">Phần mềm khác :</span>
+									<?php echo  Auth::guard('ungvien')->user()->trinhdotinhoc[0]->phanmemkhac; ?>
+								</p>
 								</div>
 							</div>
 							
@@ -171,7 +173,16 @@
 											<div class="form-group row">
 												<label for="phanmemkhac" class="col-sm-4 col-form-label">Phần mềm khác: *</label>
 												<div class="col-sm-8">
-													<textarea type="text" rows="2" class="form-control" value="" id="phanmemkhac" name="phanmemkhac">{{Auth::guard('ungvien')->user()->trinhdotinhoc[0]->phanmemkhac}}</textarea>
+													<textarea type="text" rows="2" class="form-control" value="" id="phanmemkhac" name="phanmemkhac">
+<?php
+
+ $text = Auth::guard('ungvien')->user()->trinhdotinhoc[0]->phanmemkhac;
+    $breaks = array("<br />","<br>","<br/>");  
+    $text = str_ireplace($breaks, "", $text); 
+
+
+													 echo  $text; ?>
+													</textarea>
 												</div>
 											</div>
 
@@ -321,9 +332,9 @@
 						<div class="card-header">KỸ NĂNG KHÁC<span><small class="text-info" data-toggle="modal" data-target="#thaydoihososothich">... Cập nhật</small></span></div>
 						<div class="card-body">
 
-							<p class="card-text"><span class="font-weight-bold">Mục tiêu: </span>{{Auth::guard('ungvien')->user()->muctieu}}</p>
-							<p class="card-text"><span class="font-weight-bold">Sở trường: </span>{{Auth::guard('ungvien')->user()->kynangsotruong}}</p>
-							<p class="card-text"><span class="font-weight-bold">Sở thích: </span>{{Auth::guard('ungvien')->user()->sothich}}</p>
+							<p class="card-text"><span class="font-weight-bold">Mục tiêu: </span><?php echo  Auth::guard('ungvien')->user()->muctieu; ?></p>
+							<p class="card-text"><span class="font-weight-bold">Sở trường: </span><?php echo  Auth::guard('ungvien')->user()->kynangsotruong; ?></p>
+							<p class="card-text"><span class="font-weight-bold">Sở thích: </span><?php echo  Auth::guard('ungvien')->user()->sothich; ?></p>
 							
 						</div>
 					</div>
@@ -355,19 +366,40 @@
 											<div class="form-group row">
 												<label for="muctieu" class="col-sm-4 col-form-label">Mục tiêu: *</label>
 												<div class="col-sm-8">
-													<textarea type="text" rows="2" class="form-control" value="" name="muctieu">{{Auth::guard('ungvien')->user()->muctieu}}</textarea>
+													<textarea type="text" rows="2" class="form-control" value="" name="muctieu"><?php
+
+ $text = Auth::guard('ungvien')->user()->muctieu;
+    $breaks = array("<br />","<br>","<br/>");  
+    $text = str_ireplace($breaks, "", $text); 
+
+
+													 echo  $text; ?></textarea>
 												</div>
 											</div>
 											<div class="form-group row">
 												<label for="kynangsotruong" class="col-sm-4 col-form-label">Kỹ năng sở trường: *</label>
 												<div class="col-sm-8">
-													<textarea type="text" rows="2" class="form-control" value="" id="kynangsotruong" name="kynangsotruong">{{Auth::guard('ungvien')->user()->kynangsotruong}}</textarea>
+													<textarea type="text" rows="2" class="form-control" value="" id="kynangsotruong" name="kynangsotruong"><?php
+
+ $text = Auth::guard('ungvien')->user()->kynangsotruong;
+    $breaks = array("<br />","<br>","<br/>");  
+    $text = str_ireplace($breaks, "", $text); 
+
+
+													 echo  $text; ?></textarea>
 												</div>
 											</div>
 											<div class="form-group row">
 												<label for="sothich" class="col-sm-4 col-form-label">Sở thích: *</label>
 												<div class="col-sm-8">
-													<textarea type="text" rows="2" class="form-control" value="" id="sothich" name="sothich">{{Auth::guard('ungvien')->user()->sothich}}</textarea>
+													<textarea type="text" rows="2" class="form-control" value="" id="sothich" name="sothich"><?php
+
+ $text = Auth::guard('ungvien')->user()->sothich;
+    $breaks = array("<br />","<br>","<br/>");  
+    $text = str_ireplace($breaks, "", $text); 
+
+
+													 echo  $text; ?></textarea>
 												</div>
 											</div>
 											<div class="form-group row">
@@ -546,8 +578,8 @@
 												<label for="anh" class="col-sm-4 col-form-label">Ảnh: </label>
 												<div class="col-sm-8">
 													<div class="custom-file">
-																	<input  type="file" name="filesTest" required="true" onchange="return fileValidation()" class="custom-file-input" id="inputGroupFile" aria-describedby="inputGroupFileAddon">
-																	<label class="custom-file-label"  for="inputGroupFile">Chọn ảnhn</label>
+				<input  type="file" name="filesTest" onchange="return fileValidation()" class="custom-file-input" id="inputGroupFile" aria-describedby="inputGroupFileAddon">
+																	<label class="custom-file-label"  for="inputGroupFile">Chọn ảnh</label>
 																</div>
 												</div>
 											</div>
@@ -595,15 +627,14 @@
 									<p class="card-text"><span class="font-weight-bold">Thời gian:</span> <?php $date=date_create($value->thoigianbatdau);
 									echo date_format($date,"m/Y");
 									?>-<?php 
-									if($value->congviechientai==1)
-										echo "hiện nay";
-									else{
-										$date=date_create($value->thoigianbatdau);
+									
+								
+										$date=date_create($value->thoigianketthuc);
 										echo date_format($date,"m/Y");
-									}?></p>
+									?></p>
 									<p class="card-text"><span class="font-weight-bold">Mức lương:</span> {{number_format($value->mucluong)}} vnđ</p>
-									<p class="card-text"><span class="font-weight-bold">Mô tả công việc :</span> {{$value->motacongviec}}</p>
-									<p class="card-text"><span class="font-weight-bold">Thành tích:</span> {{$value->thanhtich}}</p>
+									<p class="card-text"><span class="font-weight-bold">Mô tả công việc :</span><?php echo  $value->motacongviec; ?></p>
+									<p class="card-text"><span class="font-weight-bold">Thành tích:</span><?php echo  $value->thanhtich; ?></p>
 								</div>
 							</div>
 						</div>
@@ -650,25 +681,39 @@
 															Kết thúc	<input type="month" class="form-control" value="<?php $date=date_create($value->thoigianketthuc);
 															echo date_format($date,"Y-m"); ?>"    max="<?php echo date('m-Y'); ?>" id="" name="thoigianketthuc">
 
-															<input type="checkbox" id="" name="hiennay" <?php if($value->congviechientai==1) echo "checked";?> value="1"><label for="hiennay">Hiện nay</label><br>									</div>
+															<!--<input type="checkbox" id="" name="hiennay" <?php if($value->congviechientai==1) echo "checked";?> value="1"><label for="hiennay">Hiện nay</label><br>	-->								</div>
 														</div>
 														<div class="form-group row">
 															<label for="mucluong" class="col-sm-4 col-form-label">Mức lương: *</label>
 															<div class="col-sm-7">
-																<input type="number" class="form-control" value="{{$value->mucluong}}" id="mucluong" name="mucluong">
+																<input type="number" min="1" class="form-control" value="{{$value->mucluong}}" id="mucluong" name="mucluong">
 															</div>
 			<label for="mucluong" class="col-sm-1 col-form-label">vnđ</label>
 														</div>
 														<div class="form-group row">
 															<label for="motacongviec" class="col-sm-4 col-form-label">Mô tả công việc: *</label>
 															<div class="col-sm-8">
-																<textarea type="text" rows="2" class="form-control" name="motacongviec">{{$value->motacongviec}}</textarea>
+																<textarea type="text" rows="2" class="form-control" name="motacongviec"><?php
+
+ $text = $value->motacongviec;
+    $breaks = array("<br />","<br>","<br/>");  
+    $text = str_ireplace($breaks, "", $text); 
+
+
+													 echo  $text; ?></textarea>
 															</div>
 														</div>
 														<div class="form-group row">
 															<label for="thanhtich" class="col-sm-4 col-form-label">Thành tích: </label>
 															<div class="col-sm-8">
-																<textarea type="text" rows="2" class="form-control"  name="thanhtich">{{$value->thanhtich}}"</textarea>
+																<textarea type="text" rows="2" class="form-control"  name="thanhtich"><?php
+
+ $text = $value->thanhtich;
+    $breaks = array("<br />","<br>","<br/>");  
+    $text = str_ireplace($breaks, "", $text); 
+
+
+													 echo  $text; ?></textarea>
 															</div>
 														</div>
 														<div class="form-group row">
@@ -734,7 +779,7 @@
 														<div class="form-group row">
 															<label for="mucluong" class="col-sm-4 col-form-label">Mức lương: *</label>
 															<div class="col-sm-8">
-																<input type="number" class="form-control" value="" id="mucluong" name="mucluong">
+																<input min="1" type="number" class="form-control" value="" id="mucluong"  name="mucluong">
 															</div>
 														</div>
 														<div class="form-group row">
@@ -1233,7 +1278,7 @@
 	<div class="form-group row">
 															<label for="mucluong" class="col-sm-4 col-form-label">Mức lương: *</label>
 															<div class="col-sm-7">
-																<input type="number" min="0" class="form-control" value="{{Auth::guard('ungvien')->user()->mucluongmongmuon}}"  id="mucluongmongmuon" name="mucluongmongmuon">
+																<input type="number" min="1" class="form-control" value="{{Auth::guard('ungvien')->user()->mucluongmongmuon}}"  id="mucluongmongmuon" name="mucluongmongmuon">
 															</div>
 															<label for="mucluong" class="col-sm-1 col-form-label">VNĐ</label>
 														</div>
