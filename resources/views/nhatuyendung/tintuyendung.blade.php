@@ -91,7 +91,7 @@ else{
 							<p>Mô tả công việc</p>
 						</div>
 						<div class="col-10">
-							{{	$data->motacongviec}}
+						<?php echo  $data->motacongviec; ?>	
 						</div>
 					</div>
 					<div class="row">
@@ -99,7 +99,7 @@ else{
 							<p>Quyền lợi</p>
 						</div>
 						<div class="col-10">
-							{{	$data->quyenloi}}
+						<?php echo  $data->quyenloi; ?>
 						</div>
 					</div>
 					<div class="row">
@@ -107,7 +107,7 @@ else{
 							<p>Yêu cầu khác</p>
 						</div>
 						<div class="col-10">
-							{{	$data->yeucaukhac}}
+							<?php echo  $data->yeucaukhac; ?>
 						</div>
 					</div>
 				</div>

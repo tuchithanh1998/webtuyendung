@@ -386,9 +386,9 @@ public function getNhatuyendungluuungvien($id)
 		$tintuyendung->dotuoi=$request->dotuoi;
 		$tintuyendung->gioitinh=$request->gioitinh;
 		$tintuyendung->id_kinhnghiem=$request->kinhnghiem;
-		$tintuyendung->motacongviec=$request->motacongviec;
-		$tintuyendung->quyenloi=$request->quyenloi;
-		$tintuyendung->yeucaukhac=$request->yeucaukhac;
+		$tintuyendung->motacongviec=nl2br($request->motacongviec);
+		$tintuyendung->quyenloi=nl2br($request->quyenloi);
+		$tintuyendung->yeucaukhac=nl2br($request->yeucaukhac);
 		$date=new DateTime();
 		$tintuyendung->hannophoso=$date->modify('+'.$request->hannophoso.' day');
 		$tintuyendung->id_capbac=$request->capbac;
