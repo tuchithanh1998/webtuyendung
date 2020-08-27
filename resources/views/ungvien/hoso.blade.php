@@ -1503,11 +1503,14 @@
 								<button type="button" data-toggle="modal" data-target="#nguoithamkhaomoi" class="btn btn-info">THÊM NGƯỜI THAM KHẢO</button>
 							</div>
 						</div>
+@if(Auth::guard('ungvien')->user()->id_nganhnghe)
 						<div class="row bg-main">
 							<div class="col-sm-12 text-center" style="margin-top: 25px; margin-bottom: 25px;">
 								<a type="button" href="ung-vien/cv" class="btn btn-info">XEM CV BẢN IN</a>
 							</div>
 						</div>
+@endif
+
 						<div class="modal fade bd-example-modal-lg" id="nguoithamkhaomoi" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
 							<div class="modal-dialog modal-lg">
 								<div class="modal-content">
