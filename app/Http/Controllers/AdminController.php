@@ -597,7 +597,7 @@ $tintuyendung=tintuyendung::findOrFail($id_tintuyendung);
       'khoa'=> $khoa,    
       'ten'=> $ungvien->hoten,    
       'taikhoan'=>$ungvien->email,
-      'nd'=' ',
+      'nd'=>' ',
     ];
    
     \Mail::to($ungvien->email)->send(new \App\Mail\Mailkhoataikhoan($data));
