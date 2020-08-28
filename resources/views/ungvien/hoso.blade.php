@@ -434,7 +434,7 @@
 								</div></div>
 								<div class="card-body row">
 
-									<div class="col-4">
+									<div class="col-8">
 										<p class="card-text"><span class="font-weight-bold">Tên bằng cấp:</span> {{$value->tenbangcap}}</p>
 										<p class="card-text"><span class="font-weight-bold">Trường đào tạo: </span> {{$value->truongdaotao}}</p>
 										<p class="card-text"><span class="font-weight-bold">Chuyên ngành</span> {{$value->chuyennganh}}</p>
@@ -442,10 +442,10 @@
 										echo date_format($date,"Y-m"); ?>
 									</p>
 								</div>
-								<div class="col-8">	
+								<div class="col-4">	
 									<p class="card-text"><span class="font-weight-bold"></span>  
 						@if($value->anh!=null)
-								<img style="height: 200px; max-width: 500px;" src="upload/img/ungvien/bangcap/{{$value->anh}}">
+								<img style="height: 200px; max-width: 300px;" src="upload/img/ungvien/bangcap/{{$value->anh}}">
 								@else
 										<img style="height: 200px;" src="//placehold.it/200">  
 									@endif</p>
@@ -476,7 +476,7 @@
 											<form enctype="multipart/form-data" action="ung-vien/ho-so/trinh-do-bang-cap-sua/{{$value->id}}" method="POST">
 												<input type="hidden" name="_token" value="{{csrf_token()}}"/>
 												<div class="form-group row">
-													<label for="tenbangcap" class="col-sm-4 col-form-label">Tên bằng cáp: *</label>
+													<label for="tenbangcap" class="col-sm-4 col-form-label">Tên bằng cấp: *</label>
 													<div class="col-sm-8">
 														<input type="text " class="form-control" value="{{$value->tenbangcap}}" id="tenbangcap" name="tenbangcap">
 													</div>
@@ -504,7 +504,7 @@
 													<label for="anh" class="col-sm-4 col-form-label">Ảnh: </label>
 													<div class="col-sm-8">
 													<div class="custom-file">
-																	<input  type="file" name="filesTestup" required="true" onchange="return fileValidationup()" class="custom-file-input" id="inputGroupFileup" aria-describedby="inputGroupFileAddonup">
+																	<input  type="file" name="filesTestup" onchange="return fileValidationup()" class="custom-file-input" id="inputGroupFileup" aria-describedby="inputGroupFileAddonup">
 																	<label class="custom-file-label"  for="inputGroupFileup">Chọn ảnh</label>
 																</div>
 												</div>
@@ -516,7 +516,16 @@
 													</div>
 												</div>
 											</form>
-											 <div  id="imagePreviewup"></div>
+											 <div  id="imagePreviewup">
+											 	
+											 		<div class="col-4">	
+									<p class="card-text"><span class="font-weight-bold"></span>  
+						@if($value->anh!=null)
+								<img style="height: 200px; max-width: 300px;" src="upload/img/ungvien/bangcap/{{$value->anh}}">
+								
+									@endif</p>
+								</div>
+											 </div>
 										</div>
 									</div>
 								</div>
@@ -774,13 +783,21 @@
 
 															Kết thúc	<input type="month" class="form-control" value=""    max="<?php echo date('m-Y'); ?>" id="" name="thoigianketthuc">
 
-															<input type="checkbox" id="" name="hiennay" value="1"><label for="hiennay">Hiện nay</label><br>									</div>
+														<!--	<input type="checkbox" id="" name="hiennay" value="1"><label for="hiennay">Hiện nay</label><br>	-->								</div>
 														</div>
-														<div class="form-group row">
+												<!--		<div class="form-group row">
 															<label for="mucluong" class="col-sm-4 col-form-label">Mức lương: *</label>
 															<div class="col-sm-8">
 																<input min="1" type="number" class="form-control" value="" id="mucluong"  name="mucluong">
 															</div>
+														</div>-->
+
+														<div class="form-group row">
+															<label for="mucluong" class="col-sm-4 col-form-label">Mức lương: *</label>
+															<div class="col-sm-7">
+																<input type="number" min="1" class="form-control" value="" name="mucluong">
+															</div>
+															<label for="mucluong" class="col-sm-1 col-form-label">vnđ</label>
 														</div>
 														<div class="form-group row">
 															<label for="motacongviec" class="col-sm-4 col-form-label">Mô tả công việc: *</label>
@@ -1280,7 +1297,7 @@
 															<div class="col-sm-7">
 																<input type="number" min="1" class="form-control" value="{{Auth::guard('ungvien')->user()->mucluongmongmuon}}"  id="mucluongmongmuon" name="mucluongmongmuon">
 															</div>
-															<label for="mucluong" class="col-sm-1 col-form-label">VNĐ</label>
+															<label for="mucluong" class="col-sm-1 col-form-label">vnđ</label>
 														</div>
 															<div class="form-group row">
 																<label for="nganhnghe" class="col-4 col-form-label">Ngành nghề: *</label>

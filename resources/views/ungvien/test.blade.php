@@ -30,7 +30,11 @@
            <p style="margin: 1px; padding: 1px;font-family: Tahoma;margin-top: 0px;margin-bottom: 1;">Địa chỉ: </p>
        </div>
        <div class="col-8" style="margin: 0px; padding-left: 0px;">
-        <p style="margin: 1px; padding: 1px;font-family: Tahoma;margin-top: 0px;margin-bottom: 1;">{{Auth::guard('ungvien')->user()->ngaysinh}}</p>
+        <p style="margin: 1px; padding: 1px;font-family: Tahoma;margin-top: 0px;margin-bottom: 1;"> <?php 
+    $date = date_create(Auth::guard('ungvien')->user()->ngaysinh);
+    echo date_format($date, 'd-m-Y');
+
+    ?></p>
         <p style="margin: 1px; padding: 1px;font-family: Tahoma;margin-top: 0px;margin-bottom: 1;"><?php if(Auth::guard('ungvien')->user()->gioitinh==1) echo "Nam"; 
         if(Auth::guard('ungvien')->user()->gioitinh==2) echo "Nữ";?></p>
         <p style="margin: 1px; padding: 1px;font-family: Tahoma;margin-top: 0px;margin-bottom: 1;">{{Auth::guard('ungvien')->user()->sodienthoai}}</p>
