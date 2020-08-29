@@ -13,7 +13,7 @@
 
 
 <div  style="min-height: 600px;">
-	<div class="row bg-main">
+	<div class="row bg-main rounded-top rounded-bottom" style="margin-top: 5px;">
 		<div class="col-sm-10 offset-sm-1 text-center">
 			<h1 class="display-3">TÌM KIẾM VIỆC LÀM</h1>
 			<div class="info-form ">
