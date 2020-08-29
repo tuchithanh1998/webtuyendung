@@ -138,7 +138,7 @@
 									<th></th>
 									<th style="width: 20%;">Họ tên</th>
 									<th style="width: 20%;">Ngành nghề</th>
-									<th >Kỹ năng</th>
+									<th style="width: 60%;">Kỹ năng</th>
 									<th></th>
 
 								</tr>
