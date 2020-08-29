@@ -2,16 +2,16 @@
 @section('content')
 
 
-<input type="button" id="create_pdf" value="Xuất file PDF">
-<div class="container-fluid">
-    <form class="form " style="max-width: none; width: 714px;">
+<!--<input type="button" id="" value="Xuất file PDF">-->
+<div class="container-fluid card" style="margin-bottom: 40px;margin-top: 30px;">
+    <form class="form " style="max-width: none; width: 714px; margin-top: 10px;">
 <div style="padding-left: 5px;padding-right: 5px;">
         <div class="row">
             <div class="col-3">
-              <div class="card"  style=" width:114px; height:152px;">
+              <div class="card rounded-0"  style=" width:114px; height:152px;">
 
                 @if(Auth::guard('ungvien')->user()->anhdaidien)
-                <img  class="card-img-top " style="text-align: center; width:114px; height: 152px;" src="upload/img/ungvien/anhdaidien/{{Auth::guard('ungvien')->user()->anhdaidien}}" alt="">
+                <img  class="card-img-top rounded-0" style="text-align: center; width:114px; height: 152px;" src="upload/img/ungvien/anhdaidien/{{Auth::guard('ungvien')->user()->anhdaidien}}" alt="">
                 @else
                 <img  class="card-img-top " style="text-align: center; width:114px; height: 152px;" src="//placehold.it/64" alt="">    
                 @endif            
@@ -290,6 +290,8 @@ foreach ($ungvien_ngoaingu as $key => $value) {
 </div>
 
 <a href="{{ url()->previous() }}" class="btn btn-primary"  role="button" style="position: fixed; bottom: 10px; right: 10px; z-index: 1;">Quay lại</a>
+
+<a id="create_pdf"  class="btn btn-primary"  role="button" style="position: fixed; bottom: 50px; right: 10px; z-index: 1; color: white;">Xuất file PDF</a>
 @endsection
 @section('script')
 <link rel="stylesheet" type="text/css" href="http://yui.yahooapis.com/2.7.0/build/reset-fonts-grids/reset-fonts-grids.css" media="all" /> 
@@ -399,119 +401,3 @@ foreach ($ungvien_ngoaingu as $key => $value) {
 </script>
 @endsection
 
-
-
-<!--<html>
-
-<head>
-    <title>jsPDF</title>
-    <script src="https://code.jquery.com/jquery-1.12.4.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.5/jspdf.min.js"></script>
-    <script src="https://html2canvas.hertzen.com/dist/html2canvas.js"></script>
-    <script>
-    var pdf,page_section,HTML_Width,HTML_Height,top_left_margin,PDF_Width,PDF_Height,canvas_image_width,canvas_image_height;
-    
-    
-    
-    function calculatePDF_height_width(selector,index){
-        page_section = $(selector).eq(index);
-        HTML_Width = page_section.width();
-        HTML_Height = page_section.height();
-        top_left_margin = 15;
-        PDF_Width = HTML_Width + (top_left_margin * 2);
-        PDF_Height = (PDF_Width * 1.2) + (top_left_margin * 2);
-        canvas_image_width = HTML_Width;
-        canvas_image_height = HTML_Height;
-    }
-    
-
-
-
-    //Generate PDF
-    function generatePDF() {
-        pdf = "";
-        $("#downloadbtn").hide();
-        $("#genmsg").show();
-        html2canvas($(".print-wrap:eq(0)")[0], { allowTaint: true }).then(function(canvas) {
-
-            calculatePDF_height_width(".print-wrap",0);
-            var imgData = canvas.toDataURL("image/png", 1.0);
-            pdf = new jsPDF('p', 'pt', [PDF_Width, PDF_Height]);
-            pdf.addImage(imgData, 'JPG', top_left_margin, top_left_margin, HTML_Width, HTML_Height);
-
-        });
-
-        html2canvas($(".print-wrap:eq(1)")[0], { allowTaint: true }).then(function(canvas) {
-
-            calculatePDF_height_width(".print-wrap",1);
-            
-            var imgData = canvas.toDataURL("image/png", 1.0);
-            pdf.addPage(PDF_Width, PDF_Height);
-            pdf.addImage(imgData, 'JPG', top_left_margin, top_left_margin, HTML_Width, HTML_Height);
-
-        });
-
-        html2canvas($(".print-wrap:eq(2)")[0], { allowTaint: true }).then(function(canvas) {
-
-            calculatePDF_height_width(".print-wrap",2);
-            
-            var imgData = canvas.toDataURL("image/png", 1.0);
-            pdf.addPage(PDF_Width, PDF_Height);
-            pdf.addImage(imgData, 'JPG', top_left_margin, top_left_margin, HTML_Width, HTML_Height);
-
-
-           
-                //console.log((page_section.length-1)+"==="+index);
-                setTimeout(function() {
-
-                    //Save PDF Doc  
-                    pdf.save("HTML-Document.pdf");
-
-                    //Generate BLOB object
-                    var blob = pdf.output("blob");
-
-                    //Getting URL of blob object
-                    var blobURL = URL.createObjectURL(blob);
-
-                    //Showing PDF generated in iFrame element
-                    var iframe = document.getElementById('sample-pdf');
-                    iframe.src = blobURL;
-
-                    //Setting download link
-                    var downloadLink = document.getElementById('pdf-download-link');
-                    downloadLink.href = blobURL;
-
-                    $("#sample-pdf").slideDown();
-                    
-                    
-                    $("#downloadbtn").show();
-                    $("#genmsg").hide();
-                }, 0);
-        });
-    };
-
-    </script>
-    <style>
-    .print-wrap {
-        width: 500px;
-    }
-    </style>
-</head>
-
-<body>
-    <iframe frameBorder="0" id="sample-pdf" style="right:0; top:53px; bottom:0; height:400px; width:100%"></iframe>
-    <a id="pdf-download-link" title="Download PDF File">Download PDF file</a>
-    <a id="pdf-showiFrame-link" title="Show PDF in iFrame">Show PDF in iFrame</a>
-    <div class="print-wrap page1">
-        <h3>Sample page one for demo</h3>
-    </div>
-    <div class="print-wrap page2">
-        <h3>Sample page two for demo</h3>
-    </div>
-    <div class="print-wrap page3">
-        <h3>Sample page three for demo</h3>
-    </div>
-</body>
-
-</html>
--->
