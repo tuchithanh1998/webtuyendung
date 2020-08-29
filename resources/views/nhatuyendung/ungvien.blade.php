@@ -1,7 +1,11 @@
 @extends('nhatuyendung.layout')
 @section('content')
 <a href="{{ url()->previous() }}" class="btn btn-primary"  role="button" style="position: fixed; bottom: 10px; right: 10px; z-index: 1;">Quay lại</a>
+
+@if(App\nhatuyendung_luu_ungvien::where('id_ungvien',$data->id)->where('id_nhatuyendung',Auth::guard('nhatuyendung')->user()->id)->first()=='')
+
 <form action="nha-tuyen-dung/ung-vien/luu/{{$data->id}}" method="GET"><button class="btn btn-primary"  role="button" style="position: fixed; bottom: 60px; right: 10px; z-index: 1;">Lưu ứng viên</button></form>
+@endif
 
 <div class="row bg-main">
 	<div class="col-12 " style="margin-top: 10px; margin-bottom: 5px;">

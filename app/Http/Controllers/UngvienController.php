@@ -601,8 +601,8 @@ public function getThoat(){
 
 public function getNhatuyendung($id)
 {
-
-  $data=nhatuyendung::find($id);
+$data=nhatuyendung::where('trangthai',1)->where('xacthuc',1)->where('id',$id)->firstOrFail();
+ // $data=nhatuyendung::findOrFail($id);
   return view('ungvien.danhsachtinnhatuyendung',['data'=>$data]);
 
 }
