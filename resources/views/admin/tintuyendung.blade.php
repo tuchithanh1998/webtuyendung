@@ -73,6 +73,7 @@
         <li><h6 style="font-weight: bold;">Quyền lợi:</h6> {{$value->quyenloi}}</li>
         <li><h6 style="font-weight: bold;">Yêu cầu khác:</h6> {{$value->yeucaukhac}}</li>
         <li><h6 style="font-weight: bold;">Hạn nộp hồ sơ:</h6> {{$value->hannophoso}}</li>
+
         </ul>
        </div>
      </div>
