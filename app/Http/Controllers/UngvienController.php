@@ -460,8 +460,8 @@ else
    $kinhnghiemlamviec->congviechientai=1;*/
 
  $kinhnghiemlamviec->mucluong=$request->mucluong;
- $kinhnghiemlamviec->motacongviec=$request->motacongviec;
- $kinhnghiemlamviec->thanhtich=$request->thanhtich;
+ $kinhnghiemlamviec->motacongviec=nl2br($request->motacongviec);
+ $kinhnghiemlamviec->thanhtich=nl2br($request->thanhtich);
  $kinhnghiemlamviec->save();
 
  return redirect()->back()->with('alert','Cập nhật thành công.');

@@ -105,9 +105,9 @@
 			<div class="card-header">THÔNG TIN KHÁC</div>
 			<div class="card-body">
 
-				<p class="card-text"><span class="font-weight-bold">Mục tiêu: </span>{{$data->muctieu}}</p>
-				<p class="card-text"><span class="font-weight-bold">Kỹ năng sở trường: </span>{{$data->kynangsotruong}}</p>
-				<p class="card-text"><span class="font-weight-bold">Sở thích: </span>{{$data->sothich}}</p>
+				<p class="card-text"><span class="font-weight-bold">Mục tiêu: </span><?php echo  $data->muctieu; ?></p>
+				<p class="card-text"><span class="font-weight-bold">Kỹ năng sở trường: </span><?php echo  $data->kynangsotruong; ?></p>
+				<p class="card-text"><span class="font-weight-bold">Sở thích: </span><?php echo  $data->sothich; ?></p>
 				
 			</div>
 		</div>
@@ -150,7 +150,7 @@
 						}else{echo "Kém";}
 						?> </p>
 					</div>			
-					<div class="col-12"><p class="card-text"><span class="font-weight-bold">Phần mềm khác :</span>{{$data->trinhdotinhoc[0]->phanmemkhac}}</p>
+					<div class="col-12"><p class="card-text"><span class="font-weight-bold">Phần mềm khác :</span><?php echo $data->trinhdotinhoc[0]->phanmemkhac ?></p>
 					</div>
 				</div>
 				
@@ -230,8 +230,8 @@
 						echo date_format($date,"m/Y");
 					}?></p>
 					<p class="card-text"><span class="font-weight-bold">Mức lương:</span> {{number_format($value->mucluong)}} vnđ</p>
-					<p class="card-text"><span class="font-weight-bold">Mô tả công việc :</span> {{$value->motacongviec}}</p>
-					<p class="card-text"><span class="font-weight-bold">Thành tích:</span> {{$value->thanhtich}}</p>
+					<p class="card-text"><span class="font-weight-bold">Mô tả công việc :</span> <?php echo  $value->motacongviec; ?></p>
+					<p class="card-text"><span class="font-weight-bold">Thành tích:</span> <?php echo  $value->thanhtich; ?></p>
 				</div>
 			</div>
 		</div>

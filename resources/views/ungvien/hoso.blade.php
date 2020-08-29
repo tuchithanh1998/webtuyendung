@@ -630,6 +630,7 @@
 									KINH NGHIỆM LÀM VIỆC<span><small class="text-info" data-toggle="modal" data-target="#kinhnghiemlamviec{{$key}}">... Cập nhật</small></span>
 								</div><div class="col-6 text-right"><form action="ung-vien/ho-so/kinh-nghiem-lam-viec-xoa/{{$value->id}}"> <button type="submit" class="close">X</form></div>
 								</div></div>
+
 								<div class="card-body">
 									<p class="card-text"><span class="font-weight-bold">Tên công ty:</span> {{$value->tencongty}}</p>
 									<p class="card-text"><span class="font-weight-bold">Chức danh:</span> {{$value->chucdanh}}</p>
@@ -642,8 +643,21 @@
 										echo date_format($date,"m/Y");
 									?></p>
 									<p class="card-text"><span class="font-weight-bold">Mức lương:</span> {{number_format($value->mucluong)}} vnđ</p>
-									<p class="card-text"><span class="font-weight-bold">Mô tả công việc :</span><?php echo  $value->motacongviec; ?></p>
-									<p class="card-text"><span class="font-weight-bold">Thành tích:</span><?php echo  $value->thanhtich; ?></p>
+									<p class="card-text"><span class="font-weight-bold">Mô tả công việc :</span>
+								<?php
+
+ $text = $value->motacongviec;
+    
+
+
+													 echo  $text; ?></p>
+									<p class="card-text"><span class="font-weight-bold">Thành tích:</span><?php
+
+ $text = $value->thanhtich;
+  
+
+
+													 echo  $text; ?></p>
 								</div>
 							</div>
 						</div>
