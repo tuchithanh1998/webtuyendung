@@ -90,9 +90,9 @@
 		</div>
 	</div>
 
-	<div class="row bg-light" style="padding-top:50px; padding-bottom: 50px; margin-top: 25px; margin-bottom: 25px;">
-		<div class="col-sm-10 offset-sm-1 ">
-			<ul class="list-group list-group-flush w-100"  <?php  if(isset($data)==true&&count($data)>=11) { ?> id="demo" <?php } ?> >
+	<div class="row bg-light" style=" padding-top:50px; padding-bottom: 50px; margin-top: 25px; margin-bottom: 25px;">
+		<div class="col-sm-12 offset-sm-0 ">
+			<ul class="list-group list-group-flush w-100"<?php  if(isset($data)==true&&count($data)>=11) { ?> id="demo" <?php } ?> >
 
 				<?php 
 				if(isset($data)==true)
@@ -135,7 +135,7 @@
 										</div>
 									</div>
 									<div class="col-2 text-center" title="Mức lương">
-										<img src="upload\img\layout\dollar-sign.svg">
+										<img  src="upload\img\layout\dollar-sign.svg">
 										<p>{{$value->mucluong->tenmucluong}}</p>
 									</div>						
 									<div class="col-2 text-center text-nowrap text-truncate" style="margin-left: 2px;" title='
