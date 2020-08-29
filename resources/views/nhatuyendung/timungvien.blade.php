@@ -1,6 +1,36 @@
 @extends('nhatuyendung.layout')
 @section('content')
 
+<style type="text/css">
+.paging-nav {
+  text-align: center;
+  padding-top: 2px;
+}
+
+.paging-nav a {
+  margin: auto 1px;
+  text-decoration: none;
+  display: inline-block;
+  padding: 1px 7px;
+  background: #91b9e6;
+  color: white;
+  border-radius: 3px;
+}
+
+.paging-nav .selected-page {
+  background: #187ed5;
+  font-weight: bold;
+}
+
+.paging-nav,
+#tableData {
+  width: auto;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+</style>
+
+
 <div class="row bg-main">
 	<div class="col-12 " style="margin-top: 10px; margin-bottom: 5px;">
 		<div class="card text-center">
@@ -102,12 +132,12 @@
 
 				<div class="row">
 					<div class="col-12">
-						<table class="table table-striped">
+						<table class="table table-striped" id="tableData">
 							<thead>
 								<tr>
 									<th></th>
-									<th>Họ tên</th>
-									<th>Ngành nghề</th>
+									<th style="width: 20%;">Họ tên</th>
+									<th style="width: 20%;">Ngành nghề</th>
 									<th >Kỹ năng</th>
 									<th></th>
 
@@ -336,5 +366,17 @@ if(getParameterByName('capbac')==v.id)
 				}
 			});
 		});
+
+
+
 	</script>
+	
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script> 
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.11.2/jquery-ui.min.js"></script>
+<script type="text/javascript" src="paging1.js"></script> 
+<script type="text/javascript">
+            $(document).ready(function() {
+                $('#tableData').paging({limit:10});
+            });
+        </script>
 	@endsection
