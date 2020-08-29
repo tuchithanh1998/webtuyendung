@@ -1122,9 +1122,14 @@ if (isset($_GET['thanhpho'])&&$_GET['thanhpho']!="")
     array_push($kq,$value);
     break;
     
-  }
+    }
+
+
 }
 }
+
+
+
 }
 else{
   $kq=$tintuyendung;
