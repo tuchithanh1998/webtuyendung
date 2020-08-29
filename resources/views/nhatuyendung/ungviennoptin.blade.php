@@ -1,5 +1,7 @@
 @extends('nhatuyendung.layout')
 @section('content')
+<a href="{{ url()->previous() }}" class="btn btn-primary"  role="button" style="position: fixed; bottom: 10px; right: 10px; z-index: 1;">Quay lại</a>
+
 <div style="min-height: 600px;">
 	<div class="row bg-main">
 		<div class="col-sm-12 offset-sm-0 text-center" style="margin-top: 25px; margin-bottom: 25px;">
@@ -42,7 +44,8 @@
 
 <div class="modal fade" id="trangthai{{$key}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
-    <div class="modal-content"><form action="nha-tuyen-dung/tin-da-dang/{{$value->id_tintuyendung}}/{{$value->id_ungvien}}" method="POST">
+    <div class="modal-content">
+    	<form action="nha-tuyen-dung/tin-da-dang/{{$value->id_tintuyendung}}/{{$value->id_ungvien}}" method="POST">
     		<input type="hidden" name="_token" value="{{csrf_token()}}"/>
       <div class="modal-body">
 
