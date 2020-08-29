@@ -306,12 +306,12 @@ public function getNhatuyendungluuungvien($id)
 		if($ungvien==ungvien::query())
 		{
 
-			$ungvien=ungvien::where('timkiem',1)->where('trangthai',1)->where('id_nganhnghe','>',0)->get();
+			$ungvien=ungvien::where('timkiem',1)->where('trangthai',1)->where('id_nganhnghe','>',0)->where('xacthuc',1)->get();
 
 		}
 		else
 		{
-			$ungvien=$ungvien->where('timkiem',1)->where('trangthai',1)->where('id_nganhnghe','>',0)->get();
+			$ungvien=$ungvien->where('timkiem',1)->where('trangthai',1)->where('id_nganhnghe','>',0)->where('xacthuc',1)->get();
 		}
 		return view('nhatuyendung.timungvien',['data'=>$ungvien]);
 	}
