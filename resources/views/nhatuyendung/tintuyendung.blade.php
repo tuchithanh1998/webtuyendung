@@ -57,7 +57,10 @@ else{
 										echo ",";
 									}
 									echo $value1->tenkynang;
-								} ?>	</span></span>
+								} 
+if(count($data->kynang)==0)
+	echo "Không yêu cầu";
+								?>	</span></span>
 
 							</div>
 							<div class="col-md-6 list-group">
