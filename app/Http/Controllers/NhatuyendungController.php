@@ -322,10 +322,10 @@ public function getNhatuyendungluuungvien($id)
 			$ungvien=$ungvien->where('timkiem',1)->where('trangthai',1)->where('id_nganhnghe','>',0)->where('xacthuc',1)->where('id_thanhpho','<>','')->get();
 		}
 
-		foreach ($ungvien as $key => $value) {
+/*		foreach ($ungvien as $key => $value) {
      if($ungvien->ungvien->trangthai!=1)
         unset($data[$key]);
-   }
+   }*/
 		return view('nhatuyendung.timungvien',['data'=>$ungvien]);
 	}
 	public function postTrangthaiungviennoptin(Request $request,$id_tintuyendung,$id_ungvien)
