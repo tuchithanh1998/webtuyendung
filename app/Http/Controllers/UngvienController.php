@@ -682,7 +682,10 @@ public function getTintuyendungdanop()
 {
 
   $dstintuyendung=ungvien_nop_tin::where('id_ungvien',Auth::guard('ungvien')->user()->id)->get();
-
+foreach ($dstintuyendung as $key => $value) {
+     if($value->tintuyendung->nhatuyendung->trangthai!=1)
+        unset($dstintuyendung[$key]);
+   }
   return  view('ungvien.tintuyendungdanop',['data'=>$dstintuyendung]);
 
 }
@@ -691,6 +694,11 @@ public function getTintuyendungluu()
 {
 
   $dstintuyendung=ungvien_luu_tin::where('id_ungvien',Auth::guard('ungvien')->user()->id)->get();
+foreach ($dstintuyendung as $key => $value) {
+     if($value->tintuyendung->nhatuyendung->trangthai!=1)
+        unset($dstintuyendung[$key]);
+   }
+
 
   return  view('ungvien.tintuyendungluu',['data'=>$dstintuyendung]);
 
@@ -932,6 +940,13 @@ public function getTimkiemviec()
 //Danh sách tin tuyển dụng
    $data=tintuyendung::where('id_nganhnghe',Auth::guard('ungvien')->user()->id_nganhnghe)->where('trangthai',1)->where('hannophoso','>',new DateTime())->whereIn('gioitinh',[3,Auth::guard('ungvien')->user()->gioitinh])->get();
 
+   //khoa 
+   foreach ($data as $key => $value) {
+     if($value->nhatuyendung->trangthai!=1)
+        unset($data[$key]);
+   }
+
+
    $datax=array();
    $kynangcuaungvien=array();
    
@@ -1138,6 +1153,11 @@ if (isset($_GET['thanhpho'])&&$_GET['thanhpho']!="")
 else{
   $kq=$tintuyendung;
 }
+
+foreach ($kq as $key => $value) {
+     if($value->nhatuyendung->trangthai!=1)
+        unset($kq[$key]);
+   }
 
 return view('ungvien.timkiemviec',['data'=>$kq]);
 
