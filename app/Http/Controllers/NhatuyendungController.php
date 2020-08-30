@@ -86,6 +86,11 @@ public function getUngviendaluu()
 {
 		//$data=nhatuyendung_luu_ungvien::where('id_nhatuyendung',Auth::guard('nhatuyendung')->user()->id)->get();
 	$data=	Auth::guard('nhatuyendung')->user()->luuungvien;
+
+	foreach ($data as $key => $value) {
+     if($value->ungvien->trangthai!=1)
+        unset($data[$key]);
+   }
 	return view('nhatuyendung.ungviendaluu',['data'=>$data]);
 }
 
