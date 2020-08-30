@@ -69,9 +69,9 @@
         <li><h6 style="font-weight: bold;">Số lượng cần tuyển:</h6>  {{$value->soluongcantuyen}}</li>
         <li><h6 style="font-weight: bold;">Giới tính:</h6> {{$value->gioitinh}}</li>
         <li><h6 style="font-weight: bold;">Độ tuổi:</h6> {{$value->dotuoi}}</li>
-        <li><h6 style="font-weight: bold;">Mô tả công việc:</h6> {{$value->motacongviec}}</li>
-        <li><h6 style="font-weight: bold;">Quyền lợi:</h6> {{$value->quyenloi}}</li>
-        <li><h6 style="font-weight: bold;">Yêu cầu khác:</h6> {{$value->yeucaukhac}}</li>
+        <li><h6 style="font-weight: bold;">Mô tả công việc:</h6> <?php echo $value->motacongviec; ?></li>
+        <li><h6 style="font-weight: bold;">Quyền lợi:</h6> <?php echo $value->quyenloi; ?></li>
+        <li><h6 style="font-weight: bold;">Yêu cầu khác:</h6>  <?php echo $value->yeucaukhac; ?></li>
         <li><h6 style="font-weight: bold;">Hạn nộp hồ sơ:</h6> {{$value->hannophoso}}</li>
 
         </ul>
