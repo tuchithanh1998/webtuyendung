@@ -631,7 +631,7 @@ if($request->hasFile('filesTest'))
 		if (Auth::guard('nhatuyendung')->attempt($arr)) {
 			if(Auth::guard('nhatuyendung')->user()->trangthai!=1)
 			{
-				Auth::guard('ungvien')->logout();
+				Auth::guard('nhatuyendung')->logout();
 				return redirect()->back()->with('alert','Tài khoản bị khóa.');
 			}
 
