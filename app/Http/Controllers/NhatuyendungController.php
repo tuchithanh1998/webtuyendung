@@ -333,6 +333,11 @@ public function getNhatuyendungluuungvien($id)
 
 //	$tintuyendung=tintuyendung::where('id',$id)->where('nhatuyendung',Auth::guard('nhatuyendung')->user()->id)->first();
 		$data=ungvien_nop_tin::where('id_tintuyendung',$id)->get();
+
+		foreach ($data as $key => $value) {
+     if($value->ungvien->trangthai!=1)
+        unset($data[$key]);
+   }
 		return view('nhatuyendung.ungviennoptin',['data'=>$data]);
 	}
 	public function getDangtintuyendung(){
