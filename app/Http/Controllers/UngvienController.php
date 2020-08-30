@@ -1172,7 +1172,7 @@ public function getTintuyendung($id)
 
  $tintuyendung=tintuyendung::where('id',$id)->where('trangthai',1)->firstOrFail();
 if($tintuyendung->nhatuyendung->trangthai!=1)
-  $tintuyendung=null;
+    return redirect('index');
 
  return view('ungvien.tintuyendung',['data'=>$tintuyendung]);
 }
