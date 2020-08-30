@@ -980,7 +980,11 @@ public function getTimkiemviec()
     if(isset($datax[$i])&&count($datax[$i])>=2)
     {
 
-      $datax[$i]=$this->array_sort($datax[$i], 'id_mucluong', SORT_ASC);
+    //  $datax[$i]=$this->array_sort($datax[$i], 'id_mucluong', SORT_ASC);
+$c = collect($datax[$i]);
+   //   $datax[$i]->sortBy('id_mucluong');
+
+$datax[$i] = $c->sortBy('id_mucluong');
     }
   }
 
