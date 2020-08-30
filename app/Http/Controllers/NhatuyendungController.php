@@ -225,7 +225,7 @@ public function getNhatuyendungluuungvien($id)
 	{
 	//	$data=ungvien::findOrFail($id_ungvien);
 		$data=ungvien::where('trangthai',1)->where('id_nganhnghe','>',0)->where('xacthuc',1)->where('id_thanhpho','<>','')->where('id',$id_ungvien)->first();
-		if(count($data)==0)
+		if($data==null)
 			return redirect('index');
 		return view('nhatuyendung.ungvien',['data'=>$data]);
 	}
