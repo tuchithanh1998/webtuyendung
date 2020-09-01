@@ -21,6 +21,9 @@
                       <th>Địa chỉ công ty</th>
                       <th>Số điện thoại</th>
                          <th>Trạng thái</th>
+                         @if(Auth::guard('admin')->user()->quyen==1)
+                  <th>Chỉnh sửa bởi</th>
+                  @endif
                       <th>             </th>
                     </tr>
                   </thead>
@@ -32,6 +35,9 @@
                       <th>Địa chỉ công ty</th>
                       <th>Số điện thoại</th>
                         <th>Trạng thái</th>
+                        @if(Auth::guard('admin')->user()->quyen==1)
+                  <th>Chỉnh sửa bởi</th>
+                  @endif
                       <th>             </th>
                     </tr>
                   </tfoot>
@@ -56,6 +62,13 @@ $stt++;
                             echo "Khóa";
 
                        ?></td>
+                        @if(Auth::guard('admin')->user()->quyen==1)
+ <th>
+  @if($value->id_admin)
+  {{$value->id_admin}}-{{$value->admin->ten}}
+  @endif
+</th>
+@endif
                       <td><button type="button" data-toggle="modal" data-target="#exampleModal{{$key}}"  class="btn btn-light">Chi tiết</button>
 
 <!-- Modal -->

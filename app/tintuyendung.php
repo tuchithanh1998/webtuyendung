@@ -28,6 +28,10 @@ class tintuyendung extends Model
 		return $this->belongsToMany('App\kynang','tintuyendung_kynang','id_tintuyendung','id_kynang');
 		
 	}
+	public function admin()
+    {
+        return $this->belongsTo('App\admin','id_admin');
+    }
 
 /*	public function danhsachkynang()
 	{
